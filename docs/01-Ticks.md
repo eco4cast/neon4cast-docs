@@ -26,7 +26,7 @@ Target species for the population forecasts are *Amblyomma americanum* nymphal t
 
 ## Challenge 
 
-The challenge is open to any individual, group, or institution that may want to participate. The goals of this challenge are to forecast the density of *Amblyomma americanum* nymphs (ticks/1600m^2) each epidemiological week (Sun-Sat) at nine NEON sites. Due to the latency in the taxonomic data reported by NEON, the challenge will be for the 2021 field season.
+The challenge is open to any individual, group, or institution that may want to participate. The goals of this challenge are to forecast the density of *Amblyomma americanum* nymphs (ticks/1600m^2) each epidemiological week at nine NEON sites. The epidemiological week is defined as the week of the year that the National Notifiable Diseases Surveillance System reports disease incidence and runs Sunday-Saturday, also known as an MMWR week (Morbidity and Mortality Weekly Report). Due to the latency in the taxonomic data reported by NEON, the challenge will be for the 2021 field season.
 
 Teams must post information about any additional data they wish to use on the theme Slack channel so that other teams can potentially use the data as well.
 
@@ -46,7 +46,7 @@ The density of *Amblyomma americanum* nymphs per week. Density is defined as the
 
 **Motivation**
 
-We chose to use the density of *Amblyomma americanum* nymphs for several reasons. The first is that *Amblyomma americanum* is a vector of multiple pathogens, many of which cause human disease, and a forecast for their abundance could aid decisions in public health and personal protective measures. For simplicity, we chose to focus on one species for the abundance challenge, and the *Amblyomma americanum* nymphs are the most abundant tick observed in the NEON data. Most ticks are observed in to forested plots, and by standardizing the data to density of ticks observed per unit effort in the forested plots, we hope to avoid forecasters predicting sampling effort. We scaled the density to be representative of ticks per plot, which is more interpretable than ticks per square meter. Also, tick drags occur every three weeks. By having the challenge be for forecasting every week, participants won't have to predict which weeks drags occur.
+We chose to use the density of *Amblyomma americanum* nymphs for several reasons. The first is that *Amblyomma americanum* is a vector of multiple pathogens, many of which cause human disease, and a forecast for their abundance could aid decisions in public health and personal protective measures. For simplicity, we chose to focus on one species for the abundance challenge, and the *Amblyomma americanum* nymphs are the most abundant tick observed in the NEON data. Most ticks are observed in the forested plots, and by standardizing the data to density of ticks observed per unit effort, we hope to avoid forecasters predicting sampling effort. We scaled the density to be representative of ticks per plot, which is more interpretable than ticks per square meter. Also, tick drags occur every three weeks. By having the challenge be for forecasting every week, participants won't have to predict which weeks drags occur.
 
 ### Focal sites
 
@@ -72,9 +72,9 @@ site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4ca
 
 ### Target data calculation
 
-Tick drags occur every three weeks at the NEON sites used in this challenge. The sampling season at each site is determined by phenological milestones, beginning and ending within two weeks of green-up and senescence, respectively. The 1m^2 cloth is dragged for 160m (and at least 80m), and ticks are collected intermittently. They are then sent to a lab for taxonomic identification. Ticks are then identified by life stage and taxonomic rank. The target data is for *Amblyomma americanum* nymphs that were identified to the species level; i.e. ticks identified as being in the *Amblyomma* genus are not included. 
+Tick drags occur every three weeks at the NEON sites used in this challenge. The sampling season at each site is determined by phenological milestones; beginning and ending within two weeks of green-up and senescence, respectively. The 1m^2 cloth is dragged for 160m (and at least 80m), and ticks are collected intermittently. They are then sent to a lab for taxonomic identification, where they are identified by life stage and taxonomic rank. The target data is for *Amblyomma americanum* nymphs that were identified to the species level; i.e. ticks identified as being in the *Amblyomma* genus are not included. 
 
-**Use of 2021 data:** The forecasting challenge is for the 2021 field season, thus environmental covariates are known. However, in the spirit of keeping this as much of a “forecasting” challenge as possible, we ask that for four week forecast period teams use the NOAA GEFS forecasting data. 
+**Use of 2021 data:** The forecasting challenge is for the 2021 field season, thus environmental covariates are known. However, in the spirit of keeping this as much of a “forecasting” challenge as possible, we ask that for the forecast period teams use the NOAA GEFS forecasting data. See section 9 for more information.
 
 ### Target file
 
@@ -115,7 +115,7 @@ readr::read_csv("https://data.ecoforecast.org/targets/ticks/ticks-targets.csv.gz
 
 ## Timeline
 
-The challenge will begin on March 31, 2022 at 11:59 PM Eastern Standard Time, and will run through October 31, 2022. Each forecast will be for the four MMWR weeks during that month.
+The challenge will begin on March 31, 2022 at 11:59 PM Eastern Standard Time, and will run through October 31, 2022. Each forecast will be for the four (or five) MMWR weeks during that month.
 
 For example, the forecast that is due on March 31, 2022 will be for MMWR weeks 10-13 of 2021 because the Sundays (the start of each MMWR week) in March 2021 correspond to MMWR weeks 10-13. Likewise, the forecast due April 30, 2022 will be for MMWR weeks 14-17 of 2021. A table of which weeks to forecast at each deadline can be found below.
 
@@ -150,7 +150,7 @@ Functions for downloading and working with the meteorology forecasts can be be f
 
 ## Null models
 
-Pending
+A historical means null model is automatically generated each month to serve as a simple baseline model. This null model forecasts that the density of *Amblyomma americanum* nymphs will be equal to the mean density observed in a given week. If there are no observations for a given week, that week's mean is a linear interpolation of the preceding and following week. Forecast error is simulated from the log-normal distribution to preserve the zero-bound. 
 
 ## FAQ
 
