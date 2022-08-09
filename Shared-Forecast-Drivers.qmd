@@ -59,7 +59,7 @@ Stage 2 is a processed version of Stage 1 and involves the following transforms 
 
 TMP -\> air_temperature (K) PRES -\> air_pressure (Pa) RH -\> relative_humidity (proportion) DLWRF -\> surface_downwelling_longwave_flux_in_air (W/m\^2) DSWRF -\> surface_downwelling_shortwave_flux_in_air (W/m\^2) APCP -\> precipitation_flux (kg/(m\^2 s)) VGRD -\> eastward_wind (m/s) UGRD -\> northward_wind (m/s)
 
-```{r}
+```{r eval = FALSE}
 weather_1hr <- neon4cast::noaa_stage2()
 weather_1hr |> 
 dplyr::filter(start_date == "2022-04-01" & site_id == "BART") |>
@@ -74,7 +74,7 @@ Stage 3 processing presents a 'nowcast' product by combining the most recent pre
 
 Stage 3 uses CF variable names and 1 hr interval (same at Stage 2)
 
-```{r}
+```{r eval = FALSE}
 weather_stage3 <- neon4cast::noaa_stage3()
 weather_stage3 |> 
 dplyr::filter(site_id == "BART") |>
