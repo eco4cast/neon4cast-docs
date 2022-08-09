@@ -1,25 +1,22 @@
-# Helpful Functions
+# Helpful Functions {#sec-functions}
 
-The following are resources to help you prepare your forecasts for submission. 
+The following are resources to help you prepare your forecasts for submission.
 
-The [neon4cast](https://github.com/eco4cast/neon4cast){target="_blank"} package provides a collection of convenient helper utilities so you can score your forecast locally, validate the format of your forecast files to check for formatting errors before submitting, generate forecast metadata in EML (coming soon!), access EFI snapshots of NOAA forecasts at NEON sites, and submit your forecast. 
+The [neon4cast](https://github.com/eco4cast/neon4cast){target="_blank"} package provides a collection of convenient helper utilities so you can score your forecast locally, validate the format of your forecast files to check for formatting errors before submitting, generate forecast metadata in EML (coming soon!), access EFI snapshots of NOAA forecasts at NEON sites, and submit your forecast.
 
-The [neonstore](https://github.com/cboettig/neonstore){target="_blank"} package provides quick access and persistent storage of NEON data tables. 
+The [neonstore](https://github.com/cboettig/neonstore){target="_blank"} package provides quick access and persistent storage of NEON data tables.
 
-The [EFIstandards](https://github.com/eco4cast/EFIstandards){target="_blank"} package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts by the Ecological Forecasting Initiative. These standards are a work in progress. If you have suggestions for improvement share them with eco4cast.initiative@gmail.com.”
-
+The [EFIstandards](https://github.com/eco4cast/EFIstandards){target="_blank"} package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts by the Ecological Forecasting Initiative. These standards are a work in progress. If you have suggestions for improvement share them with eco4cast.initiative\@gmail.com."
 
 ## neon4cast package
 
 The `neon4cast` package is located at https://github.com/eco4cast/neon4cast
 
-`neon4cast` provides the following collection of convenient helper utilities for
-anyone entering the EFI NEON Forecasting Challenge.
+`neon4cast` provides the following collection of convenient helper utilities for anyone entering the EFI NEON Forecasting Challenge.
 
 ### Installation
 
-You can install the development version from
-[GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
@@ -35,26 +32,16 @@ library(fable)
 library(tsibble)
 ```
 
-Download and read in the current target file for the Aquatics theme. For
-convenience, we read this in as a timeseries object, noting that the
-time is in the ‘time’ column, and timeseries are replicated over sites.
+Download and read in the current target file for the Aquatics theme. For convenience, we read this in as a timeseries object, noting that the time is in the 'time' column, and timeseries are replicated over sites.
 
 ``` r
 aquatic <- read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz") %>% 
   as_tsibble(index=time, key=siteID)
 ```
 
-Create a 35 day forecast for each variable, `oxygen`, and `temperature`.
-For illustrative purposes, we’ll use the `fable` package because it is
-concise and well documented. We make separate forecasts for each of the
-two variables before reformatting them and combining them. Note the use
-of `efi_format` helper function from the `neon4cast` package, which
-merely replaces the special `<S3:distribution>` column used by fable
-with something we can write to text: either columns with a mean/sd (for
-normal distributions) or otherwise random draws from the distributions.
+Create a 35 day forecast for each variable, `oxygen`, and `temperature`. For illustrative purposes, we'll use the `fable` package because it is concise and well documented. We make separate forecasts for each of the two variables before reformatting them and combining them. Note the use of `efi_format` helper function from the `neon4cast` package, which merely replaces the special `<S3:distribution>` column used by fable with something we can write to text: either columns with a mean/sd (for normal distributions) or otherwise random draws from the distributions.
 
-So that we can score our forecast right away instead of waiting for next
-month’s data, we will filter out the most recent data available first.
+So that we can score our forecast right away instead of waiting for next month's data, we will filter out the most recent data available first.
 
 ``` r
 # drop last 35 days and use explicit NAs for gaps in timeseries
@@ -85,16 +72,9 @@ write_csv(forecast, forecast_file)
 
 ### Score forecast locally
 
-Scores for valid forecasts should appear at
-<https://shiny.ecoforecast.org> the day after they are submitted.
-However, it is often more convenient to generate scores locally. Note
-that the “score” simply the `crps_sample` (for ensemble forecasts) or
-`crps_norm` (for summary statistic forecasts) score from the
-`scoringRules` R package, for each unique prediction
-(i.e.day/site/variable tuple).
+Scores for valid forecasts should appear at <https://shiny.ecoforecast.org> the day after they are submitted. However, it is often more convenient to generate scores locally. Note that the "score" simply the `crps_sample` (for ensemble forecasts) or `crps_norm` (for summary statistic forecasts) score from the `scoringRules` R package, for each unique prediction (i.e.day/site/variable tuple).
 
-Note that scores are only possible once the data becomes available in
-the corresponding targets file!
+Note that scores are only possible once the data becomes available in the corresponding targets file!
 
 ``` r
 scores <- score(forecast, theme = "aquatics")
@@ -114,11 +94,7 @@ scores %>%
 
 ### Validate a forecast file
 
-Validating a forecast file runs the same automated checks as the EFI
-server, verifying that the data is in the correct format for the
-appropriate challenge. Helpful errors or warnings will displayed on any
-invalid formats. Note that the validator accepts files in `.csv`
-(optionally compressed as `.csv.gz`) or netcdf.
+Validating a forecast file runs the same automated checks as the EFI server, verifying that the data is in the correct format for the appropriate challenge. Helpful errors or warnings will displayed on any invalid formats. Note that the validator accepts files in `.csv` (optionally compressed as `.csv.gz`) or netcdf.
 
 ``` r
 forecast_output_validator(forecast_file)
@@ -145,17 +121,13 @@ forecast_output_validator(forecast_file)
 
 ### Generate forecast metadata in EML
 
-See [Metadata]
+See \[Metadata\]
 
 ### Access EFI snapshots of NOAA forecasts at NEON sites
 
-Many forecasts will want to make use of weather forecasts as potential
-drivers. EFI downscales NOAA GEFS 35-day forecast products at each NEON
-site and makes this data available. These helper functions provide
-convenient access for downloading and stacking the individual forecast
-files.
+Many forecasts will want to make use of weather forecasts as potential drivers. EFI downscales NOAA GEFS 35-day forecast products at each NEON site and makes this data available. These helper functions provide convenient access for downloading and stacking the individual forecast files.
 
-See [Meteorology Inputs] for the functions
+See \[Meteorology Inputs\] for the functions
 
 ### Submit a forecast {#neon4cast-submit}
 
@@ -183,28 +155,21 @@ submit(forecast_file)
 #> ✓ file has correct time column
 ```
 
-Ideally you should include the optional `metadata =` argument with your
-metadata file.
+Ideally you should include the optional `metadata =` argument with your metadata file.
 
 ## neonstore package
 
-The neonstore package is located at  https://github.com/eco4cast/neon4cast
+The neonstore package is located at https://github.com/eco4cast/neon4cast
 
 `neonstore` provides quick access and persistent storage of NEON data tables. `neonstore` emphasizes simplicity and a clean data provenance trail, see Provenance section below.
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/cboettig/neonstore/workflows/R-CMD-check/badge.svg)](https://github.com/cboettig/neonstore/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/cboettig/neonstore/branch/master/graph/badge.svg)](https://codecov.io/gh/cboettig/neonstore?branch=master)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/neonstore)](https://CRAN.R-project.org/package=neonstore)
+[![R build status](https://github.com/cboettig/neonstore/workflows/R-CMD-check/badge.svg)](https://github.com/cboettig/neonstore/actions) [![Codecov test coverage](https://codecov.io/gh/cboettig/neonstore/branch/master/graph/badge.svg)](https://codecov.io/gh/cboettig/neonstore?branch=master) [![CRAN status](https://www.r-pkg.org/badges/version/neonstore)](https://CRAN.R-project.org/package=neonstore)
+
 <!-- badges: end -->
 
-`neonstore` provides quick access and persistent storage of NEON data
-tables. `neonstore` emphasizes simplicity and a clean data provenance
-trail, see Provenance section below.
+`neonstore` provides quick access and persistent storage of NEON data tables. `neonstore` emphasizes simplicity and a clean data provenance trail, see Provenance section below.
 
 ### Installation
 
@@ -281,13 +246,9 @@ neon_index()
 #> #   crc32 <chr>, release <chr>
 ```
 
-These files will persist between sessions, so you only need to download
-once or to retrieve updates. `neon_index()` can take arguments to filter
-by product or pattern (regular expression) in table name,
-e.g.`neon_index(table = "brd")`.
+These files will persist between sessions, so you only need to download once or to retrieve updates. `neon_index()` can take arguments to filter by product or pattern (regular expression) in table name, e.g.`neon_index(table = "brd")`.
 
-Once you determine the table of interest, you can read in all the
-component tables into a single `data.frame`
+Once you determine the table of interest, you can read in all the component tables into a single `data.frame`
 
 ``` r
 neon_read("brd_countdata-expanded")
@@ -296,16 +257,14 @@ neon_read("brd_countdata-expanded")
 
 ### Database backend
 
-`neonstore` now supports a backend relation database as well. Import
-data from the raw downloaded files using `neon_store()`:
+`neonstore` now supports a backend relation database as well. Import data from the raw downloaded files using `neon_store()`:
 
 ``` r
 neon_store(table = "brd_countdata-expanded")
 #> table brd_countdata-expanded not found, do you need to download first?
 ```
 
-Alternately, we could import all data tables associated with a given
-product:
+Alternately, we could import all data tables associated with a given product:
 
 ``` r
 neon_store(product = "DP1.10003.001")
@@ -338,11 +297,8 @@ neon_table("brd_countdata")
 #> #   file <chr>
 ```
 
-Access the remote database using `neon_db()`. This is a `DBIConnection`
-that can easily be used with `dplyr` functions like `tbl()` or
-`filter()`.  
-Remember that `dplyr` translates these into SQL queries that run
-directly on the database.
+Access the remote database using `neon_db()`. This is a `DBIConnection` that can easily be used with `dplyr` functions like `tbl()` or `filter()`.\
+Remember that `dplyr` translates these into SQL queries that run directly on the database.
 
 ``` r
 library(dplyr)
@@ -378,40 +334,19 @@ brd %>% filter(siteID == "ORNL")
 #> #   file <chr>
 ```
 
-Note that we need to include the product name in the table name when
-accessing the database, as table names alone may not be unique. RStudio
-users can also list and explore all tables interactively in the
-Connections pane in RStudio using `neon_pane()`.
+Note that we need to include the product name in the table name when accessing the database, as table names alone may not be unique. RStudio users can also list and explore all tables interactively in the Connections pane in RStudio using `neon_pane()`.
 
 ### Note on API limits
 
-If `neon_download()` exceeds the API request limit (with or without the
-token), `neonstore` will simply pause for the required amount of time to
-avoid rate-limit-based errors.
+If `neon_download()` exceeds the API request limit (with or without the token), `neonstore` will simply pause for the required amount of time to avoid rate-limit-based errors.
 
-[The NEON API now rate-limits
-requests.](https://data.neonscience.org/data-api/rate-limiting/#api-tokens).
-Using a personal token will increase the number of requests you can make
-before encountering this delay. See link for directions on registering
-for a token. Then pass this token in `.token` argument of
-`neon_download()`, or for frequent use, add this token as an
-environmental variable, `NEON_DATA` to your local `.Renviron` file in
-your user’s home directory. `neon_download()` must first query each the
-API of each NEON site which collects that product, for each month the
-product is collected.
+[The NEON API now rate-limits requests.](https://data.neonscience.org/data-api/rate-limiting/#api-tokens). Using a personal token will increase the number of requests you can make before encountering this delay. See link for directions on registering for a token. Then pass this token in `.token` argument of `neon_download()`, or for frequent use, add this token as an environmental variable, `NEON_DATA` to your local `.Renviron` file in your user's home directory. `neon_download()` must first query each the API of each NEON site which collects that product, for each month the product is collected.
 
-(It would be much more efficient on the NEON server if the API could
-take queries of the from `/data/<product>/<site>`, and pool the results,
-rather than require each month of sampling separately\!)
+(It would be much more efficient on the NEON server if the API could take queries of the from `/data/<product>/<site>`, and pool the results, rather than require each month of sampling separately!)
 
 ### Non-stacking files and low-level interface
 
-At it’s core, `neonstore` is simply a mechanism to download files from
-the NEON API. While the `.csv` files from the Observation Systems (OS,
-e.g. bird count surveys), and Instrument Systems (e.g. aquatic sensors)
-are typically stacked into large tables, other products, such as the
-`.laz` and `.tif` images produced by the airborne observation platform
-LIDAR and cameras may require a different approach.
+At it's core, `neonstore` is simply a mechanism to download files from the NEON API. While the `.csv` files from the Observation Systems (OS, e.g. bird count surveys), and Instrument Systems (e.g. aquatic sensors) are typically stacked into large tables, other products, such as the `.laz` and `.tif` images produced by the airborne observation platform LIDAR and cameras may require a different approach.
 
 ``` r
 # Read in a large file list for illustration purposes
@@ -483,19 +418,15 @@ df %>%
 #> #   FFFFFF <chr>, README <lgl>, COMPRESSION <lgl>
 ```
 
-Note that many of the airborne observation platform (AOP) products, such
-as these LIDAR files, do not include the PRNUM or REV components that make up part of the `productCode`s used in the NEON `product` tables.
+Note that many of the airborne observation platform (AOP) products, such as these LIDAR files, do not include the PRNUM or REV components that make up part of the `productCode`s used in the NEON `product` tables.
 
 ## EFIstandards package
 
 <!-- badges: start -->
-  [![R build status](https://github.com/cboettig/forecast-standards/workflows/R-CMD-check/badge.svg)](https://github.com/cboettig/forecast-standards/actions) 
-  [![CRAN status](https://www.r-pkg.org/badges/version/EFIstandards)](https://CRAN.R-project.org/package=EFIstandards)
-  [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-  <!-- badges: end -->
 
+[![R build status](https://github.com/cboettig/forecast-standards/workflows/R-CMD-check/badge.svg)](https://github.com/cboettig/forecast-standards/actions) [![CRAN status](https://www.r-pkg.org/badges/version/EFIstandards)](https://CRAN.R-project.org/package=EFIstandards) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) <!-- badges: end -->
 
-This package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts developed by the Ecological Forecasting Initiative (EFI). Such open standards are intended to promote interoperability and facilitate forecast adoption, distribution, validation, and synthesis. 
+This package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts developed by the Ecological Forecasting Initiative (EFI). Such open standards are intended to promote interoperability and facilitate forecast adoption, distribution, validation, and synthesis.
 
 ### Output Files:
 
@@ -503,7 +434,7 @@ EFI has proposed a three-tiered approach reflecting trade-offs in forecast data 
 
 ### Output Metadata:
 
-EFI’s proposed metadata represents an expansion upon the Ecological Metadata Language (EML), with two key differences. First, is the specification of additonalMetadata tags to store forecast specific information (e.g. uncertainty propagation and data assimilation) as well as some summary information about model complexity, included uncertainties, etc. designed to facilitate cross-forecast synthesis. Second, a number of EML tags (e.g. temporal resolution, output variables) are considered a required part of forecast metadata that are otherwise optional in base EML.
+EFI's proposed metadata represents an expansion upon the Ecological Metadata Language (EML), with two key differences. First, is the specification of additonalMetadata tags to store forecast specific information (e.g. uncertainty propagation and data assimilation) as well as some summary information about model complexity, included uncertainties, etc. designed to facilitate cross-forecast synthesis. Second, a number of EML tags (e.g. temporal resolution, output variables) are considered a required part of forecast metadata that are otherwise optional in base EML.
 
 This package includes an R tool for validating these EML files.
 
@@ -517,6 +448,6 @@ This package includes a number of vignettes illustrating the application of the 
 
 ### Documentation:
 
-A more detailed description of the EFI standard can be found at [https://shorturl.at/irMQW](https://shorturl.at/irMQW). Note that the Standard is a work in progress. If you find issues as you are applying them, let us know at eco4cast.initiative@gmail.com. 
+A more detailed description of the EFI standard can be found at <https://shorturl.at/irMQW>. Note that the Standard is a work in progress. If you find issues as you are applying them, let us know at eco4cast.initiative\@gmail.com.
 
 Pkgdown rendered documentation of functions and vignettes can be found at https://eco4cast.github.io/EFIstandards/

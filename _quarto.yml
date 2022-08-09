@@ -5,6 +5,7 @@ book:
   title: "NEON Ecological Forecasting Challenge"
   author: "Ecological Forecasting Initative Research Coordination Network"
   date: now
+  logo: images/EFI_Logo-1.jpg
   chapters:
     - index.qmd
     - Aquatics.qmd
