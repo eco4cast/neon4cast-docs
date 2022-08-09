@@ -29,7 +29,7 @@ jobs:
         run: |
           quarto install tool tinytex
           quarto render
-          cp _book/* docs/.
+          cp -r _book/* docs/.
       - name: Commit results
         run: |
           git config --local user.name "$GITHUB_ACTOR"
