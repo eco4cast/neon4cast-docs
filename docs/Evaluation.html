@@ -305,14 +305,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>crps_equation_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(x <span class="sc">-</span> y)) <span class="sc">-</span> s <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">length</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>crps_equation_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2312916</code></pre>
+<pre><code>[1] 0.232974</code></pre>
 </div>
 </div>
 <p>Now calculate using the <code>crps_sample()</code> function in the <code>scoringRules</code> package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crps_sample</span>(<span class="at">y =</span> y, <span class="at">dat =</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2312916</code></pre>
+<pre><code>[1] 0.232974</code></pre>
 </div>
 </div>
 </section>
@@ -442,7 +442,7 @@ CRPS(N(\mu, \sigma^2) | y) = \sigma \left( \frac{y - \mu}{\sigma} \left( 2 \Phi\
 </section>
 <section id="forecast-submission-visualization-and-leaderboard" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="forecast-submission-visualization-and-leaderboard"><span class="header-section-number">9.4</span> Forecast Submission Visualization and Leaderboard</h2>
-<p>The <a href="https://shiny.ecoforecast.org" target="_blank">dashboard</a> shows the forecast submissions by each team for each forecast theme by date and forecast variable. It also provides the <a href="https://shiny.ecoforecast.org/#section-scores" target="_blank">CRPS scores</a> for each submitted forecast.</p>
+<p>The <a href="https://shiny3.ecoforecast.org" target="_blank">dashboard</a> shows the forecast submissions by each team for each forecast theme by date and forecast variable.</p>
 </section>
 <section id="references" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="references"><span class="header-section-number">9.5</span> References</h2>
