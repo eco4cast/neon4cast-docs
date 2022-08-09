@@ -27,6 +27,7 @@ jobs:
       - name: Render book to all format
         # Add any command line argument needed
         run: |
+          quarto install tool tinytex
           quarto render
       - name: Commit results
         run: |
