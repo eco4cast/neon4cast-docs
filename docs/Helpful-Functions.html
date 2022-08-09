@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NEON Ecological Forecasting Challenge - 11&nbsp; Helpful Functions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./UseInCourse.html" rel="next">
+<link href="./Shared-Forecast-Drivers.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Helpful Functions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">NEON Ecological Forecasting Challenge</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Aquatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theme: Aquatic Ecosystems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ticks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Theme: Tick Populations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Phenology.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Beetles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theme: Beetle Communities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Participation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Participation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Submission-Instructions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Submission Instructions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Metadata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Submission Metadata Generation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Shared-Forecast-Drivers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#neon4cast-package" id="toc-neon4cast-package" class="nav-link active" data-scroll-target="#neon4cast-package"> <span class="header-section-number">11.1</span> neon4cast package</a>
+  <ul class="collapse">
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">11.1.1</span> Installation</a></li>
+  <li><a href="#example-forecast" id="toc-example-forecast" class="nav-link" data-scroll-target="#example-forecast"> <span class="header-section-number">11.1.2</span> Example forecast</a></li>
+  <li><a href="#score-forecast-locally" id="toc-score-forecast-locally" class="nav-link" data-scroll-target="#score-forecast-locally"> <span class="header-section-number">11.1.3</span> Score forecast locally</a></li>
+  <li><a href="#validate-a-forecast-file" id="toc-validate-a-forecast-file" class="nav-link" data-scroll-target="#validate-a-forecast-file"> <span class="header-section-number">11.1.4</span> Validate a forecast file</a></li>
+  <li><a href="#generate-forecast-metadata-in-eml" id="toc-generate-forecast-metadata-in-eml" class="nav-link" data-scroll-target="#generate-forecast-metadata-in-eml"> <span class="header-section-number">11.1.5</span> Generate forecast metadata in EML</a></li>
+  <li><a href="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites" id="toc-access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="nav-link" data-scroll-target="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites"> <span class="header-section-number">11.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</a></li>
+  <li><a href="#neon4cast-submit" id="toc-neon4cast-submit" class="nav-link" data-scroll-target="#neon4cast-submit"> <span class="header-section-number">11.1.7</span> Submit a forecast</a></li>
+  </ul></li>
+  <li><a href="#neonstore-package" id="toc-neonstore-package" class="nav-link" data-scroll-target="#neonstore-package"> <span class="header-section-number">11.2</span> neonstore package</a>
+  <ul class="collapse">
+  <li><a href="#installation-1" id="toc-installation-1" class="nav-link" data-scroll-target="#installation-1"> <span class="header-section-number">11.2.1</span> Installation</a></li>
+  <li><a href="#quickstart" id="toc-quickstart" class="nav-link" data-scroll-target="#quickstart"> <span class="header-section-number">11.2.2</span> Quickstart</a></li>
+  <li><a href="#database-backend" id="toc-database-backend" class="nav-link" data-scroll-target="#database-backend"> <span class="header-section-number">11.2.3</span> Database backend</a></li>
+  <li><a href="#note-on-api-limits" id="toc-note-on-api-limits" class="nav-link" data-scroll-target="#note-on-api-limits"> <span class="header-section-number">11.2.4</span> Note on API limits</a></li>
+  <li><a href="#non-stacking-files-and-low-level-interface" id="toc-non-stacking-files-and-low-level-interface" class="nav-link" data-scroll-target="#non-stacking-files-and-low-level-interface"> <span class="header-section-number">11.2.5</span> Non-stacking files and low-level interface</a></li>
+  </ul></li>
+  <li><a href="#efistandards-package" id="toc-efistandards-package" class="nav-link" data-scroll-target="#efistandards-package"> <span class="header-section-number">11.3</span> EFIstandards package</a>
+  <ul class="collapse">
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"> <span class="header-section-number">11.3.1</span> Output Files:</a></li>
+  <li><a href="#output-metadata" id="toc-output-metadata" class="nav-link" data-scroll-target="#output-metadata"> <span class="header-section-number">11.3.2</span> Output Metadata:</a></li>
+  <li><a href="#archiving" id="toc-archiving" class="nav-link" data-scroll-target="#archiving"> <span class="header-section-number">11.3.3</span> Archiving:</a></li>
+  <li><a href="#vignettes" id="toc-vignettes" class="nav-link" data-scroll-target="#vignettes"> <span class="header-section-number">11.3.4</span> Vignettes:</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"> <span class="header-section-number">11.3.5</span> Documentation:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Helpful Functions</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The following are resources to help you prepare your forecasts for submission.</p>
+<p>The <a href="https://github.com/eco4cast/neon4cast" target="_blank">neon4cast</a> package provides a collection of convenient helper utilities so you can score your forecast locally, validate the format of your forecast files to check for formatting errors before submitting, generate forecast metadata in EML (coming soon!), access EFI snapshots of NOAA forecasts at NEON sites, and submit your forecast.</p>
+<p>The <a href="https://github.com/cboettig/neonstore" target="_blank">neonstore</a> package provides quick access and persistent storage of NEON data tables.</p>
+<p>The <a href="https://github.com/eco4cast/EFIstandards" target="_blank">EFIstandards</a> package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts by the Ecological Forecasting Initiative. These standards are a work in progress. If you have suggestions for improvement share them with eco4cast.initiative@gmail.com.”</p>
+<section id="neon4cast-package" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="neon4cast-package"><span class="header-section-number">11.1</span> neon4cast package</h2>
+<p>The <code>neon4cast</code> package is located at https://github.com/eco4cast/neon4cast</p>
+<p><code>neon4cast</code> provides the following collection of convenient helper utilities for anyone entering the EFI NEON Forecasting Challenge.</p>
+<section id="installation" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">11.1.1</span> Installation</h3>
+<p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"eco4cast/neon4cast"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-forecast" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="example-forecast"><span class="header-section-number">11.1.2</span> Example forecast</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neon4cast)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Download and read in the current target file for the Aquatics theme. For convenience, we read this in as a timeseries object, noting that the time is in the ‘time’ column, and timeseries are replicated over sites.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>aquatic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>time, <span class="at">key=</span>siteID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a 35 day forecast for each variable, <code>oxygen</code>, and <code>temperature</code>. For illustrative purposes, we’ll use the <code>fable</code> package because it is concise and well documented. We make separate forecasts for each of the two variables before reformatting them and combining them. Note the use of <code>efi_format</code> helper function from the <code>neon4cast</code> package, which merely replaces the special <code>&lt;S3:distribution&gt;</code> column used by fable with something we can write to text: either columns with a mean/sd (for normal distributions) or otherwise random draws from the distributions.</p>
+<p>So that we can score our forecast right away instead of waiting for next month’s data, we will filter out the most recent data available first.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop last 35 days and use explicit NAs for gaps in timeseries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>blinded_aquatic <span class="ot">&lt;-</span> aquatic <span class="sc">%&gt;%</span> <span class="fu">filter</span>(time <span class="sc">&lt;</span> <span class="fu">max</span>(time) <span class="sc">-</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> <span class="fu">fill_gaps</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple random walk forecast, see ?fable::RW</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>oxygen_fc <span class="ot">&lt;-</span> blinded_aquatic <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">null =</span> <span class="fu">RW</span>(oxygen)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"35 days"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">efi_format</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## also use random walk for temperature</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>temperature_fc <span class="ot">&lt;-</span> blinded_aquatic  <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">null =</span> <span class="fu">RW</span>(temperature)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"35 days"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">efi_format</span>()</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into single table, drop the .model column</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(oxygen_fc, temperature_fc) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>.model)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Write the forecast to a file following EFI naming conventions:</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>forecast_file <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{theme}-{date}-{team}.csv.gz"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                            <span class="at">theme =</span> <span class="st">"aquatics"</span>, </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                            <span class="at">date=</span><span class="fu">Sys.Date</span>(),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">team =</span> <span class="st">"example_null"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(forecast, forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="score-forecast-locally" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="score-forecast-locally"><span class="header-section-number">11.1.3</span> Score forecast locally</h3>
+<p>Scores for valid forecasts should appear at <a href="https://shiny.ecoforecast.org" class="uri">https://shiny.ecoforecast.org</a> the day after they are submitted. However, it is often more convenient to generate scores locally. Note that the “score” simply the <code>crps_sample</code> (for ensemble forecasts) or <code>crps_norm</code> (for summary statistic forecasts) score from the <code>scoringRules</code> R package, for each unique prediction (i.e.day/site/variable tuple).</p>
+<p>Note that scores are only possible once the data becomes available in the corresponding targets file!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">score</span>(forecast, <span class="at">theme =</span> <span class="st">"aquatics"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The resulting data.frame scores each day for each site, but is also easy to summarize:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(siteID, target) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   siteID target      mean_score</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 BARC   oxygen           0.677</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 BARC   temperature    NaN    </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 POSE   oxygen           0.676</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 POSE   temperature      1.42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validate-a-forecast-file" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="validate-a-forecast-file"><span class="header-section-number">11.1.4</span> Validate a forecast file</h3>
+<p>Validating a forecast file runs the same automated checks as the EFI server, verifying that the data is in the correct format for the appropriate challenge. Helpful errors or warnings will displayed on any invalid formats. Note that the validator accepts files in <code>.csv</code> (optionally compressed as <code>.csv.gz</code>) or netcdf.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forecast_output_validator</span>(forecast_file)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; aquatics-2021-03-17-example_null.csv.gz</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file name is correct</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   time = col_date(format = ""),</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   siteID = col_character(),</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   statistic = col_character(),</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   oxygen = col_double(),</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   temperature = col_double()</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; )</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ target variables found</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistics column</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistic: mean</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistic: sd</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has siteID column</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has time column</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has correct time column</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="generate-forecast-metadata-in-eml" class="level3" data-number="11.1.5">
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="generate-forecast-metadata-in-eml"><span class="header-section-number">11.1.5</span> Generate forecast metadata in EML</h3>
+<p>See [Metadata]</p>
+</section>
+<section id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="level3" data-number="11.1.6">
+<h3 data-number="11.1.6" class="anchored" data-anchor-id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites"><span class="header-section-number">11.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</h3>
+<p>Many forecasts will want to make use of weather forecasts as potential drivers. EFI downscales NOAA GEFS 35-day forecast products at each NEON site and makes this data available. These helper functions provide convenient access for downloading and stacking the individual forecast files.</p>
+<p>See [Meteorology Inputs] for the functions</p>
+</section>
+<section id="neon4cast-submit" class="level3" data-number="11.1.7">
+<h3 data-number="11.1.7" class="anchored" data-anchor-id="neon4cast-submit"><span class="header-section-number">11.1.7</span> Submit a forecast</h3>
+<p>When you are ready to submit your forecast to EFI:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">submit</span>(forecast_file)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; aquatics-2021-03-17-example_null.csv.gz</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file name is correct</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   time = col_date(format = ""),</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   siteID = col_character(),</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   statistic = col_character(),</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   oxygen = col_double(),</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   temperature = col_double()</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; )</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ target variables found</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistics column</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistic: mean</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has summary statistic: sd</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has siteID column</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has time column</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has correct time column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ideally you should include the optional <code>metadata =</code> argument with your metadata file.</p>
+</section>
+</section>
+<section id="neonstore-package" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="neonstore-package"><span class="header-section-number">11.2</span> neonstore package</h2>
+<p>The neonstore package is located at https://github.com/eco4cast/neon4cast</p>
+<p><code>neonstore</code> provides quick access and persistent storage of NEON data tables. <code>neonstore</code> emphasizes simplicity and a clean data provenance trail, see Provenance section below.</p>
+<!-- badges: start -->
+<p><a href="https://github.com/cboettig/neonstore/actions"><img src="https://github.com/cboettig/neonstore/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://codecov.io/gh/cboettig/neonstore?branch=master"><img src="https://codecov.io/gh/cboettig/neonstore/branch/master/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://CRAN.R-project.org/package=neonstore"><img src="https://www.r-pkg.org/badges/version/neonstore.png" class="img-fluid" alt="CRAN status"></a> <!-- badges: end --></p>
+<p><code>neonstore</code> provides quick access and persistent storage of NEON data tables. <code>neonstore</code> emphasizes simplicity and a clean data provenance trail, see Provenance section below.</p>
+<section id="installation-1" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="installation-1"><span class="header-section-number">11.2.1</span> Installation</h3>
+<p>Install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"cboettig/neonstore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="quickstart" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="quickstart"><span class="header-section-number">11.2.2</span> Quickstart</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neonstore)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Discover data products of interest:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>products <span class="ot">&lt;-</span> <span class="fu">neon_products</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"Populations"</span>, products<span class="sc">$</span>themes)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>products[i, <span class="fu">c</span>(<span class="st">"productCode"</span>, <span class="st">"productName"</span>)]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 50 x 2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    productCode   productName                                              </span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;                                                    </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 DP1.00033.001 Phenology images                                         </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 DP1.10003.001 Breeding landbird point counts                           </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 DP1.10010.001 Coarse downed wood log survey                            </span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 DP1.10020.001 Ground beetle sequences DNA barcode                      </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 DP1.10022.001 Ground beetles sampled from pitfall traps                </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 DP1.10026.001 Plant foliar traits                                      </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 DP1.10033.001 Litterfall and fine woody debris production and chemistry</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 DP1.10038.001 Mosquito sequences DNA barcode                           </span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 DP1.10041.001 Mosquito-borne pathogen status                           </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 DP1.10043.001 Mosquitoes sampled from CO2 traps                        </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 40 more rows</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"bird"</span>, products<span class="sc">$</span>keywords)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>products[i, <span class="fu">c</span>(<span class="st">"productCode"</span>, <span class="st">"productName"</span>)]</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   productCode   productName                   </span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                         </span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DP1.10003.001 Breeding landbird point counts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Download all data files in the bird survey data products.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_download</span>(<span class="st">"DP1.10003.001"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   comparing hashes against local file index...</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   updating release manifest...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>View your store of NEON products:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_index</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 854 x 15</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    product  site  table   type  ext   month timestamp           horizontalPosit…</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dttm&gt;                         &lt;dbl&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 DP1.100… BART  brd_co… basic csv   2015… 2020-12-23 14:17:30               NA</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 DP1.100… BART  brd_co… basic csv   2016… 2020-12-23 14:17:14               NA</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 DP1.100… BART  brd_co… basic csv   2017… 2020-12-23 14:17:36               NA</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 DP1.100… BART  brd_co… basic csv   2018… 2020-12-23 14:17:21               NA</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 DP1.100… BART  brd_co… basic csv   2019… 2020-12-23 14:17:45               NA</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 DP1.100… BART  brd_co… basic csv   2020… 2020-12-23 14:17:03               NA</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 DP1.100… BART  brd_co… basic csv   2020… 2020-12-23 14:17:41               NA</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 DP1.100… BART  brd_pe… basic csv   2015… 2020-12-23 14:17:30               NA</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 DP1.100… BART  brd_pe… basic csv   2016… 2020-12-23 14:17:14               NA</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 DP1.100… BART  brd_pe… basic csv   2017… 2020-12-23 14:17:36               NA</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 844 more rows, and 7 more variables: verticalPosition &lt;dbl&gt;,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   samplingInterval &lt;chr&gt;, date_range &lt;chr&gt;, path &lt;chr&gt;, md5 &lt;chr&gt;,</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   crc32 &lt;chr&gt;, release &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These files will persist between sessions, so you only need to download once or to retrieve updates. <code>neon_index()</code> can take arguments to filter by product or pattern (regular expression) in table name, e.g.<code>neon_index(table = "brd")</code>.</p>
+<p>Once you determine the table of interest, you can read in all the component tables into a single <code>data.frame</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_read</span>(<span class="st">"brd_countdata-expanded"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="database-backend" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="database-backend"><span class="header-section-number">11.2.3</span> Database backend</h3>
+<p><code>neonstore</code> now supports a backend relation database as well. Import data from the raw downloaded files using <code>neon_store()</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_store</span>(<span class="at">table =</span> <span class="st">"brd_countdata-expanded"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; table brd_countdata-expanded not found, do you need to download first?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternately, we could import all data tables associated with a given product:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_store</span>(<span class="at">product =</span> <span class="st">"DP1.10003.001"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   importing brd_countdata-basic-DP1.10003.001...</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   importing brd_perpoint-basic-DP1.10003.001...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Access an imported table using <code>neon_table()</code> instead of <code>neon_read()</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_table</span>(<span class="st">"brd_countdata"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 203,220 x 23</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    uid                namedLocation     domainID siteID plotID plotType  pointID</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 01cef6c1-5851-407… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 43990e9a-1412-427… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 d4f59f3c-e3f1-4a7… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 4ad44b7d-1eb6-465… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 944a3e0e-08de-497… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 d4cb0f22-923b-449… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… C1     </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 0cc69b4f-650f-4f7… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… B1     </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 c6367f2f-8b74-402… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… B1     </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 406e8277-2c18-4b2… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… B1     </span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 ef879541-c8d5-41c… HEAL_006.birdGri… D19      HEAL   HEAL_… distribu… B1     </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 203,210 more rows, and 16 more variables: startDate &lt;dttm&gt;,</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   eventID &lt;chr&gt;, pointCountMinute &lt;dbl&gt;, targetTaxaPresent &lt;chr&gt;,</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   taxonID &lt;chr&gt;, scientificName &lt;chr&gt;, taxonRank &lt;chr&gt;, vernacularName &lt;chr&gt;,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   observerDistance &lt;dbl&gt;, detectionMethod &lt;chr&gt;, visualConfirmation &lt;chr&gt;,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sexOrAge &lt;chr&gt;, clusterSize &lt;dbl&gt;, clusterCode &lt;chr&gt;, identifiedBy &lt;chr&gt;,</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   file &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Access the remote database using <code>neon_db()</code>. This is a <code>DBIConnection</code> that can easily be used with <code>dplyr</code> functions like <code>tbl()</code> or <code>filter()</code>.<br>
+Remember that <code>dplyr</code> translates these into SQL queries that run directly on the database.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     filter, lag</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">neon_db</span>()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>brd <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"brd_countdata-basic-DP1.10003.001"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>brd <span class="sc">%&gt;%</span> <span class="fu">filter</span>(siteID <span class="sc">==</span> <span class="st">"ORNL"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8,797 x 23</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    uid                namedLocation     domainID siteID plotID plotType  pointID</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  </span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 33425600-9ce1-4a9… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 faf5ee98-43e9-40f… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2dc63a4a-3da1-4e0… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 7952192b-55b4-48f… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 41bf843e-3433-4d0… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 e88d8ada-e43a-409… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 04604bac-dd88-4d1… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 05a8d535-3f59-413… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 b5cccafa-acbf-41e… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 63d9e30e-ab6c-41b… ORNL_002.birdGri… D07      ORNL   ORNL_… distribu… A1     </span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 8,787 more rows, and 16 more variables: startDate &lt;dttm&gt;,</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   eventID &lt;chr&gt;, pointCountMinute &lt;dbl&gt;, targetTaxaPresent &lt;chr&gt;,</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   taxonID &lt;chr&gt;, scientificName &lt;chr&gt;, taxonRank &lt;chr&gt;, vernacularName &lt;chr&gt;,</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   observerDistance &lt;dbl&gt;, detectionMethod &lt;chr&gt;, visualConfirmation &lt;chr&gt;,</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sexOrAge &lt;chr&gt;, clusterSize &lt;dbl&gt;, clusterCode &lt;chr&gt;, identifiedBy &lt;chr&gt;,</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   file &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that we need to include the product name in the table name when accessing the database, as table names alone may not be unique. RStudio users can also list and explore all tables interactively in the Connections pane in RStudio using <code>neon_pane()</code>.</p>
+</section>
+<section id="note-on-api-limits" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="note-on-api-limits"><span class="header-section-number">11.2.4</span> Note on API limits</h3>
+<p>If <code>neon_download()</code> exceeds the API request limit (with or without the token), <code>neonstore</code> will simply pause for the required amount of time to avoid rate-limit-based errors.</p>
+<p><a href="https://data.neonscience.org/data-api/rate-limiting/#api-tokens">The NEON API now rate-limits requests.</a>. Using a personal token will increase the number of requests you can make before encountering this delay. See link for directions on registering for a token. Then pass this token in <code>.token</code> argument of <code>neon_download()</code>, or for frequent use, add this token as an environmental variable, <code>NEON_DATA</code> to your local <code>.Renviron</code> file in your user’s home directory. <code>neon_download()</code> must first query each the API of each NEON site which collects that product, for each month the product is collected.</p>
+<p>(It would be much more efficient on the NEON server if the API could take queries of the from <code>/data/&lt;product&gt;/&lt;site&gt;</code>, and pool the results, rather than require each month of sampling separately!)</p>
+</section>
+<section id="non-stacking-files-and-low-level-interface" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="non-stacking-files-and-low-level-interface"><span class="header-section-number">11.2.5</span> Non-stacking files and low-level interface</h3>
+<p>At it’s core, <code>neonstore</code> is simply a mechanism to download files from the NEON API. While the <code>.csv</code> files from the Observation Systems (OS, e.g.&nbsp;bird count surveys), and Instrument Systems (e.g.&nbsp;aquatic sensors) are typically stacked into large tables, other products, such as the <code>.laz</code> and <code>.tif</code> images produced by the airborne observation platform LIDAR and cameras may require a different approach.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in a large file list for illustration purposes</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cper_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://minio.thelio.carlboettiger.info/shared-data/neon_data_catalog.csv.gz"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Registered S3 methods overwritten by 'readr':</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method           from </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   format.col_spec  vroom</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   print.col_spec   vroom</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   print.collector  vroom</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   print.date_names vroom</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   print.locale     vroom</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   str.col_spec     vroom</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   crc32 = col_character(),</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   name = col_character(),</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   size = col_double(),</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   url = col_character()</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; )</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Typically one would read all files in local store, e.g. list.file(neon_dir())</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">neon_filename_parser</span>(cper_data<span class="sc">$</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(EXT, <span class="at">sort=</span><span class="cn">TRUE</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 13 x 2</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    EXT       n</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 csv   38816</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 &lt;NA&gt;   8938</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 zip    4197</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 tif    3994</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 txt    3359</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 xml    3316</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 kml    1155</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 dbf    1100</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 prj    1100</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 shp    1100</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 shx    1100</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 h5     1093</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 laz     330</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can take a look at all <code>laz</code> LIDAR files:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(EXT <span class="sc">==</span> <span class="st">"laz"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 330 x 31</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    NEON  DOM   SITE  DPL   PRNUM REV   DESC  YYYY_MM PKGTYPE GENTIME EXT   name </span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  uncl… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  clas… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 NEON  D10   CPER  DP1   &lt;NA&gt;  &lt;NA&gt;  uncl… &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    laz   NEON…</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 320 more rows, and 19 more variables: MISC &lt;chr&gt;, HOR &lt;chr&gt;,</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   VER &lt;chr&gt;, TMI &lt;chr&gt;, YYYY_MM_DD &lt;chr&gt;, DATE_RANGE &lt;chr&gt;, FLHTSTRT &lt;chr&gt;,</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   EHCCCCCC &lt;chr&gt;, IMAGEDATETIME &lt;chr&gt;, NNNN &lt;chr&gt;, NNN &lt;chr&gt;, R &lt;chr&gt;,</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   FLIGHTSTRT &lt;chr&gt;, EEEEEE &lt;chr&gt;, NNNNNNN &lt;chr&gt;, FLHTDATE &lt;chr&gt;,</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   FFFFFF &lt;chr&gt;, README &lt;lgl&gt;, COMPRESSION &lt;lgl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that many of the airborne observation platform (AOP) products, such as these LIDAR files, do not include the PRNUM or REV components that make up part of the <code>productCode</code>s used in the NEON <code>product</code> tables.</p>
+</section>
+</section>
+<section id="efistandards-package" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="efistandards-package"><span class="header-section-number">11.3</span> EFIstandards package</h2>
+<!-- badges: start -->
+<p><a href="https://github.com/cboettig/forecast-standards/actions"><img src="https://github.com/cboettig/forecast-standards/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://CRAN.R-project.org/package=EFIstandards"><img src="https://www.r-pkg.org/badges/version/EFIstandards.png" class="img-fluid" alt="CRAN status"></a> <a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" class="img-fluid" alt="Lifecycle: experimental"></a> <!-- badges: end --></p>
+<p>This package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts developed by the Ecological Forecasting Initiative (EFI). Such open standards are intended to promote interoperability and facilitate forecast adoption, distribution, validation, and synthesis.</p>
+<section id="output-files" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="output-files"><span class="header-section-number">11.3.1</span> Output Files:</h3>
+<p>EFI has proposed a three-tiered approach reflecting trade-offs in forecast data volume and technical expertise. The prefered output file format is in netCDF following standard CF conventions for dimensions and variable naming conventions, with ensemble member as a dimension where appropriate. The second-tier option is a semi-long CSV format, with state variables as columns and each row representing a unique issue datetime, prediction datetime, location, ensemble member, etc. The third-tier option is similar to option 2, but each row represents a specific summary statistic (mean, upper/lower CI) rather than individual ensemble members.</p>
+</section>
+<section id="output-metadata" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="output-metadata"><span class="header-section-number">11.3.2</span> Output Metadata:</h3>
+<p>EFI’s proposed metadata represents an expansion upon the Ecological Metadata Language (EML), with two key differences. First, is the specification of additonalMetadata tags to store forecast specific information (e.g.&nbsp;uncertainty propagation and data assimilation) as well as some summary information about model complexity, included uncertainties, etc. designed to facilitate cross-forecast synthesis. Second, a number of EML tags (e.g.&nbsp;temporal resolution, output variables) are considered a required part of forecast metadata that are otherwise optional in base EML.</p>
+<p>This package includes an R tool for validating these EML files.</p>
+</section>
+<section id="archiving" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="archiving"><span class="header-section-number">11.3.3</span> Archiving:</h3>
+<p>EFI envisions a three-tiered approach to forecast archiving. At the most basic level, forecasts should be archived before new observations become available (not possible for hindcasts), preferably in a FAIR public archive that permits forecasts to be uploaded automatically, allows metadata to be searchable, and assigns a DOI. Second, in addition to this the codes used to generate forecasts should also be archived, preferably in an open archive or code repository (e.g.&nbsp;Github) that can be assigned a DOI. Finally, in addition to output and code archiving, we encourage running forecast workflows to be archived using virtualization approaches, such as Docker or Singularity containers.</p>
+</section>
+<section id="vignettes" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="vignettes"><span class="header-section-number">11.3.4</span> Vignettes:</h3>
+<p>This package includes a number of vignettes illustrating the application of the EFI standards to different forecasts</p>
+</section>
+<section id="documentation" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">11.3.5</span> Documentation:</h3>
+<p>A more detailed description of the EFI standard can be found at <a href="https://shorturl.at/irMQW">https://shorturl.at/irMQW</a>. Note that the Standard is a work in progress. If you find issues as you are applying them, let us know at eco4cast.initiative@gmail.com.</p>
+<p>Pkgdown rendered documentation of functions and vignettes can be found at https://eco4cast.github.io/EFIstandards/</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Shared-Forecast-Drivers.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./UseInCourse.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
