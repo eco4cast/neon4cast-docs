@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NEON Ecological Forecasting Challenge - 2&nbsp; Theme: Carbon and Water Fluxes</title>
+<title>NEON Ecological Forecasting Challenge - 2&nbsp; Theme: Terrestrial Ecosystems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -140,7 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NEON Ecological Forecasting Challenge</a> 
     </div>
@@ -164,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></a>
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -258,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></h1>
 </div>
 
 
@@ -298,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.3" class="anchored" data-anchor-id="data-targets"><span class="header-section-number">2.3</span> Data: Targets</h2>
 <p>The challenge uses the following NEON data products:</p>
 <p><a href="https://data.neonscience.org/data-products/DP4.00200.001" target="_blank">DP4.00200.001</a>: Bundled data products - eddy covariance</p>
-<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. A processing script is available on the neon4cast-terrestrial GitHub repository: https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R</p>
+<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. A processing script is available on the neon4cast-terrestrial <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R" target="_blank">GitHub repository</a>.</p>
 <section id="net-ecosystem-exchange" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="net-ecosystem-exchange"><span class="header-section-number">2.3.1</span> Net ecosystem exchange</h3>
 <p><strong>Definition</strong></p>
@@ -439,14 +442,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><code>variable</code>: <code>nee</code> (umol CO2 m<sup>-2</sup> s<sup>-1</sup>) or <code>le</code> W m<sup>-2</sup><br>
 </li>
-<li><code>observation</code>: value for variable</li>
+<li><code>observed</code>: value for variable</li>
 <li><code>sd_intercept</code>: intercept in the nee observation uncertainty standard deviation<br>
 </li>
 <li><code>sd_slopeP</code>: slope in the relationship between nee and observation uncertainty standard deviation for positive values of nee<br>
 </li>
 <li><code>sd_slopeN</code>: slope in the relationship between nee and observation uncertainty standard deviation for negative values of variable</li>
 </ul>
-<p>The observation uncertainty estimates for nee and le are derived from the <a href="https://pecanproject.github.io/" target="_blank">PEcAN project</a> and can be used by <code>sd &lt;- sd_intercept + sd_slopeP * observation</code>. They are not supplied by NEON.</p>
+<p>The observation uncertainty estimates for nee and le are derived from the <a href="https://pecanproject.github.io/" target="_blank">PEcAN project</a> and can be used by <code>sd &lt;- sd_intercept + sd_slopeP * observed</code>. They are not supplied by NEON.</p>
 <p>Here is the download link and format of the <code>terrestrial_30min</code> target file:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -483,22 +486,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here is the download link and format of the <code>terrestrial_daily</code> target file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 40,180 × 4
+<pre><code># A tibble: 18,696 × 4
    time       site_id variable observed
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
- 1 2017-02-01 BART    le             NA
- 2 2017-02-01 BART    nee            NA
- 3 2017-02-01 CLBJ    le             NA
- 4 2017-02-01 CLBJ    nee            NA
- 5 2017-02-01 KONZ    le             NA
- 6 2017-02-01 KONZ    nee            NA
- 7 2017-02-01 ORNL    le             NA
- 8 2017-02-01 ORNL    nee            NA
- 9 2017-02-01 OSBS    le             NA
-10 2017-02-01 OSBS    nee            NA
-# … with 40,170 more rows
+ 1 2017-02-02 BART    le          2.71 
+ 2 2017-02-02 BART    nee         0.580
+ 3 2017-02-03 BART    le          8.47 
+ 4 2017-02-03 BART    nee         0.687
+ 5 2017-02-04 BART    le          6.64 
+ 6 2017-02-04 BART    nee         0.693
+ 7 2017-02-05 BART    le          3.53 
+ 8 2017-02-05 BART    nee         0.912
+ 9 2017-02-06 BART    le         11.5  
+10 2017-02-06 BART    nee         0.965
+# … with 18,686 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -508,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="timeline" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">2.4</span> Timeline</h2>
 <p>Forecasts for a minimum of 35 days can be submitted daily by 6 pm ET throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., NEE) become available. Processed NEE and LE data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
-<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and metreology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at [Frequently Asked Questions]</p>
+<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and metreology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
 <section id="flux-data-latency" class="level2" data-number="2.5">
@@ -521,18 +525,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="submissions" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="submissions"><span class="header-section-number">2.6</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>nee</code>, and <code>le</code>.</p>
-<p>Instructions for submitting forecasts are found here: [Submission Instructions]</p>
-<p>The specific file format for the terrestrial_daily theme is here: [Terrestrial daily]</p>
-<p>The specific file format for the terrestrial_30min theme is here: [Terrestrial 30 min]</p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">2.7</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: [Meteorology Inputs]</p>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="useful-functions" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">2.8</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found here: [Helpful Functions]</p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found here: [Access EFI snapshots of NOAA forecasts at NEON sites]</p>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;11</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">2.9</span> Null models</h2>
@@ -543,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="faq" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">2.10</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found here: [Frequently Asked Questions]</p>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 </section>
 <section id="design-team" class="level2" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="design-team"><span class="header-section-number">2.11</span> Design team</h2>
@@ -555,7 +557,8 @@ Andy Fox, Joint Center for Satellite Data Assimilation<br>
 William Hammond, Oklahoma State University<br>
 Danica Lombardozzi, National Center for Atmospheric Research<br>
 Quinn Thomas, Virginia Tech<br>
-Jody Peters, University of Notre Dame Alex Young, SUNY - College of Environmental Science &amp; Forestry</p>
+Jody Peters, University of Notre Dame<br>
+Alex Young, SUNY - College of Environmental Science &amp; Forestry</p>
 </section>
 <section id="partners" class="level2" data-number="2.12">
 <h2 data-number="2.12" class="anchored" data-anchor-id="partners"><span class="header-section-number">2.12</span> Partners</h2>

@@ -139,7 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NEON Ecological Forecasting Challenge</a> 
     </div>
@@ -163,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></a>
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -503,7 +506,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="4.3.5" class="anchored" data-anchor-id="target-file"><span class="header-section-number">4.3.5</span> Target file</h3>
 <p>Here is the format of the target file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 68,940 × 5
+   time       site_id variable observed      sd
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 2016-12-14 BART    gcc_90      0.344 0.00191
+ 2 2016-12-15 BART    gcc_90      0.346 0.00191
+ 3 2016-12-16 BART    gcc_90      0.342 0.00191
+ 4 2016-12-17 BART    gcc_90      0.350 0.00191
+ 5 2016-12-18 BART    gcc_90      0.348 0.00191
+ 6 2016-12-19 BART    gcc_90      0.343 0.00191
+ 7 2016-12-20 BART    gcc_90      0.344 0.00191
+ 8 2016-12-21 BART    gcc_90      0.344 0.00191
+ 9 2016-12-22 BART    gcc_90      0.348 0.00191
+10 2016-12-23 BART    gcc_90      0.344 0.00191
+# … with 68,930 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
 </div>
 <p>The target file has the following columns:</p>
 <ul>
@@ -513,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><code>variable</code>: variable (<code>gcc_90</code> or <code>rcc_90</code>)</li>
 <li><code>observed</code>: daily value</li>
-<li><code>sd</code>: standard deviation of the observation value</li>
+<li><code>sd</code>: standard deviation of the observed value</li>
 </ul>
 </section>
 </section>
@@ -526,17 +547,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="submissions" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">4.5</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>gcc_90</code>, and <code>rcc_90</code>.</p>
-<p>Instructions for submitting forecasts are found here: [Submission Instructions]</p>
-<p>With the specific file format here: [Phenology]</p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">4.6</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: [Meteorology Inputs]</p>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="useful-functions" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">4.7</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found here: [Helpful Functions]</p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found here: [Access EFI snapshots of NOAA forecasts at NEON sites]</p>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;11</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="null-models"><span class="header-section-number">4.8</span> Null models</h2>
@@ -546,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="faq" class="level2" data-number="4.9">
 <h2 data-number="4.9" class="anchored" data-anchor-id="faq"><span class="header-section-number">4.9</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found here: [Frequently Asked Questions]</p>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 </section>
 <section id="design-team" class="level2" data-number="4.10">
 <h2 data-number="4.10" class="anchored" data-anchor-id="design-team"><span class="header-section-number">4.10</span> Design team</h2>
@@ -556,7 +576,8 @@ Kathy Gerst, National Phenology Network<br>
 Chris Jones, NC State University David LeBauer, University of Arizona<br>
 Dabasmita Pal, Michigan State University<br>
 Andrew Richardson, Northern Arizona University<br>
-Arun Ross, Michigan State University Bijan Seyednasrollah, Northern Arizona University, PhenoCam Network<br>
+Arun Ross, Michigan State University<br>
+Bijan Seyednasrollah, Northern Arizona University, PhenoCam Network<br>
 Quinn Thomas, Virginia Tech<br>
 Kathryn Wheeler, Boston University<br>
 Luke Zachmann, Conservation Science Partners<br>

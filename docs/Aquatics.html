@@ -139,7 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NEON Ecological Forecasting Challenge</a> 
     </div>
@@ -163,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></a>
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -304,22 +307,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A file with previously released NEON data that has been processed into targets is provided below. The target script can be found <a href="https://github.com/eco4cast/neon4cast-aquatics/blob/master/02_generate_targets_aquatics.R" target="_blank">here</a>. The same processing will be applied to new data that are used for forecast evaluation.</p>
 <p>Here is the format of the target file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 71,659 × 6
-   time       site_id variable observed sample_error measure_error
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
- 1 2016-03-05 ARIK    oxygen         NA           NA            NA
- 2 2016-03-06 ARIK    oxygen         NA           NA            NA
- 3 2016-03-07 ARIK    oxygen         NA           NA            NA
- 4 2016-03-08 ARIK    oxygen         NA           NA            NA
- 5 2016-03-09 ARIK    oxygen         NA           NA            NA
- 6 2016-03-10 ARIK    oxygen         NA           NA            NA
- 7 2016-03-11 ARIK    oxygen         NA           NA            NA
- 8 2016-03-12 ARIK    oxygen         NA           NA            NA
- 9 2016-03-13 ARIK    oxygen         NA           NA            NA
-10 2016-03-14 ARIK    oxygen         NA           NA            NA
-# … with 71,649 more rows
+<pre><code># A tibble: 54,449 × 6
+   time       site_id variable    observed sample_error measure_error
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+ 1 2016-08-12 ARIK    oxygen          3.40       0.0493       0.00262
+ 2 2016-08-13 ARIK    oxygen          4.16       0.0163       0.00157
+ 3 2016-08-14 ARIK    oxygen          4.07       0.0196       0.00152
+ 4 2016-08-15 ARIK    oxygen          3.91       0.0210       0.00146
+ 5 2016-08-16 ARIK    oxygen          3.86       0.0290       0.00144
+ 6 2016-08-17 ARIK    oxygen          4.35       0.0275       0.00162
+ 7 2016-08-18 ARIK    oxygen          4.35       0.0284       0.00162
+ 8 2016-08-18 ARIK    temperature    20.6        0.512        0.0207 
+ 9 2016-08-19 ARIK    oxygen          4.03       0.0254       0.00150
+10 2016-08-19 ARIK    temperature    20.1        0.327        0.0206 
+# … with 54,439 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -576,7 +580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="timeline" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">1.4</span> Timeline</h2>
 <p>Forecasts for a minimum of 35 days can be submitted daily by 11:59 pm UTC throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th. New forecasts can be submitted daily as new weather forecasts and observations (e.g., new temperature and water quality data is released by NEON) become available. The key is that submissions are predictions of the future.</p>
-<p>Even that daily submissions are allowed and encouraged as new observations and weather forecasts become available, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specified times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at [Frequently Asked Questions]</p>
+<p>Since daily submissions are allowed and encouraged, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specified times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-aquatics/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
 <section id="observed-data-latency" class="level2" data-number="1.5">
@@ -586,17 +590,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="submissions" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="submissions"><span class="header-section-number">1.6</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>oxygen</code>, <code>temperature</code>, and <code>chla</code>.</p>
-<p>Instructions for submitting forecasts are found here: [Submission Instructions]</p>
-<p>The specific file format for the aquatics theme is here: [Aquatics]</p>
+<p>Instructions for submitting forecasts are found here: <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">1.7</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: [Meteorology Inputs]</p>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="useful-functions" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">1.8</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found here: [Helpful Functions]</p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found here: [Access EFI snapshots of NOAA forecasts at NEON sites]</p>
+<p>Functions for validating, evaluating and submitting forecasts can be found here: <a href="Helpful-Functions.html"><span>Chapter&nbsp;11</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">1.9</span> Null models</h2>
@@ -605,11 +607,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="faq" class="level2" data-number="1.10">
 <h2 data-number="1.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">1.10</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found here: [Frequently Asked Questions]</p>
+<p>Answers to frequency asks questions can be found here: <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 </section>
 <section id="design-team" class="level2" data-number="1.11">
 <h2 data-number="1.11" class="anchored" data-anchor-id="design-team"><span class="header-section-number">1.11</span> Design Team</h2>
-<p>Freya Olsson, Virginia Tech James Guinnip, Kansas State University<br>
+<p>Freya Olsson, Virginia Tech<br>
+James Guinnip, Kansas State University<br>
 Sarah Burnet, University of Idaho<br>
 Ryan McClure, Virginia Tech<br>
 Chris Brown, National Oceanic and Atmospheric Administration<br>
@@ -737,7 +740,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Terrestrial.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
