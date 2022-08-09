@@ -139,7 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">NEON Ecological Forecasting Challenge</a> 
     </div>
@@ -163,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></a>
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -417,22 +420,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="target-file"><span class="header-section-number">3.3.4</span> Target file</h3>
 <p>Here is the format of the target file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/targets/ticks/ticks-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 528 × 4
-   time       mmwrWeek siteID amblyomma_americanum
-   &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1 2015-04-19       16 BLAN                   0   
- 2 2015-05-10       19 BLAN                   9.82
- 3 2015-05-31       22 BLAN                  10   
- 4 2015-06-07       23 BLAN                  19.4 
- 5 2015-06-21       25 BLAN                   3.14
- 6 2015-07-12       28 BLAN                   3.66
- 7 2015-08-02       31 BLAN                   0   
- 8 2015-08-23       34 BLAN                   0   
- 9 2015-09-13       37 BLAN                   0   
-10 2015-10-11       41 BLAN                   0   
-# … with 518 more rows
+<pre><code># A tibble: 531 × 5
+   time       mmwrWeek site_id observed variable            
+   &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;               
+ 1 2015-04-19       16 BLAN        0    amblyomma_americanum
+ 2 2015-05-10       19 BLAN        9.82 amblyomma_americanum
+ 3 2015-05-31       22 BLAN       10    amblyomma_americanum
+ 4 2015-06-07       23 BLAN       19.4  amblyomma_americanum
+ 5 2015-06-21       25 BLAN        3.14 amblyomma_americanum
+ 6 2015-07-12       28 BLAN        3.66 amblyomma_americanum
+ 7 2015-08-02       31 BLAN        0    amblyomma_americanum
+ 8 2015-08-23       34 BLAN        0    amblyomma_americanum
+ 9 2015-09-13       37 BLAN        0    amblyomma_americanum
+10 2015-10-11       41 BLAN        0    amblyomma_americanum
+# … with 521 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -440,8 +443,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>time</code>: YYYY-MM-DD The first day (Sunday) of the MMWR week</li>
 <li><code>mmwrWeek</code>: The MMWR week that starts on Sunday, consistent with CDC version of the epidemiological week<br>
 </li>
-<li><code>siteID</code>: Site where ticks are observed (HARV)</li>
-<li><code>amblyomma_americanum</code>: Density (ticks / 1600m^2) of <em>Amblyomma americanum</em> ticks</li>
+<li><code>site_id</code>: Site where ticks are observed (HARV)</li>
+<li><code>variable</code>: <code>Amblyomma_americanum</code> (density of <em>Amblyomma americanum</em> ticks; ticks / 1600m^2)</li>
+<li><code>observed</code>: value for <code>variable</code></li>
 </ul>
 </section>
 </section>
@@ -495,17 +499,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="submissions" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">3.5</span> Submissions</h2>
-<p>Instructions for submitting forecasts are found here: [Submission Instructions]</p>
-<p>With the specific file format here: [Ticks]</p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">3.6</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: [Meteorology Inputs]</p>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="useful-functions" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">3.7</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found here: [Helpful Functions]</p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found here: [Access EFI snapshots of NOAA forecasts at NEON sites]</p>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;11</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="null-models"><span class="header-section-number">3.8</span> Null models</h2>
@@ -513,7 +516,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="faq" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="faq"><span class="header-section-number">3.9</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found here: [Frequently Asked Questions]</p>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
 </section>
 <section id="design-team" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="design-team"><span class="header-section-number">3.10</span> Design team</h2>
@@ -635,7 +638,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Terrestrial.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Carbon and Water Fluxes</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
