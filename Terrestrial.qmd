@@ -97,11 +97,6 @@ The table with the half-hour NEE and LE has the following columns
 -   `site_id`: NEON site code (e.g., BART)\
 -   `variable`: `nee` (umol CO2 m<sup>-2</sup> s<sup>-1</sup>) or `le` W m<sup>-2</sup>\
 -   `observed`: value for variable
--   `sd_intercept`: intercept in the nee observation uncertainty standard deviation\
--   `sd_slopeP`: slope in the relationship between nee and observation uncertainty standard deviation for positive values of nee\
--   `sd_slopeN`: slope in the relationship between nee and observation uncertainty standard deviation for negative values of variable
-
-The observation uncertainty estimates for nee and le are derived from the [PEcAN project](https://pecanproject.github.io/){target="_blank"} and can be used by `sd <- sd_intercept + sd_slopeP * observed`. They are not supplied by NEON.
 
 Here is the download link and format of the `terrestrial_30min` target file:
 
