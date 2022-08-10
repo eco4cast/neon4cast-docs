@@ -146,6 +146,8 @@ The reduction of the latency from monthly to 5-days allows this theme to forecas
 
 The required names for forecasted variables: `nee`, and `le`.
 
+The required time unit: `date` for daily forecast and `date-time` for 30 minute forecasts
+
 Instructions for submitting forecasts are found in @sec-submissions
 
 

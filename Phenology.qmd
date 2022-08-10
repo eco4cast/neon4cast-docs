@@ -128,6 +128,8 @@ Cron jobs work on unix and mac systems. An example of a script that executes a c
 
 The required names for forecasted variables: `gcc_90`, and `rcc_90`.
 
+The required time unit: `date` 
+
 Instructions for submitting forecasts are found in @sec-submissions
 
 ## Meterological inputs for modeling
