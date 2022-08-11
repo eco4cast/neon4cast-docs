@@ -243,9 +243,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#target-data-calculation" id="toc-target-data-calculation" class="nav-link" data-scroll-target="#target-data-calculation"> <span class="header-section-number">5.3.4</span> Target data calculation</a></li>
   <li><a href="#target-file" id="toc-target-file" class="nav-link" data-scroll-target="#target-file"> <span class="header-section-number">5.3.5</span> Target file</a></li>
   </ul></li>
-  <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"> <span class="header-section-number">5.4</span> Design team</a></li>
-  <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"> <span class="header-section-number">5.5</span> Partners</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"> <span class="header-section-number">5.6</span> References</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"> <span class="header-section-number">5.4</span> Timeline</a></li>
+  <li><a href="#submissions" id="toc-submissions" class="nav-link" data-scroll-target="#submissions"> <span class="header-section-number">5.5</span> Submissions</a></li>
+  <li><a href="#meterological-inputs-for-modeling" id="toc-meterological-inputs-for-modeling" class="nav-link" data-scroll-target="#meterological-inputs-for-modeling"> <span class="header-section-number">5.6</span> Meterological inputs for modeling</a></li>
+  <li><a href="#useful-functions" id="toc-useful-functions" class="nav-link" data-scroll-target="#useful-functions"> <span class="header-section-number">5.7</span> Useful functions</a></li>
+  <li><a href="#null-models" id="toc-null-models" class="nav-link" data-scroll-target="#null-models"> <span class="header-section-number">5.8</span> Null models</a></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"> <span class="header-section-number">5.9</span> FAQ</a></li>
+  <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"> <span class="header-section-number">5.10</span> Design team</a></li>
+  <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"> <span class="header-section-number">5.11</span> Partners</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"> <span class="header-section-number">5.12</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -736,19 +742,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,468 × 4
-   time       site_id variable  observed
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;
- 1 2016-09-12 ABBY    abundance   1.05  
- 2 2016-09-12 ABBY    richness   14     
- 3 2016-09-26 ABBY    abundance   4.45  
- 4 2016-09-26 ABBY    richness   13     
- 5 2017-05-01 ABBY    abundance   0.0554
- 6 2017-05-01 ABBY    richness   10     
- 7 2017-05-15 ABBY    abundance   0.180 
- 8 2017-05-15 ABBY    richness   19     
- 9 2017-05-29 ABBY    abundance   0.425 
-10 2017-05-29 ABBY    richness   19     
+<pre><code># A tibble: 6,468 × 5
+   time       site_id variable  observed iso_week
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   
+ 1 2016-09-12 ABBY    abundance   1.05   2016-W37
+ 2 2016-09-12 ABBY    richness   14      2016-W37
+ 3 2016-09-26 ABBY    abundance   4.45   2016-W39
+ 4 2016-09-26 ABBY    richness   13      2016-W39
+ 5 2017-05-01 ABBY    abundance   0.0554 2017-W18
+ 6 2017-05-01 ABBY    richness   10      2017-W18
+ 7 2017-05-15 ABBY    abundance   0.180  2017-W20
+ 8 2017-05-15 ABBY    richness   19      2017-W20
+ 9 2017-05-29 ABBY    abundance   0.425  2017-W22
+10 2017-05-29 ABBY    richness   19      2017-W22
 # … with 6,458 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
@@ -760,16 +766,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>time</code>: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)<br>
 </li>
 <li><code>variable</code>: abundance of beetles (<code>abundance</code>) or species richness (<code>richness</code>)</li>
-<li><code>observed</code>: value of <code>variable</code> ## Timeline</li>
+<li><code>observed</code>: value of <code>variable</code></li>
+<li><code>iso_week</code>: The ISO-week</li>
 </ul>
+</section>
+</section>
+<section id="timeline" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">5.4</span> Timeline</h2>
 <p>The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released weekly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON’s weekly release of carabid data.</p>
 <p>The challenge will begin June 30, 2022 at 11:59 Eastern Standard Time (UTC−05:00) and run through December 31, 2022. Subsequent forecasts are due at 11:59 EST on the final day of each month.</p>
 <p>As an example, carabid pitfall trap data released in the last week of June would include data as recent as the last week of April. Thus, a model submitted in the last week of June could include forecasts from May onwards. Then, the forecast update submitted at the end of July can use new May data to help refine June forecasts, or forecasts following June, depending on what drivers are used. The July forecast update is due by 11:59 pm EST on July 31. Forecasts updates will not be considered for weeks where NEON validation data has already been released (i.e., no May forecast updates may be submitted on July 31) or for weeks when no NEON carabid data is available.</p>
 <p><img src="images/June2021_Calendar.jpg" class="img-fluid"> <img src="images/July2021_Calendar.jpg" class="img-fluid"> Pitfall traps are collected and reset every 2 weeks throughout the growing season. Due to weather and conditions beyond the field team’s control, this collection schedule may not be followed. Thus, the exact collection dates cannot be known until they have happened. Field data are made publicly available on the data portal as the <code>bet_fielddata</code> dataframe no sooner than 14 days after collection. Teams can use <code>bet_fielddata</code> to inform the actual collection schedule. Data with parataxonomist identifications are made publicly available on the data portal as the bet_sorting dataframe no sooner than 60 days after collection. Data are released on the NEON data portal weekly, but may be released on any day of the week. The forecast schedule follows the ISO week standard with weeks starting on Mondays.</p>
 </section>
+<section id="submissions" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">5.5</span> Submissions</h2>
+<p>The required names for forecasted variables: <code>abundance</code> and <code>richness</code></p>
+<p>The required time unit: <code>date</code> for the Monday of the corresponding isoweek</p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
-<section id="design-team" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="design-team"><span class="header-section-number">5.4</span> Design team</h2>
+<section id="meterological-inputs-for-modeling" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">5.6</span> Meterological inputs for modeling</h2>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
+</section>
+<section id="useful-functions" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">5.7</span> Useful functions</h2>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;11</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
+</section>
+<section id="null-models" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="null-models"><span class="header-section-number">5.8</span> Null models</h2>
+<p>One null model is automatically generated each week: the mean null model uses the mean of the historical data for each site.</p>
+</section>
+<section id="faq" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="faq"><span class="header-section-number">5.9</span> FAQ</h2>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;13</span></a></p>
+</section>
+<section id="design-team" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="design-team"><span class="header-section-number">5.10</span> Design team</h2>
 <p>Anna Spiers, University of Colorado, Boulder<br>
 Carl Boettiger, University of California, Berkeley<br>
 Tad Dallas, Louisiana State University<br>
@@ -780,13 +813,13 @@ Brett Melbourne, University of Colorado, Boulder<br>
 Eric Sokol, NEON<br>
 Kelsey Yule, NEON Biorepository at Arizona State University</p>
 </section>
-<section id="partners" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="partners"><span class="header-section-number">5.5</span> Partners</h2>
+<section id="partners" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="partners"><span class="header-section-number">5.11</span> Partners</h2>
 <p>The challenge is hosted by the Ecological Forecasting Initiative (EFI; https://ecoforecast.org/) and its U.S. National Science Foundation sponsored Research Coordination Network (EFI-RCN; https://ecoforecast.org/rcn/).</p>
 <p>Data used in the challenge from National Ecological Observatory Network (NEON): https://www.neonscience.org/.</p>
 </section>
-<section id="references" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="references"><span class="header-section-number">5.6</span> References</h2>
+<section id="references" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="references"><span class="header-section-number">5.12</span> References</h2>
 <p>Bousquet, Y. (2012) Catalogue of Geadephaga (Coleoptera: Adephaga) of America, north of Mexico. ZooKeys 245: 1-1722. https://doi.org/10.3897/zookeys.245.3416</p>
 <p>Butterfield, J., Luff, M., Baines, M., Eyre, M. (1995) Carabid beetle communities as indicators of conservation potential in upland forests. Forest Ecology and Management 79, 63-77. https://doi.org/10.1016/0378-1127(95)03620-2</p>
 <p>Dietze, M.C., Fox, A., Beck-Johnson, L.M., Betancourt, J.L., Hooten, M.B., Jarnevich, C.S., Keitt, T.H., Kenney, M.A., Laney, C.M., Larsen, L.G. (2018) Iterative near-term ecological forecasting: Needs, opportunities, and challenges. Proceedings of the National Academy of Sciences 115, 1424-1432. https://doi.org/10.1073/pnas.1710231115</p>

@@ -423,29 +423,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 531 × 5
-   time       mmwrWeek site_id observed variable            
-   &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;               
- 1 2015-04-19       16 BLAN        0    amblyomma_americanum
- 2 2015-05-10       19 BLAN        9.82 amblyomma_americanum
- 3 2015-05-31       22 BLAN       10    amblyomma_americanum
- 4 2015-06-07       23 BLAN       19.4  amblyomma_americanum
- 5 2015-06-21       25 BLAN        3.14 amblyomma_americanum
- 6 2015-07-12       28 BLAN        3.66 amblyomma_americanum
- 7 2015-08-02       31 BLAN        0    amblyomma_americanum
- 8 2015-08-23       34 BLAN        0    amblyomma_americanum
- 9 2015-09-13       37 BLAN        0    amblyomma_americanum
-10 2015-10-11       41 BLAN        0    amblyomma_americanum
+   time       site_id variable             observed mmwr_week
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 2015-04-19 BLAN    amblyomma_americanum     0           16
+ 2 2015-05-10 BLAN    amblyomma_americanum     9.82        19
+ 3 2015-05-31 BLAN    amblyomma_americanum    10           22
+ 4 2015-06-07 BLAN    amblyomma_americanum    19.4         23
+ 5 2015-06-21 BLAN    amblyomma_americanum     3.14        25
+ 6 2015-07-12 BLAN    amblyomma_americanum     3.66        28
+ 7 2015-08-02 BLAN    amblyomma_americanum     0           31
+ 8 2015-08-23 BLAN    amblyomma_americanum     0           34
+ 9 2015-09-13 BLAN    amblyomma_americanum     0           37
+10 2015-10-11 BLAN    amblyomma_americanum     0           41
 # … with 521 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
 <ul>
 <li><code>time</code>: YYYY-MM-DD The first day (Sunday) of the MMWR week</li>
-<li><code>mmwrWeek</code>: The MMWR week that starts on Sunday, consistent with CDC version of the epidemiological week<br>
-</li>
 <li><code>site_id</code>: Site where ticks are observed (HARV)</li>
 <li><code>variable</code>: <code>amblyomma_americanum</code> (density of <em>Amblyomma americanum</em> ticks; ticks / 1600m^2)</li>
 <li><code>observed</code>: value for <code>variable</code></li>
+<li><code>mmwr_week</code>: The MMWR week that starts on Sunday, consistent with CDC version of the epidemiological week<br>
+</li>
 </ul>
 </section>
 </section>
@@ -499,6 +499,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="submissions" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">3.5</span> Submissions</h2>
+<p>The required names for forecasted variable: <code>amblyomma_americanum</code></p>
+<p>The required time unit: <code>date</code> for the first day (Sunday) of the MMWR week</p>
 <p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="3.6">
