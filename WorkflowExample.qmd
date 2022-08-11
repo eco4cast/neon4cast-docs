@@ -2,11 +2,15 @@
 
 Here is an example of a complete workflow for generating a forecast submission to the Challenge. The example is for the aquatics theme and it forecasts water temperature and oxygen. The water temperature forecast uses a linear regression between air temperature and water temperature to predict water temperature in the future. It then uses the prediction of water temperature to predict oxygen water oxygen concentration by assuming that the oxygen is 100% saturated given the predicted temperature.
 
-To generate the forecast we need to: 1) Build a relationship between past air temperature and past water temperature.\
+To generate the forecast we need to: 
+
+1) Build a relationship between past air temperature and past water temperature.\
 2) Apply the relationships from #1 to forecasted air temperature.\
 3) Calculate oxygen concentration from the forecasted water temperature.
 
-Therefore we need to: 1) Download the historical water temperature data for the NEON sites (called "targets").\
+Therefore we need to: 
+
+1) Download the historical water temperature data for the NEON sites (called "targets").\
 2) Download historical air temperature data for the NEON sites (we the stacked NOAA GEFS weather).\
 3) Download NOAA weather forecast for the NEON sites.\
 4) Create linear regression model based on historical data for each NEON site.\
@@ -279,7 +283,7 @@ You can check on the status of your submission using
 neon4cast::check_submission(forecast_file)
 ```
 
-On following day after submission, you can see the forecast on the dashboard at [shiny.ecoforecast.org](https://shiny.ecoforecast.org)
+On following day after submission, you can see the forecast on the dashboard at [shiny3.ecoforecast.org](https://shiny.ecoforecast.org)
 
 ## Example on github
 
