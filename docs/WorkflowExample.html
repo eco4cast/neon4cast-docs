@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NEON Ecological Forecasting Challenge - 11&nbsp; Example Forecast Workflow</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Helpful-Functions.html" rel="next">
+<link href="./Shared-Forecast-Drivers.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">NEON Ecological Forecasting Challenge</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Aquatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theme: Aquatic Ecosystems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ticks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Theme: Tick Populations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Phenology.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Beetles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theme: Beetle Communities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Participation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Participation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Submission-Instructions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Submission Instructions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Metadata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Submission Metadata Generation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Shared-Forecast-Drivers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#step-0-set-up-r-environment-and-directories" id="toc-step-0-set-up-r-environment-and-directories" class="nav-link active" data-scroll-target="#step-0-set-up-r-environment-and-directories"> <span class="header-section-number">11.1</span> Step 0: Set up R environment and directories</a></li>
+  <li><a href="#step-0-define-team-name-and-team-members" id="toc-step-0-define-team-name-and-team-members" class="nav-link" data-scroll-target="#step-0-define-team-name-and-team-members"> <span class="header-section-number">11.2</span> Step 0: Define team name and team members</a></li>
+  <li><a href="#step-1-download-latest-target-data-and-site-description-data" id="toc-step-1-download-latest-target-data-and-site-description-data" class="nav-link" data-scroll-target="#step-1-download-latest-target-data-and-site-description-data"> <span class="header-section-number">11.3</span> Step 1: Download latest target data and site description data</a></li>
+  <li><a href="#step-2-get-drivers" id="toc-step-2-get-drivers" class="nav-link" data-scroll-target="#step-2-get-drivers"> <span class="header-section-number">11.4</span> Step 2: Get drivers</a>
+  <ul class="collapse">
+  <li><a href="#step-2.1-download-paste-noaa-forecast-stacked-together" id="toc-step-2.1-download-paste-noaa-forecast-stacked-together" class="nav-link" data-scroll-target="#step-2.1-download-paste-noaa-forecast-stacked-together"> <span class="header-section-number">11.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</a></li>
+  <li><a href="#step-2.2-download-noaa-future-forecast" id="toc-step-2.2-download-noaa-future-forecast" class="nav-link" data-scroll-target="#step-2.2-download-noaa-future-forecast"> <span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</a></li>
+  <li><a href="#step-2.3-create-data-frames-of-drivers" id="toc-step-2.3-create-data-frames-of-drivers" class="nav-link" data-scroll-target="#step-2.3-create-data-frames-of-drivers"> <span class="header-section-number">11.4.3</span> Step 2.3 Create data frames of drivers</a></li>
+  <li><a href="#step-2.4-aggregate-to-day-and-convert-units-of-drivers" id="toc-step-2.4-aggregate-to-day-and-convert-units-of-drivers" class="nav-link" data-scroll-target="#step-2.4-aggregate-to-day-and-convert-units-of-drivers"> <span class="header-section-number">11.4.4</span> Step 2.4 Aggregate (to day) and convert units of drivers</a></li>
+  <li><a href="#step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." id="toc-step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="nav-link" data-scroll-target="#step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."> <span class="header-section-number">11.4.5</span> Step 2.5: Merge in past NOAA data into the targets file, matching by date.</a></li>
+  </ul></li>
+  <li><a href="#step-3.0-generate-forecasts-for-each-site" id="toc-step-3.0-generate-forecasts-for-each-site" class="nav-link" data-scroll-target="#step-3.0-generate-forecasts-for-each-site"> <span class="header-section-number">11.5</span> Step 3.0: Generate forecasts for each site</a></li>
+  <li><a href="#step-4-generate-metadata" id="toc-step-4-generate-metadata" class="nav-link" data-scroll-target="#step-4-generate-metadata"> <span class="header-section-number">11.6</span> Step 4: Generate metadata</a></li>
+  <li><a href="#step-5-submit-forecast" id="toc-step-5-submit-forecast" class="nav-link" data-scroll-target="#step-5-submit-forecast"> <span class="header-section-number">11.7</span> Step 5: Submit forecast!</a></li>
+  <li><a href="#example-on-github" id="toc-example-on-github" class="nav-link" data-scroll-target="#example-on-github"> <span class="header-section-number">11.8</span> Example on github</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Here is an example of a complete workflow for generating a forecast submission to the Challenge. The example is for the aquatics theme and it forecasts water temperature and oxygen. The water temperature forecast uses a linear regression between air temperature and water temperature to predict water temperature in the future. It then uses the prediction of water temperature to predict oxygen water oxygen concentration by assuming that the oxygen is 100% saturated given the predicted temperature.</p>
+<p>To generate the forecast we need to: 1) Build a relationship between past air temperature and past water temperature.<br>
+2) Apply the relationships from #1 to forecasted air temperature.<br>
+3) Calculate oxygen concentration from the forecasted water temperature.</p>
+<p>Therefore we need to: 1) Download the historical water temperature data for the NEON sites (called “targets”).<br>
+2) Download historical air temperature data for the NEON sites (we the stacked NOAA GEFS weather).<br>
+3) Download NOAA weather forecast for the NEON sites.<br>
+4) Create linear regression model based on historical data for each NEON site.<br>
+5) Apply linear regression to using weather forecasts for each NEON.<br>
+6) Write forecast output file.<br>
+7) Correct metadata describing forecast.<br>
+8) Submit forecast to Challenge.</p>
+<p>Each of these steps are below</p>
+<section id="step-0-set-up-r-environment-and-directories" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="step-0-set-up-r-environment-and-directories"><span class="header-section-number">11.1</span> Step 0: Set up R environment and directories</h2>
+<p>We will be downloading NOAA forecasts from the Challenge s3 bucket and submitting to the s3 bucket. Therefore the AWS information is needed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neon4cast)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rMR)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">"AWS_DEFAULT_REGION"</span> <span class="ot">=</span> <span class="st">"data"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"AWS_S3_ENDPOINT"</span> <span class="ot">=</span> <span class="st">"ecoforecast.org"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"drivers"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Define the date that the forecast starts. For demonstration purposes, we are setting the date to <code>2022-02-15</code>. In a real-time application, use <code>forecast_date &lt;- Sys.Date()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>forecast_date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(<span class="st">"2022-02-15"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-0-define-team-name-and-team-members" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="step-0-define-team-name-and-team-members"><span class="header-section-number">11.2</span> Step 0: Define team name and team members</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>team_name <span class="ot">&lt;-</span> <span class="st">"air2waterSat"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>team_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">individualName =</span> <span class="fu">list</span>(<span class="at">givenName =</span> <span class="st">"Quinn"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">surName =</span> <span class="st">"Thomas"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">organizationName =</span> <span class="st">"Virginia Tech"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">electronicMailAddress =</span> <span class="st">"rqthomas@vt.edu"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-1-download-latest-target-data-and-site-description-data" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="step-1-download-latest-target-data-and-site-description-data"><span class="header-section-number">11.3</span> Step 1: Download latest target data and site description data</h2>
+<p>These targets are updated when new data is available from NEON.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A table is available with NEON site descriptions. The calculation of oxygen saturation requires the elevation of each site, which is included in the site description table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-aquatics/master/Aquatic_NEON_Field_Site_Metadata_20220727.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2-get-drivers" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="step-2-get-drivers"><span class="header-section-number">11.4</span> Step 2: Get drivers</h2>
+<section id="step-2.1-download-paste-noaa-forecast-stacked-together" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="step-2.1-download-paste-noaa-forecast-stacked-together"><span class="header-section-number">11.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</h3>
+<p>To build the relations between air and water temperature, we need historical air temperature data to associate with historical water temperature data. Here we use a product that the Challenge organizers created that combines day 1 NOAA weather forecasts (i.e., when the forecasts are most accurate) together to generate an estimate of past weather. He we download this “stack” NOAA product for the set of NEON sites in the targets file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">unique</span>(target<span class="sc">$</span>site_id)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_past <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage3</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>noaa_past <span class="ot">&lt;-</span> df_past <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(site_id <span class="sc">%in%</span> sites,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                variable <span class="sc">==</span> <span class="st">"air_temperature"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2.2-download-noaa-future-forecast" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="step-2.2-download-noaa-future-forecast"><span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</h3>
+<p>We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (<code>date = forecast_date</code>) that started at mid-night UTC (<code>cycle=00</code>) for the set of sites in the target file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_future <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage2</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>noaa_future <span class="ot">&lt;-</span> df_future <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cycle <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                start_date <span class="sc">==</span> forecast_date,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                variable <span class="sc">==</span> <span class="st">"air_temperature"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2.3-create-data-frames-of-drivers" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="step-2.3-create-data-frames-of-drivers"><span class="header-section-number">11.4.3</span> Step 2.3 Create data frames of drivers</h3>
+<p>The NOAA stacked and forecast files are netcdf files. Here we convert to data frames to used in our analyses.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-2.4-aggregate-to-day-and-convert-units-of-drivers" class="level3" data-number="11.4.4">
+<h3 data-number="11.4.4" class="anchored" data-anchor-id="step-2.4-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">11.4.4</span> Step 2.4 Aggregate (to day) and convert units of drivers</h3>
+<p>Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>noaa_past_mean <span class="ot">&lt;-</span> noaa_past <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date, site_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">air_temperature =</span> <span class="fu">mean</span>(predicted, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">time =</span> date) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">air_temperature =</span> air_temperature <span class="sc">-</span> <span class="fl">273.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the future weather has 31 ensemble members (i.e., different trajectories of weather), that we want to use to generate uncertainty in our water temperature and oxygen forecasts. The aggregation below maintains the separate ensemble members (<code>group_by(date, ensemble)</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>noaa_future <span class="ot">&lt;-</span> noaa_future <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">as_date</span>(time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, site_id, ensemble) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">air_temperature =</span> <span class="fu">mean</span>(predicted)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">air_temperature =</span> air_temperature <span class="sc">-</span> <span class="fl">273.15</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, site_id, air_temperature, ensemble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="level3" data-number="11.4.5">
+<h3 data-number="11.4.5" class="anchored" data-anchor-id="step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."><span class="header-section-number">11.4.5</span> Step 2.5: Merge in past NOAA data into the targets file, matching by date.</h3>
+<p>Before building our linear model we need merge in the historical air temperature to match with the historical water temperature</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> target <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, site_id, variable, observed) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"temperature"</span>, <span class="st">"oxygen"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"variable"</span>, <span class="at">values_from =</span> <span class="st">"observed"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> <span class="fu">left_join</span>(target, noaa_past_mean, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"time"</span>,<span class="st">"site_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="step-3.0-generate-forecasts-for-each-site" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="step-3.0-generate-forecasts-for-each-site"><span class="header-section-number">11.5</span> Step 3.0: Generate forecasts for each site</h2>
+<p>We generate a forecast for each site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sites)){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get site information for elevation</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  site_info <span class="ot">&lt;-</span> site_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(field_site_id <span class="sc">==</span> sites[i]) </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  site_target <span class="ot">&lt;-</span> target <span class="sc">|&gt;</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(site_id <span class="sc">==</span> sites[i])</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  noaa_future_site <span class="ot">&lt;-</span> noaa_future <span class="sc">|&gt;</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(site_id <span class="sc">==</span> sites[i])</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(site_target<span class="sc">$</span>air_temperature) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(site_target<span class="sc">$</span>temperature))) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Fit linear model based on past data: water temperature = m * air temperature + b</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(site_target<span class="sc">$</span>temperature<span class="sc">~</span>site_target<span class="sc">$</span>air_temperature)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#use linear regression to forecast water temperature for each ensemble member</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    forecasted_temperature <span class="ot">&lt;-</span> fit<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> fit<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">*</span> noaa_future_site<span class="sc">$</span>air_temperature</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">#use forecasted temperature to predict oyxgen by assuming that oxygen is saturated.  </span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    forecasted_oxygen <span class="ot">&lt;-</span> rMR<span class="sc">::</span><span class="fu">Eq.Ox.conc</span>(forecasted_temperature, <span class="at">elevation.m =</span> ,site_info<span class="sc">$</span>field_mean_elevation_m, </span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">bar.press =</span> <span class="cn">NULL</span>, </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">bar.units =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">out.DO.meas =</span> <span class="st">"mg/L"</span>,</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">salinity =</span> <span class="dv">0</span>, </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">salinity.units =</span> <span class="st">"pp.thou"</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    temperature <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">time =</span> noaa_future_site<span class="sc">$</span>time,</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                          <span class="at">site_id =</span> sites[i],</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ensemble =</span> noaa_future_site<span class="sc">$</span>ensemble,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>                          <span class="at">predicted =</span> forecasted_temperature,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>                          <span class="at">variable =</span> <span class="st">"temperature"</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    oxygen <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">time =</span> noaa_future_site<span class="sc">$</span>time,</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>                     <span class="at">site_id =</span> sites[i],</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ensemble =</span> noaa_future_site<span class="sc">$</span>ensemble,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>                     <span class="at">predicted =</span> forecasted_oxygen,</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable =</span> <span class="st">"oxygen"</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Build site level dataframe.  Note we are not forecasting chla</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    forecast <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(forecast, temperature, oxygen)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use ggplot to visualize the forecast for each variable and site. The spread in forecast is due to uncertainty in the weather forecast, where each line is associated with a different NOAA GEFS weather forecast ensemble member.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>forecast <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> predicted, <span class="at">group =</span> ensemble)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(variable<span class="sc">~</span>site_id, <span class="at">scale =</span><span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Forecast output file name in standards requires for Challenge. “csv.gz” means that it will be compressed</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>forecast_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"aquatics"</span>,<span class="st">"-"</span>,<span class="fu">min</span>(forecast<span class="sc">$</span>time),<span class="st">"-"</span>,team_name,<span class="st">".csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Write csv to disk</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(forecast, forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Confirm that output file meets standard for Challenge</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-generate-metadata" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="step-4-generate-metadata"><span class="header-section-number">11.6</span> Step 4: Generate metadata</h2>
+<p>First we need to create a “list” in R that describes the forecast model. We only have one source of uncertainty (driver). It is propagated (i.e., represented in the forecasted output) using 31 ensemble members.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model_metadata <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">forecast =</span> <span class="fu">list</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_description =</span> <span class="fu">list</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">forecast_model_id =</span>  <span class="st">"air2waterSat"</span>,  <span class="co">#What goes here</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">"Air temperature to water temperature linear regression plus assume saturated oxygen"</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"empirical"</span>,  </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">repository =</span> <span class="st">"https://github.com/rqthomas/neon4cast-example"</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial_conditions =</span> <span class="fu">list</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"absent"</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">drivers =</span> <span class="fu">list</span>(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"propagates"</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">complexity =</span> <span class="dv">1</span>, <span class="co">#Just temperature</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">propagation =</span> <span class="fu">list</span>( </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ensemble"</span>, </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">31</span>) </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">parameters =</span> <span class="fu">list</span>(</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"absent"</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">random_effects =</span> <span class="fu">list</span>(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"absent"</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">process_error =</span> <span class="fu">list</span>(</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"absent"</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">obs_error =</span> <span class="fu">list</span>(</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">status =</span> <span class="st">"absent"</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>team_list</code> and <code>model_metadata</code> above, we can create the metadata file. The function <code>neon4cast::generate_metadata</code> adds additional information to complete the metadata (i.e., geographic information about the site, etc.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metadata_file <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">generate_metadata</span>(forecast_file, team_list, model_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-5-submit-forecast" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="step-5-submit-forecast"><span class="header-section-number">11.7</span> Step 5: Submit forecast!</h2>
+<p>Now we can submit the forecast output and the metadata file to the Challenge using the <code>neon4cast::submit()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> forecast_file,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">metadata =</span> metadata_file,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can check on the status of your submission using</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On following day after submission, you can see the forecast on the dashboard at <a href="https://shiny.ecoforecast.org">shiny.ecoforecast.org</a></p>
+</section>
+<section id="example-on-github" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="example-on-github"><span class="header-section-number">11.8</span> Example on github</h2>
+<p>The example code above can be found on <a href="https://github.com/eco4cast/neon4cast-example.git">GitHub as a template repository</a>. See the Readme for more information about using the template</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Shared-Forecast-Drivers.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Helpful-Functions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
