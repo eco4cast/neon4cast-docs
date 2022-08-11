@@ -276,17 +276,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Here is an example of a complete workflow for generating a forecast submission to the Challenge. The example is for the aquatics theme and it forecasts water temperature and oxygen. The water temperature forecast uses a linear regression between air temperature and water temperature to predict water temperature in the future. It then uses the prediction of water temperature to predict oxygen water oxygen concentration by assuming that the oxygen is 100% saturated given the predicted temperature.</p>
-<p>To generate the forecast we need to: 1) Build a relationship between past air temperature and past water temperature.<br>
-2) Apply the relationships from #1 to forecasted air temperature.<br>
-3) Calculate oxygen concentration from the forecasted water temperature.</p>
-<p>Therefore we need to: 1) Download the historical water temperature data for the NEON sites (called “targets”).<br>
-2) Download historical air temperature data for the NEON sites (we the stacked NOAA GEFS weather).<br>
-3) Download NOAA weather forecast for the NEON sites.<br>
-4) Create linear regression model based on historical data for each NEON site.<br>
-5) Apply linear regression to using weather forecasts for each NEON.<br>
-6) Write forecast output file.<br>
-7) Correct metadata describing forecast.<br>
-8) Submit forecast to Challenge.</p>
+<p>To generate the forecast we need to:</p>
+<ol type="1">
+<li>Build a relationship between past air temperature and past water temperature.<br>
+</li>
+<li>Apply the relationships from #1 to forecasted air temperature.<br>
+</li>
+<li>Calculate oxygen concentration from the forecasted water temperature.</li>
+</ol>
+<p>Therefore we need to:</p>
+<ol type="1">
+<li>Download the historical water temperature data for the NEON sites (called “targets”).<br>
+</li>
+<li>Download historical air temperature data for the NEON sites (we the stacked NOAA GEFS weather).<br>
+</li>
+<li>Download NOAA weather forecast for the NEON sites.<br>
+</li>
+<li>Create linear regression model based on historical data for each NEON site.<br>
+</li>
+<li>Apply linear regression to using weather forecasts for each NEON.<br>
+</li>
+<li>Write forecast output file.<br>
+</li>
+<li>Correct metadata describing forecast.<br>
+</li>
+<li>Submit forecast to Challenge.</li>
+</ol>
 <p>Each of these steps are below</p>
 <section id="step-0-set-up-r-environment-and-directories" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="step-0-set-up-r-environment-and-directories"><span class="header-section-number">11.1</span> Step 0: Set up R environment and directories</h2>
@@ -521,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>On following day after submission, you can see the forecast on the dashboard at <a href="https://shiny.ecoforecast.org">shiny.ecoforecast.org</a></p>
+<p>On following day after submission, you can see the forecast on the dashboard at <a href="https://shiny.ecoforecast.org">shiny3.ecoforecast.org</a></p>
 </section>
 <section id="example-on-github" class="level2" data-number="11.8">
 <h2 data-number="11.8" class="anchored" data-anchor-id="example-on-github"><span class="header-section-number">11.8</span> Example on github</h2>
