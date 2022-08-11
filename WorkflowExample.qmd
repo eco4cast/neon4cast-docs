@@ -96,15 +96,7 @@ noaa_future <- df_future |>
   dplyr::collect()
 ```
 
-### Step 2.3 Create data frames of drivers
-
-The NOAA stacked and forecast files are netcdf files. Here we convert to data frames to used in our analyses.
-
-```{r eval = FALSE}
-
-```
-
-### Step 2.4 Aggregate (to day) and convert units of drivers
+### Step 2.3 Aggregate (to day) and convert units of drivers
 
 Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.
 
@@ -129,7 +121,7 @@ noaa_future <- noaa_future %>%
   select(time, site_id, air_temperature, ensemble)
 ```
 
-### Step 2.5: Merge in past NOAA data into the targets file, matching by date.
+### Step 2.4: Merge in past NOAA data into the targets file, matching by date.
 
 Before building our linear model we need merge in the historical air temperature to match with the historical water temperature
 
