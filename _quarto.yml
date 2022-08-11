@@ -18,6 +18,7 @@ book:
     - Metadata.qmd
     - Evaluation.qmd
     - Shared-Forecast-Drivers.qmd
+    - WorkflowExample.qmd
     - Helpful-Functions.qmd
     - UseInCourse.qmd
     - FAQ.qmd
