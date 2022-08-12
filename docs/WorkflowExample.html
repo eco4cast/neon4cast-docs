@@ -310,11 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neon4cast)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rMR)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">"AWS_DEFAULT_REGION"</span> <span class="ot">=</span> <span class="st">"data"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"AWS_S3_ENDPOINT"</span> <span class="ot">=</span> <span class="st">"ecoforecast.org"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"drivers"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Define the date that the forecast starts. For demonstration purposes, we are setting the date to <code>2022-02-15</code>. In a real-time application, use <code>forecast_date &lt;- Sys.Date()</code></p>
 <div class="cell">
@@ -359,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="step-2.2-download-noaa-future-forecast" class="level3" data-number="11.4.2">
 <h3 data-number="11.4.2" class="anchored" data-anchor-id="step-2.2-download-noaa-future-forecast"><span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</h3>
-<p>We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (<code>date = forecast_date</code>) that started at mid-night UTC (<code>cycle=00</code>) for the set of sites in the target file.</p>
+<p>We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (<code>start_date = forecast_date</code>) that started at mid-night UTC (<code>cycle=0</code>) for the set of sites in the target file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_future <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage2</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>noaa_future <span class="ot">&lt;-</span> df_future <span class="sc">|&gt;</span> </span>
@@ -373,17 +369,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="11.4.3" class="anchored" data-anchor-id="step-2.3-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">11.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</h3>
 <p>Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>noaa_past_mean <span class="ot">&lt;-</span> noaa_past <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(time)) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date, site_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">air_temperature =</span> <span class="fu">mean</span>(predicted, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">time =</span> date) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>noaa_past_mean <span class="ot">&lt;-</span> noaa_past <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(time)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date, site_id) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">air_temperature =</span> <span class="fu">mean</span>(predicted, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">time =</span> date) <span class="sc">|&gt;</span> </span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">air_temperature =</span> air_temperature <span class="sc">-</span> <span class="fl">273.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For the future weather has 31 ensemble members (i.e., different trajectories of weather), that we want to use to generate uncertainty in our water temperature and oxygen forecasts. The aggregation below maintains the separate ensemble members (<code>group_by(date, ensemble)</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>noaa_future <span class="ot">&lt;-</span> noaa_future <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">as_date</span>(time)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>noaa_future <span class="ot">&lt;-</span> noaa_future <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">as_date</span>(time)) <span class="sc">|&gt;</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, site_id, ensemble) <span class="sc">|&gt;</span> </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">air_temperature =</span> <span class="fu">mean</span>(predicted)) <span class="sc">|&gt;</span> </span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">air_temperature =</span> air_temperature <span class="sc">-</span> <span class="fl">273.15</span>) <span class="sc">|&gt;</span> </span>
