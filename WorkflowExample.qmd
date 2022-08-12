@@ -1,4 +1,4 @@
-# Example Forecast Workflow {sec-example}
+# Example Forecast Workflow {#sec-example}
 
 Here is an example of a complete workflow for generating a forecast submission to the Challenge. The example is for the aquatics theme and it forecasts water temperature and oxygen. The water temperature forecast uses a linear regression between air temperature and water temperature to predict water temperature in the future. It then uses the prediction of water temperature to predict oxygen water oxygen concentration by assuming that the oxygen is 100% saturated given the predicted temperature.
 
