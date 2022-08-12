@@ -1,4 +1,43 @@
-# Timing of data avialablity and automation
+# Timing of Data Availability
 
+Target data and NOAA driver data are being regularly downloaded, processed, and published to the server for use in the Challenge.  Below are are the approximate timing for when different data products are available for download.
 
+**NOAA Stage 1 (3-6 hr intervals)**
 
+Updated hourly as data become available on [Amazon Web Services](https://registry.opendata.aws/noaa-gefs/) For a given forecast that starts at 0 hour UTC (cycle = 0), the full 35-day horizon for all ensembles is available  at ~  4 am UTC on the following date. Stage 1 data are only available as a data frame using `neon4cast::noaa_stage1()` or as parquet files in the `neon4cast-cast/drivers/noaa/gefs-v12/stage1` bucket at `data.ecoforecast.org`
+
+**NOAA Stage 2 (1 hour intervals)**
+
+Updated daily once the full 35-day horizon for all ensembles has been downloaded in Stage 1. For a given forecast start date, the full 35-day horizon for all ensembles is available at ~ 5 am UTC on the following date. Stage 2 are available as a data frame using `neon4cast::noaa_stage2()`, as parquet files in the `neon4cast-cast/drivers/noaa/gefs-v12/stage2/parquet` bucket at `data.ecoforecast.org`, or as parquet files in the `neon4cast-cast/drivers/noaa/gefs-v12/stage2/netcdf`bucket at `data.ecoforecast.org`.
+
+**NOAA Stage 3 (1 hour intervals)**
+
+Updated daily. For a given forecast start date, Stage 3 is updated to the current at ~ 11 am UTC each day. Stage 3 are available as a data frame using `neon4cast::noaa_stage3()`, as parquet files in the `neon4cast-cast/drivers/noaa/gefs-v12/stage3/parquet` bucket at `data.ecoforecast.org`, or as parquet files in the `neon4cast-cast/drivers/noaa/gefs-v12/stage3/netcdf`bucket at `data.ecoforecast.org`.
+
+**Terrestrial targets**
+
+The terrestrial targets are updated daily between 9 and 10 am UTC
+
+**Phenology targets**
+
+The phenology targets are updated every 2 hrs.
+
+**Aquatics targets**
+
+The terrestrial targets are updated daily between 7 and 8 am UTC
+
+**Tick targets**
+
+The ticks targets are updated daily at 11 am UTC
+
+**Beetles targets**
+
+The Beetles targets are updated daily at 8 am UTC
+
+**Scored forecasts**
+
+Forecast scores are updated daily at 11 am UTC
+
+**Forecasting submission processing**
+
+Submitted forecasts are processed every 2 hours.

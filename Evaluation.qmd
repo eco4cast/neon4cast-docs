@@ -6,15 +6,10 @@ Forecast evaluation results will be presented for all submitted models together 
 
 ## Results
 
-Preliminary results will be distributed using the NEON Ecological Forecast Challenge [dashboard](http://shiny3.ecoforecast.org/){target="_blank"} and using the following R code example (where `theme` is the theme you submitted to and `model_id` is your team name)
+Preliminary results will be distributed using the NEON Ecological Forecast Challenge [dashboard](http://shiny3.ecoforecast.org/){target="_blank"} and the `neon4cast::combined_scores()` function (where `x` is an optional argument that is the theme name)
 
 ```{r eval = FALSE}
-#install.packages("arrow")
-s3 <- arrow::s3_bucket("neon4cast-scores/parquet", endpoint_override = "data.ecoforecast.org", anonymous = TRUE)
-ds <- arrow::open_dataset(s3, partitioning = c("theme","year"))
-df <- ds |> 
-  dplyr::filter(theme == "phenology" & model_id == "climatology") |> 
-  dplyr::collect()
+score_df <- neon4cast::combined_scores(x = "phenology")
 ```
 
 We intend to write a joint manuscript synthesizing forecasts, authorship will be extended to members of each team with an opt-in policy. Teams are welcome to publish results from their model at any time. If a publication is generated we encourage the manuscript to acknowledge the Ecological Forecasting Research Coordination Network and its support from the National Science Foundation (DEB-1926388).
