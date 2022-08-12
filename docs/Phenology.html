@@ -514,20 +514,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 68,976 × 5
+<pre><code># A tibble: 69,012 × 5
    time       site_id variable observed      sd
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
- 1 2016-12-14 BART    gcc_90      0.344 0.00234
- 2 2016-12-15 BART    gcc_90      0.346 0.00234
- 3 2016-12-16 BART    gcc_90      0.342 0.00234
- 4 2016-12-17 BART    gcc_90      0.350 0.00234
- 5 2016-12-18 BART    gcc_90      0.348 0.00234
- 6 2016-12-19 BART    gcc_90      0.343 0.00234
- 7 2016-12-20 BART    gcc_90      0.344 0.00234
- 8 2016-12-21 BART    gcc_90      0.344 0.00234
- 9 2016-12-22 BART    gcc_90      0.348 0.00234
-10 2016-12-23 BART    gcc_90      0.344 0.00234
-# … with 68,966 more rows
+ 1 2016-12-14 BART    gcc_90      0.344 0.00223
+ 2 2016-12-15 BART    gcc_90      0.346 0.00223
+ 3 2016-12-16 BART    gcc_90      0.342 0.00223
+ 4 2016-12-17 BART    gcc_90      0.350 0.00223
+ 5 2016-12-18 BART    gcc_90      0.348 0.00223
+ 6 2016-12-19 BART    gcc_90      0.343 0.00223
+ 7 2016-12-20 BART    gcc_90      0.344 0.00223
+ 8 2016-12-21 BART    gcc_90      0.344 0.00223
+ 9 2016-12-22 BART    gcc_90      0.348 0.00223
+10 2016-12-23 BART    gcc_90      0.344 0.00223
+# … with 69,002 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -545,14 +545,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="timeline" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">4.4</span> Timeline</h2>
-<p>Forecasts for a minimum of 35 days can be submitted daily by 6 pm ET throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available. Processed PhenoCam data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
-<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and metreology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at [Frequently Asked Questions]</p>
+<p>Forecasts for a minimum of 35 days can be submitted daily by 12:59 pm ET any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available. Processed PhenoCam data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
+<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;14</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
 <section id="submissions" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">4.5</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>gcc_90</code>, and <code>rcc_90</code>.</p>
-<p>The required time unit: <code>date</code></p>
+<p>The required time unit: <code>date</code> in YYYY-MM-DD format</p>
 <p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="4.6">

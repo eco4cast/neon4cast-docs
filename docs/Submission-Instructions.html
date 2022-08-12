@@ -279,11 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>theme_name-year-month-day-team_name_ID.csv</code></p>
 <p>or</p>
 <p><code>theme_name-year-month-day-team_name_ID.nc</code></p>
-<p>Where <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day for the first day of the submitted forecast and the <code>team_name_ID</code> is the code for the team name that is specified in the registration (<code>team_name_ID</code> is a 10 character name with no spaces in it).</p>
+<p>Where <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day for the day that the forecast starts (horizon = 0). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 0 would be today and used in the file name.</p>
+<p><code>team_name_ID</code> is the code for the team name that is specified in the registration (<code>team_name_ID</code> has no spaces in it).</p>
 <p>The <code>theme_name</code> options are: <code>terrestrial_daily</code>, <code>terrestrial_30min</code>, <code>aquatics</code>, <code>beetles</code>, <code>ticks</code>, or <code>phenology</code>.</p>
 <p>Forecast netCDF or csv files should have the following columns (csv) or variables (netcdf) that correspond to the columns.</p>
 <p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mean</code> and <code>sd</code> for each forecasted variable, site_id, and time.</p>
-<p><strong>Note for those using netCDF option</strong>, the order of dimensions on forecast variables should be: <code>time</code>, <code>site</code>, and <code>ensemble</code>. The netcdf format should only be used for ensemble-based forecasts.</p>
 <section id="examples-of-the-forecast-file-format." class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="examples-of-the-forecast-file-format."><span class="header-section-number">7.1.1</span> Examples of the forecast file format.</h3>
 <p><strong>The correct file format is critical for the automated processing of submissions</strong></p>
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>variable</code>: standardized variable name from the theme</li>
 <li><code>predicted</code>: forecasted value</li>
 </ul>
-<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file</p>
+<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
 </section>
 <section id="distribution-csv" class="level3" data-number="7.1.3">
 <h3 data-number="7.1.3" class="anchored" data-anchor-id="distribution-csv"><span class="header-section-number">7.1.3</span> Distribution CSV</h3>
@@ -305,12 +305,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>time</code>: The start of the forecast</li>
 <li><code>site_id</code>: NEON code for site</li>
 <li><code>family</code> name of probability distribution that is described by the parameter values in the parameter column; only <code>normal</code> is currently allowed</li>
-<li><code>parameter</code> required to be the string <code>mean</code> or <code>sd</code> (see note below about statistic column).<br>
-</li>
+<li><code>parameter</code> required to be the string <code>mean</code> or <code>sd</code> (see note below about statistic column).</li>
 <li><code>variable</code>: standardized variable name from the theme</li>
 <li><code>predicted</code>: forecasted value for mean or standard deviation</li>
 </ul>
-<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file</p>
+<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
 </section>
 <section id="netcdf" class="level3" data-number="7.1.4">
 <h3 data-number="7.1.4" class="anchored" data-anchor-id="netcdf"><span class="header-section-number">7.1.4</span> Netcdf</h3>
@@ -322,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>and include additional variables with names that correspond to the theme-specific standardized variables. For example, a netcdf from the aquatics theme would have <code>temperature</code>, <code>oxygen</code>, and <code>chla</code> variables.</p>
 <p>The order of dimensions on forecast variables should be: <code>time</code>, <code>site</code>, and <code>ensemble</code>. The netcdf format should only be used for ensemble-based forecasts.</p>
-<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file</p>
+<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
 </section>
 </section>
 <section id="metadata-format" class="level2" data-number="7.2">
@@ -331,13 +330,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>theme_name-year-month-day-team_name_ID.xml</code></p>
 <p>Metadata files should be uploaded with the forecast files.</p>
 <p>The <a href="https://github.com/eco4cast/EFIstandards" target="_blank">metadata standard</a> has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML).</p>
-<p>To help support metadata generation, we have created a function in the neon4cast package (<code>generate_metadata()</code>) and a guide for completing the metadata: [Metadata]</p>
+<p>To help support metadata generation, we have created a function in the neon4cast package (<code>generate_metadata()</code>) and a guide for completing the metadata is in <span class="quarto-unresolved-ref">?sec-metadata</span>.</p>
 <p>The license for the forecast output is required to be from the following Creative Commons License options: CC BY, CC BY-SA, CC BY-NC, CC BY-NC-SA. While we recommend a CC BY license, teams may use less permissive CC licenses if more appropriate. The license entry can be the CC option (i.e., CC BY) and a web link to the full CC license (e.g., https://creativecommons.org/licenses/by/4.0/)</p>
 <p>We recommend teams read the full metadata standard description for definitions and more information, and in particular that they look at the <a href="https://github.com/eco4cast/EFIstandards/tree/master/vignettes" target="_blank">example vignettes</a>, which demonstrate the standard being used. Note that these Standards are a work in progress. If you find issues as you are applying them, let us know at <strong>eco4cast.initaitive@gmail.com</strong>.</p>
 </section>
 <section id="submission-process" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="submission-process"><span class="header-section-number">7.3</span> Submission process</h2>
-<p>Individual forecast (csv, netCDF) and metadate (xml) files can be uploaded any time before the specific deadlines as defined by each theme. Only the most recent files will be scored.</p>
+<p>Individual forecast (csv, netCDF) and metadata (xml) files can be uploaded any time before the specific deadlines as defined by each theme. Only the most recent files will be scored.</p>
 <p><strong>The correct file name and format is critical for the automated processing of submissions</strong></p>
 <p>Teams will submit their forecast netCDF or csv files manually through the challenge website or with an R script.</p>
 <p>We have developed a function called submit in the <code>neon4cast</code> package handles submission process.</p>
@@ -345,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-team_name.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">metadata =</span> <span class="st">"theme_name-year-month-day-team_name.xml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, if you using another programming language, you can submit to <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
+<p>Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., <code>aws.s3</code> R package) to the <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
 <p>Submissions need to adhere to the forecast format that is provided above, including the file naming convention. Our cyberinfastructure automatically evaluates forecasts and relies on the expected formatting. Contact eco4cast.initiative@gmail.com if you experience technical issues with submitting.</p>
 <p><strong>Note:</strong> If you have used AWS in the past you might have credential files in an .aws folder in your home directory that will cause an error when you try to upload to a non-AWS bucket. If you encounter this error you may need to rename your credentials files so put_object doesn’t try to read them.</p>
 </section>

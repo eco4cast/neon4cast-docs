@@ -299,10 +299,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Gridded weather from models that have been assimilated with observations are available from other sources including:</li>
 </ol>
 <ul>
-<li><a href="https://ldas.gsfc.nasa.gov/nldas/v2/forcing" target="_blank">NASAs National Land Data Assimilation System</a>: 4 day delay</li>
-<li><a href="https://daymet.ornl.gov" target="_blank">Daymet</a> is an option for daily meteorology variables, though it doesn’t yet cover 2020-2021. <a href="https://cran.r-project.org/web/packages/daymetr/index.html" target="_blank">Daymet has an R</a> package that can be used to download data for a single location or a set of locations.</li>
-<li>ERA5 product has high-quality subdaily data with ensemble-based uncertainties. Download scripts are available through the PEcAn project: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R</li>
-<li>Other meteorology products can be downloading using functions in PEcAn: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R</li>
+<li><p><a href="https://ldas.gsfc.nasa.gov/nldas/v2/forcing" target="_blank">NASAs National Land Data Assimilation System</a>: 4 day delay</p></li>
+<li><p><a href="https://daymet.ornl.gov" target="_blank">Daymet</a> is an option for daily meteorology variables, though it doesn’t yet cover 2020-2021. <a href="https://cran.r-project.org/web/packages/daymetr/index.html" target="_blank">Daymet has an R</a> package that can be used to download data for a single location or a set of locations.</p></li>
+<li><p>ERA5 product has high-quality subdaily data with ensemble-based uncertainties. Download scripts are available through the PEcAn project: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R</p></li>
+<li><p>Other meteorology products can be downloading using functions in PEcAn: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R</p></li>
 </ul>
 </section>
 <section id="i-submitted-my-forecast-but-cannot-find-it-on-the-dashboard-or-in-the-directory-of-forecasts" class="level2" data-number="14.3">
@@ -311,20 +311,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can check the status of your submssion using the following function in the <code>neon4cast</code> package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Client error: (404) Not Found
-Client error: (404) Not Found</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Client error: (403) Forbidden</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Submissions is not present on server.  Try uploading again.</code></pre>
-</div>
 </div>
 <p>We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If your submission did not meet the standard contact us and we can help you work through the issues.</p>
 </section>
@@ -334,18 +324,7 @@ Client error: (404) Not Found</code></pre>
 </section>
 <section id="where-can-i-find-examples-of-forecasts-that-match-the-required-standard" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="where-can-i-find-examples-of-forecasts-that-match-the-required-standard"><span class="header-section-number">14.5</span> Where can I find examples of forecasts that match the required standard?</h2>
-<p>Aquatics</p>
-<p>https://data.ecoforecast.org/forecasts/aquatics/aquatics-2021-03-01-EFInull.csv.gz</p>
-<p>Phenology</p>
-<p>https://data.ecoforecast.org/forecasts/phenology/phenology-2021-02-23-UCSC_P_EDM.csv</p>
-<p>https://data.ecoforecast.org/forecasts/phenology/phenology-2021-02-23-EFInull.nc</p>
-<p>Beetles</p>
-<p>https://data.ecoforecast.org/forecasts/beetles/beetles-2020-EFI_avg_null.csv.gz</p>
-<p>Terrestrial</p>
-<p>https://data.ecoforecast.org/forecasts/terrestrial/terrestrial_daily-2020-10-01-EFInulldaily.csv.gz</p>
-<p>https://data.ecoforecast.org/forecasts/terrestrial/terrestrial_30min-2021-04-01-hist30min.nc</p>
-<p>Ticks</p>
-<p>https://data.ecoforecast.org/forecasts/ticks/ticks-2019-03-04-tickGlobalNull_RandomWalk.csv.gz</p>
+<p>Pending</p>
 </section>
 <section id="is-it-possible-to-automate-my-forecast-submissions" class="level2" data-number="14.6">
 <h2 data-number="14.6" class="anchored" data-anchor-id="is-it-possible-to-automate-my-forecast-submissions"><span class="header-section-number">14.6</span> Is it possible to automate my forecast submissions?</h2>

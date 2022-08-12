@@ -778,15 +778,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="timeline" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">5.4</span> Timeline</h2>
-<p>The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released weekly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON’s weekly release of carabid data.</p>
-<p>The challenge will begin June 30, 2022 at 11:59 Eastern Standard Time (UTC−05:00) and run through December 31, 2022. Subsequent forecasts are due at 11:59 EST on the final day of each month.</p>
+<p>The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released monthly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON’s weekly release of carabid data.</p>
 <p>As an example, carabid pitfall trap data released in the last week of June would include data as recent as the last week of April. Thus, a model submitted in the last week of June could include forecasts from May onwards. Then, the forecast update submitted at the end of July can use new May data to help refine June forecasts, or forecasts following June, depending on what drivers are used. The July forecast update is due by 11:59 pm EST on July 31. Forecasts updates will not be considered for weeks where NEON validation data has already been released (i.e., no May forecast updates may be submitted on July 31) or for weeks when no NEON carabid data is available.</p>
 <p><img src="images/June2021_Calendar.jpg" class="img-fluid"> <img src="images/July2021_Calendar.jpg" class="img-fluid"> Pitfall traps are collected and reset every 2 weeks throughout the growing season. Due to weather and conditions beyond the field team’s control, this collection schedule may not be followed. Thus, the exact collection dates cannot be known until they have happened. Field data are made publicly available on the data portal as the <code>bet_fielddata</code> dataframe no sooner than 14 days after collection. Teams can use <code>bet_fielddata</code> to inform the actual collection schedule. Data with parataxonomist identifications are made publicly available on the data portal as the bet_sorting dataframe no sooner than 60 days after collection. Data are released on the NEON data portal weekly, but may be released on any day of the week. The forecast schedule follows the ISO week standard with weeks starting on Mondays.</p>
 </section>
 <section id="submissions" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">5.5</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>abundance</code> and <code>richness</code></p>
-<p>The required time unit: <code>date</code> for the Monday of the corresponding isoweek</p>
+<p>The required time unit: <code>date</code> for the Monday of the corresponding isoweek in <code>YYYY-MM-DD</code> format.</p>
 <p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="5.6">
