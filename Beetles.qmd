@@ -121,9 +121,7 @@ The table has the following columns:
 
 ## Timeline
 
-The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released weekly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON's weekly release of carabid data.
-
-The challenge will begin June 30, 2022 at 11:59 Eastern Standard Time (UTC−05:00) and run through December 31, 2022. Subsequent forecasts are due at 11:59 EST on the final day of each month.
+The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released monthly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON's weekly release of carabid data.
 
 As an example, carabid pitfall trap data released in the last week of June would include data as recent as the last week of April. Thus, a model submitted in the last week of June could include forecasts from May onwards. Then, the forecast update submitted at the end of July can use new May data to help refine June forecasts, or forecasts following June, depending on what drivers are used. The July forecast update is due by 11:59 pm EST on July 31. Forecasts updates will not be considered for weeks where NEON validation data has already been released (i.e., no May forecast updates may be submitted on July 31) or for weeks when no NEON carabid data is available.
 
@@ -133,7 +131,7 @@ As an example, carabid pitfall trap data released in the last week of June would
 
 The required names for forecasted variables: `abundance` and `richness`
 
-The required time unit: `date` for the Monday of the corresponding isoweek
+The required time unit: `date` for the Monday of the corresponding isoweek in `YYYY-MM-DD` format.
 
 Instructions for submitting forecasts are found in @sec-submissions
 

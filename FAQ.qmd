@@ -37,8 +37,11 @@ NEON collects weather variables at each of the sites. Their data products become
 2)  Gridded weather from models that have been assimilated with observations are available from other sources including:
 
 -   [NASAs National Land Data Assimilation System](https://ldas.gsfc.nasa.gov/nldas/v2/forcing){target="_blank"}: 4 day delay
+
 -   [Daymet](https://daymet.ornl.gov){target="_blank"} is an option for daily meteorology variables, though it doesn't yet cover 2020-2021. [Daymet has an R](https://cran.r-project.org/web/packages/daymetr/index.html){target="_blank"} package that can be used to download data for a single location or a set of locations.
+
 -   ERA5 product has high-quality subdaily data with ensemble-based uncertainties. Download scripts are available through the PEcAn project: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R
+
 -   Other meteorology products can be downloading using functions in PEcAn: https://github.com/PecanProject/pecan/blob/develop/modules/data.atmosphere/R/download.ERA5.R
 
 ## I submitted my forecast but cannot find it on the dashboard or in the directory of forecasts
@@ -47,7 +50,7 @@ A successful submission can be found at the following links within 2 hours of su
 
 You can check the status of your submssion using the following function in the `neon4cast` package
 
-```{r}
+```{r eval = FALSE}
 neon4cast::check_submission("phenology-2022-02-07-persistence.nc")
 ```
 
@@ -65,29 +68,7 @@ No, we are excited to have submissions at any of the submissions dates.
 
 ## Where can I find examples of forecasts that match the required standard?
 
-Aquatics
-
-https://data.ecoforecast.org/forecasts/aquatics/aquatics-2021-03-01-EFInull.csv.gz
-
-Phenology
-
-https://data.ecoforecast.org/forecasts/phenology/phenology-2021-02-23-UCSC_P\_EDM.csv
-
-https://data.ecoforecast.org/forecasts/phenology/phenology-2021-02-23-EFInull.nc
-
-Beetles
-
-https://data.ecoforecast.org/forecasts/beetles/beetles-2020-EFI_avg_null.csv.gz
-
-Terrestrial
-
-https://data.ecoforecast.org/forecasts/terrestrial/terrestrial_daily-2020-10-01-EFInulldaily.csv.gz
-
-https://data.ecoforecast.org/forecasts/terrestrial/terrestrial_30min-2021-04-01-hist30min.nc
-
-Ticks
-
-https://data.ecoforecast.org/forecasts/ticks/ticks-2019-03-04-tickGlobalNull_RandomWalk.csv.gz
+Pending
 
 ## Is it possible to automate my forecast submissions?
 

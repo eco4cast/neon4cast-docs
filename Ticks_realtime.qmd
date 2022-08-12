@@ -4,7 +4,7 @@
 
 **Where:** 9 NEON sites
 
-**When:** Weekly forecasts for 4 weeks into the future starting March 31-September 30, 2022. Forecasts are submitted monthly and later submissions after the March 31 start are permissible.
+**When:** Forecasts for 4 weeks into the future using a weekly time-step
 
 **Why:** There is a correlation between tick population abundance and disease incidence, meaning forecasts for tick abundance have the potential to aid in our understanding of disease risk through time and space.
 
@@ -77,8 +77,6 @@ site_data %>%
 
 Tick drags occur every three weeks at the NEON sites used in this challenge. The sampling season at each site is determined by phenological milestones, beginning and ending within two weeks of green-up and senescence, respectively. The 1m\^2 cloth is dragged for 160m (and at least 80m), and ticks are collected intermittently. They are then sent to a lab for taxonomic identification. Ticks are then identified by life stage and taxonomic rank. The target data is for *Amblyomma americanum* nymphs that were identified to the species level; i.e. ticks identified as being in the *Amblyomma* genus are not included.
 
-**Use of 2021 data:** The forecasting challenge is for the 2021 field season, thus environmental covariates are known. However, in the spirit of keeping this as much of a "forecasting" challenge as possible, we ask that for four week forecast period teams use the NOAA GEFS forecasting data.
-
 ### Target file
 
 Here is the format of the target file
@@ -95,22 +93,11 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targ
 
 ## Timeline
 
-The challenge will begin on March 31, 2022 at 11:59 PM Eastern Standard Time, and will run through October 31, 2022. Each forecast will be for the four MMWR weeks during that month.
+Weekly-time step forecasts for a minimum of 4 weeks in the future submitted weekly by 12:59 pm ET on Mondays. A minimum of 4 week in the future must be forecasted for each submission, but they could be for longer. New forecasts can be submitted daily as new weather forecasts become available. The key is that submissions are predictions of the future.
 
-For example, the forecast that is due on March 31, 2022 will be for MMWR weeks 10-13 of 2021 because the Sundays (the start of each MMWR week) in March 2021 correspond to MMWR weeks 10-13. Likewise, the forecast due April 30, 2022 will be for MMWR weeks 14-17 of 2021. A table of which weeks to forecast at each deadline can be found below.
+Weekly submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specifics times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more in @sec-faq
 
-It is unclear when the provisional 2021 tick taxonomic data will be released. If any is released during the challenge, teams will be able to use it if the data is for weeks that have already been forecasted. For example, if the provisional 2021 data is released on July 15, 2022, teams can use the 2021 data up to MMWR week 26 to calibrate their models for the forecasts due July 31, 2022.
-
-| 2022 Forecast Submission date | 2021 Target Epidemiological weeks |
-|:------------------------------|:---------------------------------:|
-| March 31                      |               10-13               |
-| April 30                      |               14-17               |
-| May 31                        |               18-22               |
-| June 30                       |               23-26               |
-| July 31                       |               27-30               |
-| August 31                     |               31-35               |
-| September 31                  |               36-39               |
-| October 31                    |               40-44               |
+The timeline evaluation is determined by the data latency provided by NEON.  NEON currently lists 300 days as the latency between data collection and reporting data with taxonomic identification.  
 
 ## Submissions
 

@@ -130,7 +130,7 @@ Through a collaboration with NEON, the new data will be available within 24-28 h
 
 The required names for forecasted variables: `oxygen`, `temperature`, and `chla`.
 
-The required time unit: `date` 
+The required time unit: `date` for daily forecast in `YYYY-MM-DD`
 
 Instructions for submitting forecasts are found here: @sec-submissions
 

@@ -1,5 +1,27 @@
 # Using the Challenge in Classes
 
-Under construction!
+The NEON Ecological Forecasting Challenge is a powerful resource to use in teaching.  We encourage courses to have student submit to the challenge as projects in traditional courses or training workshops.  In fact, we have adjusted the protocols of the Challenge to be more conducive to teaching in classes
 
-If you are interested in using the Challenge in a class or workshop, we welcome you to reach out to us at eco4cast.initiative@gmail.com 
+If you are interested in using the Challenge in a class or workshop, we welcome you to reach out to us at eco4cast.initiative\@gmail.com
+
+Based the experiences of 7+ courses using the Challenge, we have an evolving set of best practices
+
+- Consider data latency:  The Phenology, Terrestrial, and Aquatic challenges have data available in near-real time, therefore students submitting to these Challenges will multiple opportunities to see how their forecasts perform: Phenology is 1-day, Terrestrial is 5-days, and Aquatics is 2-days. In contrast the Beetles and Ticks challenges have 60 - 300 day latency so students may not see their forecasts evaluated in the workshop or semester.
+- Start simple: Encourage students to start with simple models
+- Normalize imperfection: Work with students to embrace that all models are wrong, and putting the forecast out there the key step.
+- Use the example models as a template: have students build their models from the simple example models that have been made available   @sec-example is one example and @sec-nulls are the nulls submitted to the challenge.
+- Point students to documentation: the useful functions (@sec-functions) and FAQ (@sec-faq)
+- Reach out: Reach out to the Challenge organizers for questions when planning your course or workshop (eco4cast.initiative\@gmail.com)
+
+
+If you want to access students scored forecasts, the following R code may be helpful (where `model_id` is the students team names)
+
+```{r eval = FALSE}
+#install.packages("arrow")
+s3 <- arrow::s3_bucket("neon4cast-scores/parquet", endpoint_override = "data.ecoforecast.org", anonymous = TRUE)
+ds <- arrow::open_dataset(s3, partitioning = c("theme","year"))
+df <- ds |> 
+  dplyr::filter(theme == "phenology" & model_id == "climatology") |> 
+  dplyr::collect()
+```
+

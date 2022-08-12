@@ -1,4 +1,4 @@
-# Example Forecast Workflow
+# Example Forecast Workflow {sec-example}
 
 Here is an example of a complete workflow for generating a forecast submission to the Challenge. The example is for the aquatics theme and it forecasts water temperature and oxygen. The water temperature forecast uses a linear regression between air temperature and water temperature to predict water temperature in the future. It then uses the prediction of water temperature to predict oxygen water oxygen concentration by assuming that the oxygen is 100% saturated given the predicted temperature.
 
@@ -30,11 +30,7 @@ library(tidyverse)
 library(neon4cast)
 library(lubridate)
 library(rMR)
-
-Sys.setenv("AWS_DEFAULT_REGION" = "data",
-           "AWS_S3_ENDPOINT" = "ecoforecast.org")
-
-dir.create("drivers", showWarnings = FALSE)
+library(arrow)
 ```
 
 Define the date that the forecast starts. For demonstration purposes, we are setting the date to `2022-02-15`. In a real-time application, use `forecast_date <- Sys.Date()`
@@ -85,7 +81,7 @@ noaa_past <- df_past |>
 
 ### Step 2.2: Download NOAA future forecast
 
-We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (`date = forecast_date`) that started at mid-night UTC (`cycle=00`) for the set of sites in the target file.
+We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (`start_date = forecast_date`) that started at mid-night UTC (`cycle=0`) for the set of sites in the target file.
 
 ```{r eval = FALSE}
 df_future <- neon4cast::noaa_stage2()
@@ -101,11 +97,11 @@ noaa_future <- df_future |>
 Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.
 
 ```{r eval = FALSE}
-noaa_past_mean <- noaa_past %>% 
-  mutate(date = as_date(time)) %>% 
-  group_by(date, site_id) %>% 
-  summarize(air_temperature = mean(predicted, na.rm = TRUE), .groups = "drop") %>% 
-  rename(time = date) %>% 
+noaa_past_mean <- noaa_past |> 
+  mutate(date = as_date(time)) |> 
+  group_by(date, site_id) |> 
+  summarize(air_temperature = mean(predicted, na.rm = TRUE), .groups = "drop") |> 
+  rename(time = date) |> 
   mutate(air_temperature = air_temperature - 273.15)
 
 ```
@@ -113,8 +109,8 @@ noaa_past_mean <- noaa_past %>%
 For the future weather has 31 ensemble members (i.e., different trajectories of weather), that we want to use to generate uncertainty in our water temperature and oxygen forecasts. The aggregation below maintains the separate ensemble members (`group_by(date, ensemble)`).
 
 ```{r eval = FALSE}
-noaa_future <- noaa_future %>% 
-  mutate(time = as_date(time)) %>% 
+noaa_future <- noaa_future |> 
+  mutate(time = as_date(time)) |> 
   group_by(time, site_id, ensemble) |> 
   summarize(air_temperature = mean(predicted)) |> 
   mutate(air_temperature = air_temperature - 273.15) |> 
