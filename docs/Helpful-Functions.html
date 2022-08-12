@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NEON Ecological Forecasting Challenge - 12&nbsp; Helpful Functions</title>
+<title>NEON Ecological Forecasting Challenge - 13&nbsp; Helpful Functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -211,22 +211,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
+  <a href="./CronTiming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
   </div>
 </li>
     </ul>
@@ -238,31 +243,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#neon4cast-package" id="toc-neon4cast-package" class="nav-link active" data-scroll-target="#neon4cast-package"> <span class="header-section-number">12.1</span> neon4cast package</a>
+  <li><a href="#neon4cast-package" id="toc-neon4cast-package" class="nav-link active" data-scroll-target="#neon4cast-package"> <span class="header-section-number">13.1</span> neon4cast package</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">12.1.1</span> Installation</a></li>
-  <li><a href="#example-forecast" id="toc-example-forecast" class="nav-link" data-scroll-target="#example-forecast"> <span class="header-section-number">12.1.2</span> Example forecast</a></li>
-  <li><a href="#score-forecast-locally" id="toc-score-forecast-locally" class="nav-link" data-scroll-target="#score-forecast-locally"> <span class="header-section-number">12.1.3</span> Score forecast locally</a></li>
-  <li><a href="#validate-a-forecast-file" id="toc-validate-a-forecast-file" class="nav-link" data-scroll-target="#validate-a-forecast-file"> <span class="header-section-number">12.1.4</span> Validate a forecast file</a></li>
-  <li><a href="#generate-forecast-metadata-in-eml" id="toc-generate-forecast-metadata-in-eml" class="nav-link" data-scroll-target="#generate-forecast-metadata-in-eml"> <span class="header-section-number">12.1.5</span> Generate forecast metadata in EML</a></li>
-  <li><a href="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites" id="toc-access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="nav-link" data-scroll-target="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites"> <span class="header-section-number">12.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</a></li>
-  <li><a href="#neon4cast-submit" id="toc-neon4cast-submit" class="nav-link" data-scroll-target="#neon4cast-submit"> <span class="header-section-number">12.1.7</span> Submit a forecast</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">13.1.1</span> Installation</a></li>
+  <li><a href="#example-forecast" id="toc-example-forecast" class="nav-link" data-scroll-target="#example-forecast"> <span class="header-section-number">13.1.2</span> Example forecast</a></li>
+  <li><a href="#score-forecast-locally" id="toc-score-forecast-locally" class="nav-link" data-scroll-target="#score-forecast-locally"> <span class="header-section-number">13.1.3</span> Score forecast locally</a></li>
+  <li><a href="#validate-a-forecast-file" id="toc-validate-a-forecast-file" class="nav-link" data-scroll-target="#validate-a-forecast-file"> <span class="header-section-number">13.1.4</span> Validate a forecast file</a></li>
+  <li><a href="#generate-forecast-metadata-in-eml" id="toc-generate-forecast-metadata-in-eml" class="nav-link" data-scroll-target="#generate-forecast-metadata-in-eml"> <span class="header-section-number">13.1.5</span> Generate forecast metadata in EML</a></li>
+  <li><a href="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites" id="toc-access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="nav-link" data-scroll-target="#access-efi-snapshots-of-noaa-forecasts-at-neon-sites"> <span class="header-section-number">13.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</a></li>
+  <li><a href="#neon4cast-submit" id="toc-neon4cast-submit" class="nav-link" data-scroll-target="#neon4cast-submit"> <span class="header-section-number">13.1.7</span> Submit a forecast</a></li>
   </ul></li>
-  <li><a href="#neonstore-package" id="toc-neonstore-package" class="nav-link" data-scroll-target="#neonstore-package"> <span class="header-section-number">12.2</span> neonstore package</a>
+  <li><a href="#neonstore-package" id="toc-neonstore-package" class="nav-link" data-scroll-target="#neonstore-package"> <span class="header-section-number">13.2</span> neonstore package</a>
   <ul class="collapse">
-  <li><a href="#installation-1" id="toc-installation-1" class="nav-link" data-scroll-target="#installation-1"> <span class="header-section-number">12.2.1</span> Installation</a></li>
-  <li><a href="#quickstart" id="toc-quickstart" class="nav-link" data-scroll-target="#quickstart"> <span class="header-section-number">12.2.2</span> Quickstart</a></li>
-  <li><a href="#database-backend" id="toc-database-backend" class="nav-link" data-scroll-target="#database-backend"> <span class="header-section-number">12.2.3</span> Database backend</a></li>
-  <li><a href="#note-on-api-limits" id="toc-note-on-api-limits" class="nav-link" data-scroll-target="#note-on-api-limits"> <span class="header-section-number">12.2.4</span> Note on API limits</a></li>
-  <li><a href="#non-stacking-files-and-low-level-interface" id="toc-non-stacking-files-and-low-level-interface" class="nav-link" data-scroll-target="#non-stacking-files-and-low-level-interface"> <span class="header-section-number">12.2.5</span> Non-stacking files and low-level interface</a></li>
+  <li><a href="#installation-1" id="toc-installation-1" class="nav-link" data-scroll-target="#installation-1"> <span class="header-section-number">13.2.1</span> Installation</a></li>
+  <li><a href="#quickstart" id="toc-quickstart" class="nav-link" data-scroll-target="#quickstart"> <span class="header-section-number">13.2.2</span> Quickstart</a></li>
+  <li><a href="#database-backend" id="toc-database-backend" class="nav-link" data-scroll-target="#database-backend"> <span class="header-section-number">13.2.3</span> Database backend</a></li>
+  <li><a href="#note-on-api-limits" id="toc-note-on-api-limits" class="nav-link" data-scroll-target="#note-on-api-limits"> <span class="header-section-number">13.2.4</span> Note on API limits</a></li>
+  <li><a href="#non-stacking-files-and-low-level-interface" id="toc-non-stacking-files-and-low-level-interface" class="nav-link" data-scroll-target="#non-stacking-files-and-low-level-interface"> <span class="header-section-number">13.2.5</span> Non-stacking files and low-level interface</a></li>
   </ul></li>
-  <li><a href="#efistandards-package" id="toc-efistandards-package" class="nav-link" data-scroll-target="#efistandards-package"> <span class="header-section-number">12.3</span> EFIstandards package</a>
+  <li><a href="#efistandards-package" id="toc-efistandards-package" class="nav-link" data-scroll-target="#efistandards-package"> <span class="header-section-number">13.3</span> EFIstandards package</a>
   <ul class="collapse">
-  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"> <span class="header-section-number">12.3.1</span> Output Files:</a></li>
-  <li><a href="#output-metadata" id="toc-output-metadata" class="nav-link" data-scroll-target="#output-metadata"> <span class="header-section-number">12.3.2</span> Output Metadata:</a></li>
-  <li><a href="#archiving" id="toc-archiving" class="nav-link" data-scroll-target="#archiving"> <span class="header-section-number">12.3.3</span> Archiving:</a></li>
-  <li><a href="#vignettes" id="toc-vignettes" class="nav-link" data-scroll-target="#vignettes"> <span class="header-section-number">12.3.4</span> Vignettes:</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"> <span class="header-section-number">12.3.5</span> Documentation:</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"> <span class="header-section-number">13.3.1</span> Output Files:</a></li>
+  <li><a href="#output-metadata" id="toc-output-metadata" class="nav-link" data-scroll-target="#output-metadata"> <span class="header-section-number">13.3.2</span> Output Metadata:</a></li>
+  <li><a href="#archiving" id="toc-archiving" class="nav-link" data-scroll-target="#archiving"> <span class="header-section-number">13.3.3</span> Archiving:</a></li>
+  <li><a href="#vignettes" id="toc-vignettes" class="nav-link" data-scroll-target="#vignettes"> <span class="header-section-number">13.3.4</span> Vignettes:</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"> <span class="header-section-number">13.3.5</span> Documentation:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -272,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span></h1>
+<h1 class="title"><span id="sec-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span></h1>
 </div>
 
 
@@ -290,18 +295,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <a href="https://github.com/eco4cast/neon4cast" target="_blank">neon4cast</a> package provides a collection of convenient helper utilities so you can score your forecast locally, validate the format of your forecast files to check for formatting errors before submitting, generate forecast metadata in EML (coming soon!), access EFI snapshots of NOAA forecasts at NEON sites, and submit your forecast.</p>
 <p>The <a href="https://github.com/cboettig/neonstore" target="_blank">neonstore</a> package provides quick access and persistent storage of NEON data tables.</p>
 <p>The <a href="https://github.com/eco4cast/EFIstandards" target="_blank">EFIstandards</a> package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts by the Ecological Forecasting Initiative. These standards are a work in progress. If you have suggestions for improvement share them with eco4cast.initiative@gmail.com.”</p>
-<section id="neon4cast-package" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="neon4cast-package"><span class="header-section-number">12.1</span> neon4cast package</h2>
+<section id="neon4cast-package" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="neon4cast-package"><span class="header-section-number">13.1</span> neon4cast package</h2>
 <p>The <code>neon4cast</code> package is located at https://github.com/eco4cast/neon4cast</p>
 <p><code>neon4cast</code> provides the following collection of convenient helper utilities for anyone entering the EFI NEON Forecasting Challenge.</p>
-<section id="installation" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">12.1.1</span> Installation</h3>
+<section id="installation" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">13.1.1</span> Installation</h3>
 <p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"eco4cast/neon4cast"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="example-forecast" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="example-forecast"><span class="header-section-number">12.1.2</span> Example forecast</h3>
+<section id="example-forecast" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="example-forecast"><span class="header-section-number">13.1.2</span> Example forecast</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neon4cast)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
@@ -336,8 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">team =</span> <span class="st">"example_null"</span>)</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(forecast, forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="score-forecast-locally" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="score-forecast-locally"><span class="header-section-number">12.1.3</span> Score forecast locally</h3>
+<section id="score-forecast-locally" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="score-forecast-locally"><span class="header-section-number">13.1.3</span> Score forecast locally</h3>
 <p>Scores for valid forecasts should appear at <a href="https://shiny.ecoforecast.org" class="uri">https://shiny.ecoforecast.org</a> the day after they are submitted. However, it is often more convenient to generate scores locally. Note that the “score” simply the <code>crps_sample</code> (for ensemble forecasts) or <code>crps_norm</code> (for summary statistic forecasts) score from the <code>scoringRules</code> R package, for each unique prediction (i.e.day/site/variable tuple).</p>
 <p>Note that scores are only possible once the data becomes available in the corresponding targets file!</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">score</span>(forecast, <span class="at">theme =</span> <span class="st">"aquatics"</span>)</span>
@@ -354,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 POSE   oxygen           0.676</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 POSE   temperature      1.42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="validate-a-forecast-file" class="level3" data-number="12.1.4">
-<h3 data-number="12.1.4" class="anchored" data-anchor-id="validate-a-forecast-file"><span class="header-section-number">12.1.4</span> Validate a forecast file</h3>
+<section id="validate-a-forecast-file" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="validate-a-forecast-file"><span class="header-section-number">13.1.4</span> Validate a forecast file</h3>
 <p>Validating a forecast file runs the same automated checks as the EFI server, verifying that the data is in the correct format for the appropriate challenge. Helpful errors or warnings will displayed on any invalid formats. Note that the validator accepts files in <code>.csv</code> (optionally compressed as <code>.csv.gz</code>) or netcdf.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forecast_output_validator</span>(forecast_file)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; aquatics-2021-03-17-example_null.csv.gz</span></span>
@@ -378,17 +383,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ file has correct time column</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="generate-forecast-metadata-in-eml" class="level3" data-number="12.1.5">
-<h3 data-number="12.1.5" class="anchored" data-anchor-id="generate-forecast-metadata-in-eml"><span class="header-section-number">12.1.5</span> Generate forecast metadata in EML</h3>
+<section id="generate-forecast-metadata-in-eml" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="generate-forecast-metadata-in-eml"><span class="header-section-number">13.1.5</span> Generate forecast metadata in EML</h3>
 <p>See [Metadata]</p>
 </section>
-<section id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="level3" data-number="12.1.6">
-<h3 data-number="12.1.6" class="anchored" data-anchor-id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites"><span class="header-section-number">12.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</h3>
+<section id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites" class="level3" data-number="13.1.6">
+<h3 data-number="13.1.6" class="anchored" data-anchor-id="access-efi-snapshots-of-noaa-forecasts-at-neon-sites"><span class="header-section-number">13.1.6</span> Access EFI snapshots of NOAA forecasts at NEON sites</h3>
 <p>Many forecasts will want to make use of weather forecasts as potential drivers. EFI downscales NOAA GEFS 35-day forecast products at each NEON site and makes this data available. These helper functions provide convenient access for downloading and stacking the individual forecast files.</p>
 <p>See [Meteorology Inputs] for the functions</p>
 </section>
-<section id="neon4cast-submit" class="level3" data-number="12.1.7">
-<h3 data-number="12.1.7" class="anchored" data-anchor-id="neon4cast-submit"><span class="header-section-number">12.1.7</span> Submit a forecast</h3>
+<section id="neon4cast-submit" class="level3" data-number="13.1.7">
+<h3 data-number="13.1.7" class="anchored" data-anchor-id="neon4cast-submit"><span class="header-section-number">13.1.7</span> Submit a forecast</h3>
 <p>When you are ready to submit your forecast to EFI:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">submit</span>(forecast_file)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; aquatics-2021-03-17-example_null.csv.gz</span></span>
@@ -412,22 +417,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Ideally you should include the optional <code>metadata =</code> argument with your metadata file.</p>
 </section>
 </section>
-<section id="neonstore-package" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="neonstore-package"><span class="header-section-number">12.2</span> neonstore package</h2>
+<section id="neonstore-package" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="neonstore-package"><span class="header-section-number">13.2</span> neonstore package</h2>
 <p>The neonstore package is located at https://github.com/eco4cast/neon4cast</p>
 <p><code>neonstore</code> provides quick access and persistent storage of NEON data tables. <code>neonstore</code> emphasizes simplicity and a clean data provenance trail, see Provenance section below.</p>
 <!-- badges: start -->
 <p><a href="https://github.com/cboettig/neonstore/actions"><img src="https://github.com/cboettig/neonstore/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://codecov.io/gh/cboettig/neonstore?branch=master"><img src="https://codecov.io/gh/cboettig/neonstore/branch/master/graph/badge.svg" class="img-fluid" alt="Codecov test coverage"></a> <a href="https://CRAN.R-project.org/package=neonstore"><img src="https://www.r-pkg.org/badges/version/neonstore.png" class="img-fluid" alt="CRAN status"></a></p>
 <!-- badges: end -->
 <p><code>neonstore</code> provides quick access and persistent storage of NEON data tables. <code>neonstore</code> emphasizes simplicity and a clean data provenance trail, see Provenance section below.</p>
-<section id="installation-1" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="installation-1"><span class="header-section-number">12.2.1</span> Installation</h3>
+<section id="installation-1" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="installation-1"><span class="header-section-number">13.2.1</span> Installation</h3>
 <p>Install the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"cboettig/neonstore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="quickstart" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="quickstart"><span class="header-section-number">12.2.2</span> Quickstart</h3>
+<section id="quickstart" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="quickstart"><span class="header-section-number">13.2.2</span> Quickstart</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neonstore)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Discover data products of interest:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>products <span class="ot">&lt;-</span> <span class="fu">neon_products</span>()</span>
@@ -482,8 +487,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_read</span>(<span class="st">"brd_countdata-expanded"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="database-backend" class="level3" data-number="12.2.3">
-<h3 data-number="12.2.3" class="anchored" data-anchor-id="database-backend"><span class="header-section-number">12.2.3</span> Database backend</h3>
+<section id="database-backend" class="level3" data-number="13.2.3">
+<h3 data-number="13.2.3" class="anchored" data-anchor-id="database-backend"><span class="header-section-number">13.2.3</span> Database backend</h3>
 <p><code>neonstore</code> now supports a backend relation database as well. Import data from the raw downloaded files using <code>neon_store()</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neon_store</span>(<span class="at">table =</span> <span class="st">"brd_countdata-expanded"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; table brd_countdata-expanded not found, do you need to download first?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -547,14 +552,14 @@ Remember that <code>dplyr</code> translates these into SQL queries that run dire
 <span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   file &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that we need to include the product name in the table name when accessing the database, as table names alone may not be unique. RStudio users can also list and explore all tables interactively in the Connections pane in RStudio using <code>neon_pane()</code>.</p>
 </section>
-<section id="note-on-api-limits" class="level3" data-number="12.2.4">
-<h3 data-number="12.2.4" class="anchored" data-anchor-id="note-on-api-limits"><span class="header-section-number">12.2.4</span> Note on API limits</h3>
+<section id="note-on-api-limits" class="level3" data-number="13.2.4">
+<h3 data-number="13.2.4" class="anchored" data-anchor-id="note-on-api-limits"><span class="header-section-number">13.2.4</span> Note on API limits</h3>
 <p>If <code>neon_download()</code> exceeds the API request limit (with or without the token), <code>neonstore</code> will simply pause for the required amount of time to avoid rate-limit-based errors.</p>
 <p><a href="https://data.neonscience.org/data-api/rate-limiting/#api-tokens">The NEON API now rate-limits requests.</a>. Using a personal token will increase the number of requests you can make before encountering this delay. See link for directions on registering for a token. Then pass this token in <code>.token</code> argument of <code>neon_download()</code>, or for frequent use, add this token as an environmental variable, <code>NEON_DATA</code> to your local <code>.Renviron</code> file in your user’s home directory. <code>neon_download()</code> must first query each the API of each NEON site which collects that product, for each month the product is collected.</p>
 <p>(It would be much more efficient on the NEON server if the API could take queries of the from <code>/data/&lt;product&gt;/&lt;site&gt;</code>, and pool the results, rather than require each month of sampling separately!)</p>
 </section>
-<section id="non-stacking-files-and-low-level-interface" class="level3" data-number="12.2.5">
-<h3 data-number="12.2.5" class="anchored" data-anchor-id="non-stacking-files-and-low-level-interface"><span class="header-section-number">12.2.5</span> Non-stacking files and low-level interface</h3>
+<section id="non-stacking-files-and-low-level-interface" class="level3" data-number="13.2.5">
+<h3 data-number="13.2.5" class="anchored" data-anchor-id="non-stacking-files-and-low-level-interface"><span class="header-section-number">13.2.5</span> Non-stacking files and low-level interface</h3>
 <p>At it’s core, <code>neonstore</code> is simply a mechanism to download files from the NEON API. While the <code>.csv</code> files from the Observation Systems (OS, e.g.&nbsp;bird count surveys), and Instrument Systems (e.g.&nbsp;aquatic sensors) are typically stacked into large tables, other products, such as the <code>.laz</code> and <code>.tif</code> images produced by the airborne observation platform LIDAR and cameras may require a different approach.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in a large file list for illustration purposes</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cper_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://minio.thelio.carlboettiger.info/shared-data/neon_data_catalog.csv.gz"</span>)</span>
@@ -619,30 +624,30 @@ Remember that <code>dplyr</code> translates these into SQL queries that run dire
 <p>Note that many of the airborne observation platform (AOP) products, such as these LIDAR files, do not include the PRNUM or REV components that make up part of the <code>productCode</code>s used in the NEON <code>product</code> tables.</p>
 </section>
 </section>
-<section id="efistandards-package" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="efistandards-package"><span class="header-section-number">12.3</span> EFIstandards package</h2>
+<section id="efistandards-package" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="efistandards-package"><span class="header-section-number">13.3</span> EFIstandards package</h2>
 <!-- badges: start -->
 <p><a href="https://github.com/cboettig/forecast-standards/actions"><img src="https://github.com/cboettig/forecast-standards/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://CRAN.R-project.org/package=EFIstandards"><img src="https://www.r-pkg.org/badges/version/EFIstandards.png" class="img-fluid" alt="CRAN status"></a> <a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" class="img-fluid" alt="Lifecycle: experimental"></a> <!-- badges: end --></p>
 <p>This package summarizes the proposed community standards for the common formatting and archiving of ecological forecasts developed by the Ecological Forecasting Initiative (EFI). Such open standards are intended to promote interoperability and facilitate forecast adoption, distribution, validation, and synthesis.</p>
-<section id="output-files" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="output-files"><span class="header-section-number">12.3.1</span> Output Files:</h3>
+<section id="output-files" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="output-files"><span class="header-section-number">13.3.1</span> Output Files:</h3>
 <p>EFI has proposed a three-tiered approach reflecting trade-offs in forecast data volume and technical expertise. The prefered output file format is in netCDF following standard CF conventions for dimensions and variable naming conventions, with ensemble member as a dimension where appropriate. The second-tier option is a semi-long CSV format, with state variables as columns and each row representing a unique issue datetime, prediction datetime, location, ensemble member, etc. The third-tier option is similar to option 2, but each row represents a specific summary statistic (mean, upper/lower CI) rather than individual ensemble members.</p>
 </section>
-<section id="output-metadata" class="level3" data-number="12.3.2">
-<h3 data-number="12.3.2" class="anchored" data-anchor-id="output-metadata"><span class="header-section-number">12.3.2</span> Output Metadata:</h3>
+<section id="output-metadata" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="output-metadata"><span class="header-section-number">13.3.2</span> Output Metadata:</h3>
 <p>EFI’s proposed metadata represents an expansion upon the Ecological Metadata Language (EML), with two key differences. First, is the specification of additonalMetadata tags to store forecast specific information (e.g.&nbsp;uncertainty propagation and data assimilation) as well as some summary information about model complexity, included uncertainties, etc. designed to facilitate cross-forecast synthesis. Second, a number of EML tags (e.g.&nbsp;temporal resolution, output variables) are considered a required part of forecast metadata that are otherwise optional in base EML.</p>
 <p>This package includes an R tool for validating these EML files.</p>
 </section>
-<section id="archiving" class="level3" data-number="12.3.3">
-<h3 data-number="12.3.3" class="anchored" data-anchor-id="archiving"><span class="header-section-number">12.3.3</span> Archiving:</h3>
+<section id="archiving" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="archiving"><span class="header-section-number">13.3.3</span> Archiving:</h3>
 <p>EFI envisions a three-tiered approach to forecast archiving. At the most basic level, forecasts should be archived before new observations become available (not possible for hindcasts), preferably in a FAIR public archive that permits forecasts to be uploaded automatically, allows metadata to be searchable, and assigns a DOI. Second, in addition to this the codes used to generate forecasts should also be archived, preferably in an open archive or code repository (e.g.&nbsp;Github) that can be assigned a DOI. Finally, in addition to output and code archiving, we encourage running forecast workflows to be archived using virtualization approaches, such as Docker or Singularity containers.</p>
 </section>
-<section id="vignettes" class="level3" data-number="12.3.4">
-<h3 data-number="12.3.4" class="anchored" data-anchor-id="vignettes"><span class="header-section-number">12.3.4</span> Vignettes:</h3>
+<section id="vignettes" class="level3" data-number="13.3.4">
+<h3 data-number="13.3.4" class="anchored" data-anchor-id="vignettes"><span class="header-section-number">13.3.4</span> Vignettes:</h3>
 <p>This package includes a number of vignettes illustrating the application of the EFI standards to different forecasts</p>
 </section>
-<section id="documentation" class="level3" data-number="12.3.5">
-<h3 data-number="12.3.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">12.3.5</span> Documentation:</h3>
+<section id="documentation" class="level3" data-number="13.3.5">
+<h3 data-number="13.3.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">13.3.5</span> Documentation:</h3>
 <p>A more detailed description of the EFI standard can be found at <a href="https://shorturl.at/irMQW" class="uri">https://shorturl.at/irMQW</a>. Note that the Standard is a work in progress. If you find issues as you are applying them, let us know at eco4cast.initiative@gmail.com.</p>
 <p>Pkgdown rendered documentation of functions and vignettes can be found at https://eco4cast.github.io/EFIstandards/</p>
 
@@ -751,12 +756,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./WorkflowExample.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./UseInCourse.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

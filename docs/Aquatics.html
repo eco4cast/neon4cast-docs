@@ -211,22 +211,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
+  <a href="./CronTiming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
   </div>
 </li>
     </ul>
@@ -315,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 57,536 × 4
+<pre><code># A tibble: 57,565 × 4
    time       site_id variable    observed
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
  1 2016-08-12 ARIK    oxygen          3.40
@@ -328,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2016-08-18 ARIK    temperature    20.6 
  9 2016-08-19 ARIK    oxygen          4.03
 10 2016-08-19 ARIK    temperature    20.1 
-# … with 57,526 more rows
+# … with 57,555 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -583,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="timeline" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">1.4</span> Timeline</h2>
 <p>Forecasts for a minimum of 35 days can be submitted daily by 11:59 pm UTC throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th. New forecasts can be submitted daily as new weather forecasts and observations (e.g., new temperature and water quality data is released by NEON) become available. The key is that submissions are predictions of the future.</p>
-<p>Since daily submissions are allowed and encouraged, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specified times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at <a href="FAQ.html"><span>Chapter&nbsp;14</span></a></p>
+<p>Since daily submissions are allowed and encouraged, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specified times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more at <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-aquatics/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
 <section id="observed-data-latency" class="level2" data-number="1.5">
@@ -602,7 +607,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="useful-functions" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">1.8</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found here: <a href="Helpful-Functions.html"><span>Chapter&nbsp;12</span></a></p>
+<p>Functions for validating, evaluating and submitting forecasts can be found here: <a href="Helpful-Functions.html"><span>Chapter&nbsp;13</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">1.9</span> Null models</h2>
@@ -611,7 +616,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="faq" class="level2" data-number="1.10">
 <h2 data-number="1.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">1.10</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found here: <a href="FAQ.html"><span>Chapter&nbsp;14</span></a></p>
+<p>Answers to frequency asks questions can be found here: <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
 </section>
 <section id="design-team" class="level2" data-number="1.11">
 <h2 data-number="1.11" class="anchored" data-anchor-id="design-team"><span class="header-section-number">1.11</span> Design Team</h2>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NEON Ecological Forecasting Challenge - 11&nbsp; Example Forecast Workflow</title>
+<title>NEON Ecological Forecasting Challenge - 12&nbsp; Example Forecast Workflow</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./Helpful-Functions.html" rel="next">
-<link href="./Shared-Forecast-Drivers.html" rel="prev">
+<link href="./CronTiming.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -211,22 +211,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
+  <a href="./CronTiming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
   </div>
 </li>
     </ul>
@@ -238,20 +243,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#step-0-set-up-r-environment-and-directories" id="toc-step-0-set-up-r-environment-and-directories" class="nav-link active" data-scroll-target="#step-0-set-up-r-environment-and-directories"> <span class="header-section-number">11.1</span> Step 0: Set up R environment and directories</a></li>
-  <li><a href="#step-0-define-team-name-and-team-members" id="toc-step-0-define-team-name-and-team-members" class="nav-link" data-scroll-target="#step-0-define-team-name-and-team-members"> <span class="header-section-number">11.2</span> Step 0: Define team name and team members</a></li>
-  <li><a href="#step-1-download-latest-target-data-and-site-description-data" id="toc-step-1-download-latest-target-data-and-site-description-data" class="nav-link" data-scroll-target="#step-1-download-latest-target-data-and-site-description-data"> <span class="header-section-number">11.3</span> Step 1: Download latest target data and site description data</a></li>
-  <li><a href="#step-2-get-drivers" id="toc-step-2-get-drivers" class="nav-link" data-scroll-target="#step-2-get-drivers"> <span class="header-section-number">11.4</span> Step 2: Get drivers</a>
+  <li><a href="#step-0-set-up-r-environment-and-directories" id="toc-step-0-set-up-r-environment-and-directories" class="nav-link active" data-scroll-target="#step-0-set-up-r-environment-and-directories"> <span class="header-section-number">12.1</span> Step 0: Set up R environment and directories</a></li>
+  <li><a href="#step-0-define-team-name-and-team-members" id="toc-step-0-define-team-name-and-team-members" class="nav-link" data-scroll-target="#step-0-define-team-name-and-team-members"> <span class="header-section-number">12.2</span> Step 0: Define team name and team members</a></li>
+  <li><a href="#step-1-download-latest-target-data-and-site-description-data" id="toc-step-1-download-latest-target-data-and-site-description-data" class="nav-link" data-scroll-target="#step-1-download-latest-target-data-and-site-description-data"> <span class="header-section-number">12.3</span> Step 1: Download latest target data and site description data</a></li>
+  <li><a href="#step-2-get-drivers" id="toc-step-2-get-drivers" class="nav-link" data-scroll-target="#step-2-get-drivers"> <span class="header-section-number">12.4</span> Step 2: Get drivers</a>
   <ul class="collapse">
-  <li><a href="#step-2.1-download-paste-noaa-forecast-stacked-together" id="toc-step-2.1-download-paste-noaa-forecast-stacked-together" class="nav-link" data-scroll-target="#step-2.1-download-paste-noaa-forecast-stacked-together"> <span class="header-section-number">11.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</a></li>
-  <li><a href="#step-2.2-download-noaa-future-forecast" id="toc-step-2.2-download-noaa-future-forecast" class="nav-link" data-scroll-target="#step-2.2-download-noaa-future-forecast"> <span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</a></li>
-  <li><a href="#step-2.3-aggregate-to-day-and-convert-units-of-drivers" id="toc-step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="nav-link" data-scroll-target="#step-2.3-aggregate-to-day-and-convert-units-of-drivers"> <span class="header-section-number">11.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</a></li>
-  <li><a href="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." id="toc-step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="nav-link" data-scroll-target="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."> <span class="header-section-number">11.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</a></li>
+  <li><a href="#step-2.1-download-paste-noaa-forecast-stacked-together" id="toc-step-2.1-download-paste-noaa-forecast-stacked-together" class="nav-link" data-scroll-target="#step-2.1-download-paste-noaa-forecast-stacked-together"> <span class="header-section-number">12.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</a></li>
+  <li><a href="#step-2.2-download-noaa-future-forecast" id="toc-step-2.2-download-noaa-future-forecast" class="nav-link" data-scroll-target="#step-2.2-download-noaa-future-forecast"> <span class="header-section-number">12.4.2</span> Step 2.2: Download NOAA future forecast</a></li>
+  <li><a href="#step-2.3-aggregate-to-day-and-convert-units-of-drivers" id="toc-step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="nav-link" data-scroll-target="#step-2.3-aggregate-to-day-and-convert-units-of-drivers"> <span class="header-section-number">12.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</a></li>
+  <li><a href="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." id="toc-step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="nav-link" data-scroll-target="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."> <span class="header-section-number">12.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</a></li>
   </ul></li>
-  <li><a href="#step-3.0-generate-forecasts-for-each-site" id="toc-step-3.0-generate-forecasts-for-each-site" class="nav-link" data-scroll-target="#step-3.0-generate-forecasts-for-each-site"> <span class="header-section-number">11.5</span> Step 3.0: Generate forecasts for each site</a></li>
-  <li><a href="#step-4-generate-metadata" id="toc-step-4-generate-metadata" class="nav-link" data-scroll-target="#step-4-generate-metadata"> <span class="header-section-number">11.6</span> Step 4: Generate metadata</a></li>
-  <li><a href="#step-5-submit-forecast" id="toc-step-5-submit-forecast" class="nav-link" data-scroll-target="#step-5-submit-forecast"> <span class="header-section-number">11.7</span> Step 5: Submit forecast!</a></li>
-  <li><a href="#example-on-github" id="toc-example-on-github" class="nav-link" data-scroll-target="#example-on-github"> <span class="header-section-number">11.8</span> Example on github</a></li>
+  <li><a href="#step-3.0-generate-forecasts-for-each-site" id="toc-step-3.0-generate-forecasts-for-each-site" class="nav-link" data-scroll-target="#step-3.0-generate-forecasts-for-each-site"> <span class="header-section-number">12.5</span> Step 3.0: Generate forecasts for each site</a></li>
+  <li><a href="#step-4-generate-metadata" id="toc-step-4-generate-metadata" class="nav-link" data-scroll-target="#step-4-generate-metadata"> <span class="header-section-number">12.6</span> Step 4: Generate metadata</a></li>
+  <li><a href="#step-5-submit-forecast" id="toc-step-5-submit-forecast" class="nav-link" data-scroll-target="#step-5-submit-forecast"> <span class="header-section-number">12.7</span> Step 5: Submit forecast!</a></li>
+  <li><a href="#example-on-github" id="toc-example-on-github" class="nav-link" data-scroll-target="#example-on-github"> <span class="header-section-number">12.8</span> Example on github</a></li>
   </ul>
 </nav>
     </div>
@@ -260,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-example" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></span></h1>
+<h1 class="title"><span id="sec-example" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></span></h1>
 </div>
 
 
@@ -302,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Submit forecast to Challenge.</li>
 </ol>
 <p>Each of these steps are below</p>
-<section id="step-0-set-up-r-environment-and-directories" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="step-0-set-up-r-environment-and-directories"><span class="header-section-number">11.1</span> Step 0: Set up R environment and directories</h2>
+<section id="step-0-set-up-r-environment-and-directories" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="step-0-set-up-r-environment-and-directories"><span class="header-section-number">12.1</span> Step 0: Set up R environment and directories</h2>
 <p>We will be downloading NOAA forecasts from the Challenge s3 bucket and submitting to the s3 bucket. Therefore the AWS information is needed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -317,8 +322,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>forecast_date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(<span class="st">"2022-02-15"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-0-define-team-name-and-team-members" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="step-0-define-team-name-and-team-members"><span class="header-section-number">11.2</span> Step 0: Define team name and team members</h2>
+<section id="step-0-define-team-name-and-team-members" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="step-0-define-team-name-and-team-members"><span class="header-section-number">12.2</span> Step 0: Define team name and team members</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>team_name <span class="ot">&lt;-</span> <span class="st">"air2waterSat"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -328,8 +333,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">electronicMailAddress =</span> <span class="st">"rqthomas@vt.edu"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-1-download-latest-target-data-and-site-description-data" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="step-1-download-latest-target-data-and-site-description-data"><span class="header-section-number">11.3</span> Step 1: Download latest target data and site description data</h2>
+<section id="step-1-download-latest-target-data-and-site-description-data" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="step-1-download-latest-target-data-and-site-description-data"><span class="header-section-number">12.3</span> Step 1: Download latest target data and site description data</h2>
 <p>These targets are updated when new data is available from NEON.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -339,10 +344,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-aquatics/master/Aquatic_NEON_Field_Site_Metadata_20220727.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2-get-drivers" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="step-2-get-drivers"><span class="header-section-number">11.4</span> Step 2: Get drivers</h2>
-<section id="step-2.1-download-paste-noaa-forecast-stacked-together" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="step-2.1-download-paste-noaa-forecast-stacked-together"><span class="header-section-number">11.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</h3>
+<section id="step-2-get-drivers" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="step-2-get-drivers"><span class="header-section-number">12.4</span> Step 2: Get drivers</h2>
+<section id="step-2.1-download-paste-noaa-forecast-stacked-together" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="step-2.1-download-paste-noaa-forecast-stacked-together"><span class="header-section-number">12.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</h3>
 <p>To build the relations between air and water temperature, we need historical air temperature data to associate with historical water temperature data. Here we use a product that the Challenge organizers created that combines day 1 NOAA weather forecasts (i.e., when the forecasts are most accurate) together to generate an estimate of past weather. He we download this “stack” NOAA product for the set of NEON sites in the targets file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">unique</span>(target<span class="sc">$</span>site_id)</span>
@@ -353,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2.2-download-noaa-future-forecast" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="step-2.2-download-noaa-future-forecast"><span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</h3>
+<section id="step-2.2-download-noaa-future-forecast" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="step-2.2-download-noaa-future-forecast"><span class="header-section-number">12.4.2</span> Step 2.2: Download NOAA future forecast</h3>
 <p>We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (<code>start_date = forecast_date</code>) that started at mid-night UTC (<code>cycle=0</code>) for the set of sites in the target file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_future <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage2</span>()</span>
@@ -365,8 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="step-2.3-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">11.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</h3>
+<section id="step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="level3" data-number="12.4.3">
+<h3 data-number="12.4.3" class="anchored" data-anchor-id="step-2.3-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">12.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</h3>
 <p>Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>noaa_past_mean <span class="ot">&lt;-</span> noaa_past <span class="sc">|&gt;</span> </span>
@@ -386,8 +391,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, site_id, air_temperature, ensemble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="level3" data-number="11.4.4">
-<h3 data-number="11.4.4" class="anchored" data-anchor-id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."><span class="header-section-number">11.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</h3>
+<section id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="level3" data-number="12.4.4">
+<h3 data-number="12.4.4" class="anchored" data-anchor-id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."><span class="header-section-number">12.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</h3>
 <p>Before building our linear model we need merge in the historical air temperature to match with the historical water temperature</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> target <span class="sc">|&gt;</span> </span>
@@ -399,8 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="step-3.0-generate-forecasts-for-each-site" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="step-3.0-generate-forecasts-for-each-site"><span class="header-section-number">11.5</span> Step 3.0: Generate forecasts for each site</h2>
+<section id="step-3.0-generate-forecasts-for-each-site" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="step-3.0-generate-forecasts-for-each-site"><span class="header-section-number">12.5</span> Step 3.0: Generate forecasts for each site</h2>
 <p>We generate a forecast for each site.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
@@ -470,8 +475,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(forecast_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-4-generate-metadata" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="step-4-generate-metadata"><span class="header-section-number">11.6</span> Step 4: Generate metadata</h2>
+<section id="step-4-generate-metadata" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="step-4-generate-metadata"><span class="header-section-number">12.6</span> Step 4: Generate metadata</h2>
 <p>First we need to create a “list” in R that describes the forecast model. We only have one source of uncertainty (driver). It is propagated (i.e., represented in the forecasted output) using 31 ensemble members.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model_metadata <span class="ot">=</span> <span class="fu">list</span>(</span>
@@ -512,8 +517,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metadata_file <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">generate_metadata</span>(forecast_file, team_list, model_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-5-submit-forecast" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="step-5-submit-forecast"><span class="header-section-number">11.7</span> Step 5: Submit forecast!</h2>
+<section id="step-5-submit-forecast" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="step-5-submit-forecast"><span class="header-section-number">12.7</span> Step 5: Submit forecast!</h2>
 <p>Now we can submit the forecast output and the metadata file to the Challenge using the <code>neon4cast::submit()</code> function</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> forecast_file,</span>
@@ -526,8 +531,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>On following day after submission, you can see the forecast on the dashboard at <a href="https://shiny.ecoforecast.org">shiny3.ecoforecast.org</a></p>
 </section>
-<section id="example-on-github" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="example-on-github"><span class="header-section-number">11.8</span> Example on github</h2>
+<section id="example-on-github" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="example-on-github"><span class="header-section-number">12.8</span> Example on github</h2>
 <p>The example code above can be found on <a href="https://github.com/eco4cast/neon4cast-example.git">GitHub as a template repository</a>. See the Readme for more information about using the template</p>
 
 
@@ -633,13 +638,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Shared-Forecast-Drivers.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></span>
+      <a href="./CronTiming.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Helpful-Functions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
