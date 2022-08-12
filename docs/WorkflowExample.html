@@ -245,9 +245,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#step-2.1-download-paste-noaa-forecast-stacked-together" id="toc-step-2.1-download-paste-noaa-forecast-stacked-together" class="nav-link" data-scroll-target="#step-2.1-download-paste-noaa-forecast-stacked-together"> <span class="header-section-number">11.4.1</span> Step 2.1: Download Paste NOAA forecast stacked together</a></li>
   <li><a href="#step-2.2-download-noaa-future-forecast" id="toc-step-2.2-download-noaa-future-forecast" class="nav-link" data-scroll-target="#step-2.2-download-noaa-future-forecast"> <span class="header-section-number">11.4.2</span> Step 2.2: Download NOAA future forecast</a></li>
-  <li><a href="#step-2.3-create-data-frames-of-drivers" id="toc-step-2.3-create-data-frames-of-drivers" class="nav-link" data-scroll-target="#step-2.3-create-data-frames-of-drivers"> <span class="header-section-number">11.4.3</span> Step 2.3 Create data frames of drivers</a></li>
-  <li><a href="#step-2.4-aggregate-to-day-and-convert-units-of-drivers" id="toc-step-2.4-aggregate-to-day-and-convert-units-of-drivers" class="nav-link" data-scroll-target="#step-2.4-aggregate-to-day-and-convert-units-of-drivers"> <span class="header-section-number">11.4.4</span> Step 2.4 Aggregate (to day) and convert units of drivers</a></li>
-  <li><a href="#step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." id="toc-step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="nav-link" data-scroll-target="#step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."> <span class="header-section-number">11.4.5</span> Step 2.5: Merge in past NOAA data into the targets file, matching by date.</a></li>
+  <li><a href="#step-2.3-aggregate-to-day-and-convert-units-of-drivers" id="toc-step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="nav-link" data-scroll-target="#step-2.3-aggregate-to-day-and-convert-units-of-drivers"> <span class="header-section-number">11.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</a></li>
+  <li><a href="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." id="toc-step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="nav-link" data-scroll-target="#step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."> <span class="header-section-number">11.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</a></li>
   </ul></li>
   <li><a href="#step-3.0-generate-forecasts-for-each-site" id="toc-step-3.0-generate-forecasts-for-each-site" class="nav-link" data-scroll-target="#step-3.0-generate-forecasts-for-each-site"> <span class="header-section-number">11.5</span> Step 3.0: Generate forecasts for each site</a></li>
   <li><a href="#step-4-generate-metadata" id="toc-step-4-generate-metadata" class="nav-link" data-scroll-target="#step-4-generate-metadata"> <span class="header-section-number">11.6</span> Step 4: Generate metadata</a></li>
@@ -370,15 +369,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2.3-create-data-frames-of-drivers" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="step-2.3-create-data-frames-of-drivers"><span class="header-section-number">11.4.3</span> Step 2.3 Create data frames of drivers</h3>
-<p>The NOAA stacked and forecast files are netcdf files. Here we convert to data frames to used in our analyses.</p>
-<div class="cell">
-
-</div>
-</section>
-<section id="step-2.4-aggregate-to-day-and-convert-units-of-drivers" class="level3" data-number="11.4.4">
-<h3 data-number="11.4.4" class="anchored" data-anchor-id="step-2.4-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">11.4.4</span> Step 2.4 Aggregate (to day) and convert units of drivers</h3>
+<section id="step-2.3-aggregate-to-day-and-convert-units-of-drivers" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="step-2.3-aggregate-to-day-and-convert-units-of-drivers"><span class="header-section-number">11.4.3</span> Step 2.3 Aggregate (to day) and convert units of drivers</h3>
 <p>Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>noaa_past_mean <span class="ot">&lt;-</span> noaa_past <span class="sc">%&gt;%</span> </span>
@@ -398,8 +390,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, site_id, air_temperature, ensemble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="level3" data-number="11.4.5">
-<h3 data-number="11.4.5" class="anchored" data-anchor-id="step-2.5-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."><span class="header-section-number">11.4.5</span> Step 2.5: Merge in past NOAA data into the targets file, matching by date.</h3>
+<section id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date." class="level3" data-number="11.4.4">
+<h3 data-number="11.4.4" class="anchored" data-anchor-id="step-2.4-merge-in-past-noaa-data-into-the-targets-file-matching-by-date."><span class="header-section-number">11.4.4</span> Step 2.4: Merge in past NOAA data into the targets file, matching by date.</h3>
 <p>Before building our linear model we need merge in the historical air temperature to match with the historical water temperature</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>target <span class="ot">&lt;-</span> target <span class="sc">|&gt;</span> </span>
