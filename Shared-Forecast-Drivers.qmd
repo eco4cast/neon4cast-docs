@@ -4,20 +4,21 @@ We are downloading, subsetting, and processing forecasted meteorology drivers fo
 
 The following are important considerations when using the NOAA GEFS forecasts
 
--   There are 31 ensemble members for each forecast.
--   For forecasts generated at four times per day, organized by "cycle" that correspond to the hour in UTC that the forecast was initiated: 00, 06, 12, and 18 cycles
--   For the midnight (00) UTC, the forecasts extend 35-days in the future for the ensemble members 01 - 30. Ensemble member 31 only extends 16-days in the future.
+-   There are 31 ensemble members for each forecast.\
+-   For forecasts generated at four times per day, organized by "cycle" that correspond to the hour in UTC that the forecast was initiated: 00, 06, 12, and 18 cycles\
+-   For the midnight (00) UTC, the forecasts extend 35-days in the future for the ensemble members 01 - 30. Ensemble member 31 only extends 16-days in the future.\
 -   For forecasts generated at 06, 12, and 18 UTC, the forecasts extend 16-days in the future but we are not currently downloading the full forecasts for these cycles.\
--   We are constantly downloading and processing the forecasts.
+-   We are constantly downloading and processing the forecasts.\
 
-The following meteorological variables are included:\
-- air temperature\
-- air pressure\
-- wind speed\
-- precipitation\
-- downwelling longwave radiation\
-- downwelling shortwave radiation\
-- relative humidity
+The following meteorological variables are included:
+
+-   air temperature\
+-   air pressure\
+-   wind speed\
+-   precipitation\
+-   downwelling longwave radiation\
+-   downwelling shortwave radiation\
+-   relative humidity\
 
 The weather forecasts are available through an s3 bucket (see NOAA Global Ensemble Forecasting System below) and we provide an R functions code in the [neon4cast package](https://github.com/eco4cast/neon4cast) for downloading all the ensemble members for particular location, forecast cycle (00, 06, 12, or 18), and NEON site
 
@@ -31,7 +32,16 @@ remotes::install_github("eco4cast/neon4cast")
 
 At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon). Ensemble member 31 only extends 16-days in the future
 
-Forecasts include the following variables: - TMP - temperature (C) - RH - Relative humidity (%) - PRES - Atmospheric pressure (Pa) - UGRD - U-component of wind speed (m/s) - VGRD - V-component of wind speed (m/s) - APCP - Total precipitation in interval (kg/m\^2) - DSWRF - Downward shortwave radiation flux in interval (W/m\^2) - DLWRF - Downward longwave radiation flux in interval (W/m\^2)
+Forecasts include the following variables: 
+
+-   TMP: temperature (C)\
+-   RH: Relative humidity (%)\
+-   PRES: Atmospheric pressure (Pa)\
+-   UGRD: U-component of wind speed (m/s)\
+-   VGRD: V-component of wind speed (m/s)\
+-   APCP: Total precipitation in interval (kg/m\^2)\
+-   DSWRF: Downward shortwave radiation flux in interval (W/m\^2)\
+-   DLWRF: Downward longwave radiation flux in interval (W/m\^2)\
 
 GEFS forecasts are issued four times a day, as indicated by the `start_date` and `cycle`. Only forecasts at midnight, `cycle = "00"` extend for the full 840 hour horizon. Other cycles 06, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainity from ensenble members)
 
@@ -53,11 +63,19 @@ Note: that `noaa_stage1()` defaults to the `00` cycle.
 
 Stage 2 is a processed version of Stage 1 and involves the following transforms of the data that may be useful for some modeling approaches:
 
--   Fluxes are standardized to per second rates
--   Variables are renamed to match CF conventions
--   Fluxes and states are interpolated to 1 hour intervals
+-   Fluxes are standardized to per second rates\
+-   Fluxes and states are interpolated to 1 hour intervals\
 
-TMP -\> air_temperature (K) PRES -\> air_pressure (Pa) RH -\> relative_humidity (proportion) DLWRF -\> surface_downwelling_longwave_flux_in_air (W/m\^2) DSWRF -\> surface_downwelling_shortwave_flux_in_air (W/m\^2) APCP -\> precipitation_flux (kg/(m\^2 s)) VGRD -\> eastward_wind (m/s) UGRD -\> northward_wind (m/s)
+Variables are renamed to match CF conventions:
+
+-   TMP -> air_temperature (K)\
+-   PRES -> air_pressure (Pa)\
+-   RH -> relative_humidity (proportion)\
+-   DLWRF -> surface_downwelling_longwave_flux_in_air (W/m\^2)\
+-   DSWRF -> surface_downwelling_shortwave_flux_in_air (W/m\^2)\ 
+-   APCP -> precipitation_flux (kg/(m\^2 s))\
+-   VGRD -> eastward_wind (m/s)\
+-   UGRD -> northward_wind (m/s)\
 
 ```{r eval = FALSE}
 weather_1hr <- neon4cast::noaa_stage2()
@@ -120,3 +138,7 @@ neon_temp <- taat |>
 ## Downloading and processing of NOAA GEFS
 
 The code used to download and process the NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the `gefs4cast` package found at [github.com/eco4cast/gef4cast](https://github.com/eco4cast/gef4cast)
+
+## Timing of data availability 
+
+See @sec-cron for information on the time day that the NOAA data become available on our servers for use in the Challenge.
