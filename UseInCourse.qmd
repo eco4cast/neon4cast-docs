@@ -14,14 +14,12 @@ Based the experiences of 7+ courses using the Challenge, we have an evolving set
 - Reach out: Reach out to the Challenge organizers for questions when planning your course or workshop (eco4cast.initiative\@gmail.com)
 
 
-If you want to access students scored forecasts, the following R code may be helpful (where `model_id` is the students team names)
+If you want to access students scored forecasts, the following R function in the `neon4cast` package can be used:
 
 ```{r eval = FALSE}
-#install.packages("arrow")
-s3 <- arrow::s3_bucket("neon4cast-scores/parquet", endpoint_override = "data.ecoforecast.org", anonymous = TRUE)
-ds <- arrow::open_dataset(s3, partitioning = c("theme","year"))
-df <- ds |> 
-  dplyr::filter(theme == "phenology" & model_id == "climatology") |> 
-  dplyr::collect()
+score_df <- neon4cast::combined_scores()
+
+class_model_ids <- #set of team names for students in class
+score_df <- score_df |> filter(model_id %in% class_model_ids)
 ```
 
