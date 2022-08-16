@@ -286,8 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p><strong>What</strong>: Terrestrial phenology defined by daily greenness and redness of plants</p>
-<p><strong>Where</strong>: 10 deciduous broadleaf forest, 6 grassland, and 2 shrubland NEON sites in the continental U.S.</p>
-<p><strong>When</strong>: Daily forecasts for 35-days in the future. Forecast submissions are accepted daily throughout 2022. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
+<p><strong>Where</strong>: 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico</p>
+<p><strong>When</strong>: Daily forecasts for at least 30-days in the future. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why</strong>: Phenology has been identified as one of the primary ecological fingerprints of global climate change.</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="4.3" class="anchored" data-anchor-id="data-targets"><span class="header-section-number">4.3</span> Data: Targets</h2>
 <p>The challenge uses the following NEON data products:</p>
 <p><a href="https://data.neonscience.org/data-products/DP1.00033.001" target="_blank">DP1.00033.001</a>: Phenology images</p>
-<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/01_download_phenocam_data.R" target="_blank">neon4cast-phenology GitHub repository</a>.</p>
+<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the <a href="https://github.com/eco4cast/neon4cast-targets/blob/main/phenology_targets.R" target="_blank">here</a>.</p>
 <section id="green-chromatic-coordinate-gcc" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="green-chromatic-coordinate-gcc"><span class="header-section-number">4.3.1</span> Green chromatic coordinate (gcc)</h3>
 <p><strong>Definition</strong></p>
@@ -334,7 +334,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(phenology <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>with the site table at the end of page</p>
+<p>with full site table at the end of this page.</p>
+<p>The distribution of sites across ecosystems types is:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Vegetation type</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">grassland</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tundra</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agriculture</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">evergreen broadleaf</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shrubland</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="target-data-calculation" class="level3" data-number="4.3.4">
 <h3 data-number="4.3.4" class="anchored" data-anchor-id="target-data-calculation"><span class="header-section-number">4.3.4</span> Target data calculation</h3>
