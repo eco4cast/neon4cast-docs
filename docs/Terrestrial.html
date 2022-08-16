@@ -332,18 +332,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="focal-sites"><span class="header-section-number">2.3.3</span> Focal sites</h3>
 <p>Information on the sites can be found here:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-terrestrial/master/Terrestrial_NEON_Field_Site_Metadata_20210928.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(terrestrial <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 3%">
-<col style="width: 29%">
-<col style="width: 34%">
+<col style="width: 28%">
+<col style="width: 37%">
 <col style="width: 4%">
 <col style="width: 5%">
-<col style="width: 22%">
+<col style="width: 21%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -357,12 +358,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">ABBY</td>
+<td style="text-align: left;">Abby Road NEON</td>
+<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
+<td style="text-align: right;">45.76244</td>
+<td style="text-align: right;">-122.33032</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/abby</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BARR</td>
+<td style="text-align: left;">Utqiaġvik NEON</td>
+<td style="text-align: left;">Emergent Herbaceous Wetlands</td>
+<td style="text-align: right;">71.28241</td>
+<td style="text-align: right;">-156.61936</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/barr</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">BART</td>
 <td style="text-align: left;">Bartlett Experimental Forest NEON</td>
 <td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
 <td style="text-align: right;">44.06389</td>
 <td style="text-align: right;">-71.28737</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/bart</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BLAN</td>
+<td style="text-align: left;">Blandy Experimental Farm NEON</td>
+<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
+<td style="text-align: right;">39.03370</td>
+<td style="text-align: right;">-78.04179</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/blan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BONA</td>
+<td style="text-align: left;">Caribou-Poker Creeks Research Watershed NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">65.15401</td>
+<td style="text-align: right;">-147.50258</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/bona</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CLBJ</td>
@@ -373,12 +406,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">https://www.neonscience.org/field-sites/clbj</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">CPER</td>
+<td style="text-align: left;">Central Plains Experimental Range NEON</td>
+<td style="text-align: left;">Grassland/Herbaceous</td>
+<td style="text-align: right;">40.81554</td>
+<td style="text-align: right;">-104.74559</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/cper</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DCFS</td>
+<td style="text-align: left;">Dakota Coteau Field Site NEON</td>
+<td style="text-align: left;">Grassland/Herbaceous</td>
+<td style="text-align: right;">47.16165</td>
+<td style="text-align: right;">-99.10656</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dcfs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DEJU</td>
+<td style="text-align: left;">Delta Junction NEON</td>
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub|Woody Wetlands</td>
+<td style="text-align: right;">63.88112</td>
+<td style="text-align: right;">-145.75136</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/deju</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DELA</td>
+<td style="text-align: left;">Dead Lake NEON</td>
+<td style="text-align: left;">Evergreen Forest|Woody Wetlands</td>
+<td style="text-align: right;">32.54173</td>
+<td style="text-align: right;">-87.80388</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dela</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DSNY</td>
+<td style="text-align: left;">Disney Wilderness Preserve NEON</td>
+<td style="text-align: left;">Pasture/Hay|Woody Wetlands</td>
+<td style="text-align: right;">28.12505</td>
+<td style="text-align: right;">-81.43619</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dsny</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GRSM</td>
+<td style="text-align: left;">Great Smoky Mountains National Park NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest</td>
+<td style="text-align: right;">35.68896</td>
+<td style="text-align: right;">-83.50195</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/grsm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GUAN</td>
+<td style="text-align: left;">Guanica Forest NEON</td>
+<td style="text-align: left;">Evergreen Forest</td>
+<td style="text-align: right;">17.96955</td>
+<td style="text-align: right;">-66.86870</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/guan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HARV</td>
+<td style="text-align: left;">Harvard Forest &amp; Quabbin Watershed NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">42.53691</td>
+<td style="text-align: right;">-72.17265</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/harv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HEAL</td>
+<td style="text-align: left;">Healy NEON</td>
+<td style="text-align: left;">Dwarf Scrub|Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">63.87580</td>
+<td style="text-align: right;">-149.21335</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/heal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JERC</td>
+<td style="text-align: left;">The Jones Center At Ichauway NEON</td>
+<td style="text-align: left;">Cultivated Crops|Deciduous Forest|Evergreen Forest|Mixed Forest</td>
+<td style="text-align: right;">31.19484</td>
+<td style="text-align: right;">-84.46862</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/jerc</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JORN</td>
+<td style="text-align: left;">Jornada Experimental Range NEON</td>
+<td style="text-align: left;">Shrub/Scrub</td>
+<td style="text-align: right;">32.59069</td>
+<td style="text-align: right;">-106.84254</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/jorn</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KONA</td>
+<td style="text-align: left;">Konza Prairie Agroecosystem NEON</td>
+<td style="text-align: left;">Cultivated Crops</td>
+<td style="text-align: right;">39.11045</td>
+<td style="text-align: right;">-96.61293</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/kona</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">KONZ</td>
 <td style="text-align: left;">Konza Prairie Biological Station NEON</td>
 <td style="text-align: left;">Deciduous Forest|Grassland/Herbaceous</td>
 <td style="text-align: right;">39.10077</td>
 <td style="text-align: right;">-96.56307</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/konz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LAJA</td>
+<td style="text-align: left;">Lajas Experimental Station NEON</td>
+<td style="text-align: left;">Cultivated Crops|Grassland/Herbaceous|Pasture/Hay</td>
+<td style="text-align: right;">18.02126</td>
+<td style="text-align: right;">-67.07689</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/laja</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LENO</td>
+<td style="text-align: left;">Lenoir Landing NEON</td>
+<td style="text-align: left;">Deciduous Forest|Woody Wetlands</td>
+<td style="text-align: right;">31.85386</td>
+<td style="text-align: right;">-88.16118</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/leno</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MLBS</td>
+<td style="text-align: left;">Mountain Lake Biological Station NEON</td>
+<td style="text-align: left;">Deciduous Forest</td>
+<td style="text-align: right;">37.37831</td>
+<td style="text-align: right;">-80.52485</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/mlbs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MOAB</td>
+<td style="text-align: left;">Moab NEON</td>
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">38.24828</td>
+<td style="text-align: right;">-109.38827</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/moab</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NIWO</td>
+<td style="text-align: left;">Niwot Ridge NEON</td>
+<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous</td>
+<td style="text-align: right;">40.05425</td>
+<td style="text-align: right;">-105.58237</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/niwo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NOGP</td>
+<td style="text-align: left;">Northern Great Plains Research Laboratory NEON</td>
+<td style="text-align: left;">Grassland/Herbaceous</td>
+<td style="text-align: right;">46.76972</td>
+<td style="text-align: right;">-100.91535</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/nogp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OAES</td>
+<td style="text-align: left;">Marvin Klemme Range Research Station NEON</td>
+<td style="text-align: left;">Grassland/Herbaceous|Shrub/Scrub</td>
+<td style="text-align: right;">35.41060</td>
+<td style="text-align: right;">-99.05878</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/oaes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ONAQ</td>
+<td style="text-align: left;">Onaqui NEON</td>
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">40.17760</td>
+<td style="text-align: right;">-112.45245</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/onaq</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ORNL</td>
@@ -397,6 +590,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">https://www.neonscience.org/field-sites/osbs</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">PUUM</td>
+<td style="text-align: left;">Pu’u Maka’ala Natural Area Reserve NEON</td>
+<td style="text-align: left;">Evergreen Forest</td>
+<td style="text-align: right;">19.55309</td>
+<td style="text-align: right;">-155.31731</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/puum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RMNP</td>
+<td style="text-align: left;">Rocky Mountains NEON</td>
+<td style="text-align: left;">Evergreen Forest</td>
+<td style="text-align: right;">40.27590</td>
+<td style="text-align: right;">-105.54596</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/rmnp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCBI</td>
+<td style="text-align: left;">Smithsonian Conservation Biology Institute NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
+<td style="text-align: right;">38.89292</td>
+<td style="text-align: right;">-78.13949</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/scbi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SERC</td>
+<td style="text-align: left;">Smithsonian Environmental Research Center NEON</td>
+<td style="text-align: left;">Cultivated Crops|Deciduous Forest</td>
+<td style="text-align: right;">38.89013</td>
+<td style="text-align: right;">-76.56001</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/serc</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">SJER</td>
 <td style="text-align: left;">San Joaquin Experimental Range NEON</td>
 <td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
@@ -405,6 +630,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">https://www.neonscience.org/field-sites/sjer</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">SOAP</td>
+<td style="text-align: left;">Soaproot Saddle NEON</td>
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">37.03337</td>
+<td style="text-align: right;">-119.26219</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/soap</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">SRER</td>
 <td style="text-align: left;">Santa Rita Experimental Range NEON</td>
 <td style="text-align: left;">Shrub/Scrub</td>
@@ -412,7 +645,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">-110.83549</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/srer</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">STEI</td>
+<td style="text-align: left;">Steigerwaldt-Chequamegon NEON</td>
+<td style="text-align: left;">Deciduous Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">45.50894</td>
+<td style="text-align: right;">-89.58637</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/stei</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">STER</td>
+<td style="text-align: left;">North Sterling NEON</td>
+<td style="text-align: left;">Cultivated Crops</td>
+<td style="text-align: right;">40.46189</td>
+<td style="text-align: right;">-103.02929</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ster</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">TALL</td>
 <td style="text-align: left;">Talladega National Forest NEON</td>
 <td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
@@ -420,13 +669,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">-87.39326</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/tall</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">TEAK</td>
+<td style="text-align: left;">Lower Teakettle NEON</td>
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">37.00583</td>
+<td style="text-align: right;">-119.00602</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/teak</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">TOOL</td>
+<td style="text-align: left;">Toolik Field Station NEON</td>
+<td style="text-align: left;">Dwarf Scrub|Shrub/Scrub</td>
+<td style="text-align: right;">68.66109</td>
+<td style="text-align: right;">-149.37047</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tool</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TREE</td>
+<td style="text-align: left;">Treehaven NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">45.49369</td>
+<td style="text-align: right;">-89.58571</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tree</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UKFS</td>
+<td style="text-align: left;">University of Kansas Field Station NEON</td>
+<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
+<td style="text-align: right;">39.04043</td>
+<td style="text-align: right;">-95.19215</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ukfs</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">UNDE</td>
 <td style="text-align: left;">University of Notre Dame Environmental Research Center NEON</td>
 <td style="text-align: left;">Deciduous Forest|Mixed Forest|Woody Wetlands</td>
 <td style="text-align: right;">46.23391</td>
 <td style="text-align: right;">-89.53725</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/unde</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WOOD</td>
+<td style="text-align: left;">Chase Lake National Wildlife Refuge NEON</td>
+<td style="text-align: left;">Emergent Herbaceous Wetlands|Grassland/Herbaceous</td>
+<td style="text-align: right;">47.12820</td>
+<td style="text-align: right;">-99.24133</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/wood</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">WREF</td>
@@ -435,6 +724,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">45.82049</td>
 <td style="text-align: right;">-121.95191</td>
 <td style="text-align: left;">https://www.neonscience.org/field-sites/wref</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">YELL</td>
+<td style="text-align: left;">Yellowstone National Park NEON</td>
+<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
+<td style="text-align: right;">44.95348</td>
+<td style="text-align: right;">-110.53914</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/yell</td>
 </tr>
 </tbody>
 </table>
@@ -464,20 +761,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,931,120 × 7
+<pre><code># A tibble: 1,933,040 × 7
    time                site_id variable observed sd_intercept sd_slopeP sd_slo…¹
    &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 2017-02-01 10:00:00 BART    nee        -0.574         1.13     0.208   -0.130
- 2 2017-02-01 10:30:00 BART    nee         0.297         1.13     0.208   -0.130
- 3 2017-02-01 11:00:00 BART    nee        NA             1.13     0.208   -0.130
- 4 2017-02-01 11:30:00 BART    nee        NA             1.13     0.208   -0.130
- 5 2017-02-01 12:00:00 BART    nee         0.224         1.13     0.208   -0.130
- 6 2017-02-01 12:30:00 BART    nee         2.12          1.13     0.208   -0.130
- 7 2017-02-01 13:00:00 BART    nee         2.18          1.13     0.208   -0.130
- 8 2017-02-01 13:30:00 BART    nee        NA             1.13     0.208   -0.130
- 9 2017-02-01 14:00:00 BART    nee        NA             1.13     0.208   -0.130
-10 2017-02-01 14:30:00 BART    nee        NA             1.13     0.208   -0.130
-# … with 1,931,110 more rows, and abbreviated variable name ¹​sd_slopeN
+ 1 2017-02-01 10:00:00 BART    nee        -0.574         1.14     0.206   -0.131
+ 2 2017-02-01 10:30:00 BART    nee         0.297         1.14     0.206   -0.131
+ 3 2017-02-01 11:00:00 BART    nee        NA             1.14     0.206   -0.131
+ 4 2017-02-01 11:30:00 BART    nee        NA             1.14     0.206   -0.131
+ 5 2017-02-01 12:00:00 BART    nee         0.224         1.14     0.206   -0.131
+ 6 2017-02-01 12:30:00 BART    nee         2.12          1.14     0.206   -0.131
+ 7 2017-02-01 13:00:00 BART    nee         2.18          1.14     0.206   -0.131
+ 8 2017-02-01 13:30:00 BART    nee        NA             1.14     0.206   -0.131
+ 9 2017-02-01 14:00:00 BART    nee        NA             1.14     0.206   -0.131
+10 2017-02-01 14:30:00 BART    nee        NA             1.14     0.206   -0.131
+# … with 1,933,030 more rows, and abbreviated variable name ¹​sd_slopeN
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -499,7 +796,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18,282 × 4
+<pre><code># A tibble: 18,906 × 4
    time       site_id variable observed
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
  1 2017-02-02 BART    le          2.71 
@@ -512,7 +809,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-02-05 BART    nee         0.912
  9 2017-02-06 BART    le         11.5  
 10 2017-02-06 BART    nee         0.965
-# … with 18,272 more rows
+# … with 18,896 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
