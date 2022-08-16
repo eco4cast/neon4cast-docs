@@ -2,9 +2,9 @@
 
 **What**: Terrestrial phenology defined by daily greenness and redness of plants
 
-**Where**: 10 deciduous broadleaf forest, 6 grassland, and 2 shrubland NEON sites in the continental U.S.
+**Where**: 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico 
 
-**When**: Daily forecasts for 35-days in the future. Forecast submissions are accepted daily throughout 2022. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
+**When**: Daily forecasts for at least 30-days in the future. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 **Why**: Phenology has been identified as one of the primary ecological fingerprints of global climate change.
 
@@ -42,7 +42,7 @@ The challenge uses the following NEON data products:
 
 [DP1.00033.001](https://data.neonscience.org/data-products/DP1.00033.001){target="_blank"}: Phenology images
 
-A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the [neon4cast-phenology GitHub repository](https://github.com/eco4cast/neon4cast-phenology/blob/master/01_download_phenocam_data.R){target="_blank"}.
+A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the [here](https://github.com/eco4cast/neon4cast-targets/blob/main/phenology_targets.R){target="_blank"}.
 
 ### Green chromatic coordinate (gcc)
 
@@ -73,7 +73,19 @@ site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4ca
   dplyr::filter(phenology == 1)
 ```
 
-with the site table at the end of page
+with full site table at the end of this page.
+
+The distribution of sites across ecosystems types is:
+
+```{r echo = FALSE}
+site_data |> 
+  dplyr::group_by(phenocam_vegetation) |> 
+  dplyr::count() |> 
+  dplyr::arrange(desc(n)) |> 
+  dplyr::rename(`Vegetation type` = phenocam_vegetation,
+                Count = n) |> 
+  knitr::kable()
+```
 
 ### Target data calculation
 

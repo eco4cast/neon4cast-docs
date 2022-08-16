@@ -40,7 +40,7 @@ The challenge uses the following NEON data products:
 
 [DP1.10093.001](https://data.neonscience.org/data-products/DP1.10093.001){target="_blank"}: Ticks sampled using drag cloths
 
-A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation. This [processing script](https://github.com/eco4cast/neon4cast-ticks/blob/master/02_ticks_targets.R){target="_blank"} is available in the [neon4cast-ticks](https://github.com/eco4cast/neon4cast-ticks){target="_blank"} GitHub repository.
+A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation. We provide the processing script [here](https://github.com/eco4cast/neon4cast-targets/blob/main/ticks_targets.R){target="_blank"}.
 
 ### Amblyomma americanum nymphs
 
@@ -57,21 +57,11 @@ We chose to use the density of *Amblyomma americanum* nymphs for several reasons
 Information on the sites can be found here:
 
 ```{r message = FALSE}
-site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-ticks/master/Ticks_NEON_Field_Site_Metadata_20210928.csv")
+site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv") |> 
+  dplyr::filter(ticks == 1)
 ```
 
-```{r echo = FALSE}
-site_data %>% 
-  select(field_site_id, field_site_name, field_dominant_nlcd_classes, field_latitude, field_longitude, neon_url) %>% 
-  rename(siteID = field_site_id,
-         `site name` = field_site_name,
-         `vegetation type` = field_dominant_nlcd_classes,
-         `latitude` = field_latitude,
-         `longtitude` =  field_longitude,
-         `NEON site URL` = neon_url) %>% 
-  arrange(siteID) %>% 
-  knitr::kable()
-```
+See Table at end for more information on the sites
 
 ### Target data calculation
 
@@ -85,11 +75,11 @@ Here is the format of the target file
 readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz", guess_max = 1e6)
 ```
 
--   `time`: YYYY-MM-DD The first day (Sunday) of the MMWR week
--   `site_id`: Site where ticks are observed (HARV)
+-   `time`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)
+-   `site_id`: Site where ticks are observed.
 -   `variable`: `amblyomma_americanum` (density of *Amblyomma americanum* ticks; ticks / 1600m\^2)
 -   `observed`: value for `variable`
--   `mmwr_week`: The MMWR week that starts on Sunday, consistent with CDC version of the epidemiological week\
+-   `iso_week`: The ISO-week
 
 ## Timeline
 
@@ -103,7 +93,7 @@ The timeline evaluation is determined by the data latency provided by NEON.  NEO
 
 The required names for forecasted variable: `amblyomma_americanum`
 
-The required time unit: `date` for the first day (Sunday) of the MMWR week `date` in `YYYY-MM-DD` format.
+The required time unit: `date` for the Monday of the corresponding isoweek in `YYYY-MM-DD` format.
 
 Instructions for submitting forecasts are found in @sec-submissions
 
@@ -140,3 +130,19 @@ Sadie Ryan, University of Florida
 ## Partners
 
 Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/).
+
+## Site list table
+
+```{r echo = FALSE}
+site_data %>% 
+  select(field_site_id, field_site_name, field_dominant_nlcd_classes, field_latitude, field_longitude, neon_url) %>% 
+  rename(siteID = field_site_id,
+         `site name` = field_site_name,
+         `vegetation type` = field_dominant_nlcd_classes,
+         `latitude` = field_latitude,
+         `longtitude` =  field_longitude,
+         `NEON site URL` = neon_url) %>% 
+  arrange(siteID) %>% 
+  knitr::kable()
+```
+
