@@ -183,7 +183,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></h1>
+<h1 class="title"><span id="sec-cron" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></span></h1>
 </div>
 
 
@@ -205,17 +205,18 @@ ul.task-list{list-style: none;}
 <p><strong>NOAA Stage 3 (1 hour intervals)</strong></p>
 <p>Updated daily. For a given forecast start date, Stage 3 is updated to the current at ~ 11 am UTC each day. Stage 3 are available as a data frame using <code>neon4cast::noaa_stage3()</code>, as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/parquet</code> bucket at <code>data.ecoforecast.org</code>, or as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/netcdf</code>bucket at <code>data.ecoforecast.org</code>.</p>
 <p><strong>Terrestrial targets</strong></p>
-<p>The terrestrial targets are updated daily between 9 and 10 am UTC</p>
+<p>Timing: updated daily between 9 and 10 am UTC.<br>
+Latency: New data each day is from 5-day prior</p>
 <p><strong>Phenology targets</strong></p>
-<p>The phenology targets are updated every 2 hrs.</p>
+<p>Timing: The phenology targets are at 2 pm UTC. Latency: New data each day is from 1-day prior</p>
 <p><strong>Aquatics targets</strong></p>
-<p>The terrestrial targets are updated daily between 7 and 8 am UTC</p>
+<p>Timing: Updated daily between 7 and 8 am UTC Latency: New data each day is from 2-days prior</p>
 <p><strong>Tick targets</strong></p>
-<p>The ticks targets are updated daily at 11 am UTC</p>
+<p>Timing: Appears monthly around the 15th Latency: New data is from ~300 days priors</p>
 <p><strong>Beetles targets</strong></p>
-<p>The Beetles targets are updated daily at 8 am UTC</p>
+<p>Timing: Appears monthly around the 15th Latency: New data is from ~60 days priors</p>
 <p><strong>Scored forecasts</strong></p>
-<p>Forecast scores are updated daily at 11 am UTC</p>
+<p>Forecast scores are updated daily at 11 am UTC Latency: New scores are for 1-day prior</p>
 <p><strong>Forecasting submission processing</strong></p>
 <p>Submitted forecasts are processed every 2 hours.</p>
 

@@ -261,7 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"> <span class="header-section-number">4.9</span> FAQ</a></li>
   <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"> <span class="header-section-number">4.10</span> Design team</a></li>
   <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"> <span class="header-section-number">4.11</span> Partners</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"> <span class="header-section-number">4.12</span> References</a></li>
+  <li><a href="#site-table" id="toc-site-table" class="nav-link" data-scroll-target="#site-table"> <span class="header-section-number">4.12</span> Site table</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"> <span class="header-section-number">4.13</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -330,178 +331,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="focal-sites"><span class="header-section-number">4.3.3</span> Focal sites</h3>
 <p>Information on the sites can be found here:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-phenology/master/Phenology_NEON_Field_Site_Metadata_20210928.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(phenology <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 29%">
-<col style="width: 15%">
-<col style="width: 14%">
-<col style="width: 8%">
-<col style="width: 27%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">siteID</th>
-<th style="text-align: left;">site name</th>
-<th style="text-align: left;">Phenocam vegetation type</th>
-<th style="text-align: left;">Phenocam code</th>
-<th style="text-align: left;">Phenocam ROI</th>
-<th style="text-align: left;">NEON site URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">BART</td>
-<td style="text-align: left;">Bartlett Experimental Forest NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D01.BART.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/bart</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CLBJ</td>
-<td style="text-align: left;">Lyndon B. Johnson National Grassland NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D11.CLBJ.DP1.00033</td>
-<td style="text-align: left;">DB_2000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/clbj</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DELA</td>
-<td style="text-align: left;">Dead Lake NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D08.DELA.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/dela</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GRSM</td>
-<td style="text-align: left;">Great Smoky Mountains National Park NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D07.GRSM.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/grsm</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">HARV</td>
-<td style="text-align: left;">Harvard Forest &amp; Quabbin Watershed NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D01.HARV.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/harv</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MLBS</td>
-<td style="text-align: left;">Mountain Lake Biological Station NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D07.MLBS.DP1.00033</td>
-<td style="text-align: left;">DB_2000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/mlbs</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SCBI</td>
-<td style="text-align: left;">Smithsonian Conservation Biology Institute NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D02.SCBI.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/scbi</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SERC</td>
-<td style="text-align: left;">Smithsonian Environmental Research Center NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D02.SERC.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/serc</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">STEI</td>
-<td style="text-align: left;">Steigerwaldt-Chequamegon NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D05.STEI.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/stei</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UKFS</td>
-<td style="text-align: left;">University of Kansas Field Station NEON</td>
-<td style="text-align: left;">deciduous broadleaf</td>
-<td style="text-align: left;">NEON.D06.UKFS.DP1.00033</td>
-<td style="text-align: left;">DB_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/ukfs</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CPER</td>
-<td style="text-align: left;">Central Plains Experimental Range NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D10.CPER.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/cper</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DSNY</td>
-<td style="text-align: left;">Disney Wilderness Preserve NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D03.DSNY.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/dsny</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">JORN</td>
-<td style="text-align: left;">Jornada Experimental Range NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D14.JORN.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/jorn</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">KONZ</td>
-<td style="text-align: left;">Konza Prairie Biological Station NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D06.KONZ.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/konz</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">OAES</td>
-<td style="text-align: left;">Marvin Klemme Range Research Station NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D11.OAES.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/oaes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">WOOD</td>
-<td style="text-align: left;">Chase Lake National Wildlife Refuge NEON</td>
-<td style="text-align: left;">grassland</td>
-<td style="text-align: left;">NEON.D09.WOOD.DP1.00033</td>
-<td style="text-align: left;">GR_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/wood</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ONAQ</td>
-<td style="text-align: left;">Onaqui NEON</td>
-<td style="text-align: left;">shrubland</td>
-<td style="text-align: left;">NEON.D15.ONAQ.DP1.00033</td>
-<td style="text-align: left;">SH_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/onaq</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SRER</td>
-<td style="text-align: left;">Santa Rita Experimental Range NEON</td>
-<td style="text-align: left;">shrubland</td>
-<td style="text-align: left;">NEON.D14.SRER.DP1.00033</td>
-<td style="text-align: left;">SH_1000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/srer</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>with the site table at the end of page</p>
 </section>
 <section id="target-data-calculation" class="level3" data-number="4.3.4">
 <h3 data-number="4.3.4" class="anchored" data-anchor-id="target-data-calculation"><span class="header-section-number">4.3.4</span> Target data calculation</h3>
@@ -519,20 +352,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 69,048 × 5
-   time       site_id variable observed      sd
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
- 1 2016-12-14 BART    gcc_90      0.344 0.00156
- 2 2016-12-15 BART    gcc_90      0.346 0.00156
- 3 2016-12-16 BART    gcc_90      0.342 0.00156
- 4 2016-12-17 BART    gcc_90      0.350 0.00156
- 5 2016-12-18 BART    gcc_90      0.348 0.00156
- 6 2016-12-19 BART    gcc_90      0.343 0.00156
- 7 2016-12-20 BART    gcc_90      0.344 0.00156
- 8 2016-12-21 BART    gcc_90      0.344 0.00156
- 9 2016-12-22 BART    gcc_90      0.348 0.00156
-10 2016-12-23 BART    gcc_90      0.344 0.00156
-# … with 69,038 more rows
+<pre><code># A tibble: 166,512 × 5
+   time       site_id variable observed       sd
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+ 1 2019-02-08 BONA    gcc_90      0.332 0.000957
+ 2 2019-02-09 BONA    gcc_90      0.340 0.000957
+ 3 2019-02-10 BONA    gcc_90      0.338 0.000957
+ 4 2019-02-11 BONA    gcc_90      0.335 0.000957
+ 5 2019-02-12 BONA    gcc_90      0.335 0.000957
+ 6 2019-02-13 BONA    gcc_90      0.336 0.000957
+ 7 2019-02-14 BONA    gcc_90      0.340 0.000957
+ 8 2019-02-15 BONA    gcc_90      0.340 0.000957
+ 9 2019-02-16 BONA    gcc_90      0.335 0.000957
+10 2019-02-17 BONA    gcc_90      0.334 0.000957
+# … with 166,502 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -600,8 +433,413 @@ Kai Zhu, University of California - Santa Cruz</p>
 <p>Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/) and hosted by the Phenocam Network (http://phenocam.sr.unh.edu/).</p>
 <p>The forecasting challenge was developed in collaboration with the USA National Phenology Network: https://www.usanpn.org/usa-national-phenology-network.</p>
 </section>
-<section id="references" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="references"><span class="header-section-number">4.12</span> References</h2>
+<section id="site-table" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="site-table"><span class="header-section-number">4.12</span> Site table</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 34%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">siteID</th>
+<th style="text-align: left;">site name</th>
+<th style="text-align: left;">Phenocam vegetation type</th>
+<th style="text-align: left;">Phenocam code</th>
+<th style="text-align: left;">Phenocam ROI</th>
+<th style="text-align: left;">NEON site URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">KONA</td>
+<td style="text-align: left;">Konza Prairie Agroecosystem NEON</td>
+<td style="text-align: left;">agriculture</td>
+<td style="text-align: left;">NEON.D06.KONA.DP1.00033</td>
+<td style="text-align: left;">AG_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/kona</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LAJA</td>
+<td style="text-align: left;">Lajas Experimental Station NEON</td>
+<td style="text-align: left;">agriculture</td>
+<td style="text-align: left;">NEON.D04.LAJA.DP1.00033</td>
+<td style="text-align: left;">AG_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/laja</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STER</td>
+<td style="text-align: left;">North Sterling NEON</td>
+<td style="text-align: left;">agriculture</td>
+<td style="text-align: left;">NEON.D10.STER.DP1.00033</td>
+<td style="text-align: left;">AG_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ster</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HARV</td>
+<td style="text-align: left;">Harvard Forest &amp; Quabbin Watershed NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D01.HARV.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/harv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCBI</td>
+<td style="text-align: left;">Smithsonian Conservation Biology Institute NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D02.SCBI.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/scbi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORNL</td>
+<td style="text-align: left;">Oak Ridge NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D07.ORNL.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ornl</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UNDE</td>
+<td style="text-align: left;">University of Notre Dame Environmental Research Center NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D05.UNDE.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/unde</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CLBJ</td>
+<td style="text-align: left;">Lyndon B. Johnson National Grassland NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D11.CLBJ.DP1.00033</td>
+<td style="text-align: left;">DB_2000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/clbj</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BLAN</td>
+<td style="text-align: left;">Blandy Experimental Farm NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D02.BLAN.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/blan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LENO</td>
+<td style="text-align: left;">Lenoir Landing NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D08.LENO.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/leno</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TREE</td>
+<td style="text-align: left;">Treehaven NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D05.TREE.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tree</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DELA</td>
+<td style="text-align: left;">Dead Lake NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D08.DELA.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dela</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GRSM</td>
+<td style="text-align: left;">Great Smoky Mountains National Park NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D07.GRSM.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/grsm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MLBS</td>
+<td style="text-align: left;">Mountain Lake Biological Station NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D07.MLBS.DP1.00033</td>
+<td style="text-align: left;">DB_2000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/mlbs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SERC</td>
+<td style="text-align: left;">Smithsonian Environmental Research Center NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D02.SERC.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/serc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STEI</td>
+<td style="text-align: left;">Steigerwaldt-Chequamegon NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D05.STEI.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/stei</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UKFS</td>
+<td style="text-align: left;">University of Kansas Field Station NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D06.UKFS.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ukfs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BART</td>
+<td style="text-align: left;">Bartlett Experimental Forest NEON</td>
+<td style="text-align: left;">deciduous broadleaf</td>
+<td style="text-align: left;">NEON.D01.BART.DP1.00033</td>
+<td style="text-align: left;">DB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/bart</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GUAN</td>
+<td style="text-align: left;">Guanica Forest NEON</td>
+<td style="text-align: left;">evergreen broadleaf</td>
+<td style="text-align: left;">NEON.D04.GUAN.DP1.00033</td>
+<td style="text-align: left;">EB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/guan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PUUM</td>
+<td style="text-align: left;">Pu’u Maka’ala Natural Area Reserve NEON</td>
+<td style="text-align: left;">evergreen broadleaf</td>
+<td style="text-align: left;">NEON.D20.PUUM.DP1.00033</td>
+<td style="text-align: left;">EB_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/puum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BONA</td>
+<td style="text-align: left;">Caribou-Poker Creeks Research Watershed NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D19.BONA.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/bona</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">YELL</td>
+<td style="text-align: left;">Yellowstone National Park NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D12.YELL.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/yell</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OSBS</td>
+<td style="text-align: left;">Ordway-Swisher Biological Station NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D03.OSBS.DP1.00033</td>
+<td style="text-align: left;">EN_1001</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/osbs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SJER</td>
+<td style="text-align: left;">San Joaquin Experimental Range NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D17.SJER.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/sjer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TALL</td>
+<td style="text-align: left;">Talladega National Forest NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D08.TALL.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tall</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">WREF</td>
+<td style="text-align: left;">Wind River Experimental Forest NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D16.WREF.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/wref</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABBY</td>
+<td style="text-align: left;">Abby Road NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D16.ABBY.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/abby</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JERC</td>
+<td style="text-align: left;">The Jones Center At Ichauway NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D03.JERC.DP1.00033</td>
+<td style="text-align: left;">EN_2000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/jerc</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RMNP</td>
+<td style="text-align: left;">Rocky Mountains NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D10.RMNP.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/rmnp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOAP</td>
+<td style="text-align: left;">Soaproot Saddle NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D17.SOAP.DP1.00033</td>
+<td style="text-align: left;">EN_1001</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/soap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TEAK</td>
+<td style="text-align: left;">Lower Teakettle NEON</td>
+<td style="text-align: left;">evergreen needleleaf</td>
+<td style="text-align: left;">NEON.D17.TEAK.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/teak</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CPER</td>
+<td style="text-align: left;">Central Plains Experimental Range NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D10.CPER.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/cper</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WOOD</td>
+<td style="text-align: left;">Chase Lake National Wildlife Refuge NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D09.WOOD.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/wood</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KONZ</td>
+<td style="text-align: left;">Konza Prairie Biological Station NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D06.KONZ.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/konz</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DCFS</td>
+<td style="text-align: left;">Dakota Coteau Field Site NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D09.DCFS.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dcfs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MOAB</td>
+<td style="text-align: left;">Moab NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D13.MOAB.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/moab</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NOGP</td>
+<td style="text-align: left;">Northern Great Plains Research Laboratory NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D09.NOGP.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/nogp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DSNY</td>
+<td style="text-align: left;">Disney Wilderness Preserve NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D03.DSNY.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/dsny</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JORN</td>
+<td style="text-align: left;">Jornada Experimental Range NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D14.JORN.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/jorn</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OAES</td>
+<td style="text-align: left;">Marvin Klemme Range Research Station NEON</td>
+<td style="text-align: left;">grassland</td>
+<td style="text-align: left;">NEON.D11.OAES.DP1.00033</td>
+<td style="text-align: left;">GR_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/oaes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ONAQ</td>
+<td style="text-align: left;">Onaqui NEON</td>
+<td style="text-align: left;">shrubland</td>
+<td style="text-align: left;">NEON.D15.ONAQ.DP1.00033</td>
+<td style="text-align: left;">SH_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/onaq</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SRER</td>
+<td style="text-align: left;">Santa Rita Experimental Range NEON</td>
+<td style="text-align: left;">shrubland</td>
+<td style="text-align: left;">NEON.D14.SRER.DP1.00033</td>
+<td style="text-align: left;">SH_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/srer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NIWO</td>
+<td style="text-align: left;">Niwot Ridge NEON</td>
+<td style="text-align: left;">tundra</td>
+<td style="text-align: left;">NEON.D13.NIWO.DP1.00033</td>
+<td style="text-align: left;">TN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/niwo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TOOL</td>
+<td style="text-align: left;">Toolik Field Station NEON</td>
+<td style="text-align: left;">tundra</td>
+<td style="text-align: left;">NEON.D18.TOOL.DP1.00033</td>
+<td style="text-align: left;">TN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tool</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BARR</td>
+<td style="text-align: left;">Utqiaġvik NEON</td>
+<td style="text-align: left;">tundra</td>
+<td style="text-align: left;">NEON.D18.BARR.DP1.00033</td>
+<td style="text-align: left;">TN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/barr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DEJU</td>
+<td style="text-align: left;">Delta Junction NEON</td>
+<td style="text-align: left;">tundra</td>
+<td style="text-align: left;">NEON.D19.DEJU.DP1.00033</td>
+<td style="text-align: left;">EN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/deju</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HEAL</td>
+<td style="text-align: left;">Healy NEON</td>
+<td style="text-align: left;">tundra</td>
+<td style="text-align: left;">NEON.D19.HEAL.DP1.00033</td>
+<td style="text-align: left;">TN_1000</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/heal</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="references" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="references"><span class="header-section-number">4.13</span> References</h2>
 <p>Richardson, A., Hufkens, K., Milliman, T. et al.&nbsp;Tracking vegetation phenology across diverse North American biomes using PhenoCam imagery. Sci Data 5, 180028 (2018). https://doi.org/10.1038/sdata.2018.28</p>
 <p>Richardson, A.D. (2019), Tracking seasonal rhythms of plants in diverse ecosystems with digital camera imagery. New Phytol, 222: 1742-1750. https://doi.org/10.1111/nph.15591</p>
 

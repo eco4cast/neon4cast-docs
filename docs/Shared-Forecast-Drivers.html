@@ -251,6 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#neon-observed" id="toc-neon-observed" class="nav-link" data-scroll-target="#neon-observed"> <span class="header-section-number">10.2</span> NEON Observed</a></li>
   <li><a href="#downloading-and-processing-of-noaa-gefs" id="toc-downloading-and-processing-of-noaa-gefs" class="nav-link" data-scroll-target="#downloading-and-processing-of-noaa-gefs"> <span class="header-section-number">10.3</span> Downloading and processing of NOAA GEFS</a></li>
+  <li><a href="#timing-of-data-availability" id="toc-timing-of-data-availability" class="nav-link" data-scroll-target="#timing-of-data-availability"> <span class="header-section-number">10.4</span> Timing of data availability</a></li>
   </ul>
 </nav>
     </div>
@@ -276,21 +277,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are downloading, subsetting, and processing forecasted meteorology drivers for each NEON site. Currently, we have NOAA’s Global Ensemble Forecasting System (GEFS) V12 output available at the native time resolution and a 1 hr time resolution for each NEON site.</p>
 <p>The following are important considerations when using the NOAA GEFS forecasts</p>
 <ul>
-<li>There are 31 ensemble members for each forecast.</li>
-<li>For forecasts generated at four times per day, organized by “cycle” that correspond to the hour in UTC that the forecast was initiated: 00, 06, 12, and 18 cycles</li>
-<li>For the midnight (00) UTC, the forecasts extend 35-days in the future for the ensemble members 01 - 30. Ensemble member 31 only extends 16-days in the future.</li>
+<li>There are 31 ensemble members for each forecast.<br>
+</li>
+<li>For forecasts generated at four times per day, organized by “cycle” that correspond to the hour in UTC that the forecast was initiated: 00, 06, 12, and 18 cycles<br>
+</li>
+<li>For the midnight (00) UTC, the forecasts extend 35-days in the future for the ensemble members 01 - 30. Ensemble member 31 only extends 16-days in the future.<br>
+</li>
 <li>For forecasts generated at 06, 12, and 18 UTC, the forecasts extend 16-days in the future but we are not currently downloading the full forecasts for these cycles.<br>
 </li>
-<li>We are constantly downloading and processing the forecasts.</li>
+<li>We are constantly downloading and processing the forecasts.<br>
+</li>
 </ul>
-<p>The following meteorological variables are included:<br>
-- air temperature<br>
-- air pressure<br>
-- wind speed<br>
-- precipitation<br>
-- downwelling longwave radiation<br>
-- downwelling shortwave radiation<br>
-- relative humidity</p>
+<p>The following meteorological variables are included:</p>
+<ul>
+<li>air temperature<br>
+</li>
+<li>air pressure<br>
+</li>
+<li>wind speed<br>
+</li>
+<li>precipitation<br>
+</li>
+<li>downwelling longwave radiation<br>
+</li>
+<li>downwelling shortwave radiation<br>
+</li>
+<li>relative humidity<br>
+</li>
+</ul>
 <p>The weather forecasts are available through an s3 bucket (see NOAA Global Ensemble Forecasting System below) and we provide an R functions code in the <a href="https://github.com/eco4cast/neon4cast">neon4cast package</a> for downloading all the ensemble members for particular location, forecast cycle (00, 06, 12, or 18), and NEON site</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"eco4cast/neon4cast"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -300,7 +314,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="stage-1" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="stage-1"><span class="header-section-number">10.1.1</span> Stage 1</h3>
 <p>At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon). Ensemble member 31 only extends 16-days in the future</p>
-<p>Forecasts include the following variables: - TMP - temperature (C) - RH - Relative humidity (%) - PRES - Atmospheric pressure (Pa) - UGRD - U-component of wind speed (m/s) - VGRD - V-component of wind speed (m/s) - APCP - Total precipitation in interval (kg/m^2) - DSWRF - Downward shortwave radiation flux in interval (W/m^2) - DLWRF - Downward longwave radiation flux in interval (W/m^2)</p>
+<p>Forecasts include the following variables:</p>
+<ul>
+<li>TMP: temperature (C)<br>
+</li>
+<li>RH: Relative humidity (%)<br>
+</li>
+<li>PRES: Atmospheric pressure (Pa)<br>
+</li>
+<li>UGRD: U-component of wind speed (m/s)<br>
+</li>
+<li>VGRD: V-component of wind speed (m/s)<br>
+</li>
+<li>APCP: Total precipitation in interval (kg/m^2)<br>
+</li>
+<li>DSWRF: Downward shortwave radiation flux in interval (W/m^2)<br>
+</li>
+<li>DLWRF: Downward longwave radiation flux in interval (W/m^2)<br>
+</li>
+</ul>
 <p>GEFS forecasts are issued four times a day, as indicated by the <code>start_date</code> and <code>cycle</code>. Only forecasts at midnight, <code>cycle = "00"</code> extend for the full 840 hour horizon. Other cycles 06, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainity from ensenble members)</p>
 <p>All variables are given at height 2m above ground, surface, or 10 m above ground as indicated in height column. See https://www.nco.ncep.noaa.gov/pmb/products/gens/ for more details on GEFS variables and intervals.</p>
 <p>Common ways to filter the data before running <code>collect()</code> include <code>start_date</code>, <code>site_id</code>, <code>variable</code>, and <code>horizon</code>.</p>
@@ -317,11 +349,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="stage-2"><span class="header-section-number">10.1.2</span> Stage 2</h3>
 <p>Stage 2 is a processed version of Stage 1 and involves the following transforms of the data that may be useful for some modeling approaches:</p>
 <ul>
-<li>Fluxes are standardized to per second rates</li>
-<li>Variables are renamed to match CF conventions</li>
-<li>Fluxes and states are interpolated to 1 hour intervals</li>
+<li>Fluxes are standardized to per second rates<br>
+</li>
+<li>Fluxes and states are interpolated to 1 hour intervals<br>
+</li>
 </ul>
-<p>TMP -&gt; air_temperature (K) PRES -&gt; air_pressure (Pa) RH -&gt; relative_humidity (proportion) DLWRF -&gt; surface_downwelling_longwave_flux_in_air (W/m^2) DSWRF -&gt; surface_downwelling_shortwave_flux_in_air (W/m^2) APCP -&gt; precipitation_flux (kg/(m^2 s)) VGRD -&gt; eastward_wind (m/s) UGRD -&gt; northward_wind (m/s)</p>
+<p>Variables are renamed to match CF conventions:</p>
+<ul>
+<li>TMP -&gt; air_temperature (K)<br>
+</li>
+<li>PRES -&gt; air_pressure (Pa)<br>
+</li>
+<li>RH -&gt; relative_humidity (proportion)<br>
+</li>
+<li>DLWRF -&gt; surface_downwelling_longwave_flux_in_air (W/m^2)<br>
+</li>
+<li>DSWRF -&gt; surface_downwelling_shortwave_flux_in_air (W/m^2)&nbsp;</li>
+<li>APCP -&gt; precipitation_flux (kg/(m^2 s))<br>
+</li>
+<li>VGRD -&gt; eastward_wind (m/s)<br>
+</li>
+<li>UGRD -&gt; northward_wind (m/s)<br>
+</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weather_1hr <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage2</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>weather_1hr <span class="sc">|&gt;</span> </span>
@@ -373,6 +423,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="downloading-and-processing-of-noaa-gefs" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="downloading-and-processing-of-noaa-gefs"><span class="header-section-number">10.3</span> Downloading and processing of NOAA GEFS</h2>
 <p>The code used to download and process the NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the <code>gefs4cast</code> package found at <a href="https://github.com/eco4cast/gef4cast">github.com/eco4cast/gef4cast</a></p>
+</section>
+<section id="timing-of-data-availability" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="timing-of-data-availability"><span class="header-section-number">10.4</span> Timing of data availability</h2>
+<p>See <a href="CronTiming.html"><span>Chapter&nbsp;11</span></a> for information on the time day that the NOAA data become available on our servers for use in the Challenge.</p>
 
 
 </section>

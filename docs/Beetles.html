@@ -331,7 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>All 47 NEON terrestrial sites are included</p>
 <p>Information on the sites can be found here:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-beetles/master/Beetles_NEON_Field_Site_Metadata_20210928.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(beetles <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -457,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">Evergreen Forest</td>
 <td style="text-align: right;">17.96955</td>
 <td style="text-align: right;">-66.86870</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/quan</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/guan</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">HARV</td>
@@ -747,12 +748,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="target-file" class="level3" data-number="5.3.5">
 <h3 data-number="5.3.5" class="anchored" data-anchor-id="target-file"><span class="header-section-number">5.3.5</span> Target file</h3>
-<p>The code use to process the raw data to the evaluation data can be found here: https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R</p>
+<p>The code use to process the raw data to the evaluation data can be found here: https://github.com/eco4cast/neon4cast-targets/blob/main/beetles_targets.R</p>
 <p>Here is the format of the target file</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,468 × 5
+<pre><code># A tibble: 6,882 × 5
    time       site_id variable  observed iso_week
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   
  1 2016-09-12 ABBY    abundance   1.05   2016-W37
@@ -765,16 +766,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-05-15 ABBY    richness   19      2017-W20
  9 2017-05-29 ABBY    abundance   0.425  2017-W22
 10 2017-05-29 ABBY    richness   19      2017-W22
-# … with 6,458 more rows
+# … with 6,872 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
 <p>The table has the following columns:</p>
 <ul>
-<li><code>site_id</code>: NEON site ID<br>
-</li>
 <li><code>time</code>: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)<br>
 </li>
+<li><code>site_id</code>: NEON site ID</li>
 <li><code>variable</code>: abundance of beetles (<code>abundance</code>) or species richness (<code>richness</code>)</li>
 <li><code>observed</code>: value of <code>variable</code></li>
 <li><code>iso_week</code>: The ISO-week</li>
