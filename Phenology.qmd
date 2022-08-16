@@ -69,21 +69,11 @@ While gcc is primarily a metric of vegetation greeness, rcc is more a metric of 
 Information on the sites can be found here:
 
 ```{r message = FALSE}
-site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-phenology/master/Phenology_NEON_Field_Site_Metadata_20210928.csv")
+site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv") |> 
+  dplyr::filter(phenology == 1)
 ```
 
-```{r echo = FALSE}
-site_data %>% 
-  select(field_site_id, field_site_name, phenocam_vegtation, phenocam_code, phenocam_roi, neon_url) %>% 
-  rename(siteID = field_site_id,
-         `site name` = field_site_name,
-         `Phenocam code` = phenocam_code,
-         `Phenocam ROI` = phenocam_roi,
-         `NEON site URL` = neon_url,
-         `Phenocam vegetation type` = phenocam_vegtation) %>% 
-  arrange(`Phenocam vegetation type`) %>% 
-  knitr::kable()
-```
+with the site table at the end of page
 
 ### Target data calculation
 
@@ -176,6 +166,21 @@ The challenge is hosted by the Ecological Forecasting Initiative (EFI; https://e
 Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/) and hosted by the Phenocam Network (http://phenocam.sr.unh.edu/).
 
 The forecasting challenge was developed in collaboration with the USA National Phenology Network: https://www.usanpn.org/usa-national-phenology-network.
+
+## Site table
+
+```{r echo = FALSE}
+site_data %>% 
+  select(field_site_id, field_site_name, phenocam_vegetation, phenocam_code, phenocam_roi, neon_url) %>% 
+  rename(siteID = field_site_id,
+         `site name` = field_site_name,
+         `Phenocam code` = phenocam_code,
+         `Phenocam ROI` = phenocam_roi,
+         `NEON site URL` = neon_url,
+         `Phenocam vegetation type` = phenocam_vegetation) %>% 
+  arrange(`Phenocam vegetation type`) %>% 
+  knitr::kable()
+```
 
 ## References
 

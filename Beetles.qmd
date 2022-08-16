@@ -71,7 +71,8 @@ All 47 NEON terrestrial sites are included
 Information on the sites can be found here:
 
 ```{r message = FALSE}
-site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-beetles/master/Beetles_NEON_Field_Site_Metadata_20210928.csv")
+site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv") |> 
+  dplyr::filter(beetles == 1)
 ```
 
 ```{r echo = FALSE}
@@ -103,7 +104,7 @@ Note: The table includes all data that NEON has collected and can be used for bu
 
 ### Target file
 
-The code use to process the raw data to the evaluation data can be found here: https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R
+The code use to process the raw data to the evaluation data can be found here: https://github.com/eco4cast/neon4cast-targets/blob/main/beetles_targets.R
 
 Here is the format of the target file
 
@@ -113,8 +114,9 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-
 
 The table has the following columns:
 
--   `site_id`: NEON site ID\
+
 -   `time`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)\
+-   `site_id`: NEON site ID
 -   `variable`: abundance of beetles (`abundance`) or species richness (`richness`)
 -   `observed`: value of `variable`
 -   `iso_week`: The ISO-week
