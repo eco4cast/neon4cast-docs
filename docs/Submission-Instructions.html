@@ -243,18 +243,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#forecast-format" id="toc-forecast-format" class="nav-link active" data-scroll-target="#forecast-format"> <span class="header-section-number">7.1</span> Forecast format</a>
+  <li><a href="#steps-to-submitting" id="toc-steps-to-submitting" class="nav-link active" data-scroll-target="#steps-to-submitting"> <span class="header-section-number">7.1</span> Steps to submitting</a></li>
+  <li><a href="#step-1-forecast-format" id="toc-step-1-forecast-format" class="nav-link" data-scroll-target="#step-1-forecast-format"> <span class="header-section-number">7.2</span> Step 1: Forecast format</a>
   <ul class="collapse">
-  <li><a href="#examples-of-the-forecast-file-format." id="toc-examples-of-the-forecast-file-format." class="nav-link" data-scroll-target="#examples-of-the-forecast-file-format."> <span class="header-section-number">7.1.1</span> Examples of the forecast file format.</a></li>
-  <li><a href="#ensemble-csv" id="toc-ensemble-csv" class="nav-link" data-scroll-target="#ensemble-csv"> <span class="header-section-number">7.1.2</span> Ensemble CSV</a></li>
-  <li><a href="#distribution-csv" id="toc-distribution-csv" class="nav-link" data-scroll-target="#distribution-csv"> <span class="header-section-number">7.1.3</span> Distribution CSV</a></li>
-  <li><a href="#netcdf" id="toc-netcdf" class="nav-link" data-scroll-target="#netcdf"> <span class="header-section-number">7.1.4</span> Netcdf</a></li>
+  <li><a href="#ensemble-csv" id="toc-ensemble-csv" class="nav-link" data-scroll-target="#ensemble-csv"> <span class="header-section-number">7.2.1</span> Ensemble CSV</a></li>
+  <li><a href="#distribution-csv" id="toc-distribution-csv" class="nav-link" data-scroll-target="#distribution-csv"> <span class="header-section-number">7.2.2</span> Distribution CSV</a></li>
+  <li><a href="#netcdf" id="toc-netcdf" class="nav-link" data-scroll-target="#netcdf"> <span class="header-section-number">7.2.3</span> Netcdf</a></li>
   </ul></li>
-  <li><a href="#metadata-format" id="toc-metadata-format" class="nav-link" data-scroll-target="#metadata-format"> <span class="header-section-number">7.2</span> Metadata format</a></li>
-  <li><a href="#submission-process" id="toc-submission-process" class="nav-link" data-scroll-target="#submission-process"> <span class="header-section-number">7.3</span> Submission process</a></li>
-  <li><a href="#validating-submission" id="toc-validating-submission" class="nav-link" data-scroll-target="#validating-submission"> <span class="header-section-number">7.4</span> Validating submission</a></li>
-  <li><a href="#visualizing-submissions" id="toc-visualizing-submissions" class="nav-link" data-scroll-target="#visualizing-submissions"> <span class="header-section-number">7.5</span> Visualizing submissions</a></li>
-  <li><a href="#video-describing-how-to-submit-to-the-challenge" id="toc-video-describing-how-to-submit-to-the-challenge" class="nav-link" data-scroll-target="#video-describing-how-to-submit-to-the-challenge"> <span class="header-section-number">7.6</span> Video Describing How to Submit to the Challenge</a></li>
+  <li><a href="#step-2-file-name" id="toc-step-2-file-name" class="nav-link" data-scroll-target="#step-2-file-name"> <span class="header-section-number">7.3</span> Step 2: File name</a></li>
+  <li><a href="#step-3-metadata-format" id="toc-step-3-metadata-format" class="nav-link" data-scroll-target="#step-3-metadata-format"> <span class="header-section-number">7.4</span> Step 3: Metadata format</a></li>
+  <li><a href="#step-4-submission-process" id="toc-step-4-submission-process" class="nav-link" data-scroll-target="#step-4-submission-process"> <span class="header-section-number">7.5</span> Step 4: Submission process</a></li>
+  <li><a href="#validating-submission" id="toc-validating-submission" class="nav-link" data-scroll-target="#validating-submission"> <span class="header-section-number">7.6</span> Validating submission</a></li>
+  <li><a href="#visualizing-submissions" id="toc-visualizing-submissions" class="nav-link" data-scroll-target="#visualizing-submissions"> <span class="header-section-number">7.7</span> Visualizing submissions</a></li>
+  <li><a href="#video-describing-how-to-submit-to-the-challenge" id="toc-video-describing-how-to-submit-to-the-challenge" class="nav-link" data-scroll-target="#video-describing-how-to-submit-to-the-challenge"> <span class="header-section-number">7.8</span> Video Describing How to Submit to the Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -277,48 +278,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>The following provides the requirements for the format of the forecasts that will be submitted. It is important to follow these format guidelines in order for your submitted forecasts to pass a set of internal checks that allow the forecast to be visualized on the <a href="http://shiny.ecoforecast.org/" target="_blank">NEON Ecological Forecast Challenge dashboard</a> and evaluated with the scoring process.</p>
-<section id="forecast-format" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="forecast-format"><span class="header-section-number">7.1</span> Forecast format</h2>
-<p>Teams will submit their forecasts as a single netCDF or csv file with the following naming convention (<strong>the correct naming convention is critical for the automated processing of submissions</strong>):</p>
-<p><code>theme_name-year-month-day-team_name_ID.csv</code></p>
-<p>or</p>
-<p><code>theme_name-year-month-day-team_name_ID.nc</code></p>
-<p>Where <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.</p>
-<p><code>team_name_ID</code> is the code for the team name that is specified in the registration (<code>team_name_ID</code> has no spaces in it).</p>
-<p>The <code>theme_name</code> options are: <code>terrestrial_daily</code>, <code>terrestrial_30min</code>, <code>aquatics</code>, <code>beetles</code>, <code>ticks</code>, or <code>phenology</code>.</p>
-<p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mean</code> and <code>sd</code> for each forecasted variable, site_id, and time.</p>
-<section id="examples-of-the-forecast-file-format." class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="examples-of-the-forecast-file-format."><span class="header-section-number">7.1.1</span> Examples of the forecast file format.</h3>
-<p><strong>The correct file format is critical for the automated processing of submissions</strong></p>
+<p>The following provides the requirements for the format of the forecasts that will be submitted. It is important to follow these format guidelines in order for your submitted forecasts to pass a set of internal checks that allow the forecast to be visualized on the <a href="http://shiny3.ecoforecast.org/" target="_blank">NEON Ecological Forecast Challenge dashboard</a> and evaluated with the scoring process.</p>
+<section id="steps-to-submitting" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="steps-to-submitting"><span class="header-section-number">7.1</span> Steps to submitting</h2>
+<p>We provide an overview of the steps for submitting with the details below:</p>
+<ol type="1">
+<li>Generate forecast with required columns. There are three options for the file format described below.<br>
+</li>
+<li>Write forecast to a file that follows the standardized naming format.<br>
+</li>
+<li>Generate the metadata. Do you best to fill it out but if you are having trouble please submit what you have. Don’t let metadata submission get in the way of submitting a forecast.<br>
+</li>
+<li>Submit (i.e., upload) forecast and metadata.<br>
+</li>
+</ol>
 </section>
-<section id="ensemble-csv" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="ensemble-csv"><span class="header-section-number">7.1.2</span> Ensemble CSV</h3>
+<section id="step-1-forecast-format" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="step-1-forecast-format"><span class="header-section-number">7.2</span> Step 1: Forecast format</h2>
+<p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mean</code> and <code>sd</code> for each forecasted variable, site_id, and time.</p>
+<section id="ensemble-csv" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="ensemble-csv"><span class="header-section-number">7.2.1</span> Ensemble CSV</h3>
 <ul>
 <li><code>time</code>: forecast timestamp</li>
-<li><code>start_time</code>: The start of the forecast; this should be 0 times steps in the future (horizon = 0)</li>
+<li><code>start_time</code>: The start of the forecast; this should be 0 times steps in the future. This should only be one value of <code>start_time</code> in the file</li>
 <li><code>site_id</code>: NEON code for site</li>
 <li><code>ensemble</code> integer value for forecast replicate within the year and month (i.e.&nbsp;ensemble member or MCMC sample);</li>
 <li><code>variable</code>: standardized variable name from the theme</li>
 <li><code>predicted</code>: forecasted value</li>
 </ul>
-<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
+<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).</p>
+<p>Here is an example of a forecast in the Ensemble:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/phenology/phenology-2022-08-16-persistence.csv.gz", show_col_types = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="distribution-csv" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="distribution-csv"><span class="header-section-number">7.1.3</span> Distribution CSV</h3>
+<section id="distribution-csv" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="distribution-csv"><span class="header-section-number">7.2.2</span> Distribution CSV</h3>
 <ul>
-<li><code>time</code>: The start of the forecast</li>
-<li><code>start_time</code>: The start of the forecast; this should be 0 times steps in the future</li>
+<li><code>time</code>: forecast timestamp</li>
+<li><code>start_time</code>: The start of the forecast; this should be 0 times steps in the future. This should only be one value of <code>start_time</code> in the file</li>
 <li><code>site_id</code>: NEON code for site</li>
 <li><code>family</code> name of probability distribution that is described by the parameter values in the parameter column; only <code>normal</code> is currently allowed</li>
 <li><code>parameter</code> required to be the string <code>mean</code> or <code>sd</code> (see note below about statistic column).</li>
 <li><code>variable</code>: standardized variable name from the theme</li>
 <li><code>predicted</code>: forecasted value for mean or standard deviation</li>
 </ul>
-<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
+<p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/aquatics/aquatics-2022-08-06-climatology.csv.gz", show_col_types = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="netcdf" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="netcdf"><span class="header-section-number">7.1.4</span> Netcdf</h3>
+<section id="netcdf" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="netcdf"><span class="header-section-number">7.2.3</span> Netcdf</h3>
 <p>A netcdf should have the following variables</p>
 <ul>
 <li><code>time</code>: The start of the forecast</li>
@@ -331,8 +342,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The global attributed in the netcdf must include the <code>start_time</code> variable, which is the start of the forecast (should be 0 times steps in the future).</p>
 </section>
 </section>
-<section id="metadata-format" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="metadata-format"><span class="header-section-number">7.2</span> Metadata format</h2>
+<section id="step-2-file-name" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="step-2-file-name"><span class="header-section-number">7.3</span> Step 2: File name</h2>
+<p><strong>the correct naming convention is critical for the automated processing of submissions</strong></p>
+<p>Teams will submit their forecasts as a single netCDF or csv file with the following naming convention:</p>
+<p><code>theme_name-year-month-day-team_name_ID.csv</code> (or with a <code>.csv.gz</code> extension if compressing)</p>
+<p>or</p>
+<p><code>theme_name-year-month-day-team_name_ID.nc</code></p>
+<ol type="1">
+<li><p>The <code>theme_name</code> options are: <code>terrestrial_daily</code>, <code>terrestrial_30min</code>, <code>aquatics</code>, <code>beetles</code>, <code>ticks</code>, or <code>phenology</code>.<br>
+</p></li>
+<li><p>The <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.<br>
+</p></li>
+<li><p><code>team_name_ID</code> is the code for the team name that is specified in the registration (<code>team_name_ID</code> has no spaces in it).<br>
+</p></li>
+</ol>
+</section>
+<section id="step-3-metadata-format" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="step-3-metadata-format"><span class="header-section-number">7.4</span> Step 3: Metadata format</h2>
 <p>Each submission requires a metadata file to be submitted. The metadata file must have the same name as the submitted forecast, but with the .xml extension.</p>
 <p><code>theme_name-year-month-day-team_name_ID.xml</code></p>
 <p>Metadata files should be uploaded with the forecast files.</p>
@@ -341,38 +368,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The license for the forecast output is required to be from the following Creative Commons License options: CC BY, CC BY-SA, CC BY-NC, CC BY-NC-SA. While we recommend a CC BY license, teams may use less permissive CC licenses if more appropriate. The license entry can be the CC option (i.e., CC BY) and a web link to the full CC license (e.g., https://creativecommons.org/licenses/by/4.0/)</p>
 <p>We recommend teams read the full metadata standard description for definitions and more information, and in particular that they look at the <a href="https://github.com/eco4cast/EFIstandards/tree/master/vignettes" target="_blank">example vignettes</a>, which demonstrate the standard being used. Note that these Standards are a work in progress. If you find issues as you are applying them, let us know at <strong>eco4cast.initaitive@gmail.com</strong>.</p>
 </section>
-<section id="submission-process" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="submission-process"><span class="header-section-number">7.3</span> Submission process</h2>
+<section id="step-4-submission-process" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="step-4-submission-process"><span class="header-section-number">7.5</span> Step 4: Submission process</h2>
 <p>Individual forecast (csv, netCDF) and metadata (xml) files can be uploaded any time before the specific deadlines as defined by each theme. Only the most recent files will be scored.</p>
 <p><strong>The correct file name and format is critical for the automated processing of submissions</strong></p>
 <p>Teams will submit their forecast netCDF or csv files manually through the challenge website or with an R script.</p>
 <p>We have developed a function called submit in the <code>neon4cast</code> package handles submission process.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-team_name.csv"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">metadata =</span> <span class="st">"theme_name-year-month-day-team_name.xml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-team_name.csv"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">metadata =</span> <span class="st">"theme_name-year-month-day-team_name.xml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., <code>aws.s3</code> R package) to the <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
 <p>Submissions need to adhere to the forecast format that is provided above, including the file naming convention. Our cyberinfastructure automatically evaluates forecasts and relies on the expected formatting. Contact eco4cast.initiative@gmail.com if you experience technical issues with submitting.</p>
 <p><strong>Note:</strong> If you have used AWS in the past you might have credential files in an .aws folder in your home directory that will cause an error when you try to upload to a non-AWS bucket. If you encounter this error you may need to rename your credentials files so put_object doesn’t try to read them.</p>
 </section>
-<section id="validating-submission" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="validating-submission"><span class="header-section-number">7.4</span> Validating submission</h2>
+<section id="validating-submission" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="validating-submission"><span class="header-section-number">7.6</span> Validating submission</h2>
 <p>You can check the status of your submission using the following function in the <code>neon4cast</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A successful submission can be found at the following links within 2 hours of submissions</p>
 <p>We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualizing-submissions" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="visualizing-submissions"><span class="header-section-number">7.5</span> Visualizing submissions</h2>
+<section id="visualizing-submissions" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="visualizing-submissions"><span class="header-section-number">7.7</span> Visualizing submissions</h2>
 <p>Plots of submissions and table of scores can be found at our <a href="https://shiny3.ecoforecast.org" target="_blank">dashboard</a></p>
 </section>
-<section id="video-describing-how-to-submit-to-the-challenge" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="video-describing-how-to-submit-to-the-challenge"><span class="header-section-number">7.6</span> Video Describing How to Submit to the Challenge</h2>
+<section id="video-describing-how-to-submit-to-the-challenge" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="video-describing-how-to-submit-to-the-challenge"><span class="header-section-number">7.8</span> Video Describing How to Submit to the Challenge</h2>
 <p>This video was recorded for the <a href="https://ecoforecast.org/ecological-forecasting-early-career-annual-meeting/" target="_blank">2021 Early Career Annual Meeting</a></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/S8x5rLtltDU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
