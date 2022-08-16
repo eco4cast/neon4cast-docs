@@ -59,6 +59,8 @@ dplyr::collect()
 
 Note: that `noaa_stage1()` defaults to the `00` cycle.
 
+If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage1`
+
 ### Stage 2
 
 Stage 2 is a processed version of Stage 1 and involves the following transforms of the data that may be useful for some modeling approaches:
@@ -86,6 +88,8 @@ dplyr::collect()
 
 Note: that `noaa_stage2()` defaults to the `00` cycle.
 
+If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage2/parquet`
+
 ### Stage 3
 
 Stage 3 processing presents a 'nowcast' product by combining the most recent predictions from each available cycle. Product uses CF variable names and 1 hr interval. The resulting produce is single time-series for each ensemble member, rather than a set of time series from all the forecasts. Stage 3 can be viewed as the "historical" weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.
@@ -98,6 +102,8 @@ weather_stage3 |>
 dplyr::filter(site_id == "BART") |>
 dplyr::collect()
 ```
+
+If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage3/parquet`
 
 ## NEON Observed
 

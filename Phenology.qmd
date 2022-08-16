@@ -2,7 +2,7 @@
 
 **What**: Terrestrial phenology defined by daily greenness and redness of plants
 
-**Where**: 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico 
+**Where**: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico 
 
 **When**: Daily forecasts for at least 30-days in the future. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
