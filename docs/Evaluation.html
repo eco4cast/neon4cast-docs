@@ -319,14 +319,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>crps_equation_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(x <span class="sc">-</span> y)) <span class="sc">-</span> s <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">length</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>crps_equation_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2379248</code></pre>
+<pre><code>[1] 0.2339539</code></pre>
 </div>
 </div>
 <p>Now calculate using the <code>crps_sample()</code> function in the <code>scoringRules</code> package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crps_sample</span>(<span class="at">y =</span> y, <span class="at">dat =</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2379248</code></pre>
+<pre><code>[1] 0.2339539</code></pre>
 </div>
 </div>
 </section>

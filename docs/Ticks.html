@@ -260,6 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"> <span class="header-section-number">3.9</span> FAQ</a></li>
   <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"> <span class="header-section-number">3.10</span> Design team</a></li>
   <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"> <span class="header-section-number">3.11</span> Partners</a></li>
+  <li><a href="#site-list-table" id="toc-site-list-table" class="nav-link" data-scroll-target="#site-list-table"> <span class="header-section-number">3.12</span> Site list table</a></li>
   </ul>
 </nav>
     </div>
@@ -284,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><strong>What:</strong> <em>Amblyomma americanum</em> nymphal tick abundance per sampled area</p>
 <p><strong>Where:</strong> 9 NEON sites</p>
-<p><strong>When:</strong> Weekly forecasts for 4 weeks into the future starting March 31-September 30, 2022. Forecasts are submitted monthly and later submissions after the March 31 start are permissible.</p>
+<p><strong>When:</strong> Forecasts for 4 weeks into the future using a weekly time-step</p>
 <p><strong>Why:</strong> There is a correlation between tick population abundance and disease incidence, meaning forecasts for tick abundance have the potential to aid in our understanding of disease risk through time and space.</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -301,14 +302,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="challenge" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="challenge"><span class="header-section-number">3.2</span> Challenge</h2>
-<p>The challenge is open to any individual, group, or institution that may want to participate. The goals of this challenge are to forecast the density of <em>Amblyomma americanum</em> nymphs (ticks/1600m^2) each epidemiological week (Sun-Sat) at nine NEON sites. Due to the latency in the taxonomic data reported by NEON, the challenge will be for the 2021 field season.</p>
+<p>The challenge is open to any individual, group, or institution that may want to participate. The goals of this challenge are to forecast the density of <em>Amblyomma americanum</em> nymphs (ticks/1600m^2) each epidemiological week (Sun-Sat) at nine NEON sites.</p>
 <p>Teams must post information about any additional data they wish to use on the theme Slack channel so that other teams can potentially use the data as well.</p>
 </section>
 <section id="data-targets" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="data-targets"><span class="header-section-number">3.3</span> Data: Targets</h2>
 <p>The challenge uses the following NEON data products:</p>
 <p><a href="https://data.neonscience.org/data-products/DP1.10093.001" target="_blank">DP1.10093.001</a>: Ticks sampled using drag cloths</p>
-<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. This <a href="https://github.com/eco4cast/neon4cast-ticks/blob/master/02_ticks_targets.R" target="_blank">processing script</a> is available in the <a href="https://github.com/eco4cast/neon4cast-ticks" target="_blank">neon4cast-ticks</a> GitHub repository.</p>
+<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. We provide the processing script <a href="https://github.com/eco4cast/neon4cast-targets/blob/main/ticks_targets.R" target="_blank">here</a>.</p>
 <section id="amblyomma-americanum-nymphs" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="amblyomma-americanum-nymphs"><span class="header-section-number">3.3.1</span> Amblyomma americanum nymphs</h3>
 <p><strong>Definition</strong></p>
@@ -323,413 +324,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ticks <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 3%">
-<col style="width: 28%">
-<col style="width: 37%">
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">siteID</th>
-<th style="text-align: left;">site name</th>
-<th style="text-align: left;">vegetation type</th>
-<th style="text-align: right;">latitude</th>
-<th style="text-align: right;">longtitude</th>
-<th style="text-align: left;">NEON site URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ABBY</td>
-<td style="text-align: left;">Abby Road NEON</td>
-<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
-<td style="text-align: right;">45.76244</td>
-<td style="text-align: right;">-122.33032</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/abby</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BARR</td>
-<td style="text-align: left;">Utqiaġvik NEON</td>
-<td style="text-align: left;">Emergent Herbaceous Wetlands</td>
-<td style="text-align: right;">71.28241</td>
-<td style="text-align: right;">-156.61936</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/barr</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BART</td>
-<td style="text-align: left;">Bartlett Experimental Forest NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
-<td style="text-align: right;">44.06389</td>
-<td style="text-align: right;">-71.28737</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/bart</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BLAN</td>
-<td style="text-align: left;">Blandy Experimental Farm NEON</td>
-<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
-<td style="text-align: right;">39.03370</td>
-<td style="text-align: right;">-78.04179</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/blan</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BONA</td>
-<td style="text-align: left;">Caribou-Poker Creeks Research Watershed NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
-<td style="text-align: right;">65.15401</td>
-<td style="text-align: right;">-147.50258</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/bona</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CLBJ</td>
-<td style="text-align: left;">Lyndon B. Johnson National Grassland NEON</td>
-<td style="text-align: left;">Deciduous Forest|Grassland/Herbaceous</td>
-<td style="text-align: right;">33.40123</td>
-<td style="text-align: right;">-97.57000</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/clbj</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CPER</td>
-<td style="text-align: left;">Central Plains Experimental Range NEON</td>
-<td style="text-align: left;">Grassland/Herbaceous</td>
-<td style="text-align: right;">40.81554</td>
-<td style="text-align: right;">-104.74559</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/cper</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DCFS</td>
-<td style="text-align: left;">Dakota Coteau Field Site NEON</td>
-<td style="text-align: left;">Grassland/Herbaceous</td>
-<td style="text-align: right;">47.16165</td>
-<td style="text-align: right;">-99.10656</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/dcfs</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DEJU</td>
-<td style="text-align: left;">Delta Junction NEON</td>
-<td style="text-align: left;">Evergreen Forest|Shrub/Scrub|Woody Wetlands</td>
-<td style="text-align: right;">63.88112</td>
-<td style="text-align: right;">-145.75136</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/deju</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DELA</td>
-<td style="text-align: left;">Dead Lake NEON</td>
-<td style="text-align: left;">Evergreen Forest|Woody Wetlands</td>
-<td style="text-align: right;">32.54173</td>
-<td style="text-align: right;">-87.80388</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/dela</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DSNY</td>
-<td style="text-align: left;">Disney Wilderness Preserve NEON</td>
-<td style="text-align: left;">Pasture/Hay|Woody Wetlands</td>
-<td style="text-align: right;">28.12505</td>
-<td style="text-align: right;">-81.43619</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/dsny</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GRSM</td>
-<td style="text-align: left;">Great Smoky Mountains National Park NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest</td>
-<td style="text-align: right;">35.68896</td>
-<td style="text-align: right;">-83.50195</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/grsm</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GUAN</td>
-<td style="text-align: left;">Guanica Forest NEON</td>
-<td style="text-align: left;">Evergreen Forest</td>
-<td style="text-align: right;">17.96955</td>
-<td style="text-align: right;">-66.86870</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/guan</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">HARV</td>
-<td style="text-align: left;">Harvard Forest &amp; Quabbin Watershed NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
-<td style="text-align: right;">42.53691</td>
-<td style="text-align: right;">-72.17265</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/harv</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">HEAL</td>
-<td style="text-align: left;">Healy NEON</td>
-<td style="text-align: left;">Dwarf Scrub|Evergreen Forest|Shrub/Scrub</td>
-<td style="text-align: right;">63.87580</td>
-<td style="text-align: right;">-149.21335</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/heal</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">JERC</td>
-<td style="text-align: left;">The Jones Center At Ichauway NEON</td>
-<td style="text-align: left;">Cultivated Crops|Deciduous Forest|Evergreen Forest|Mixed Forest</td>
-<td style="text-align: right;">31.19484</td>
-<td style="text-align: right;">-84.46862</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/jerc</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">JORN</td>
-<td style="text-align: left;">Jornada Experimental Range NEON</td>
-<td style="text-align: left;">Shrub/Scrub</td>
-<td style="text-align: right;">32.59069</td>
-<td style="text-align: right;">-106.84254</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/jorn</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">KONA</td>
-<td style="text-align: left;">Konza Prairie Agroecosystem NEON</td>
-<td style="text-align: left;">Cultivated Crops</td>
-<td style="text-align: right;">39.11045</td>
-<td style="text-align: right;">-96.61293</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/kona</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">KONZ</td>
-<td style="text-align: left;">Konza Prairie Biological Station NEON</td>
-<td style="text-align: left;">Deciduous Forest|Grassland/Herbaceous</td>
-<td style="text-align: right;">39.10077</td>
-<td style="text-align: right;">-96.56307</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/konz</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LAJA</td>
-<td style="text-align: left;">Lajas Experimental Station NEON</td>
-<td style="text-align: left;">Cultivated Crops|Grassland/Herbaceous|Pasture/Hay</td>
-<td style="text-align: right;">18.02126</td>
-<td style="text-align: right;">-67.07689</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/laja</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LENO</td>
-<td style="text-align: left;">Lenoir Landing NEON</td>
-<td style="text-align: left;">Deciduous Forest|Woody Wetlands</td>
-<td style="text-align: right;">31.85386</td>
-<td style="text-align: right;">-88.16118</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/leno</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MLBS</td>
-<td style="text-align: left;">Mountain Lake Biological Station NEON</td>
-<td style="text-align: left;">Deciduous Forest</td>
-<td style="text-align: right;">37.37831</td>
-<td style="text-align: right;">-80.52485</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/mlbs</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">MOAB</td>
-<td style="text-align: left;">Moab NEON</td>
-<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
-<td style="text-align: right;">38.24828</td>
-<td style="text-align: right;">-109.38827</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/moab</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NIWO</td>
-<td style="text-align: left;">Niwot Ridge NEON</td>
-<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous</td>
-<td style="text-align: right;">40.05425</td>
-<td style="text-align: right;">-105.58237</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/niwo</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NOGP</td>
-<td style="text-align: left;">Northern Great Plains Research Laboratory NEON</td>
-<td style="text-align: left;">Grassland/Herbaceous</td>
-<td style="text-align: right;">46.76972</td>
-<td style="text-align: right;">-100.91535</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/nogp</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">OAES</td>
-<td style="text-align: left;">Marvin Klemme Range Research Station NEON</td>
-<td style="text-align: left;">Grassland/Herbaceous|Shrub/Scrub</td>
-<td style="text-align: right;">35.41060</td>
-<td style="text-align: right;">-99.05878</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/oaes</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ONAQ</td>
-<td style="text-align: left;">Onaqui NEON</td>
-<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
-<td style="text-align: right;">40.17760</td>
-<td style="text-align: right;">-112.45245</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/onaq</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ORNL</td>
-<td style="text-align: left;">Oak Ridge NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
-<td style="text-align: right;">35.96413</td>
-<td style="text-align: right;">-84.28259</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/ornl</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">OSBS</td>
-<td style="text-align: left;">Ordway-Swisher Biological Station NEON</td>
-<td style="text-align: left;">Emergent Herbaceous Wetlands|Evergreen Forest|Woody Wetlands</td>
-<td style="text-align: right;">29.68928</td>
-<td style="text-align: right;">-81.99343</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/osbs</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PUUM</td>
-<td style="text-align: left;">Pu’u Maka’ala Natural Area Reserve NEON</td>
-<td style="text-align: left;">Evergreen Forest</td>
-<td style="text-align: right;">19.55309</td>
-<td style="text-align: right;">-155.31731</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/puum</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">RMNP</td>
-<td style="text-align: left;">Rocky Mountains NEON</td>
-<td style="text-align: left;">Evergreen Forest</td>
-<td style="text-align: right;">40.27590</td>
-<td style="text-align: right;">-105.54596</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/rmnp</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SCBI</td>
-<td style="text-align: left;">Smithsonian Conservation Biology Institute NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
-<td style="text-align: right;">38.89292</td>
-<td style="text-align: right;">-78.13949</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/scbi</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SERC</td>
-<td style="text-align: left;">Smithsonian Environmental Research Center NEON</td>
-<td style="text-align: left;">Cultivated Crops|Deciduous Forest</td>
-<td style="text-align: right;">38.89013</td>
-<td style="text-align: right;">-76.56001</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/serc</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SJER</td>
-<td style="text-align: left;">San Joaquin Experimental Range NEON</td>
-<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
-<td style="text-align: right;">37.10878</td>
-<td style="text-align: right;">-119.73228</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/sjer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SOAP</td>
-<td style="text-align: left;">Soaproot Saddle NEON</td>
-<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
-<td style="text-align: right;">37.03337</td>
-<td style="text-align: right;">-119.26219</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/soap</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SRER</td>
-<td style="text-align: left;">Santa Rita Experimental Range NEON</td>
-<td style="text-align: left;">Shrub/Scrub</td>
-<td style="text-align: right;">31.91068</td>
-<td style="text-align: right;">-110.83549</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/srer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">STEI</td>
-<td style="text-align: left;">Steigerwaldt-Chequamegon NEON</td>
-<td style="text-align: left;">Deciduous Forest|Mixed Forest|Woody Wetlands</td>
-<td style="text-align: right;">45.50894</td>
-<td style="text-align: right;">-89.58637</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/stei</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">STER</td>
-<td style="text-align: left;">North Sterling NEON</td>
-<td style="text-align: left;">Cultivated Crops</td>
-<td style="text-align: right;">40.46189</td>
-<td style="text-align: right;">-103.02929</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/ster</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">TALL</td>
-<td style="text-align: left;">Talladega National Forest NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
-<td style="text-align: right;">32.95047</td>
-<td style="text-align: right;">-87.39326</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/tall</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TEAK</td>
-<td style="text-align: left;">Lower Teakettle NEON</td>
-<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
-<td style="text-align: right;">37.00583</td>
-<td style="text-align: right;">-119.00602</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/teak</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">TOOL</td>
-<td style="text-align: left;">Toolik Field Station NEON</td>
-<td style="text-align: left;">Dwarf Scrub|Shrub/Scrub</td>
-<td style="text-align: right;">68.66109</td>
-<td style="text-align: right;">-149.37047</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/tool</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TREE</td>
-<td style="text-align: left;">Treehaven NEON</td>
-<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
-<td style="text-align: right;">45.49369</td>
-<td style="text-align: right;">-89.58571</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/tree</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UKFS</td>
-<td style="text-align: left;">University of Kansas Field Station NEON</td>
-<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
-<td style="text-align: right;">39.04043</td>
-<td style="text-align: right;">-95.19215</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/ukfs</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UNDE</td>
-<td style="text-align: left;">University of Notre Dame Environmental Research Center NEON</td>
-<td style="text-align: left;">Deciduous Forest|Mixed Forest|Woody Wetlands</td>
-<td style="text-align: right;">46.23391</td>
-<td style="text-align: right;">-89.53725</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/unde</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">WOOD</td>
-<td style="text-align: left;">Chase Lake National Wildlife Refuge NEON</td>
-<td style="text-align: left;">Emergent Herbaceous Wetlands|Grassland/Herbaceous</td>
-<td style="text-align: right;">47.12820</td>
-<td style="text-align: right;">-99.24133</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/wood</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">WREF</td>
-<td style="text-align: left;">Wind River Experimental Forest NEON</td>
-<td style="text-align: left;">Evergreen Forest</td>
-<td style="text-align: right;">45.82049</td>
-<td style="text-align: right;">-121.95191</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/wref</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">YELL</td>
-<td style="text-align: left;">Yellowstone National Park NEON</td>
-<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
-<td style="text-align: right;">44.95348</td>
-<td style="text-align: right;">-110.53914</td>
-<td style="text-align: left;">https://www.neonscience.org/field-sites/yell</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>See Table at end for more information on the sites</p>
 </section>
 <section id="target-data-calculation" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="target-data-calculation"><span class="header-section-number">3.3.3</span> Target data calculation</h3>
 <p>Tick drags occur every three weeks at the NEON sites used in this challenge. The sampling season at each site is determined by phenological milestones, beginning and ending within two weeks of green-up and senescence, respectively. The 1m^2 cloth is dragged for 160m (and at least 80m), and ticks are collected intermittently. They are then sent to a lab for taxonomic identification. Ticks are then identified by life stage and taxonomic rank. The target data is for <em>Amblyomma americanum</em> nymphs that were identified to the species level; i.e.&nbsp;ticks identified as being in the <em>Amblyomma</em> genus are not included.</p>
-<p><strong>Use of 2021 data:</strong> The forecasting challenge is for the 2021 field season, thus environmental covariates are known. However, in the spirit of keeping this as much of a “forecasting” challenge as possible, we ask that for four week forecast period teams use the NOAA GEFS forecasting data.</p>
 </section>
 <section id="target-file" class="level3" data-number="3.3.4">
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="target-file"><span class="header-section-number">3.3.4</span> Target file</h3>
@@ -755,67 +354,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <ul>
-<li><code>time</code>: YYYY-MM-DD The first day (Sunday) of the MMWR week</li>
-<li><code>site_id</code>: Site where ticks are observed (HARV)</li>
+<li><code>time</code>: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)</li>
+<li><code>site_id</code>: Site where ticks are observed.</li>
 <li><code>variable</code>: <code>amblyomma_americanum</code> (density of <em>Amblyomma americanum</em> ticks; ticks / 1600m^2)</li>
 <li><code>observed</code>: value for <code>variable</code></li>
-<li><code>mmwr_week</code>: The MMWR week that starts on Sunday, consistent with CDC version of the epidemiological week<br>
-</li>
+<li><code>iso_week</code>: The ISO-week</li>
 </ul>
 </section>
 </section>
 <section id="timeline" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">3.4</span> Timeline</h2>
-<p>The challenge will begin on March 31, 2022 at 11:59 PM Eastern Standard Time, and will run through October 31, 2022. Each forecast will be for the four MMWR weeks during that month.</p>
-<p>For example, the forecast that is due on March 31, 2022 will be for MMWR weeks 10-13 of 2021 because the Sundays (the start of each MMWR week) in March 2021 correspond to MMWR weeks 10-13. Likewise, the forecast due April 30, 2022 will be for MMWR weeks 14-17 of 2021. A table of which weeks to forecast at each deadline can be found below.</p>
-<p>It is unclear when the provisional 2021 tick taxonomic data will be released. If any is released during the challenge, teams will be able to use it if the data is for weeks that have already been forecasted. For example, if the provisional 2021 data is released on July 15, 2022, teams can use the 2021 data up to MMWR week 26 to calibrate their models for the forecasts due July 31, 2022.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">2022 Forecast Submission date</th>
-<th style="text-align: center;">2021 Target Epidemiological weeks</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">March 31</td>
-<td style="text-align: center;">10-13</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">April 30</td>
-<td style="text-align: center;">14-17</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">May 31</td>
-<td style="text-align: center;">18-22</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">June 30</td>
-<td style="text-align: center;">23-26</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">July 31</td>
-<td style="text-align: center;">27-30</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">August 31</td>
-<td style="text-align: center;">31-35</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">September 31</td>
-<td style="text-align: center;">36-39</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">October 31</td>
-<td style="text-align: center;">40-44</td>
-</tr>
-</tbody>
-</table>
+<p>Weekly-time step forecasts for a minimum of 4 weeks in the future submitted weekly by 12:59 pm ET on Mondays. A minimum of 4 week in the future must be forecasted for each submission, but they could be for longer. New forecasts can be submitted daily as new weather forecasts become available. The key is that submissions are predictions of the future.</p>
+<p>Weekly submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
+<p>The timeline evaluation is determined by the data latency provided by NEON. NEON currently lists 300 days as the latency between data collection and reporting data with taxonomic identification.</p>
 </section>
 <section id="submissions" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">3.5</span> Submissions</h2>
 <p>The required names for forecasted variable: <code>amblyomma_americanum</code></p>
-<p>The required time unit: <code>date</code> for the first day (Sunday) of the MMWR week <code>date</code> in <code>YYYY-MM-DD</code> format.</p>
+<p>The required time unit: <code>date</code> for the Monday of the corresponding isoweek in <code>YYYY-MM-DD</code> format.</p>
 <p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
 </section>
 <section id="meterological-inputs-for-modeling" class="level2" data-number="3.6">
@@ -850,6 +406,107 @@ Sadie Ryan, University of Florida</p>
 <section id="partners" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="partners"><span class="header-section-number">3.11</span> Partners</h2>
 <p>Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/).</p>
+</section>
+<section id="site-list-table" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="site-list-table"><span class="header-section-number">3.12</span> Site list table</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">siteID</th>
+<th style="text-align: left;">site name</th>
+<th style="text-align: left;">vegetation type</th>
+<th style="text-align: right;">latitude</th>
+<th style="text-align: right;">longtitude</th>
+<th style="text-align: left;">NEON site URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BLAN</td>
+<td style="text-align: left;">Blandy Experimental Farm NEON</td>
+<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
+<td style="text-align: right;">39.03370</td>
+<td style="text-align: right;">-78.04179</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/blan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KONZ</td>
+<td style="text-align: left;">Konza Prairie Biological Station NEON</td>
+<td style="text-align: left;">Deciduous Forest|Grassland/Herbaceous</td>
+<td style="text-align: right;">39.10077</td>
+<td style="text-align: right;">-96.56307</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/konz</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LENO</td>
+<td style="text-align: left;">Lenoir Landing NEON</td>
+<td style="text-align: left;">Deciduous Forest|Woody Wetlands</td>
+<td style="text-align: right;">31.85386</td>
+<td style="text-align: right;">-88.16118</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/leno</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORNL</td>
+<td style="text-align: left;">Oak Ridge NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
+<td style="text-align: right;">35.96413</td>
+<td style="text-align: right;">-84.28259</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ornl</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OSBS</td>
+<td style="text-align: left;">Ordway-Swisher Biological Station NEON</td>
+<td style="text-align: left;">Emergent Herbaceous Wetlands|Evergreen Forest|Woody Wetlands</td>
+<td style="text-align: right;">29.68928</td>
+<td style="text-align: right;">-81.99343</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/osbs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCBI</td>
+<td style="text-align: left;">Smithsonian Conservation Biology Institute NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
+<td style="text-align: right;">38.89292</td>
+<td style="text-align: right;">-78.13949</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/scbi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SERC</td>
+<td style="text-align: left;">Smithsonian Environmental Research Center NEON</td>
+<td style="text-align: left;">Cultivated Crops|Deciduous Forest</td>
+<td style="text-align: right;">38.89013</td>
+<td style="text-align: right;">-76.56001</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/serc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TALL</td>
+<td style="text-align: left;">Talladega National Forest NEON</td>
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
+<td style="text-align: right;">32.95047</td>
+<td style="text-align: right;">-87.39326</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/tall</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UKFS</td>
+<td style="text-align: left;">University of Kansas Field Station NEON</td>
+<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
+<td style="text-align: right;">39.04043</td>
+<td style="text-align: right;">-95.19215</td>
+<td style="text-align: left;">https://www.neonscience.org/field-sites/ukfs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>
