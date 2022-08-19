@@ -199,26 +199,52 @@ ul.task-list{list-style: none;}
 
 <p>Target data and NOAA driver data are being regularly downloaded, processed, and published to the server for use in the Challenge. Below are are the approximate timing for when different data products are available for download.</p>
 <p><strong>NOAA Stage 1 (3-6 hr intervals)</strong></p>
-<p>Updated hourly as data become available on <a href="https://registry.opendata.aws/noaa-gefs/">Amazon Web Services</a> For a given forecast that starts at 0 hour UTC (cycle = 0), the full 35-day horizon for all ensembles is available at ~ 4 am UTC on the following date. Stage 1 data are only available as a data frame using <code>neon4cast::noaa_stage1()</code> or as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage1</code> bucket at <code>data.ecoforecast.org</code></p>
+<p>Updated hourly as data become available on <a href="https://registry.opendata.aws/noaa-gefs/">Amazon Web Services</a> For a given forecast that starts at 0 hour UTC (cycle = 0), the full 35-day horizon for all ensembles is available at ~ 4 am UTC on the following date. Stage 1 are available as:</p>
+<ul>
+<li>a data frame by using <code>neon4cast::noaa_stage1()</code><br>
+</li>
+<li>parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage1</code> bucket at <code>data.ecoforecast.org</code> endpoint<br>
+</li>
+</ul>
 <p><strong>NOAA Stage 2 (1 hour intervals)</strong></p>
-<p>Updated daily once the full 35-day horizon for all ensembles has been downloaded in Stage 1. For a given forecast start date, the full 35-day horizon for all ensembles is available at ~ 5 am UTC on the following date. Stage 2 are available as a data frame using <code>neon4cast::noaa_stage2()</code>, as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage2/parquet</code> bucket at <code>data.ecoforecast.org</code>, or as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage2/netcdf</code>bucket at <code>data.ecoforecast.org</code>.</p>
+<p>Updated daily once the full 35-day horizon for all ensembles has been downloaded in Stage 1. For a given forecast start date, the full 35-day horizon for all ensembles is available at ~ 5 am UTC on the following date. Stage 2 are available as:</p>
+<ul>
+<li>a data frame by using <code>neon4cast::noaa_stage2()</code><br>
+</li>
+<li>parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage2/parquet</code> bucket at <code>data.ecoforecast.org</code> endpoint<br>
+</li>
+<li>netcdf files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage2/netcdf</code>bucket at <code>data.ecoforecast.org</code> endpoint</li>
+</ul>
 <p><strong>NOAA Stage 3 (1 hour intervals)</strong></p>
-<p>Updated daily. For a given forecast start date, Stage 3 is updated to the current at ~ 11 am UTC each day. Stage 3 are available as a data frame using <code>neon4cast::noaa_stage3()</code>, as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/parquet</code> bucket at <code>data.ecoforecast.org</code>, or as parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/netcdf</code>bucket at <code>data.ecoforecast.org</code>.</p>
+<p>Updated daily. For a given forecast start date, Stage 3 is updated to the current at ~ 11 am UTC each day. Stage 3 are available as:</p>
+<ul>
+<li>a data frame by using <code>neon4cast::noaa_stage3()</code><br>
+</li>
+<li>parquet files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/parquet</code> bucket at <code>data.ecoforecast.org</code> endpoint<br>
+</li>
+<li>netcdf files in the <code>neon4cast-cast/drivers/noaa/gefs-v12/stage3/netcdf</code>bucket at <code>data.ecoforecast.org</code> endpoint</li>
+</ul>
 <p><strong>Terrestrial targets</strong></p>
 <p>Timing: updated daily between 9 and 10 am UTC.<br>
 Latency: New data each day is from 5-day prior</p>
 <p><strong>Phenology targets</strong></p>
-<p>Timing: The phenology targets are at 2 pm UTC. Latency: New data each day is from 1-day prior</p>
+<p>Timing: The phenology targets are at 2 pm UTC.<br>
+Latency: New data each day is from 1-day prior</p>
 <p><strong>Aquatics targets</strong></p>
-<p>Timing: Updated daily between 7 and 8 am UTC Latency: New data each day is from 2-days prior</p>
+<p>Timing: Updated daily between 7 and 8 am UTC.<br>
+Latency: New data each day is from 2-days prior</p>
 <p><strong>Tick targets</strong></p>
-<p>Timing: Appears monthly around the 15th Latency: New data is from ~300 days priors</p>
+<p>Timing: Appears monthly around the 15th<br>
+Latency: New data is from ~300 days prior</p>
 <p><strong>Beetles targets</strong></p>
-<p>Timing: Appears monthly around the 15th Latency: New data is from ~60 days priors</p>
+<p>Timing: Appears monthly around the 15th<br>
+Latency: New data is from ~60 days prior</p>
 <p><strong>Scored forecasts</strong></p>
-<p>Forecast scores are updated daily at 11 am UTC Latency: New scores are for 1-day prior</p>
+<p>Timing: Forecast scores are updated daily at 11 am UTC<br>
+Latency: New scores are for 1-day prior</p>
 <p><strong>Forecasting submission processing</strong></p>
-<p>Submitted forecasts are processed every 2 hours.</p>
+<p>Timing: Submitted forecasts are processed every 2 hours.<br>
+</p>
 
 
 

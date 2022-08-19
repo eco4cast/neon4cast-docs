@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="step-1-forecast-format" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="step-1-forecast-format"><span class="header-section-number">7.2</span> Step 1: Forecast format</h2>
-<p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mean</code> and <code>sd</code> for each forecasted variable, site_id, and time.</p>
+<p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mu</code> and <code>sigma</code> for each forecasted variable, site_id, and time.</p>
 <section id="ensemble-csv" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="ensemble-csv"><span class="header-section-number">7.2.1</span> Ensemble CSV</h3>
 <ul>
@@ -319,9 +319,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>start_time</code>: The start of the forecast; this should be 0 times steps in the future. This should only be one value of <code>start_time</code> in the file</li>
 <li><code>site_id</code>: NEON code for site</li>
 <li><code>family</code> name of probability distribution that is described by the parameter values in the parameter column; only <code>normal</code> is currently allowed</li>
-<li><code>parameter</code> required to be the string <code>mean</code> or <code>sd</code> (see note below about statistic column).</li>
+<li><code>parameter</code> required to be the string <code>mu</code> or <code>sigma</code> (see note below about parameter column).</li>
 <li><code>variable</code>: standardized variable name from the theme</li>
-<li><code>predicted</code>: forecasted value for mean or standard deviation</li>
+<li><code>predicted</code>: forecasted value for parameter in the parameter column</li>
 </ul>
 <p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).</p>
 <div class="cell">

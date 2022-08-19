@@ -263,6 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"> <span class="header-section-number">2.10</span> FAQ</a></li>
   <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"> <span class="header-section-number">2.11</span> Design team</a></li>
   <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"> <span class="header-section-number">2.12</span> Partners</a></li>
+  <li><a href="#site-table" id="toc-site-table" class="nav-link" data-scroll-target="#site-table"> <span class="header-section-number">2.13</span> Site table</a></li>
   </ul>
 </nav>
     </div>
@@ -286,8 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p><strong>What:</strong> Net ecosystem exchange of CO2 and evapotranspiration in terrestrial ecosystems</p>
-<p><strong>Where</strong>: 10 NEON sites across the conterminous U.S.</p>
-<p><strong>When</strong>: Daily forecasts for 35-days in the future. Forecast submissions are accepted daily throughout 2022. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
+<p><strong>Where</strong>: 47 NEON sites across the U.S. and Puerto Rico.</p>
+<p><strong>When</strong>: Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why:</strong> Carbon and water cycling are fundamental for climate and water regulation services provided by ecosystems</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -304,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="challenge" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="challenge"><span class="header-section-number">2.2</span> Challenge</h2>
-<p>This forecasting challenge asks teams to forecast net ecosystem exchange of carbon dioxide (NEE) and latent heat flux of evapotranspiration (LE) across 10 NEON sites with differing climates. Forecasts can be submitted the 30-minute and/or daily time step over the next 35-days. Weather forecasts from NOAA Global Ensemble Forecast System are provided to use as model drivers (if forecasting model uses meteorological inputs). Forecasts can be submitted each day in 2022.</p>
+<p>This forecasting challenge asks teams to forecast net ecosystem exchange of carbon dioxide (NEE) and latent heat flux of evapotranspiration (LE) across 10 NEON sites with differing climates. Forecasts can be submitted the 30-minute and/or daily time step over the next 30-days. Weather forecasts from NOAA Global Ensemble Forecast System are provided to use as model drivers (if forecasting model uses meteorological inputs). Forecasts can be submitted each day in 2022.</p>
 <p>Teams are asked to submit their forecast of measured NEON NEE and LE, along with uncertainty estimates and metadata. Any existing NEE and LE may be used to build and improve the models used to generate forecasts. Other data can be used so long as they are not from the month being forecast and the data are made publicly available (minimum of URL, but ideally a script) and accessible to all teams in the challenge.</p>
 </section>
 <section id="data-targets" class="level2" data-number="2.3">
@@ -335,6 +336,271 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(terrestrial <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>with full site table at the end of this page.</p>
+<p>The distribution of sites across ecosystems types is:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 92%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Vegetation type</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Evergreen Forest</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous|Shrub/Scrub</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Grassland/Herbaceous</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cultivated Crops</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Mixed Forest</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest|Pasture/Hay</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Deciduous Forest|Grassland/Herbaceous</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deciduous Forest|Mixed Forest|Woody Wetlands</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Deciduous Forest|Pasture/Hay</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shrub/Scrub</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cultivated Crops|Deciduous Forest</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cultivated Crops|Deciduous Forest|Evergreen Forest|Mixed Forest</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cultivated Crops|Grassland/Herbaceous|Pasture/Hay</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deciduous Forest</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Deciduous Forest|Evergreen Forest</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deciduous Forest|Woody Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dwarf Scrub|Evergreen Forest|Shrub/Scrub</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dwarf Scrub|Shrub/Scrub</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emergent Herbaceous Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Emergent Herbaceous Wetlands|Evergreen Forest|Woody Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emergent Herbaceous Wetlands|Grassland/Herbaceous</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evergreen Forest|Grassland/Herbaceous</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evergreen Forest|Shrub/Scrub|Woody Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evergreen Forest|Woody Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Grassland/Herbaceous|Shrub/Scrub</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pasture/Hay|Woody Wetlands</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="minute-target-data-calculation" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="minute-target-data-calculation"><span class="header-section-number">2.3.4</span> 30-minute target data calculation</h3>
+<p>To create the data for evaluation (and training) for NEE and LE we extract NEE and LE that pass the turbulence quality control flags (<code>qfqm.fluxCo2.turb.qfFinl</code> = 0 ) provided by NEON and has flux values between -50 and 50 umol CO2 m<sup>-2</sup> s<sup>-1</sup>.</p>
+<p>The table with the half-hour NEE and LE has the following columns</p>
+<ul>
+<li><code>time</code>: YYYY-MM-DD HH:MM for the start of the 30-minute period in UTC<br>
+</li>
+<li><code>site_id</code>: NEON site code (e.g., BART)<br>
+</li>
+<li><code>variable</code>: <code>nee</code> (umol CO2 m<sup>-2</sup> s<sup>-1</sup>) or <code>le</code> W m<sup>-2</sup><br>
+</li>
+<li><code>observed</code>: value for variable</li>
+</ul>
+<p>Here is the download link and format of the <code>terrestrial_30min</code> target file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,933,040 × 7
+   time                site_id variable observed sd_intercept sd_slopeP sd_slo…¹
+   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 2017-02-01 10:00:00 BART    nee        -0.574         1.14     0.206   -0.131
+ 2 2017-02-01 10:30:00 BART    nee         0.297         1.14     0.206   -0.131
+ 3 2017-02-01 11:00:00 BART    nee        NA             1.14     0.206   -0.131
+ 4 2017-02-01 11:30:00 BART    nee        NA             1.14     0.206   -0.131
+ 5 2017-02-01 12:00:00 BART    nee         0.224         1.14     0.206   -0.131
+ 6 2017-02-01 12:30:00 BART    nee         2.12          1.14     0.206   -0.131
+ 7 2017-02-01 13:00:00 BART    nee         2.18          1.14     0.206   -0.131
+ 8 2017-02-01 13:30:00 BART    nee        NA             1.14     0.206   -0.131
+ 9 2017-02-01 14:00:00 BART    nee        NA             1.14     0.206   -0.131
+10 2017-02-01 14:30:00 BART    nee        NA             1.14     0.206   -0.131
+# … with 1,933,030 more rows, and abbreviated variable name ¹​sd_slopeN
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>The code used to generate the targets from NEON data can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R">here</a></p>
+</section>
+<section id="daily-target-data-calculation" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="daily-target-data-calculation"><span class="header-section-number">2.3.5</span> Daily target data calculation</h3>
+<p>To evaluate the models that produce daily flux forecasts, we select only days with at least 24 of 48 half hours that pass the quality control flags. For these days, we average the half-hours and convert carbon to daily units (gC/m2/day). The daily data table has the following columns.</p>
+<ul>
+<li><code>time</code>: YYYY-MM-DD (the day is determined using UTC time)<br>
+</li>
+<li><code>site_id</code>: NEON site code (e.g., BART)<br>
+</li>
+<li><code>variable</code>: <code>nee</code> (g C m<sup>-2</sup> day<sup>-1</sup>) or <code>le</code> (W m<sup>-2</sup>)</li>
+<li><code>observed</code>: value for variable</li>
+</ul>
+<p>Here is the download link and format of the <code>terrestrial_daily</code> target file</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18,824 × 4
+   time       site_id variable observed
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+ 1 2017-02-02 BART    le          2.71 
+ 2 2017-02-02 BART    nee         0.580
+ 3 2017-02-03 BART    le          8.47 
+ 4 2017-02-03 BART    nee         0.687
+ 5 2017-02-04 BART    le          6.64 
+ 6 2017-02-04 BART    nee         0.693
+ 7 2017-02-05 BART    le          3.53 
+ 8 2017-02-05 BART    nee         0.912
+ 9 2017-02-06 BART    le         11.5  
+10 2017-02-06 BART    nee         0.965
+# … with 18,814 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>The code used to generate the targets from NEON data can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R">here</a></p>
+</section>
+</section>
+<section id="timeline" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">2.4</span> Timeline</h2>
+<p>Forecasts for a minimum of 30 days can be submitted daily by 6 pm ET throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., NEE) become available. Processed NEE and LE data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
+<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and metreology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
+<p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
+</section>
+<section id="flux-data-latency" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="flux-data-latency"><span class="header-section-number">2.5</span> Flux data latency</h2>
+<p>NEON data officially releases the flux data on their data portal and API in monthly data packages. Data for a given month is scheduled to be released around the 15th of the following month.</p>
+<p>NEON is also processing flux data with only a 5 day delay (latency). Any data that has been processed but not included in a released monthly package is available on NEON s3 storage. The list of files that can be downloaded can found <a href="https://s3.data.neonscience.org/neon-sae-files/ods/sae_files_unpublished/sae_file_url_unpublished.csv">here</a>.</p>
+<p>Our targets file is the combination of NEON’s monthly releases and the files on the s3 bucket. As a result, flux data within 5-days of the restart of a forecast are available to inform the forecast.</p>
+<p>The reduction of the latency from monthly to 5-days allows this theme to forecast in real-time - a major advancement for this forecasting challenge. Thank you NEON!</p>
+</section>
+<section id="submissions" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="submissions"><span class="header-section-number">2.6</span> Submissions</h2>
+<p>The required names for forecasted variables: <code>nee</code>, and <code>le</code>.</p>
+<p>The required time unit: <code>date</code> for daily forecast in <code>YYYY-MM-DD</code> format and <code>date-time</code> for 30 minute forecasts in <code>YYYY-MM-DD HH:MM:SS</code> format</p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
+</section>
+<section id="meterological-inputs-for-modeling" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">2.7</span> Meterological inputs for modeling</h2>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
+</section>
+<section id="useful-functions" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">2.8</span> Useful functions</h2>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;13</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
+</section>
+<section id="null-models" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">2.9</span> Null models</h2>
+<p>Two null models are automatically generated each day - these are simple baseline models. The persistence null model uses the most recent measurement of nee or le and predicts that the values will be constant in the future. The climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year. We apply both the persistence and climatology model to the daily fluxes and the climatology to the 30 minute fluxes</p>
+<p>Code for the daily persistence null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_persistance.R" target="&quot;_blank">here</a></p>
+<p>Code for the daily climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_daily_climatology.R" target="_blank">here</a></p>
+<p>Code for the 30 minute climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_clim.R" target="_blank">here</a></p>
+</section>
+<section id="faq" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">2.10</span> FAQ</h2>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
+</section>
+<section id="design-team" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="design-team"><span class="header-section-number">2.11</span> Design team</h2>
+<p>George Burba, LI-COR Biosciences<br>
+Jamie Cleverly, Terrestrial Ecosystem Research Network (TERN)<br>
+Ankur Desai, University of Wisconsin, Madison<br>
+Mike Dietze, Boston University<br>
+Andy Fox, Joint Center for Satellite Data Assimilation<br>
+William Hammond, Oklahoma State University<br>
+Danica Lombardozzi, National Center for Atmospheric Research<br>
+Quinn Thomas, Virginia Tech<br>
+Jody Peters, University of Notre Dame<br>
+Alex Young, SUNY - College of Environmental Science &amp; Forestry</p>
+</section>
+<section id="partners" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="partners"><span class="header-section-number">2.12</span> Partners</h2>
+<p>Data used in the challenge are from the National Ecological Observatory Network (<a href="https://www.neonscience.org/" target="_blank">NEON</a>)</p>
+<p><a href="https://ameriflux.lbl.gov/" target="_blank">Ameriflux</a> is an excellent database of eddy-covariance data, including historical data for some of the four challenge sites.</p>
+<p>Terrestrial Ecosystem Research Network <a href="https://www.tern.org.au/" target="_blank">(TERN)</a> has been involved in the design of the challenge.</p>
+</section>
+<section id="site-table" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="site-table"><span class="header-section-number">2.13</span> Site table</h2>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -737,142 +1003,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
-</section>
-<section id="minute-target-data-calculation" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="minute-target-data-calculation"><span class="header-section-number">2.3.4</span> 30-minute target data calculation</h3>
-<p>To create the data for evaluation (and training) for NEE and LE we extract NEE and LE that pass the turbulence quality control flags (<code>qfqm.fluxCo2.turb.qfFinl</code> = 0 ) provided by NEON and has flux values between -50 and 50 umol CO2 m<sup>-2</sup> s<sup>-1</sup>.</p>
-<p>The table with the half-hour NEE and LE has the following columns</p>
-<ul>
-<li><code>time</code>: YYYY-MM-DD HH:MM for the start of the 30-minute period in UTC<br>
-</li>
-<li><code>site_id</code>: NEON site code (e.g., BART)<br>
-</li>
-<li><code>variable</code>: <code>nee</code> (umol CO2 m<sup>-2</sup> s<sup>-1</sup>) or <code>le</code> W m<sup>-2</sup><br>
-</li>
-<li><code>observed</code>: value for variable</li>
-<li><code>sd_intercept</code>: intercept in the nee observation uncertainty standard deviation<br>
-</li>
-<li><code>sd_slopeP</code>: slope in the relationship between nee and observation uncertainty standard deviation for positive values of nee<br>
-</li>
-<li><code>sd_slopeN</code>: slope in the relationship between nee and observation uncertainty standard deviation for negative values of variable</li>
-</ul>
-<p>The observation uncertainty estimates for nee and le are derived from the <a href="https://pecanproject.github.io/" target="_blank">PEcAN project</a> and can be used by <code>sd &lt;- sd_intercept + sd_slopeP * observed</code>. They are not supplied by NEON.</p>
-<p>Here is the download link and format of the <code>terrestrial_30min</code> target file:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,933,040 × 7
-   time                site_id variable observed sd_intercept sd_slopeP sd_slo…¹
-   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 2017-02-01 10:00:00 BART    nee        -0.574         1.14     0.206   -0.131
- 2 2017-02-01 10:30:00 BART    nee         0.297         1.14     0.206   -0.131
- 3 2017-02-01 11:00:00 BART    nee        NA             1.14     0.206   -0.131
- 4 2017-02-01 11:30:00 BART    nee        NA             1.14     0.206   -0.131
- 5 2017-02-01 12:00:00 BART    nee         0.224         1.14     0.206   -0.131
- 6 2017-02-01 12:30:00 BART    nee         2.12          1.14     0.206   -0.131
- 7 2017-02-01 13:00:00 BART    nee         2.18          1.14     0.206   -0.131
- 8 2017-02-01 13:30:00 BART    nee        NA             1.14     0.206   -0.131
- 9 2017-02-01 14:00:00 BART    nee        NA             1.14     0.206   -0.131
-10 2017-02-01 14:30:00 BART    nee        NA             1.14     0.206   -0.131
-# … with 1,933,030 more rows, and abbreviated variable name ¹​sd_slopeN
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
-</div>
-</div>
-<p>The code used to generate the targets from NEON data can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R">here</a></p>
-</section>
-<section id="daily-target-data-calculation" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="daily-target-data-calculation"><span class="header-section-number">2.3.5</span> Daily target data calculation</h3>
-<p>To evaluate the models that produce daily flux forecasts, we select only days with at least 24 of 48 half hours that pass the quality control flags. For these days, we average the half-hours and convert carbon to daily units (gC/m2/day). The daily data table has the following columns.</p>
-<ul>
-<li><code>time</code>: YYYY-MM-DD (the day is determined using UTC time)<br>
-</li>
-<li><code>site_id</code>: NEON site code (e.g., BART)<br>
-</li>
-<li><code>variable</code>: <code>nee</code> (g C m<sup>-2</sup> day<sup>-1</sup>) or <code>le</code> (W m<sup>-2</sup>)</li>
-<li><code>observed</code>: value for variable</li>
-</ul>
-<p>Here is the download link and format of the <code>terrestrial_daily</code> target file</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18,906 × 4
-   time       site_id variable observed
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
- 1 2017-02-02 BART    le          2.71 
- 2 2017-02-02 BART    nee         0.580
- 3 2017-02-03 BART    le          8.47 
- 4 2017-02-03 BART    nee         0.687
- 5 2017-02-04 BART    le          6.64 
- 6 2017-02-04 BART    nee         0.693
- 7 2017-02-05 BART    le          3.53 
- 8 2017-02-05 BART    nee         0.912
- 9 2017-02-06 BART    le         11.5  
-10 2017-02-06 BART    nee         0.965
-# … with 18,896 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
-</div>
-</div>
-<p>The code used to generate the targets from NEON data can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/02_terrestrial_targets.R">here</a></p>
-</section>
-</section>
-<section id="timeline" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">2.4</span> Timeline</h2>
-<p>Forecasts for a minimum of 35 days can be submitted daily by 6 pm ET throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., NEE) become available. Processed NEE and LE data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
-<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and metreology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
-<p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
-</section>
-<section id="flux-data-latency" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="flux-data-latency"><span class="header-section-number">2.5</span> Flux data latency</h2>
-<p>NEON data officially releases the flux data on their data portal and API in monthly data packages. Data for a given month is scheduled to be released around the 15th of the following month.</p>
-<p>NEON is also processing flux data with only a 5 day delay (latency). Any data that has been processed but not included in a released monthly package is available on NEON s3 storage. The list of files that can be downloaded can found <a href="https://s3.data.neonscience.org/neon-sae-files/ods/sae_files_unpublished/sae_file_url_unpublished.csv">here</a>.</p>
-<p>Our targets file is the combination of NEON’s monthly releases and the files on the s3 bucket. As a result, flux data within 5-days of the restart of a forecast are available to inform the forecast.</p>
-<p>The reduction of the latency from monthly to 5-days allows this theme to forecast in real-time - a major advancement for this forecasting challenge. Thank you NEON!</p>
-</section>
-<section id="submissions" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="submissions"><span class="header-section-number">2.6</span> Submissions</h2>
-<p>The required names for forecasted variables: <code>nee</code>, and <code>le</code>.</p>
-<p>The required time unit: <code>date</code> for daily forecast in <code>YYYY-MM-DD</code> format and <code>date-time</code> for 30 minute forecasts in <code>YYYY-MM-DD HH:MM:SS</code> format</p>
-<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;7</span></a></p>
-</section>
-<section id="meterological-inputs-for-modeling" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">2.7</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
-</section>
-<section id="useful-functions" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">2.8</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;13</span></a></p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;10</span></a></p>
-</section>
-<section id="null-models" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">2.9</span> Null models</h2>
-<p>Two null models are automatically generated each day - these are simple baseline models. The persistence null model uses the most recent measurement of nee or le and predicts that the values will be constant in the future. The climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year. We apply both the persistence and climatology model to the daily fluxes and the climatology to the 30 minute fluxes</p>
-<p>Code for the daily persistence null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_persistance.R" target="&quot;_blank">here</a></p>
-<p>Code for the daily climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_daily_climatology.R" target="_blank">here</a></p>
-<p>Code for the 30 minute climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_clim.R" target="_blank">here</a></p>
-</section>
-<section id="faq" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">2.10</span> FAQ</h2>
-<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
-</section>
-<section id="design-team" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="design-team"><span class="header-section-number">2.11</span> Design team</h2>
-<p>George Burba, LI-COR Biosciences<br>
-Jamie Cleverly, Terrestrial Ecosystem Research Network (TERN)<br>
-Ankur Desai, University of Wisconsin, Madison<br>
-Mike Dietze, Boston University<br>
-Andy Fox, Joint Center for Satellite Data Assimilation<br>
-William Hammond, Oklahoma State University<br>
-Danica Lombardozzi, National Center for Atmospheric Research<br>
-Quinn Thomas, Virginia Tech<br>
-Jody Peters, University of Notre Dame<br>
-Alex Young, SUNY - College of Environmental Science &amp; Forestry</p>
-</section>
-<section id="partners" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="partners"><span class="header-section-number">2.12</span> Partners</h2>
-<p>Data used in the challenge are from the National Ecological Observatory Network (<a href="https://www.neonscience.org/" target="_blank">NEON</a>)</p>
-<p><a href="https://ameriflux.lbl.gov/" target="_blank">Ameriflux</a> is an excellent database of eddy-covariance data, including historical data for some of the four challenge sites.</p>
-<p>Terrestrial Ecosystem Research Network <a href="https://www.tern.org.au/" target="_blank">(TERN)</a> has been involved in the design of the challenge.</p>
 
 
 </section>
