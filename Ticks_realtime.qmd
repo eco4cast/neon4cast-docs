@@ -87,7 +87,7 @@ Weekly-time step forecasts for a minimum of 4 weeks in the future submitted week
 
 Weekly submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specifics times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more in @sec-faq
 
-The timeline evaluation is determined by the data latency provided by NEON.  NEON currently lists 300 days as the latency between data collection and reporting data with taxonomic identification.  
+The timeline evaluation is determined by the data latency provided by NEON. NEON currently lists 300 days as the latency between data collection and reporting data with taxonomic identification.
 
 ## Submissions
 
@@ -145,4 +145,3 @@ site_data %>%
   arrange(siteID) %>% 
   knitr::kable()
 ```
-
