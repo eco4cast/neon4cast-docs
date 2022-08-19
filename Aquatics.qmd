@@ -4,7 +4,7 @@
 
 **Where:** 7 lakes and 16 river/stream NEON sites.
 
-**When:** Forecasts produced daily with a 35-day forecast horizon. Forecast submissions are accepted daily throughout 2022. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
+**When:** Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 **Why:** Freshwater surface water temperature, dissolved oxygen, and chlorophyll-a are critical for life in aquatic environments and can represent the health of the system
 
@@ -34,11 +34,11 @@ chlorophyll-a is a metric of phytoplankton biomass. Phytoplankton biomass are th
 
 ## Challenge
 
-This design challenge asks teams to produce forecasts of mean daily surface water temperature and/or dissolved oxygen in 7 NEON lake and/or 16 NEON river/stream sites for 35-days in the future. Additionally, forecasts of chlorophyll-a are invited for the 7 lakes and 3 non-wadeable river NEON sites.
+This design challenge asks teams to produce forecasts of mean daily surface water temperature and/or dissolved oxygen in 7 NEON lake and/or 16 NEON river/stream sites for 30-days in the future. Additionally, forecasts of chlorophyll-a are invited for the 7 lakes and 3 non-wadeable river NEON sites.
 
 You can chose to submit to either the lakes, rivers or streams or all three. You can also chose to submit any of the three focal variables (temperature, oxygen, and chlorophyll).
 
-Teams are asked to submit their 35-day forecasts of NEON surface mean daily surface water temperature, dissolved oxygen, and/or chlorophyll-a along with uncertainty estimates and metadata. NEON surface water temperature, dissolved oxygen, and chlorophyll-a collected prior to the current date will be provided and may be used to build and improve the forecast models. Other data can be used as long as teams provide access (minimum of URL, but ideally a script) to all teams in the challenge.
+Teams are asked to submit their 30-day forecasts of NEON surface mean daily surface water temperature, dissolved oxygen, and/or chlorophyll-a along with uncertainty estimates and metadata. NEON surface water temperature, dissolved oxygen, and chlorophyll-a collected prior to the current date will be provided and may be used to build and improve the forecast models. Other data can be used as long as teams provide access (minimum of URL, but ideally a script) to all teams in the challenge.
 
 ## Data: Targets
 
@@ -117,7 +117,7 @@ site_data %>%
 
 ## Timeline
 
-Forecasts for a minimum of 35 days can be submitted daily by 11:59 pm UTC throughout 2022. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st -- March 7th. New forecasts can be submitted daily as new weather forecasts and observations (e.g., new temperature and water quality data is released by NEON) become available. The key is that submissions are predictions of the future.
+Forecasts for a minimum of 30 days can be submitted daily by 11:59 pm UTC. A minimum of 30 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st -- March 30th. New forecasts can be submitted daily as new weather forecasts and observations (e.g., new temperature and water quality data is released by NEON) become available. The key is that submissions are predictions of the future.
 
 Since daily submissions are allowed and encouraged, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specified times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more at @sec-faq
 

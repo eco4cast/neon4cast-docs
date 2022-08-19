@@ -2,23 +2,23 @@
 
 The following provides the requirements for the format of the forecasts that will be submitted. It is important to follow these format guidelines in order for your submitted forecasts to pass a set of internal checks that allow the forecast to be visualized on the [NEON Ecological Forecast Challenge dashboard](http://shiny3.ecoforecast.org/){target="_blank"} and evaluated with the scoring process.
 
-## Steps to  submitting
+## Steps to submitting
 
 We provide an overview of the steps for submitting with the details below:
 
-1) Generate forecast with required columns. There are three options for the file format described below.\
-2) Write forecast to a file that follows the standardized naming format.\
-3) Generate the metadata.  Do you best to fill it out but if you are having trouble please submit what you have.  Don't let metadata submission get in the way of submitting a forecast.\
-4) Submit (i.e., upload) forecast and metadata.\
+1)  Generate forecast with required columns. There are three options for the file format described below.\
+2)  Write forecast to a file that follows the standardized naming format.\
+3)  Generate the metadata. Do you best to fill it out but if you are having trouble please submit what you have. Don't let metadata submission get in the way of submitting a forecast.\
+4)  Submit (i.e., upload) forecast and metadata.\
 
 ## Step 1: Forecast format
 
-There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an `ensemble` column or both a `family` and `parameter` column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The `family` column uses the words `normal` to designate a normal distribution and the parameter column must have values of `mean` and `sd` for each forecasted variable, site_id, and time.
+There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an `ensemble` column or both a `family` and `parameter` column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The `family` column uses the words `normal` to designate a normal distribution and the parameter column must have values of `mu` and `sigma` for each forecasted variable, site_id, and time.
 
 ### Ensemble CSV
 
 -   `time`: forecast timestamp
--   `start_time`: The start of the forecast; this should be 0 times steps in the future.  This should only be one value of `start_time` in the file
+-   `start_time`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
 -   `site_id`: NEON code for site
 -   `ensemble` integer value for forecast replicate within the year and month (i.e. ensemble member or MCMC sample);
 -   `variable`: standardized variable name from the theme
@@ -35,12 +35,12 @@ Here is an example of a forecast in the Ensemble:
 ### Distribution CSV
 
 -   `time`: forecast timestamp
--   `start_time`: The start of the forecast; this should be 0 times steps in the future.  This should only be one value of `start_time` in the file
+-   `start_time`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
 -   `site_id`: NEON code for site
 -   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` is currently allowed
--   `parameter` required to be the string `mean` or `sd` (see note below about statistic column).
+-   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column).
 -   `variable`: standardized variable name from the theme
--   `predicted`: forecasted value for mean or standard deviation
+-   `predicted`: forecasted value for parameter in the parameter column
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).
 
@@ -76,12 +76,11 @@ or
 
 `theme_name-year-month-day-team_name_ID.nc`
 
-1) The `theme_name` options are: `terrestrial_daily`, `terrestrial_30min`, `aquatics`, `beetles`, `ticks`, or `phenology`.\
+1)  The `theme_name` options are: `terrestrial_daily`, `terrestrial_30min`, `aquatics`, `beetles`, `ticks`, or `phenology`.\
 
-2) The `year`, `month`, and `day` are the year, month, and day of the first forecast (horizon = 1).  For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.\
+2)  The `year`, `month`, and `day` are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.\
 
-3) `team_name_ID` is the code for the team name that is specified in the registration (`team_name_ID` has no spaces in it).\
-
+3)  `team_name_ID` is the code for the team name that is specified in the registration (`team_name_ID` has no spaces in it).\
 
 ## Step 3: Metadata format
 

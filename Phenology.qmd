@@ -2,7 +2,7 @@
 
 **What**: Terrestrial phenology defined by daily greenness and redness of plants
 
-**Where**: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico 
+**Where**: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico
 
 **When**: Daily forecasts for at least 30-days in the future. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
@@ -62,7 +62,7 @@ The ratio of the red digital number to the sum of the red, green, blue digital n
 
 **Motivation**
 
-While gcc is primarily a metric of vegetation greeness, rcc is more a metric of fall color. Adding rcc to the autumn forecast challenge has two motivations. First, from an end-user's perspective the timing of peak fall coloration has aesthetic value, which translates into economic for tourism. Second, from the ecological perspective, autumn phenology involves two distinct (but coupled) processes, senescence (loss of leaf chlorophyll and photosythetic activity; translocation of nutrients) and abscission (actual leaf fall). Forecasting two indices helps us disentangle our ability to predict these two processes.
+While gcc is primarily a metric of vegetation greenness, rcc is more a metric of fall color. Adding rcc to the autumn forecast challenge has two motivations. First, from an end-user's perspective the timing of peak fall coloration has aesthetic value, which translates into economic for tourism. Second, from the ecological perspective, autumn phenology involves two distinct (but coupled) processes, senescence (loss of leaf chlorophyll and photosynthetic activity; translocation of nutrients) and abscission (actual leaf fall). Forecasting two indices helps us disentangle our ability to predict these two processes.
 
 ### Focal sites
 
@@ -116,11 +116,10 @@ The target file has the following columns:
 -   `site_id`: NEON site code\
 -   `variable`: variable (`gcc_90` or `rcc_90`)
 -   `observed`: daily value
--   `sd`: standard deviation of the observed value
 
 ## Timeline
 
-Forecasts for a minimum of 35 days can be submitted daily by 12:59 pm ET any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st -- March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available. Processed PhenoCam data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.
+Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st -- March 30th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see @sec-cron). The key is that submissions are predictions of the future.
 
 Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specifics times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more in @sec-faq
 
