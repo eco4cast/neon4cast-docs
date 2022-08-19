@@ -325,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Definition</strong></p>
 <p>The ratio of the red digital number to the sum of the red, green, blue digital numbers from a digital camera. <code>rcc_90</code> is the 90th percentile of the rcc within a set of pixel called a region of interest (ROI)</p>
 <p><strong>Motivation</strong></p>
-<p>While gcc is primarily a metric of vegetation greeness, rcc is more a metric of fall color. Adding rcc to the autumn forecast challenge has two motivations. First, from an end-user’s perspective the timing of peak fall coloration has aesthetic value, which translates into economic for tourism. Second, from the ecological perspective, autumn phenology involves two distinct (but coupled) processes, senescence (loss of leaf chlorophyll and photosythetic activity; translocation of nutrients) and abscission (actual leaf fall). Forecasting two indices helps us disentangle our ability to predict these two processes.</p>
+<p>While gcc is primarily a metric of vegetation greenness, rcc is more a metric of fall color. Adding rcc to the autumn forecast challenge has two motivations. First, from an end-user’s perspective the timing of peak fall coloration has aesthetic value, which translates into economic for tourism. Second, from the ecological perspective, autumn phenology involves two distinct (but coupled) processes, senescence (loss of leaf chlorophyll and photosynthetic activity; translocation of nutrients) and abscission (actual leaf fall). Forecasting two indices helps us disentangle our ability to predict these two processes.</p>
 </section>
 <section id="focal-sites" class="level3" data-number="4.3.3">
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="focal-sites"><span class="header-section-number">4.3.3</span> Focal sites</h3>
@@ -395,20 +395,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 166,512 × 5
-   time       site_id variable observed       sd
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
- 1 2019-02-08 BONA    gcc_90      0.332 0.000957
- 2 2019-02-09 BONA    gcc_90      0.340 0.000957
- 3 2019-02-10 BONA    gcc_90      0.338 0.000957
- 4 2019-02-11 BONA    gcc_90      0.335 0.000957
- 5 2019-02-12 BONA    gcc_90      0.335 0.000957
- 6 2019-02-13 BONA    gcc_90      0.336 0.000957
- 7 2019-02-14 BONA    gcc_90      0.340 0.000957
- 8 2019-02-15 BONA    gcc_90      0.340 0.000957
- 9 2019-02-16 BONA    gcc_90      0.335 0.000957
-10 2019-02-17 BONA    gcc_90      0.334 0.000957
-# … with 166,502 more rows
+<pre><code># A tibble: 166,692 × 5
+   time       site_id variable observed      sd
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 2019-02-08 BONA    gcc_90      0.332 0.00138
+ 2 2019-02-09 BONA    gcc_90      0.340 0.00138
+ 3 2019-02-10 BONA    gcc_90      0.338 0.00138
+ 4 2019-02-11 BONA    gcc_90      0.335 0.00138
+ 5 2019-02-12 BONA    gcc_90      0.335 0.00138
+ 6 2019-02-13 BONA    gcc_90      0.336 0.00138
+ 7 2019-02-14 BONA    gcc_90      0.340 0.00138
+ 8 2019-02-15 BONA    gcc_90      0.340 0.00138
+ 9 2019-02-16 BONA    gcc_90      0.335 0.00138
+10 2019-02-17 BONA    gcc_90      0.334 0.00138
+# … with 166,682 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -420,13 +420,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><code>variable</code>: variable (<code>gcc_90</code> or <code>rcc_90</code>)</li>
 <li><code>observed</code>: daily value</li>
-<li><code>sd</code>: standard deviation of the observed value</li>
 </ul>
 </section>
 </section>
 <section id="timeline" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">4.4</span> Timeline</h2>
-<p>Forecasts for a minimum of 35 days can be submitted daily by 12:59 pm ET any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on February 1 should be for at least February 1st – March 7th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available. Processed PhenoCam data will be available daily by 11:59 pm ET for each day. The key is that submissions are predictions of the future.</p>
+<p>Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st – March 30th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see <a href="CronTiming.html"><span>Chapter&nbsp;11</span></a>). The key is that submissions are predictions of the future.</p>
 <p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;15</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
