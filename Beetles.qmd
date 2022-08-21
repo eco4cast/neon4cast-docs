@@ -32,8 +32,7 @@ With the long-term, community-wide, continental-scale data collection through th
 
 ## Challenge
 
-This is an open ecological forecasting challenge to forecast carabid species richness, defined as the total number of species, and abundance, defined as the total number of carabid individuals. The forecasts should be done weekly per site for all NEON terrestrial sites with richness being absolute and abundance scaled by the sampling effort. NEON releases carabid sampling data weekly and no sooner than 60 days after collection, so a model submitted on June 30 can include a forecast for the first week of May, and so forth. 
-Teams may use any open data products as drivers of richness and abundance so long as they are not from the month being forecast, and are made publicly available (minimum of URL, but ideally a script). Potential driver data sources include: NEON site data ([Soil and sediment data](https://www.neonscience.org/data-collection/soils-sediments){target="_blank"}, [Terrestrial Plant data](https://www.neonscience.org/data-collection/terrestrial-plants){target="_blank"}, [weather data](https://www.neonscience.org/data-collection/meteorology){target="_blank"}), NOAA forecasts, and beyond.
+This is an open ecological forecasting challenge to forecast carabid species richness, defined as the total number of species, and abundance, defined as the total number of carabid individuals. The forecasts should be done weekly per site for all NEON terrestrial sites with richness being absolute and abundance scaled by the sampling effort. NEON releases carabid sampling data weekly and no sooner than 60 days after collection, so a model submitted on June 30 can include a forecast for the first week of May, and so forth. Teams may use any open data products as drivers of richness and abundance so long as they are not from the month being forecast, and are made publicly available (minimum of URL, but ideally a script). Potential driver data sources include: NEON site data ([Soil and sediment data](https://www.neonscience.org/data-collection/soils-sediments){target="_blank"}, [Terrestrial Plant data](https://www.neonscience.org/data-collection/terrestrial-plants){target="_blank"}, [weather data](https://www.neonscience.org/data-collection/meteorology){target="_blank"}), NOAA forecasts, and beyond.
 
 ## Data: Targets
 
@@ -114,7 +113,6 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-
 
 The table has the following columns:
 
-
 -   `time`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)\
 -   `site_id`: NEON site ID
 -   `variable`: abundance of beetles (`abundance`) or species richness (`richness`)
@@ -150,6 +148,8 @@ Functions for downloading and working with the meteorology forecasts can be be f
 ## Null models
 
 One null model is automatically generated each week: the mean null model uses the mean of the historical data for each site.
+
+Code for the mean null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/beetles_mean.R){target="_blank"}
 
 ## FAQ
 

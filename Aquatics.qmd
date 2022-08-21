@@ -147,7 +147,7 @@ Functions for validating, evaluating and submitting forecasts can be found here:
 
 A climatology null model is automatically generated each day to served as a simple baseline model. This climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year.
 
-Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-aquatics/blob/master/03_climatology_null.R){target="_blank"}
+Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/aquatics_climatology.R){target="_blank"}
 
 ## FAQ
 

@@ -166,11 +166,11 @@ Functions for downloading and working with the meteorology forecasts can be be f
 
 Two null models are automatically generated each day - these are simple baseline models. The persistence null model uses the most recent measurement of nee or le and predicts that the values will be constant in the future. The climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year. We apply both the persistence and climatology model to the daily fluxes and the climatology to the 30 minute fluxes
 
-Code for the daily persistence null model can be found [here](https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_persistance.R){target="\"_blank"}
+Code for the daily persistence null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_daily_persistance.R){target="\"_blank"}
 
-Code for the daily climatology null model can be found [here](https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_daily_climatology.R){target="_blank"}
+Code for the daily climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_daily_climatology.R){target="_blank"}
 
-Code for the 30 minute climatology null model can be found [here](https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_clim.R){target="_blank"}
+Code for the 30 minute climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_30min_climatology.R){target="_blank"}
 
 ## FAQ
 
