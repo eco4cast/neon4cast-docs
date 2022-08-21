@@ -8,7 +8,7 @@ As a community, we are excited to learn more about the predictability of ecologi
 
 The design of the Challenge is the result of contributions of over 200 participants in the May 2020 virtual EFI-RCN meeting, including partner organizations, and the hard work from the Design Teams that have developed the protocols for each of the themes.
 
-Computational resources are supported by NSF funded [CyVerse](https://www.cyverse.org){target="_blank"}, [Jetstream](https://jetstream-cloud.org){target="_blank"}, and [XSEDE](https://www.xsede.org){target="_blank"}.
+Computational resources are provided by NSF-funded Jetstream2
 
 We have prepared introductory videos from the December 9, 2020 AGU EFI Town Hall. They provide an overview of the
 
