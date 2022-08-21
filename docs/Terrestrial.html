@@ -486,20 +486,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,933,040 × 7
-   time                site_id variable observed sd_intercept sd_slopeP sd_slo…¹
-   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 2017-02-01 10:00:00 BART    nee        -0.574         1.14     0.206   -0.131
- 2 2017-02-01 10:30:00 BART    nee         0.297         1.14     0.206   -0.131
- 3 2017-02-01 11:00:00 BART    nee        NA             1.14     0.206   -0.131
- 4 2017-02-01 11:30:00 BART    nee        NA             1.14     0.206   -0.131
- 5 2017-02-01 12:00:00 BART    nee         0.224         1.14     0.206   -0.131
- 6 2017-02-01 12:30:00 BART    nee         2.12          1.14     0.206   -0.131
- 7 2017-02-01 13:00:00 BART    nee         2.18          1.14     0.206   -0.131
- 8 2017-02-01 13:30:00 BART    nee        NA             1.14     0.206   -0.131
- 9 2017-02-01 14:00:00 BART    nee        NA             1.14     0.206   -0.131
-10 2017-02-01 14:30:00 BART    nee        NA             1.14     0.206   -0.131
-# … with 1,933,030 more rows, and abbreviated variable name ¹​sd_slopeN
+<pre><code># A tibble: 9,116,872 × 4
+   time                site_id variable observed
+   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+ 1 2017-02-01 10:00:00 ABBY    nee            NA
+ 2 2017-02-01 10:30:00 ABBY    nee            NA
+ 3 2017-02-01 11:00:00 ABBY    nee            NA
+ 4 2017-02-01 11:30:00 ABBY    nee            NA
+ 5 2017-02-01 12:00:00 ABBY    nee            NA
+ 6 2017-02-01 12:30:00 ABBY    nee            NA
+ 7 2017-02-01 13:00:00 ABBY    nee            NA
+ 8 2017-02-01 13:30:00 ABBY    nee            NA
+ 9 2017-02-01 14:00:00 ABBY    nee            NA
+10 2017-02-01 14:30:00 ABBY    nee            NA
+# … with 9,116,862 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_daily/terrestrial_daily-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18,824 × 4
+<pre><code># A tibble: 85,242 × 4
    time       site_id variable observed
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
  1 2017-02-02 BART    le          2.71 
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-02-05 BART    nee         0.912
  9 2017-02-06 BART    le         11.5  
 10 2017-02-06 BART    nee         0.965
-# … with 18,814 more rows
+# … with 85,232 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -572,9 +572,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="null-models" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="null-models"><span class="header-section-number">2.9</span> Null models</h2>
 <p>Two null models are automatically generated each day - these are simple baseline models. The persistence null model uses the most recent measurement of nee or le and predicts that the values will be constant in the future. The climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year. We apply both the persistence and climatology model to the daily fluxes and the climatology to the 30 minute fluxes</p>
-<p>Code for the daily persistence null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_persistance.R" target="&quot;_blank">here</a></p>
-<p>Code for the daily climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_daily_climatology.R" target="_blank">here</a></p>
-<p>Code for the 30 minute climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_30min_clim.R" target="_blank">here</a></p>
+<p>Code for the daily persistence null model can be found <a href="https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_daily_persistance.R" target="&quot;_blank">here</a></p>
+<p>Code for the daily climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_daily_climatology.R" target="_blank">here</a></p>
+<p>Code for the 30 minute climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-baselines/blob/main/terrestrial_30min_climatology.R" target="_blank">here</a></p>
 </section>
 <section id="faq" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="faq"><span class="header-section-number">2.10</span> FAQ</h2>
