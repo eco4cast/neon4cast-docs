@@ -186,7 +186,6 @@ ul.task-list{list-style: none;}
   <li><a href="#teams" id="toc-teams" class="nav-link" data-scroll-target="#teams"> <span class="header-section-number">6.1.2</span> Teams</a></li>
   <li><a href="#slack-and-github-communication" id="toc-slack-and-github-communication" class="nav-link" data-scroll-target="#slack-and-github-communication"> <span class="header-section-number">6.1.3</span> Slack and GitHub Communication</a></li>
   <li><a href="#archiving-models" id="toc-archiving-models" class="nav-link" data-scroll-target="#archiving-models"> <span class="header-section-number">6.1.4</span> Archiving models</a></li>
-  <li><a href="#computational-resources" id="toc-computational-resources" class="nav-link" data-scroll-target="#computational-resources"> <span class="header-section-number">6.1.5</span> Computational resources</a></li>
   </ul></li>
   <li><a href="#participation-agreement" id="toc-participation-agreement" class="nav-link" data-scroll-target="#participation-agreement"> <span class="header-section-number">6.2</span> Participation agreement</a></li>
   <li><a href="#neon-data-use" id="toc-neon-data-use" class="nav-link" data-scroll-target="#neon-data-use"> <span class="header-section-number">6.3</span> NEON Data Use</a></li>
@@ -232,24 +231,18 @@ ul.task-list{list-style: none;}
 </section>
 <section id="teams" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="teams"><span class="header-section-number">6.1.2</span> Teams</h3>
-<p>Teams can be individuals or groups. They can represent institutions or organizations. You will have 25 characters for a team name (e.g., “EFI Null Model”) and 10 characters for the team name ID (no spaces allowed; e.g., “EFI_Null”).</p>
+<p>Teams can be individuals or groups. They can represent institutions or organizations. No spaces are allowed in the team_name_id.</p>
 <p>The registration includes team categories (e.g., undergraduate only, graduate only, multi-institution, etc).</p>
 <p><strong>If your team wants to submit multiple forecasts</strong>, please register a different team name for each model . If there are two different time steps in a challenge theme (e.g., the terrestrial carbon flux theme has a 30-minute and 1-day option), register each as separate teams.</p>
 </section>
 <section id="slack-and-github-communication" class="level3" data-number="6.1.3">
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="slack-and-github-communication"><span class="header-section-number">6.1.3</span> Slack and GitHub Communication</h3>
-<p>Once your team is registered, everyone listed will receive an email with an invitation to join the EFI Slack group and the #neon4cast-theme channel. You will also receive details about the GitHub repository associated with the theme your team is registered for.</p>
-<p>We strongly encourage participants to use the Challenge theme Slack channels to ask questions, discuss ideas and challenges, and share resources. Overall, we strongly encourage a collegial approach to the Challenge – this is a friendly competition to move the field forward and bring more people into the community, not a cutthroat competition to win by denying other teams useful information.</p>
-<p>GitHub repositories for each Challenge theme will be available with helper code and an example workflow (null models). We encourage teams to contribute code to these repositories (via Pull Request) if they develop additional helper code. This is especially important if an individual or group is going to add additional data constraints to their forecast. Remember, the use of data external to NEON is allowed and encouraged so long as it is publicly available and other teams are notified about it. Also, while most anything could be used to calibrate parameters and constrain initial conditions, only other forecasts (e.g.&nbsp;weather) can be used as drivers/covariates during the actual forecast period.</p>
+<p>Once your team is registered, everyone listed will receive an email with an invitation to join the EFI Slack group and the #neon4cast-help channel.</p>
+<p>We strongly encourage participants to use the Challenge Slack channel to ask questions, discuss ideas and challenges, and share resources. Overall, we strongly encourage a collegial approach to the Challenge – this is a friendly competition to move the field forward and bring more people into the community, not a cutthroat competition to win by denying other teams useful information.</p>
 </section>
 <section id="archiving-models" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="archiving-models"><span class="header-section-number">6.1.4</span> Archiving models</h3>
 <p>Teams are highly encouraged to publicly archive the code they are using for their forecast models and workflows. Information about where models are archived would be included in your metadata XML.</p>
-<p>Teams are also encouraged to use Docker or Singularity to containerize their models &amp; workflows. EFI conventions for containerizing forecasts are still being developed, but our aim (particularly in later years of the forecast challenge) is to be able to provide shared cyberinfrastructure that makes it easier for teams to automate containerized forecasts. Containers will also facilitate Challenge themes interested in performing post-hoc analyses, such as uncertainty quantification and sensitivity analysis.</p>
-</section>
-<section id="computational-resources" class="level3" data-number="6.1.5">
-<h3 data-number="6.1.5" class="anchored" data-anchor-id="computational-resources"><span class="header-section-number">6.1.5</span> Computational resources</h3>
-<p>We are currently working with CyVerse for access to computational resources for teams that require resources not available through home institutions. We will update with more details as they become available.</p>
 </section>
 </section>
 <section id="participation-agreement" class="level2" data-number="6.2">
@@ -266,8 +259,7 @@ ul.task-list{list-style: none;}
 </section>
 <section id="additional-data-options" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="additional-data-options"><span class="header-section-number">6.4</span> Additional data options</h2>
-<p>Individuals and groups may create forecasts that use other publicly available data in addition to the NEON data, so long as other teams participating in the challenge are notified about the existence of the data via the Challenge theme’s Slack channel. Teams are encouraged to make available the code they are using to access, download, and process any additional data constraints they are using, ideally via a pull request to each Challenge Github repo.</p>
-<p>When considering the use of data in forecasts it is important to distinguish data that are being used as drivers/covariates during each forecast from data being used to constrain model structure, parameters, initial conditions, and error distributions. While the latency of NEON data requires that some of our forecast will be (fully or partly) hindcasts, all forecasts should be run as if they are true forecasts – you cannot use any observed data as a driver/covariate or constraint during the forecast period itself as that info would not have been available at the forecast start date. For example, if you find that a particular variable is a useful covariate during the model development &amp; calibration period (e.g.&nbsp;soil temperature) then you would need to find or make a forecast of that variable if you want to use it as a covariate. Teams using meteorological covariates should use the shared meteorological driver data provided by EFI (see Shared Forecast Drivers).</p>
+<p>Individuals and groups may create forecasts that use other publicly available data in addition to the NEON data. Teams are encouraged to make available the code they are using to access, download, and process any additional data constraints they are using, ideally via a Github repo.</p>
 <p>As an example of potentially useful external data, each NEON site has subsets of various remote sensing products that are hosted on the ORNL DAAC (ORNL DAAC subsets). These include:</p>
 <p>MODIS collection 6: LAI, FPAR, burned area, surface reflectance, land surface temperature, vegetation indices (NDVI, EVI), modeled ET, GPP, NPP.</p>
 <p>VIIRS collection 1: surface reflectance, vegetation indices, LAI, FPAR, land surface temperature,</p>
