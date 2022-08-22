@@ -4,7 +4,7 @@
 
 **Where:** 47 terrestrial NEON sites that span the diverse ecosystems of the U.S.
 
-**When:** Weekly forecasts for 1 year in the future
+**When:** Forecasts for 52 weeks into the future using a weekly time-step.  Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
 
 **Why:** Improve understanding of habitat quality, conservation potential, land-use sustainability, and biodiversity change in response to global change and ecological disturbances
 

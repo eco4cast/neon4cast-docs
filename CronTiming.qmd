@@ -28,7 +28,7 @@ Updated daily. For a given forecast start date, Stage 3 is updated to the curren
 **Terrestrial targets**
 
 Timing: updated daily between 9 and 10 am UTC.\
-Latency: New data each day is from 5-day prior
+Latency: New data each day is from ~5-day prior (some sites are have a few more day latency)
 
 **Phenology targets**
 
@@ -38,16 +38,16 @@ Latency: New data each day is from 1-day prior
 **Aquatics targets**
 
 Timing: Updated daily between 7 and 8 am UTC.\
-Latency: New data each day is from 2-days prior
+Latency: New data each day is from ~2-days prior
 
 **Tick targets**
 
-Timing: Appears monthly around the 15th\
+Timing: Appears monthly around the 15th.  We are updating the targets file on Sundays at 11 am UTC\
 Latency: New data is from \~300 days prior
 
 **Beetles targets**
 
-Timing: Appears monthly around the 15th\
+Timing: Appears monthly around the 15th.  We are updating the targets file on Sundays at 10 am UTC\
 Latency: New data is from \~60 days prior
 
 **Scored forecasts**
