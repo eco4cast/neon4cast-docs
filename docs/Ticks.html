@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><strong>What:</strong> <em>Amblyomma americanum</em> nymphal tick abundance per sampled area</p>
 <p><strong>Where:</strong> 9 NEON sites</p>
-<p><strong>When:</strong> Forecasts for 4 weeks into the future using a weekly time-step</p>
+<p><strong>When:</strong> Forecasts for 52 weeks into the future using a weekly time-step. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).</p>
 <p><strong>Why:</strong> There is a correlation between tick population abundance and disease incidence, meaning forecasts for tick abundance have the potential to aid in our understanding of disease risk through time and space.</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -336,20 +336,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 531 × 5
-   time       site_id variable             observed mmwr_week
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;
- 1 2015-04-19 BLAN    amblyomma_americanum     0           16
- 2 2015-05-10 BLAN    amblyomma_americanum     9.82        19
- 3 2015-05-31 BLAN    amblyomma_americanum    10           22
- 4 2015-06-07 BLAN    amblyomma_americanum    19.4         23
- 5 2015-06-21 BLAN    amblyomma_americanum     3.14        25
- 6 2015-07-12 BLAN    amblyomma_americanum     3.66        28
- 7 2015-08-02 BLAN    amblyomma_americanum     0           31
- 8 2015-08-23 BLAN    amblyomma_americanum     0           34
- 9 2015-09-13 BLAN    amblyomma_americanum     0           37
-10 2015-10-11 BLAN    amblyomma_americanum     0           41
-# … with 521 more rows
+<pre><code># A tibble: 561 × 5
+   time       site_id variable             observed iso_week
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;   
+ 1 2015-04-20 BLAN    amblyomma_americanum     0    2015-W17
+ 2 2015-05-11 BLAN    amblyomma_americanum     9.82 2015-W20
+ 3 2015-06-01 BLAN    amblyomma_americanum    10    2015-W23
+ 4 2015-06-08 BLAN    amblyomma_americanum    19.4  2015-W24
+ 5 2015-06-22 BLAN    amblyomma_americanum     3.14 2015-W26
+ 6 2015-07-13 BLAN    amblyomma_americanum     3.66 2015-W29
+ 7 2015-08-03 BLAN    amblyomma_americanum     0    2015-W32
+ 8 2015-08-24 BLAN    amblyomma_americanum     0    2015-W35
+ 9 2015-09-14 BLAN    amblyomma_americanum     0    2015-W38
+10 2015-10-12 BLAN    amblyomma_americanum     0    2015-W42
+# … with 551 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
