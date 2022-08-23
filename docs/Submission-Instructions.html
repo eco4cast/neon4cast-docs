@@ -296,6 +296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="step-1-forecast-format" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="step-1-forecast-format"><span class="header-section-number">7.2</span> Step 1: Forecast format</h2>
 <p>There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an <code>ensemble</code> column or both a <code>family</code> and <code>parameter</code> column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The <code>family</code> column uses the words <code>normal</code> to designate a normal distribution and the parameter column must have values of <code>mu</code> and <code>sigma</code> for each forecasted variable, site_id, and time.</p>
+<p>If you are submitting a forecast that does not have a normal distribution we recommend using the ensemble format and sampling from your non-normal distribution to generate a set of ensemble members that represents your distribution.</p>
+<p>We aim to support more distributions beyond the normal in the distribution format file (e.g., log-normal distribution to support zero-bounded forecast submissions). Please check back at this site for updates on the list of supported distributions.</p>
 <section id="ensemble-csv" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="ensemble-csv"><span class="header-section-number">7.2.1</span> Ensemble CSV</h3>
 <ul>
