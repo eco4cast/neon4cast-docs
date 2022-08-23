@@ -23,14 +23,13 @@ Program Manager: Jody Peters (University of Notre Dame)
 
 Michael Dietze (Boston University)\
 Melissa Kenney (University of Minnesota)\
-Christine Laney (NEON)\
 Jason McLachlan (University of Notre Dame)\
 Carl Boettiger (University of California, Berkeley)\
 Cayelan Carey (Virginia Tech)\
 Andy Fox (UCAR)\
 Leah Johnson (Virginia Tech)\
-Whitney Woelmer (Virginia Tech; Student member)\
-Alyssa Willson (University of Notre Dame; Student member)
+NEON Representative: Christine Laney\
+Studen representative: Whitney Woelmer (Virginia Tech), Alyssa Wilson (University of Notre Dame)
 
 **Video Introducng the NEON Ecological Forecasting Challenge.**
 

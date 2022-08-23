@@ -4,7 +4,7 @@
 
 **Where:** 9 NEON sites
 
-**When:** Forecasts for 52 weeks into the future using a weekly time-step.  Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
+**When:** Forecasts for 52 weeks into the future using a weekly time-step. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
 
 **Why:** There is a correlation between tick population abundance and disease incidence, meaning forecasts for tick abundance have the potential to aid in our understanding of disease risk through time and space.
 
@@ -109,9 +109,11 @@ Functions for downloading and working with the meteorology forecasts can be be f
 
 ## Null models
 
-The null model will be automatically generated each week, and is the historical mean for each week at each site. For weeks that don't have observations, the forecast is a linear interpolation between the preceding and following weeks.
+Two null models will be automatically generated each week: (1) the historical mean of the entire time-series at each site and (2) the historical mean for each week at each site. For weeks that don't have observations, the forecast is a linear interpolation between the preceding and following weeks.
 
-Code for the daily climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/ticks_climatology.R){target="_blank"}
+Code for the weekly mean model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/ticks_climatology.R){target="_blank"}
+
+Code for the mean model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/ticks_mean.R){target="_blank"}
 
 ## FAQ
 
