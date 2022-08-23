@@ -15,6 +15,10 @@ We provide an overview of the steps for submitting with the details below:
 
 There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an `ensemble` column or both a `family` and `parameter` column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The `family` column uses the words `normal` to designate a normal distribution and the parameter column must have values of `mu` and `sigma` for each forecasted variable, site_id, and time.
 
+If you are submitting a forecast that does not have a normal distribution we recommend using the ensemble format and sampling from your non-normal distribution to generate a set of ensemble members that represents your distribution.
+
+We aim to support more distributions beyond the normal in the distribution format file (e.g., log-normal distribution to support zero-bounded forecast submissions).  Please check back at this site for updates on the list of supported distributions.
+
 ### Ensemble CSV
 
 -   `time`: forecast timestamp
