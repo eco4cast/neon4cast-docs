@@ -33,7 +33,7 @@ library(rMR)
 library(arrow)
 ```
 
-Define the date that the forecast starts. For demonstration purposes, we are setting the date to `2022-02-15`. In a real-time application, use `forecast_date <- Sys.Date()` or `forecast_date <- Sys.Date() - lubridate::days(1)` 
+Define the date that the forecast starts. For demonstration purposes, we are setting the date to `2022-02-15`. In a real-time application, use `forecast_date <- Sys.Date()` or `forecast_date <- Sys.Date() - lubridate::days(1)` (in some cases the NOAA data the current day is not available by the time you run your forecast).
 
 ```{r eval = FALSE}
 forecast_date <- lubridate::as_date("2022-02-15")  
