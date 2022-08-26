@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rMR)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Define the date that the forecast starts. For demonstration purposes, we are setting the date to <code>2022-02-15</code>. In a real-time application, use <code>forecast_date &lt;- Sys.Date()</code> or <code>forecast_date &lt;- Sys.Date() - lubridate::days(1)</code></p>
+<p>Define the date that the forecast starts. For demonstration purposes, we are setting the date to <code>2022-02-15</code>. In a real-time application, use <code>forecast_date &lt;- Sys.Date()</code> or <code>forecast_date &lt;- Sys.Date() - lubridate::days(1)</code> (in some cases the NOAA data the current day is not available by the time you run your forecast).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>forecast_date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(<span class="st">"2022-02-15"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
