@@ -4,7 +4,7 @@
 
 **Where:** 47 terrestrial NEON sites that span the diverse ecosystems of the U.S.
 
-**When:** Forecasts for 52 weeks into the future using a weekly time-step.  Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
+**When:** Forecasts for 52 weeks into the future using a weekly time-step. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
 
 **Why:** Improve understanding of habitat quality, conservation potential, land-use sustainability, and biodiversity change in response to global change and ecological disturbances
 
@@ -113,7 +113,7 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-
 
 The table has the following columns:
 
--   `time`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)\
+-   `datetime`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)\
 -   `site_id`: NEON site ID
 -   `variable`: abundance of beetles (`abundance`) or species richness (`richness`)
 -   `observed`: value of `variable`

@@ -112,7 +112,7 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/phenology/phenol
 
 The target file has the following columns:
 
--   `time`: date of observation\
+-   `datetime`: date of observation\
 -   `site_id`: NEON site code\
 -   `variable`: variable (`gcc_90` or `rcc_90`)
 -   `observed`: daily value
@@ -149,8 +149,7 @@ Two null models are automatically generated each day. The persistence null model
 
 Code for the persistence null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_persistance.R){target="\"_blank"}
 
-Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_climatology.R){target="_blank"}
-## FAQ
+Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_climatology.R){target="_blank"} \## FAQ
 
 Answers to frequency asks questions can be found in @sec-faq
 

@@ -1,72 +1,65 @@
 # Submission Instructions {#sec-submissions}
 
-The following provides the requirements for the format of the forecasts that will be submitted. It is important to follow these format guidelines in order for your submitted forecasts to pass a set of internal checks that allow the forecast to be visualized on the [NEON Ecological Forecast Challenge dashboard](http://shiny3.ecoforecast.org/){target="_blank"} and evaluated with the scoring process.
+The following provides the requirements for the format of the forecasts that will be submitted. It is important to follow these format guidelines in order for your submitted forecasts to pass a set of internal checks that allow the forecast to be visualized on the [NEON Ecological Forecast Challenge dashboard](http://shiny.ecoforecast.org/){target="_blank"} and evaluated with the scoring process.
 
 ## Steps to submitting
 
 We provide an overview of the steps for submitting with the details below:
 
-1)  Generate forecast with required columns. There are three options for the file format described below.\
-2)  Write forecast to a file that follows the standardized naming format.\
-3)  Generate the metadata. Do you best to fill it out but if you are having trouble please submit what you have. Don't let metadata submission get in the way of submitting a forecast.\
-4)  Submit (i.e., upload) forecast and metadata.\
+1) Generate forecast with required columns. There are three options for the file format described below.\
+2) Write forecast to a file that follows the standardized naming format.\
+3) Submit forecast (preferably using a submission function that we provide)/\
+4) Submit metadata for the model using a web form (PENDING).\
 
-## Step 1: Forecast format
+## Step 1: Forecast file format
 
-There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using an `ensemble` column or both a `family` and `parameter` column. The ensemble column uses an integer to individual each ensemble member or MCMC member that represent forecast uncertainty. The `family` column uses the words `normal` to designate a normal distribution and the parameter column must have values of `mu` and `sigma` for each forecasted variable, site_id, and time.
+There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using a `family` and `parameter` column. 
+
+For an ensemble (or sample) forecast, the `family` column uses the word `ensemble` to design that it is a ensemble forecast and the parameter column is the ensemble member number (`1`, `2`, `3` ...)
+
+For a parametric forecast, the `family` column uses the word `normal` to designate a normal distribution and the parameter column must have values of `mu` and `sigma` for each forecasted variable, site_id, and time.
 
 If you are submitting a forecast that does not have a normal distribution we recommend using the ensemble format and sampling from your non-normal distribution to generate a set of ensemble members that represents your distribution.
 
-We aim to support more distributions beyond the normal in the distribution format file (e.g., log-normal distribution to support zero-bounded forecast submissions).  Please check back at this site for updates on the list of supported distributions.
+We aim to support more distributions beyond the normal in the distribution format file (e.g., log-normal distribution to support zero-bounded forecast submissions). Please check back at this site for updates on the list of supported distributions.
 
-### Ensemble CSV
+### CSV
 
--   `time`: forecast timestamp
--   `start_time`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
+-   `datetime`: forecast timestamp
+-   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
 -   `site_id`: NEON code for site
--   `ensemble` integer value for forecast replicate within the year and month (i.e. ensemble member or MCMC sample);
--   `variable`: standardized variable name from the theme
--   `predicted`: forecasted value
-
-The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).
-
-Here is an example of a forecast in the Ensemble:
-
-```{r}
-#readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/phenology/phenology-2022-08-16-persistence.csv.gz", show_col_types = FALSE)
-```
-
-### Distribution CSV
-
--   `time`: forecast timestamp
--   `start_time`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
--   `site_id`: NEON code for site
--   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` is currently allowed
--   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column).
+-   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` or `ensemble` is currently allowed.
+-   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column) or the number of the ensemble member.
 -   `variable`: standardized variable name from the theme
 -   `predicted`: forecasted value for parameter in the parameter column
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).
 
-```{r}
-#readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/aquatics/aquatics-2022-08-06-climatology.csv.gz", show_col_types = FALSE)
+[PENDING CSV EXAMPLE]
+
+```{r eval = FALSE}
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-10-climatology.csv.gz", show_col_types = FALSE)
 ```
 
 ### Netcdf
 
 A netcdf should have the following variables
 
--   `time`: The start of the forecast
+-   `datetime`: The start of the forecast
 -   `site_id`: NEON code for site
--   `ensemble` integer value for forecast replicate within the year and month (i.e. ensemble member or MCMC sample);
+-   `parameter` integer value for forecast replicate member (i.e. ensemble member or MCMC sample);
 
 and include additional variables with names that correspond to the theme-specific standardized variables. For example, a netcdf from the aquatics theme would have `temperature`, `oxygen`, and `chla` variables.
 
-The order of dimensions on forecast variables should be: `time`, `site`, and `ensemble`. The netcdf format should only be used for ensemble-based forecasts.
+The order of dimensions on forecast variables should be: `time`, `site`, and `parameter`. The netcdf format should only be used for ensemble-based forecasts.
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)
 
-The global attributed in the netcdf must include the `start_time` variable, which is the start of the forecast (should be 0 times steps in the future).
+The global attributed in the netcdf must include the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
+
+```
+PENDING NETCDF example
+```
 
 ## Step 2: File name
 
@@ -74,47 +67,34 @@ The global attributed in the netcdf must include the `start_time` variable, whic
 
 Teams will submit their forecasts as a single netCDF or csv file with the following naming convention:
 
-`theme_name-year-month-day-team_name_ID.csv` (or with a `.csv.gz` extension if compressing)
-
-or
-
-`theme_name-year-month-day-team_name_ID.nc`
+`theme_name-year-month-day-model_id.csv` (or `.nc` if a netcdf).  Compressed csv files with the csv.gz extension are accepted.  R will automatically compress if you add the `csv.gz` as the extension of your file name when running `write.csv` or `write_csv`.
 
 1)  The `theme_name` options are: `terrestrial_daily`, `terrestrial_30min`, `aquatics`, `beetles`, `ticks`, or `phenology`.\
 
 2)  The `year`, `month`, and `day` are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.\
 
-3)  `team_name_ID` is the code for the team name that is specified in the registration (`team_name_ID` has no spaces in it).\
+3)  `model_id` is the code for the model name that you specified in the model metadata Google Form (`model_id` has no spaces in it).\
 
 ## Step 3: Metadata format
 
-Each submission requires a metadata file to be submitted. The metadata file must have the same name as the submitted forecast, but with the .xml extension.
+For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata 
 
-`theme_name-year-month-day-team_name_ID.xml`
+1)  Required: You can fill out the web form (link pending) that describes your model and provide your `model_id`. You  need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. 
 
-Metadata files should be uploaded with the forecast files.
-
-The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML).
-
-To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
-
-The license for the forecast output is required to be from the following Creative Commons License options: CC BY, CC BY-SA, CC BY-NC, CC BY-NC-SA. While we recommend a CC BY license, teams may use less permissive CC licenses if more appropriate. The license entry can be the CC option (i.e., CC BY) and a web link to the full CC license (e.g., https://creativecommons.org/licenses/by/4.0/)
-
-We recommend teams read the full metadata standard description for definitions and more information, and in particular that they look at the [example vignettes](https://github.com/eco4cast/EFIstandards/tree/master/vignettes){target="_blank"}, which demonstrate the standard being used. Note that these Standards are a work in progress. If you find issues as you are applying them, let us know at **eco4cast.initaitive\@gmail.com**.
+2) Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
 
 ## Step 4: Submission process
 
-Individual forecast (csv, netCDF) and metadata (xml) files can be uploaded any time before the specific deadlines as defined by each theme. Only the most recent files will be scored.
+Individual forecast (csv, csv.gz, netCDF) files can be uploaded any time.
 
 **The correct file name and format is critical for the automated processing of submissions**
 
-Teams will submit their forecast netCDF or csv files manually through the challenge website or with an R script.
+Teams will submit their forecast netCDF or csv files through an R function.
 
-We have developed a function called submit in the `neon4cast` package handles submission process.
+We have developed a function called `submit()` in the `neon4cast` package handles submission process.
 
 ```{r eval = FALSE}
-neon4cast::submit(forecast_file = "theme_name-forecast-year-month-day-team_name.csv",
-                  metadata = "theme_name-year-month-day-team_name.xml")
+neon4cast::submit(forecast_file = "theme_name-forecast-year-month-day-model_id.csv")
 ```
 
 Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., `aws.s3` R package) to the `neon4cast-submissions` bucket at the `data.ecoforecast.org` endpoint.
@@ -136,12 +116,12 @@ A successful submission can be found at the following links within 2 hours of su
 We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file
 
 ```{r eval = FALSE}
-neon4cast::forecast_output_validator("phenology-2022-02-07-persistence.nc")
+neon4cast::forecast_output_validator("phenology-2022-09-01-persistenceRW.csv.gz")
 ```
 
 ## Visualizing submissions
 
-Plots of submissions and table of scores can be found at our [dashboard](https://shiny3.ecoforecast.org){target="_blank"}
+Plots of submissions and table of scores can be found at our [dashboard](https://shiny.ecoforecast.org){target="_blank"}
 
 ## Video Describing How to Submit to the Challenge
 

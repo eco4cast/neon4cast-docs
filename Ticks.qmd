@@ -75,7 +75,7 @@ Here is the format of the target file
 readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz", guess_max = 1e6)
 ```
 
--   `time`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)
+-   `datetime`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)
 -   `site_id`: Site where ticks are observed.
 -   `variable`: `amblyomma_americanum` (density of *Amblyomma americanum* ticks; ticks / 1600m\^2)
 -   `observed`: value for `variable`

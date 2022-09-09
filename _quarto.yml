@@ -8,22 +8,23 @@ book:
   logo: images/EFI_Logo-1.jpg
   chapters:
     - index.qmd
+    - Participation.qmd
+    - Submission-Instructions.qmd
     - Aquatics.qmd
     - Terrestrial.qmd
     - Ticks.qmd
     - Phenology.qmd
     - Beetles.qmd
-    - Participation.qmd
-    - Submission-Instructions.qmd
-    - Metadata.qmd
     - Evaluation.qmd
     - Shared-Forecast-Drivers.qmd
-    - CronTiming.qmd
-    - WorkflowExample.qmd
     - Helpful-Functions.qmd
     - UseInCourse.qmd
     - FAQ.qmd
-
+  appendices:
+    - Metadata.qmd
+    - CronTiming.qmd
+    - WorkflowExample.qmd
+    - container.qmd
 
 bibliography: references.bib
 

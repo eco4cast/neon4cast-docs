@@ -127,7 +127,7 @@ Stage 2 has the following columns
 
 Stage 3 processing presents a 'nowcast' product by combining the most recent predictions from each available cycle. Product uses CF variable names and 1 hr interval. The resulting produce is single time-series for each ensemble member, rather than a set of time series from all the forecasts. Stage 3 can be viewed as the "historical" weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.
 
-Stage 3 uses CF variable names and 1 hr interval (same at Stage 2)
+Stage 3 uses CF variable names and 1 hr interval (same as Stage 2)
 
 ```{r eval = FALSE}
 weather_stage3 <- neon4cast::noaa_stage3()
@@ -144,14 +144,10 @@ Stage 3 has the following columns
 `predicted: double` : forecasted value
 `variable: string` : weather variable 
 `height: string` : height above ground for weather variable
-`horizon: double` : number of hours in the future
 `ensemble: int32` : ensemble member number
-`start_time: timestamp[us, tz=UTC]`: datetime of horizon 0
-`forecast_valid: string`: period of time (in hours) that the predicted value applies
 `time: timestamp[us, tz=UTC]` : datetime of forecast
 `longitude: double` : location of NEON site
 `latitude: double` : location of NEON site
-`start_date: string`: date of horizon 0 (the initiation of the forecast)
 
 ## NEON Observed
 

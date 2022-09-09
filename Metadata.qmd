@@ -1,4 +1,4 @@
-# Submission Metadata Generation {sec-metadata}
+# EFI EML Metadata Generation {#sec-metadata}
 
 The challenge organizer have created tools to assist in generating the metadata that describes a forecast submission
 

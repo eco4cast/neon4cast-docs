@@ -58,7 +58,7 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatic
 
 The target file has the following columns
 
--   `time`: date of observation\
+-   `datetime`: date of observation\
 -   `site_id`: NEON site code\
 -   `variable`: variable (`temperature`, `oxygen`, `chla`)
 -   `observed`: daily mean value
