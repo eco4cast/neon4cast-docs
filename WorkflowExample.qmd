@@ -46,7 +46,7 @@ model_id <- "air2waterSat"
 
 ## Step 1: Complete metadata
 
-Complete the Google Form that defines your model.  
+Complete the Google Form that defines your model.
 
 ## Step 2: Download latest target data and site description data
 
@@ -184,13 +184,14 @@ for(i in 1:length(sites)){
 
 Make sure columns match the required standard that has a `family` column and a `parameter` column
 
-```{r}
+```{r eval = FALSE}
 forecast <- forecast |> 
   mutate(reference_datetime = forecast_date,
          family = "ensemble") |> 
   rename(parameter = ensemble) |> 
   select(datetime, reference_datetime, site_id, family, parameter, variable, predicted)
 ```
+
 Use ggplot to visualize the forecast for each variable and site. The spread in forecast is due to uncertainty in the weather forecast, where each line is associated with a different NOAA GEFS weather forecast ensemble member.
 
 ```{r eval = FALSE}
