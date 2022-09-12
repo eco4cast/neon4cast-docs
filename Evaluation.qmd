@@ -1,12 +1,14 @@
-# Evaluation
+# How did my forecast perform?
 
-Forecasts will be evaluated at each site and forecast horizon (i.e., time-step into the future), and a summary score will be assigned evaluating overall performance of all forecast submissions across sites.  Forecasts will also be compared to a null model.
+Forecasts will be evaluated at each site and forecast horizon (i.e., time-step into the future), and a summary score will be assigned evaluating overall performance of all forecast submissions across sites. Forecasts will also be compared to a null model.
 
-Forecast evaluation results will be presented for all submitted models together and separately for each team category: undergraduate student only team, graduate student only team, post-doc only team, single institution team, multi-institution team, international team (team with individuals from at least two countries).
+## Forecast Submission Visualization
 
-## Results
+The [dashboard](https://shiny3.ecoforecast.org){target="_blank"} shows the forecast submissions by each team for each forecast theme by date and forecast variable.
 
-Preliminary results will be distributed using the NEON Ecological Forecast Challenge [dashboard](http://shiny3.ecoforecast.org/){target="_blank"} and the `neon4cast::combined_scores()` function (where `x` is an optional argument that is the theme name)
+## Evaluation
+
+Preliminary results will be distributed using the `neon4cast::combined_scores(x)` function (where `x` is an optional argument that is the theme name).
 
 ```{r eval = FALSE}
 score_df <- neon4cast::combined_scores(x = "phenology")
@@ -16,11 +18,11 @@ We intend to write a joint manuscript synthesizing forecasts, authorship will be
 
 ## Scoring Metric: Continuous Ranked Probability Score
 
-Forecasts will be scored using the continuous ranked probability score (CRPS), a proper scoring rule for evaluating forecasts presented as distributions or ensembles (Gneiting & Raftery 2007). The CRPS compares the forecast probability distribution to that of the validation observation and assigns a score based on both the accuracy and precision of the forecast. We will use the 'crps_sample' function from the `scoringRules` package in R to calculate the CRPS for each forecast. 
+Forecasts will be scored using the continuous ranked probability score (CRPS), a proper scoring rule for evaluating forecasts presented as distributions or ensembles (Gneiting & Raftery 2007). The CRPS compares the forecast probability distribution to that of the validation observation and assigns a score based on both the accuracy and precision of the forecast. We will use the 'crps_sample' function from the `scoringRules` package in R to calculate the CRPS for each forecast.
 
 We will generate a combined score for all locations and forecast horizons. Forecasts will also be evaluated using the CRPS at each time-step in the forecast horizon and each location included in the forecasts.
 
-Importantly, we use the convention for CRPS where zero is lowest and best possible score, therefore teams want to achieve the lowest score. CPRS can be also expressed as a negative number with zero as highest and best possible score (Gneiting & Raftery 2007).  The `scoringRules` package that we use follows the 0 or greater convention.
+Importantly, we use the convention for CRPS where zero is lowest and best possible score, therefore teams want to achieve the lowest score. CPRS can be also expressed as a negative number with zero as highest and best possible score (Gneiting & Raftery 2007). The `scoringRules` package that we use follows the 0 or greater convention.
 
 ```{r setup, include=FALSE}
 library(scoringRules)
@@ -38,7 +40,7 @@ First, create a random sample from a probability distribution. This is the "fore
 x <- rnorm(1000, mean = 8, sd = 1.0)
 ```
 
-Second, we have our data point (i.e., the target).  We will set it to zero as well
+Second, we have our data point (i.e., the target). We will set it to zero as well
 
 ```{r}
 y <- 8
@@ -125,8 +127,7 @@ for(i in 1:length(sample_mean)){
 }
 ```
 
-Finally, visualize the scoring surface with the observed value represented by 
-the red line.
+Finally, visualize the scoring surface with the observed value represented by the red line.
 
 ```{r}
 contour(x = sample_mean, y = sample_sd, z = as.matrix(combined_norm), nlevels = 20, xlab = "Mean", ylab = "SD")
@@ -175,7 +176,7 @@ for (i in 1:length(sample_mean)) {
 plot(sample_mean, optimal_sd, type = 'l')
 ```
 
-Let's estimate the slope of the relationship. It looks like the optimal $sd$ for a normal distribution forecast that is biased by $|y - \mu|$ is $sd = 1.2|y - \mu|$ which makes sense as this would put the true value in a region of high probability. 
+Let's estimate the slope of the relationship. It looks like the optimal $sd$ for a normal distribution forecast that is biased by $|y - \mu|$ is $sd = 1.2|y - \mu|$ which makes sense as this would put the true value in a region of high probability.
 
 ```{r}
 coef(lm(optimal_sd[sample_mean > 0] ~ sample_mean[sample_mean > 0]))
@@ -197,13 +198,9 @@ Aquatics: https://github.com/eco4cast/neon4cast-aquatics/blob/master/03_generate
 
 Phenology: https://github.com/eco4cast/neon4cast-phenology/blob/master/nullModel_randomWalk_main.R
 
-## Forecast Submission Visualization and Leaderboard
-
-The [dashboard](https://shiny3.ecoforecast.org){target="_blank"} shows the forecast submissions by each team for each forecast theme by date and forecast variable.
-
 ## References
 
-Gneiting, T., A.E. Raftery. 2007. Strictly proper scoring rules, prediction, and estimation. Journal of the American Statistical Association, 102(477): 359–378. https://doi.org/10.1198/016214506000001437
+Gneiting, T., A.E. Raftery. 2007. Strictly proper scoring rules, prediction, and estimation. Journal of the American Statistical Association, 102(477): 359--378. https://doi.org/10.1198/016214506000001437
 
 Jordan, A., F. Kruger, and S. Lerch 2018. Evaluating probabilistic forecasts with scoringRules. https://cran.r-project.org/web/packages/scoringRules/vignettes/article.pdf
 
