@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NEON Ecological Forecasting Challenge - 8&nbsp; Evaluation</title>
+<title>NEON Ecological Forecasting Challenge - 8&nbsp; How did my forecast perform?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluation</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">How did my forecast perform?</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluation</span></a>
+  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">How did my forecast perform?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -264,15 +264,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results"><span class="toc-section-number">8.1</span>  Results</a></li>
-  <li><a href="#scoring-metric-continuous-ranked-probability-score" id="toc-scoring-metric-continuous-ranked-probability-score" class="nav-link" data-scroll-target="#scoring-metric-continuous-ranked-probability-score"><span class="toc-section-number">8.2</span>  Scoring Metric: Continuous Ranked Probability Score</a>
+  <li><a href="#forecast-submission-visualization" id="toc-forecast-submission-visualization" class="nav-link active" data-scroll-target="#forecast-submission-visualization"><span class="toc-section-number">8.1</span>  Forecast Submission Visualization</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation"><span class="toc-section-number">8.2</span>  Evaluation</a></li>
+  <li><a href="#scoring-metric-continuous-ranked-probability-score" id="toc-scoring-metric-continuous-ranked-probability-score" class="nav-link" data-scroll-target="#scoring-metric-continuous-ranked-probability-score"><span class="toc-section-number">8.3</span>  Scoring Metric: Continuous Ranked Probability Score</a>
   <ul class="collapse">
-  <li><a href="#example-of-a-crps-calculation-from-an-ensemble-forecast" id="toc-example-of-a-crps-calculation-from-an-ensemble-forecast" class="nav-link" data-scroll-target="#example-of-a-crps-calculation-from-an-ensemble-forecast"><span class="toc-section-number">8.2.1</span>  Example of a CRPS calculation from an ensemble forecast</a></li>
-  <li><a href="#exploring-the-scoring-surface" id="toc-exploring-the-scoring-surface" class="nav-link" data-scroll-target="#exploring-the-scoring-surface"><span class="toc-section-number">8.2.2</span>  Exploring the scoring surface</a></li>
-  <li><a href="#crps-from-the-normal-distribution" id="toc-crps-from-the-normal-distribution" class="nav-link" data-scroll-target="#crps-from-the-normal-distribution"><span class="toc-section-number">8.2.3</span>  CRPS from the Normal Distribution</a></li>
+  <li><a href="#example-of-a-crps-calculation-from-an-ensemble-forecast" id="toc-example-of-a-crps-calculation-from-an-ensemble-forecast" class="nav-link" data-scroll-target="#example-of-a-crps-calculation-from-an-ensemble-forecast"><span class="toc-section-number">8.3.1</span>  Example of a CRPS calculation from an ensemble forecast</a></li>
+  <li><a href="#exploring-the-scoring-surface" id="toc-exploring-the-scoring-surface" class="nav-link" data-scroll-target="#exploring-the-scoring-surface"><span class="toc-section-number">8.3.2</span>  Exploring the scoring surface</a></li>
+  <li><a href="#crps-from-the-normal-distribution" id="toc-crps-from-the-normal-distribution" class="nav-link" data-scroll-target="#crps-from-the-normal-distribution"><span class="toc-section-number">8.3.3</span>  CRPS from the Normal Distribution</a></li>
   </ul></li>
-  <li><a href="#sec-nulls" id="toc-sec-nulls" class="nav-link" data-scroll-target="#sec-nulls"><span class="toc-section-number">8.3</span>  Null forecast</a></li>
-  <li><a href="#forecast-submission-visualization-and-leaderboard" id="toc-forecast-submission-visualization-and-leaderboard" class="nav-link" data-scroll-target="#forecast-submission-visualization-and-leaderboard"><span class="toc-section-number">8.4</span>  Forecast Submission Visualization and Leaderboard</a></li>
+  <li><a href="#sec-nulls" id="toc-sec-nulls" class="nav-link" data-scroll-target="#sec-nulls"><span class="toc-section-number">8.4</span>  Null forecast</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">8.5</span>  References</a></li>
   </ul>
 </nav>
@@ -282,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluation</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">How did my forecast perform?</span></h1>
 </div>
 
 
@@ -297,22 +297,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Forecasts will be evaluated at each site and forecast horizon (i.e., time-step into the future), and a summary score will be assigned evaluating overall performance of all forecast submissions across sites. Forecasts will also be compared to a null model.</p>
-<p>Forecast evaluation results will be presented for all submitted models together and separately for each team category: undergraduate student only team, graduate student only team, post-doc only team, single institution team, multi-institution team, international team (team with individuals from at least two countries).</p>
-<section id="results" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="results"><span class="header-section-number">8.1</span> Results</h2>
-<p>Preliminary results will be distributed using the NEON Ecological Forecast Challenge <a href="http://shiny3.ecoforecast.org/" target="_blank">dashboard</a> and the <code>neon4cast::combined_scores()</code> function (where <code>x</code> is an optional argument that is the theme name)</p>
+<section id="forecast-submission-visualization" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="forecast-submission-visualization"><span class="header-section-number">8.1</span> Forecast Submission Visualization</h2>
+<p>The <a href="https://shiny3.ecoforecast.org" target="_blank">dashboard</a> shows the forecast submissions by each team for each forecast theme by date and forecast variable.</p>
+</section>
+<section id="evaluation" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="evaluation"><span class="header-section-number">8.2</span> Evaluation</h2>
+<p>Preliminary results will be distributed using the <code>neon4cast::combined_scores(x)</code> function (where <code>x</code> is an optional argument that is the theme name).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>score_df <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">combined_scores</span>(<span class="at">x =</span> <span class="st">"phenology"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We intend to write a joint manuscript synthesizing forecasts, authorship will be extended to members of each team with an opt-in policy. Teams are welcome to publish results from their model at any time. If a publication is generated we encourage the manuscript to acknowledge the Ecological Forecasting Research Coordination Network and its support from the National Science Foundation (DEB-1926388).</p>
 </section>
-<section id="scoring-metric-continuous-ranked-probability-score" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="scoring-metric-continuous-ranked-probability-score"><span class="header-section-number">8.2</span> Scoring Metric: Continuous Ranked Probability Score</h2>
+<section id="scoring-metric-continuous-ranked-probability-score" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="scoring-metric-continuous-ranked-probability-score"><span class="header-section-number">8.3</span> Scoring Metric: Continuous Ranked Probability Score</h2>
 <p>Forecasts will be scored using the continuous ranked probability score (CRPS), a proper scoring rule for evaluating forecasts presented as distributions or ensembles (Gneiting &amp; Raftery 2007). The CRPS compares the forecast probability distribution to that of the validation observation and assigns a score based on both the accuracy and precision of the forecast. We will use the ‘crps_sample’ function from the <code>scoringRules</code> package in R to calculate the CRPS for each forecast.</p>
 <p>We will generate a combined score for all locations and forecast horizons. Forecasts will also be evaluated using the CRPS at each time-step in the forecast horizon and each location included in the forecasts.</p>
 <p>Importantly, we use the convention for CRPS where zero is lowest and best possible score, therefore teams want to achieve the lowest score. CPRS can be also expressed as a negative number with zero as highest and best possible score (Gneiting &amp; Raftery 2007). The <code>scoringRules</code> package that we use follows the 0 or greater convention.</p>
-<section id="example-of-a-crps-calculation-from-an-ensemble-forecast" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="example-of-a-crps-calculation-from-an-ensemble-forecast"><span class="header-section-number">8.2.1</span> Example of a CRPS calculation from an ensemble forecast</h3>
+<section id="example-of-a-crps-calculation-from-an-ensemble-forecast" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="example-of-a-crps-calculation-from-an-ensemble-forecast"><span class="header-section-number">8.3.1</span> Example of a CRPS calculation from an ensemble forecast</h3>
 <p>The following uses Equation 2 in Jordan, Kruger, and Lerch 2018</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -339,19 +342,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>crps_equation_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(x <span class="sc">-</span> y)) <span class="sc">-</span> s <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">length</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>crps_equation_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2288685</code></pre>
+<pre><code>[1] 0.2424481</code></pre>
 </div>
 </div>
 <p>Now calculate using the <code>crps_sample()</code> function in the <code>scoringRules</code> package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crps_sample</span>(<span class="at">y =</span> y, <span class="at">dat =</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2288685</code></pre>
+<pre><code>[1] 0.2424481</code></pre>
 </div>
 </div>
 </section>
-<section id="exploring-the-scoring-surface" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="exploring-the-scoring-surface"><span class="header-section-number">8.2.2</span> Exploring the scoring surface</h3>
+<section id="exploring-the-scoring-surface" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="exploring-the-scoring-surface"><span class="header-section-number">8.3.2</span> Exploring the scoring surface</h3>
 <p>Now lets see how the CRPS changes as the mean and standard deviation of the forecasted distribution change</p>
 <p>First, set vectors for the different mean and SD values we want to explore</p>
 <div class="cell">
@@ -382,8 +385,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The contour surface highlights the trade-off between the mean and standard deviation.</p>
 </section>
-<section id="crps-from-the-normal-distribution" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="crps-from-the-normal-distribution"><span class="header-section-number">8.2.3</span> CRPS from the Normal Distribution</h3>
+<section id="crps-from-the-normal-distribution" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="crps-from-the-normal-distribution"><span class="header-section-number">8.3.3</span> CRPS from the Normal Distribution</h3>
 <p>If the distributional forecast is a normal distribution represented by a mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, an ensemble of predictions is not needed to evaluate CRPS because we can take advantage of the analytic solution to CRPS under the normal assumption (Equation 4 from Gneiting et al.&nbsp;2005)</p>
 <p>Equation 5 from Gneiting et al.&nbsp;(2005) gives</p>
 <p><span class="math display">\[\begin{align*}
@@ -464,8 +467,8 @@ CRPS(N(\mu, \sigma^2) | y) = \sigma \left( \frac{y - \mu}{\sigma} \left( 2 \Phi\
 </div>
 </section>
 </section>
-<section id="sec-nulls" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="sec-nulls"><span class="header-section-number">8.3</span> Null forecast</h2>
+<section id="sec-nulls" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-nulls"><span class="header-section-number">8.4</span> Null forecast</h2>
 <p>All forecasts will be compared to a null forecast produced by a simple historical-means calculation or a random walk. The GitHub repository for each theme has the code for the null model.</p>
 <p>Ticks: https://github.com/eco4cast/neon4cast-ticks/blob/master/03_nullFitAndForecast.R</p>
 <p>Terrestrial (Daily): https://github.com/eco4cast/neon4cast-terrestrial/blob/master/03_terrestrial_flux_daily_null.R</p>
@@ -473,10 +476,6 @@ CRPS(N(\mu, \sigma^2) | y) = \sigma \left( \frac{y - \mu}{\sigma} \left( 2 \Phi\
 <p>Beetles: https://github.com/eco4cast/neon4cast-beetles/blob/master/03_forecast.R</p>
 <p>Aquatics: https://github.com/eco4cast/neon4cast-aquatics/blob/master/03_generate_null_forecast_aquatics.R</p>
 <p>Phenology: https://github.com/eco4cast/neon4cast-phenology/blob/master/nullModel_randomWalk_main.R</p>
-</section>
-<section id="forecast-submission-visualization-and-leaderboard" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="forecast-submission-visualization-and-leaderboard"><span class="header-section-number">8.4</span> Forecast Submission Visualization and Leaderboard</h2>
-<p>The <a href="https://shiny3.ecoforecast.org" target="_blank">dashboard</a> shows the forecast submissions by each team for each forecast theme by date and forecast variable.</p>
 </section>
 <section id="references" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="references"><span class="header-section-number">8.5</span> References</h2>
