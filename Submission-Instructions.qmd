@@ -6,14 +6,14 @@ The following provides the requirements for the format of the forecasts that wil
 
 We provide an overview of the steps for submitting with the details below:
 
-1) Generate forecast with required columns. There are three options for the file format described below.\
-2) Write forecast to a file that follows the standardized naming format.\
-3) Submit forecast (preferably using a submission function that we provide)/\
-4) Submit metadata for the model using a web form (PENDING).\
+1)  Generate forecast with required columns. There are three options for the file format described below.\
+2)  Write forecast to a file that follows the standardized naming format.\
+3)  Submit forecast (preferably using a submission function that we provide)/\
+4)  Submit metadata for the model using a web form (PENDING).\
 
 ## Step 1: Forecast file format
 
-There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using a `family` and `parameter` column. 
+There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using a `family` and `parameter` column.
 
 For an ensemble (or sample) forecast, the `family` column uses the word `ensemble` to design that it is a ensemble forecast and the parameter column is the ensemble member number (`1`, `2`, `3` ...)
 
@@ -32,10 +32,11 @@ We aim to support more distributions beyond the normal in the distribution forma
 -   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column) or the number of the ensemble member.
 -   `variable`: standardized variable name from the theme
 -   `predicted`: forecasted value for parameter in the parameter column
+-   `model_id`: the short name of model defined as the model_id in the file name (see below) and in your metadata.  The model_id should have no spaces.
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).
 
-[PENDING CSV EXAMPLE]
+\[PENDING CSV EXAMPLE\]
 
 ```{r eval = FALSE}
 readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-10-climatology.csv.gz", show_col_types = FALSE)
@@ -55,11 +56,12 @@ The order of dimensions on forecast variables should be: `time`, `site`, and `pa
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)
 
-The global attributed in the netcdf must include the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
+A netcdf should have the following global attributes:
 
-```
-PENDING NETCDF example
-```
+- the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
+- the `model_id`, the short name of model defined as the model_id in the file name (see below) and in your metadata.  The model_id should have no spaces.
+
+    PENDING NETCDF example
 
 ## Step 2: File name
 
@@ -67,21 +69,21 @@ PENDING NETCDF example
 
 Teams will submit their forecasts as a single netCDF or csv file with the following naming convention:
 
-`theme_name-year-month-day-model_id.csv` (or `.nc` if a netcdf).  Compressed csv files with the csv.gz extension are accepted.  R will automatically compress if you add the `csv.gz` as the extension of your file name when running `write.csv` or `write_csv`.
+`theme_name-year-month-day-model_id.csv` (or `.nc` if a netcdf). Compressed csv files with the csv.gz extension are accepted. R will automatically compress if you add the `csv.gz` as the extension of your file name when running `write.csv` or `write_csv`.
 
 1)  The `theme_name` options are: `terrestrial_daily`, `terrestrial_30min`, `aquatics`, `beetles`, `ticks`, or `phenology`.\
 
-2)  The `year`, `month`, and `day` are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.\
+2)  The `year`, `month`, and `day` are the year, month, and day the `reference_datetime` (horizon = 0). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 0 would be today, and used in the file name.\
 
 3)  `model_id` is the code for the model name that you specified in the model metadata Google Form (`model_id` has no spaces in it).\
 
 ## Step 3: Metadata format
 
-For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata 
+For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata
 
-1)  Required: You can fill out the web form (link pending) that describes your model and provide your `model_id`. You  need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. 
+1)  Required: You can fill out the web form (link pending) that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form.
 
-2) Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
+2)  Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
 
 ## Step 4: Submission process
 
