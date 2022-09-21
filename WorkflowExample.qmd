@@ -41,7 +41,7 @@ forecast_date <- lubridate::as_date("2022-02-15")
 ## Step 0: Define team name
 
 ```{r eval = FALSE}
-model_id <- "air2waterSat"
+model_id <- "neon4cast-example"
 ```
 
 ## Step 1: Complete metadata
