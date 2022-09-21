@@ -187,9 +187,10 @@ Make sure columns match the required standard that has a `family` column and a `
 ```{r eval = FALSE}
 forecast <- forecast |> 
   mutate(reference_datetime = forecast_date,
-         family = "ensemble") |> 
+         family = "ensemble",
+         model_id = model_id) |> 
   rename(parameter = ensemble) |> 
-  select(datetime, reference_datetime, site_id, family, parameter, variable, predicted)
+  select(model_id, datetime, reference_datetime, site_id, family, parameter, variable, predicted)
 ```
 
 Use ggplot to visualize the forecast for each variable and site. The spread in forecast is due to uncertainty in the weather forecast, where each line is associated with a different NOAA GEFS weather forecast ensemble member.
