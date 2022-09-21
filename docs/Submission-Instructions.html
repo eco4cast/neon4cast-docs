@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.245">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -329,6 +329,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>parameter</code> required to be the string <code>mu</code> or <code>sigma</code> (see note below about parameter column) or the number of the ensemble member.</li>
 <li><code>variable</code>: standardized variable name from the theme</li>
 <li><code>predicted</code>: forecasted value for parameter in the parameter column</li>
+<li><code>model_id</code>: the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.</li>
 </ul>
 <p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).</p>
 <p>[PENDING CSV EXAMPLE]</p>
@@ -347,8 +348,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>and include additional variables with names that correspond to the theme-specific standardized variables. For example, a netcdf from the aquatics theme would have <code>temperature</code>, <code>oxygen</code>, and <code>chla</code> variables.</p>
 <p>The order of dimensions on forecast variables should be: <code>time</code>, <code>site</code>, and <code>parameter</code>. The netcdf format should only be used for ensemble-based forecasts.</p>
 <p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description)</p>
-<p>The global attributed in the netcdf must include the <code>reference_datetime</code> variable, which is the start of the forecast (should be 0 times steps in the future).</p>
-<pre><code>PENDING NETCDF example</code></pre>
+<p>A netcdf should have the following global attributes:</p>
+<ul>
+<li><p>the <code>reference_datetime</code> variable, which is the start of the forecast (should be 0 times steps in the future).</p></li>
+<li><p>the <code>model_id</code>, the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.</p>
+<p>PENDING NETCDF example</p></li>
+</ul>
 </section>
 </section>
 <section id="step-2-file-name" class="level2" data-number="2.3">
@@ -359,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol type="1">
 <li><p>The <code>theme_name</code> options are: <code>terrestrial_daily</code>, <code>terrestrial_30min</code>, <code>aquatics</code>, <code>beetles</code>, <code>ticks</code>, or <code>phenology</code>.<br>
 </p></li>
-<li><p>The <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day of the first forecast (horizon = 1). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 1 would be tomorrow, and used in the file name.<br>
+<li><p>The <code>year</code>, <code>month</code>, and <code>day</code> are the year, month, and day the <code>reference_datetime</code> (horizon = 0). For example, if a forecast starts today and tomorrow is the first forecasted day, horizon = 0 would be today, and used in the file name.<br>
 </p></li>
 <li><p><code>model_id</code> is the code for the model name that you specified in the model metadata Google Form (<code>model_id</code> has no spaces in it).<br>
 </p></li>
@@ -380,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Teams will submit their forecast netCDF or csv files through an R function.</p>
 <p>We have developed a function called <code>submit()</code> in the <code>neon4cast</code> package handles submission process.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., <code>aws.s3</code> R package) to the <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
 <p>Submissions need to adhere to the forecast format that is provided above, including the file naming convention. Our cyberinfastructure automatically evaluates forecasts and relies on the expected formatting. Contact eco4cast.initiative@gmail.com if you experience technical issues with submitting.</p>
@@ -390,12 +395,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.6" class="anchored" data-anchor-id="validating-submission"><span class="header-section-number">2.6</span> Validating submission</h2>
 <p>You can check the status of your submission using the following function in the <code>neon4cast</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A successful submission can be found at the following links within 2 hours of submissions</p>
 <p>We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-submissions" class="level2" data-number="2.7">
