@@ -8,10 +8,10 @@ The [dashboard](https://shiny3.ecoforecast.org){target="_blank"} shows the forec
 
 ## Evaluation
 
-Preliminary results will be distributed using the `neon4cast::combined_scores(x)` function (where `x` is an optional argument that is the theme name).
+Preliminary results will be distributed using the `neon4cast::combined_scores(theme)` function (where `theme` is the theme name).
 
 ```{r eval = FALSE}
-score_df <- neon4cast::combined_scores(x = "phenology")
+score_df <- neon4cast::combined_scores(theme = "phenology")
 ```
 
 We intend to write a joint manuscript synthesizing forecasts, authorship will be extended to members of each team with an opt-in policy. Teams are welcome to publish results from their model at any time. If a publication is generated we encourage the manuscript to acknowledge the Ecological Forecasting Research Coordination Network and its support from the National Science Foundation (DEB-1926388).

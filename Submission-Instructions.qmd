@@ -26,7 +26,7 @@ We aim to support more distributions beyond the normal in the distribution forma
 ### CSV
 
 -   `datetime`: forecast timestamp
--   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `start_time` in the file
+-   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `reference_datetime` in the file
 -   `site_id`: NEON code for site
 -   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` or `ensemble` is currently allowed.
 -   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column) or the number of the ensemble member.
@@ -36,10 +36,15 @@ We aim to support more distributions beyond the normal in the distribution forma
 
 The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).
 
-\[PENDING CSV EXAMPLE\]
+Here is an example of a forecast that uses a normal distribution: 
 
-```{r eval = FALSE}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-10-climatology.csv.gz", show_col_types = FALSE)
+```{r}
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-climatology.csv.gz", show_col_types = FALSE)
+```
+Here is an example of a forecast that uses ensembles: 
+
+```{r}
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-persistenceRW.csv.gz", show_col_types = FALSE)
 ```
 
 ### Netcdf

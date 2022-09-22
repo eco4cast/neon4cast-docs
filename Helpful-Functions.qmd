@@ -36,7 +36,7 @@ Download and read in the current target file for the Aquatics theme. For conveni
 
 ``` r
 aquatic <- read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz") %>% 
-  as_tsibble(index=time, key=siteID)
+  as_tsibble(index=datetime, key=site_id)
 ```
 
 Create a 35 day forecast for each variable, `oxygen`, and `temperature`. For illustrative purposes, we'll use the `fable` package because it is concise and well documented. We make separate forecasts for each of the two variables before reformatting them and combining them. Note the use of `efi_format` helper function from the `neon4cast` package, which merely replaces the special `<S3:distribution>` column used by fable with something we can write to text: either columns with a mean/sd (for normal distributions) or otherwise random draws from the distributions.
@@ -81,7 +81,7 @@ scores <- score(forecast, theme = "aquatics")
 
 # The resulting data.frame scores each day for each site, but is also easy to summarize:
 scores %>% 
-  group_by(siteID, target) %>% 
+  group_by(site_id, variable) %>% 
   summarise(mean_score = mean(score, na.rm=TRUE))
 #> # A tibble: 4 x 3
 #>   siteID target      mean_score
@@ -119,15 +119,11 @@ forecast_output_validator(forecast_file)
 #> [1] TRUE
 ```
 
-### Generate forecast metadata in EML
-
-See \[Metadata\]
-
 ### Access EFI snapshots of NOAA forecasts at NEON sites
 
 Many forecasts will want to make use of weather forecasts as potential drivers. EFI downscales NOAA GEFS 35-day forecast products at each NEON site and makes this data available. These helper functions provide convenient access for downloading and stacking the individual forecast files.
 
-See \[Meteorology Inputs\] for the functions
+See @sec-met for the functions
 
 ### Submit a forecast {#neon4cast-submit}
 

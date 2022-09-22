@@ -63,20 +63,7 @@ If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org`
 
 Stage 1 has the following columns:
 
-`site_id: string` : NEON site ID
-`predicted: double` : forecasted value
-`variable: string` : weather variable 
-`height: string` : height above ground for weather variable
-`horizon: double` : number of hours in the future
-`ensemble: int32` : ensemble member number
-`start_time: timestamp[us, tz=UTC]`: datetime of horizon 0
-`forecast_valid: string`: period of time (in hours) that the predicted value applies
-`time: timestamp[us, tz=UTC]` : datetime of forecast
-`longitude: double` : location of NEON site
-`latitude: double` : location of NEON site
-`start_date: string`: date of horizon 0 (the initiation of the forecast)
-`cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.
-
+`site_id: string` : NEON site ID `predicted: double` : forecasted value `variable: string` : weather variable `height: string` : height above ground for weather variable `horizon: double` : number of hours in the future `ensemble: int32` : ensemble member number `start_time: timestamp[us, tz=UTC]`: datetime of horizon 0 `forecast_valid: string`: period of time (in hours) that the predicted value applies `time: timestamp[us, tz=UTC]` : datetime of forecast `longitude: double` : location of NEON site `latitude: double` : location of NEON site `start_date: string`: date of horizon 0 (the initiation of the forecast) `cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.
 
 ### Stage 2
 
@@ -109,19 +96,7 @@ If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org`
 
 Stage 2 has the following columns
 
-`site_id: string` : NEON site ID
-`predicted: double` : forecasted value
-`variable: string` : weather variable 
-`height: string` : height above ground for weather variable
-`horizon: double` : number of hours in the future
-`ensemble: int32` : ensemble member number
-`start_time: timestamp[us, tz=UTC]`: datetime of horizon 0
-`forecast_valid: string`: period of time (in hours) that the predicted value applies
-`time: timestamp[us, tz=UTC]` : datetime of forecast
-`longitude: double` : location of NEON site
-`latitude: double` : location of NEON site
-`start_date: string`: date of horizon 0 (the initiation of the forecast)
-`cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.
+`site_id: string` : NEON site ID `predicted: double` : forecasted value `variable: string` : weather variable `height: string` : height above ground for weather variable `horizon: double` : number of hours in the future `ensemble: int32` : ensemble member number `start_time: timestamp[us, tz=UTC]`: datetime of horizon 0 `forecast_valid: string`: period of time (in hours) that the predicted value applies `time: timestamp[us, tz=UTC]` : datetime of forecast `longitude: double` : location of NEON site `latitude: double` : location of NEON site `start_date: string`: date of horizon 0 (the initiation of the forecast) `cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.
 
 ### Stage 3
 
@@ -140,14 +115,7 @@ If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org`
 
 Stage 3 has the following columns
 
-`site_id: string` : NEON site ID
-`predicted: double` : forecasted value
-`variable: string` : weather variable 
-`height: string` : height above ground for weather variable
-`ensemble: int32` : ensemble member number
-`time: timestamp[us, tz=UTC]` : datetime of forecast
-`longitude: double` : location of NEON site
-`latitude: double` : location of NEON site
+`site_id: string` : NEON site ID `predicted: double` : forecasted value `variable: string` : weather variable `height: string` : height above ground for weather variable `ensemble: int32` : ensemble member number `time: timestamp[us, tz=UTC]` : datetime of forecast `longitude: double` : location of NEON site `latitude: double` : location of NEON site
 
 ## NEON Observed
 
