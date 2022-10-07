@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="csv"><span class="header-section-number">2.2.1</span> CSV</h3>
 <ul>
 <li><code>datetime</code>: forecast timestamp</li>
-<li><code>reference_datetime</code>: The start of the forecast; this should be 0 times steps in the future. This should only be one value of <code>start_time</code> in the file</li>
+<li><code>reference_datetime</code>: The start of the forecast; this should be 0 times steps in the future. This should only be one value of <code>reference_datetime</code> in the file</li>
 <li><code>site_id</code>: NEON code for site</li>
 <li><code>family</code> name of probability distribution that is described by the parameter values in the parameter column; only <code>normal</code> or <code>ensemble</code> is currently allowed.</li>
 <li><code>parameter</code> required to be the string <code>mu</code> or <code>sigma</code> (see note below about parameter column) or the number of the ensemble member.</li>
@@ -332,9 +332,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>model_id</code>: the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.</li>
 </ul>
 <p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).</p>
-<p>[PENDING CSV EXAMPLE]</p>
+<p>Here is an example of a forecast that uses a normal distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-10-climatology.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-climatology.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,048 × 8
+   model_id    datetime   reference_dat…¹ site_id family param…² varia…³ predi…⁴
+   &lt;chr&gt;       &lt;date&gt;     &lt;date&gt;          &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+ 1 climatology 2022-09-23 2022-09-22      ARIK    normal mu      oxygen    4.00 
+ 2 climatology 2022-09-23 2022-09-22      ARIK    normal sigma   oxygen    1.01 
+ 3 climatology 2022-09-23 2022-09-22      ARIK    normal mu      temper…  16.7  
+ 4 climatology 2022-09-23 2022-09-22      ARIK    normal sigma   temper…   2.35 
+ 5 climatology 2022-09-23 2022-09-22      BARC    normal mu      chla      3.02 
+ 6 climatology 2022-09-23 2022-09-22      BARC    normal sigma   chla      2.21 
+ 7 climatology 2022-09-23 2022-09-22      BARC    normal mu      oxygen    5.63 
+ 8 climatology 2022-09-23 2022-09-22      BARC    normal sigma   oxygen    0.723
+ 9 climatology 2022-09-23 2022-09-22      BARC    normal mu      temper…  28.7  
+10 climatology 2022-09-23 2022-09-22      BARC    normal sigma   temper…   0.758
+# … with 5,038 more rows, and abbreviated variable names ¹​reference_datetime,
+#   ²​parameter, ³​variable, ⁴​predicted
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Here is an example of a forecast that uses ensembles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-persistenceRW.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 523,600 × 8
+   model_id      datetime   reference_d…¹ site_id family param…² varia…³ predi…⁴
+   &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;        &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 persistenceRW 2022-09-23 2022-09-22    BARC    ensem…       1 chla    5.68e-5
+ 2 persistenceRW 2022-09-24 2022-09-22    BARC    ensem…       1 chla    5.69e-5
+ 3 persistenceRW 2022-09-25 2022-09-22    BARC    ensem…       1 chla    5.34e-5
+ 4 persistenceRW 2022-09-26 2022-09-22    BARC    ensem…       1 chla    5.57e-5
+ 5 persistenceRW 2022-09-27 2022-09-22    BARC    ensem…       1 chla    6.24e-5
+ 6 persistenceRW 2022-09-28 2022-09-22    BARC    ensem…       1 chla    6.45e-5
+ 7 persistenceRW 2022-09-29 2022-09-22    BARC    ensem…       1 chla    6.82e-5
+ 8 persistenceRW 2022-09-30 2022-09-22    BARC    ensem…       1 chla    5.85e-5
+ 9 persistenceRW 2022-10-01 2022-09-22    BARC    ensem…       1 chla    5.40e-5
+10 persistenceRW 2022-10-02 2022-09-22    BARC    ensem…       1 chla    4.82e-5
+# … with 523,590 more rows, and abbreviated variable names ¹​reference_datetime,
+#   ²​parameter, ³​variable, ⁴​predicted
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
 </div>
 </section>
 <section id="netcdf" class="level3" data-number="2.2.2">
@@ -385,7 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Teams will submit their forecast netCDF or csv files through an R function.</p>
 <p>We have developed a function called <code>submit()</code> in the <code>neon4cast</code> package handles submission process.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., <code>aws.s3</code> R package) to the <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
 <p>Submissions need to adhere to the forecast format that is provided above, including the file naming convention. Our cyberinfastructure automatically evaluates forecasts and relies on the expected formatting. Contact eco4cast.initiative@gmail.com if you experience technical issues with submitting.</p>
@@ -395,12 +435,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.6" class="anchored" data-anchor-id="validating-submission"><span class="header-section-number">2.6</span> Validating submission</h2>
 <p>You can check the status of your submission using the following function in the <code>neon4cast</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A successful submission can be found at the following links within 2 hours of submissions</p>
 <p>We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-submissions" class="level2" data-number="2.7">
