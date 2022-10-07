@@ -6,9 +6,9 @@
 
 Participation requires that **one contact person** from each team:
 
-1. Complete the [registration/metadata](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} form for each forecast model you will submit to a particular theme. The registration provides us contact information and information about the modeling approach used to generate the forecast. You will complete the registration for each model you submit to each theme. For example, if you are submitting models to both the phenology and terrestrial daily theme then you will complete the form twice with two different `model_id`'s. If you are submitting two different models to phenology, then you will register twice with two different `model_id`.  
+1.  Complete the [registration/metadata](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} form for each forecast model you will submit to a particular theme. The registration provides us contact information and information about the modeling approach used to generate the forecast. You will complete the registration for each model you submit to each theme. For example, if you are submitting models to both the phenology and terrestrial daily theme then you will complete the form twice with two different `model_id`'s. If you are submitting two different models to phenology, then you will register twice with two different `model_id`.
 
-One contact person should register on behalf of their team. That contact person will be asked to provide the group members' names, emails, and affiliations so that everyone in the group can receive an invitation to join the Challenge theme Slack channel and access group resources. In registration, the contact person agrees to the participation agreement below on behalf of the team. You only need to do this once.
+    One contact person should register on behalf of their team. That contact person will be asked to provide the group members' names, emails, and affiliations so that everyone in the group can receive an invitation to join the Challenge theme Slack channel and access group resources. In registration, the contact person agrees to the participation agreement below on behalf of the team. You only need to do this once.
 
 2.  Submit forecasts as csv or netCDF file(s)
 
@@ -20,7 +20,7 @@ Teams can be individuals or groups. They can represent institutions or organizat
 
 The registration includes team categories (e.g., undergraduate only, graduate only, multi-institution, etc).
 
-Teams can submit forecasts from more than one model. You will register each model with unique `project_id` and `model_id`.  Revising a model does not change the `project_id` but will change the `model_id`.
+Teams can submit forecasts from more than one model. You will register each model with unique `model_id`. Revising a model does not change will change the `model_id` and you will be asked to provide the previous `model_id` so we can link across revisions.
 
 ### Slack and GitHub Communication
 

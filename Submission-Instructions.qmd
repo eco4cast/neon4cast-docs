@@ -11,7 +11,6 @@ We provide an overview of the steps for submitting with the details below:
 3)  Write forecast to a file that follows the standardized naming format.\
 4)  Submit forecast (preferably using the submission function that we provide)/\
 
-
 ## Step 1: Forecast file format
 
 There are two key options for the format. First, the file can be either in a csv or a netcdf format. Second the file can represent uncertainty using a `family` and `parameter` column.
@@ -26,23 +25,24 @@ We aim to support more distributions beyond the normal in the distribution forma
 
 ### CSV
 
--   `datetime`: forecast timestamp.  Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.  
--   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `reference_datetime` in the file.  Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.
+-   `datetime`: forecast timestamp. Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.\
+-   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `reference_datetime` in the file. Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.
 -   `site_id`: NEON code for site
 -   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` or `ensemble` are currently allowed.
 -   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column) or the number of the ensemble member.
 -   `variable`: standardized variable name for the theme
 -   `prediction`: forecasted value for parameter in the parameter column
--   `model_id`: the short name of model defined as the model_id in the file name (see below) and in your metadata.  The model_id should have no spaces.
+-   `model_id`: the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.
 
-The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description).  All datetimes with time zones should use UTC as the time zone.
+The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description). All datetimes with time zones should use UTC as the time zone.
 
-Here is an example of a forecast that uses a normal distribution: 
+Here is an example of a forecast that uses a normal distribution:
 
 ```{r}
 readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-climatology.csv.gz", show_col_types = FALSE)
 ```
-Here is an example of a forecast that uses ensembles: 
+
+Here is an example of a forecast that uses ensembles:
 
 ```{r}
 readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-persistenceRW.csv.gz", show_col_types = FALSE)
@@ -64,40 +64,41 @@ The time unit (i.e., date or date-time) should correspond to the time unit of th
 
 A netcdf should have the following global attributes:
 
-- the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
-- the `model_id`, the short name of model defined as the model_id in the file name (see below) and in your metadata.  The model_id should have no spaces.
+-   the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
+-   the `model_id`, the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.
 
+```{=html}
+<!-- -->
 ```
-netcdf terrestrial_30min-2022-10-07-climatology {
-dimensions:
-        datetime = 1681 ;
-        site = 47 ;
-        parameter = 200 ;
-        nchar = 4 ;
-variables:
-        double datetime(datetime) ;
-                datetime:units = "seconds since 2022-10-07" ;
-                datetime:long_name = "datetime" ;
-        int site(site) ;
-                site:long_name = "NEON siteID" ;
-        int parameter(parameter) ;
-                parameter:long_name = "ensemble member" ;
-        double nee(parameter, site, datetime) ;
-                nee:units = "umol CO2 m-2 s-1" ;
-                nee:_FillValue = 1.e+32 ;
-                nee:long_name = "net ecosystem exchange of CO2" ;
-        double le(parameter, site, datetime) ;
-                le:units = "W m-2" ;
-                le:_FillValue = 1.e+32 ;
-                le:long_name = "latent heat flux" ;
-        char site_id(site, nchar) ;
-                site_id:long_name = "NEON site codes" ;
+    netcdf terrestrial_30min-2022-10-07-climatology {
+    dimensions:
+            datetime = 1681 ;
+            site = 47 ;
+            parameter = 200 ;
+            nchar = 4 ;
+    variables:
+            double datetime(datetime) ;
+                    datetime:units = "seconds since 2022-10-07" ;
+                    datetime:long_name = "datetime" ;
+            int site(site) ;
+                    site:long_name = "NEON siteID" ;
+            int parameter(parameter) ;
+                    parameter:long_name = "ensemble member" ;
+            double nee(parameter, site, datetime) ;
+                    nee:units = "umol CO2 m-2 s-1" ;
+                    nee:_FillValue = 1.e+32 ;
+                    nee:long_name = "net ecosystem exchange of CO2" ;
+            double le(parameter, site, datetime) ;
+                    le:units = "W m-2" ;
+                    le:_FillValue = 1.e+32 ;
+                    le:long_name = "latent heat flux" ;
+            char site_id(site, nchar) ;
+                    site_id:long_name = "NEON site codes" ;
 
-// global attributes:
-                :reference_datetime = "2022-10-07 00:00:00" ;
-                :model_id = "climatology" ;
-}
-```
+    // global attributes:
+                    :reference_datetime = "2022-10-07 00:00:00" ;
+                    :model_id = "climatology" ;
+    }
 
 ## Step 2: File name
 
@@ -117,7 +118,7 @@ Teams will submit their forecasts as a single netCDF or csv file with the follow
 
 For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata
 
-1)  Required: Complete the registration/metadata form that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form.  A revised model does not change the `project_id`
+1)  Required: Complete the registration/metadata form that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. A revised model does not change the `project_id`
 
 2)  Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
 
