@@ -27,11 +27,11 @@ We aim to support more distributions beyond the normal in the distribution forma
 ### CSV
 
 -   `datetime`: forecast timestamp.  Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.  
--   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `reference_datetime` in the file.  Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes
+-   `reference_datetime`: The start of the forecast; this should be 0 times steps in the future. This should only be one value of `reference_datetime` in the file.  Format is `%Y-%m-%d %H:%M:%S` for terrestrial_30min theme and `%Y-%m-%d` for all other themes.
 -   `site_id`: NEON code for site
--   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` or `ensemble` is currently allowed.
+-   `family` name of probability distribution that is described by the parameter values in the parameter column; only `normal` or `ensemble` are currently allowed.
 -   `parameter` required to be the string `mu` or `sigma` (see note below about parameter column) or the number of the ensemble member.
--   `variable`: standardized variable name from the theme
+-   `variable`: standardized variable name for the theme
 -   `prediction`: forecasted value for parameter in the parameter column
 -   `model_id`: the short name of model defined as the model_id in the file name (see below) and in your metadata.  The model_id should have no spaces.
 
@@ -40,12 +40,12 @@ The time unit (i.e., date or date-time) should correspond to the time unit of th
 Here is an example of a forecast that uses a normal distribution: 
 
 ```{r}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-climatology.csv.gz", show_col_types = FALSE)
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-climatology.csv.gz", show_col_types = FALSE)
 ```
 Here is an example of a forecast that uses ensembles: 
 
 ```{r}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-09-23-persistenceRW.csv.gz", show_col_types = FALSE)
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-persistenceRW.csv.gz", show_col_types = FALSE)
 ```
 
 ### Netcdf
