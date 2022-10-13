@@ -414,20 +414,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 171,372 × 4
-   datetime   site_id variable observed
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
- 1 2017-05-30 ABBY    gcc_90      0.417
- 2 2017-05-31 ABBY    gcc_90      0.416
- 3 2017-06-01 ABBY    gcc_90      0.418
- 4 2017-06-02 ABBY    gcc_90      0.415
- 5 2017-06-03 ABBY    gcc_90      0.422
- 6 2017-06-04 ABBY    gcc_90      0.417
- 7 2017-06-05 ABBY    gcc_90      0.409
- 8 2017-06-06 ABBY    gcc_90      0.416
- 9 2017-06-07 ABBY    gcc_90      0.426
-10 2017-06-08 ABBY    gcc_90      0.430
-# … with 171,362 more rows
+<pre><code># A tibble: 171,978 × 4
+   datetime   site_id variable observation
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+ 1 2017-05-30 ABBY    gcc_90         0.417
+ 2 2017-05-31 ABBY    gcc_90         0.416
+ 3 2017-06-01 ABBY    gcc_90         0.418
+ 4 2017-06-02 ABBY    gcc_90         0.415
+ 5 2017-06-03 ABBY    gcc_90         0.422
+ 6 2017-06-04 ABBY    gcc_90         0.417
+ 7 2017-06-05 ABBY    gcc_90         0.409
+ 8 2017-06-06 ABBY    gcc_90         0.416
+ 9 2017-06-07 ABBY    gcc_90         0.426
+10 2017-06-08 ABBY    gcc_90         0.430
+# … with 171,968 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>site_id</code>: NEON site code<br>
 </li>
 <li><code>variable</code>: variable (<code>gcc_90</code> or <code>rcc_90</code>)</li>
-<li><code>observed</code>: daily value</li>
+<li><code>observation</code>: daily value</li>
 </ul>
 </section>
 </section>
