@@ -356,20 +356,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 572 × 5
-   datetime   site_id variable             observed iso_week
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;   
- 1 2015-04-20 BLAN    amblyomma_americanum     0    2015-W17
- 2 2015-05-11 BLAN    amblyomma_americanum     9.82 2015-W20
- 3 2015-06-01 BLAN    amblyomma_americanum    10    2015-W23
- 4 2015-06-08 BLAN    amblyomma_americanum    19.4  2015-W24
- 5 2015-06-22 BLAN    amblyomma_americanum     3.14 2015-W26
- 6 2015-07-13 BLAN    amblyomma_americanum     3.66 2015-W29
- 7 2015-08-03 BLAN    amblyomma_americanum     0    2015-W32
- 8 2015-08-24 BLAN    amblyomma_americanum     0    2015-W35
- 9 2015-09-14 BLAN    amblyomma_americanum     0    2015-W38
-10 2015-10-12 BLAN    amblyomma_americanum     0    2015-W42
-# … with 562 more rows
+<pre><code># A tibble: 576 × 5
+   datetime   site_id variable             observation iso_week
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;                      &lt;dbl&gt; &lt;chr&gt;   
+ 1 2015-04-20 BLAN    amblyomma_americanum        0    2015-W17
+ 2 2015-05-11 BLAN    amblyomma_americanum        9.82 2015-W20
+ 3 2015-06-01 BLAN    amblyomma_americanum       10    2015-W23
+ 4 2015-06-08 BLAN    amblyomma_americanum       19.4  2015-W24
+ 5 2015-06-22 BLAN    amblyomma_americanum        3.14 2015-W26
+ 6 2015-07-13 BLAN    amblyomma_americanum        3.66 2015-W29
+ 7 2015-08-03 BLAN    amblyomma_americanum        0    2015-W32
+ 8 2015-08-24 BLAN    amblyomma_americanum        0    2015-W35
+ 9 2015-09-14 BLAN    amblyomma_americanum        0    2015-W38
+10 2015-10-12 BLAN    amblyomma_americanum        0    2015-W42
+# … with 566 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -377,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>datetime</code>: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)</li>
 <li><code>site_id</code>: Site where ticks are observed.</li>
 <li><code>variable</code>: <code>amblyomma_americanum</code> (density of <em>Amblyomma americanum</em> ticks; ticks / 1600m^2)</li>
-<li><code>observed</code>: value for <code>variable</code></li>
+<li><code>observation</code>: value for <code>variable</code></li>
 <li><code>iso_week</code>: The ISO-week</li>
 </ul>
 </section>

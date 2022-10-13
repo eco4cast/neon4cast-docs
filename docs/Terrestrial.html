@@ -507,18 +507,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/terrestrial_30min/terrestrial_30min-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9,288,328 × 4
-   datetime            site_id variable observed
-   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
- 1 2017-02-01 10:00:00 ABBY    nee            NA
- 2 2017-02-01 10:30:00 ABBY    nee            NA
- 3 2017-02-01 11:00:00 ABBY    nee            NA
- 4 2017-02-01 11:30:00 ABBY    nee            NA
- 5 2017-02-01 12:00:00 ABBY    nee            NA
- 6 2017-02-01 12:30:00 ABBY    nee            NA
- 7 2017-02-01 13:00:00 ABBY    nee            NA
- 8 2017-02-01 13:30:00 ABBY    nee            NA
- 9 2017-02-01 14:00:00 ABBY    nee            NA
-10 2017-02-01 14:30:00 ABBY    nee            NA
+   datetime            site_id variable observation
+   &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+ 1 2017-02-01 10:00:00 ABBY    nee               NA
+ 2 2017-02-01 10:30:00 ABBY    nee               NA
+ 3 2017-02-01 11:00:00 ABBY    nee               NA
+ 4 2017-02-01 11:30:00 ABBY    nee               NA
+ 5 2017-02-01 12:00:00 ABBY    nee               NA
+ 6 2017-02-01 12:30:00 ABBY    nee               NA
+ 7 2017-02-01 13:00:00 ABBY    nee               NA
+ 8 2017-02-01 13:30:00 ABBY    nee               NA
+ 9 2017-02-01 14:00:00 ABBY    nee               NA
+10 2017-02-01 14:30:00 ABBY    nee               NA
 # … with 9,288,318 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>site_id</code>: NEON site code (e.g., BART)<br>
 </li>
 <li><code>variable</code>: <code>nee</code> (g C m<sup>-2</sup> day<sup>-1</sup>) or <code>le</code> (W m<sup>-2</sup>)</li>
-<li><code>observed</code>: value for variable</li>
+<li><code>observation</code>: value for variable</li>
 </ul>
 <p>Here is the download link and format of the <code>terrestrial_daily</code> target file</p>
 <div class="cell">
@@ -542,18 +542,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 87,696 × 4
-   datetime   site_id variable observed
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
- 1 2017-02-02 BART    le          2.71 
- 2 2017-02-02 BART    nee         0.580
- 3 2017-02-03 BART    le          8.47 
- 4 2017-02-03 BART    nee         0.687
- 5 2017-02-04 BART    le          6.64 
- 6 2017-02-04 BART    nee         0.693
- 7 2017-02-05 BART    le          3.53 
- 8 2017-02-05 BART    nee         0.912
- 9 2017-02-06 BART    le         11.5  
-10 2017-02-06 BART    nee         0.965
+   datetime   site_id variable observation
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+ 1 2017-02-02 BART    le             2.71 
+ 2 2017-02-02 BART    nee            0.580
+ 3 2017-02-03 BART    le             8.47 
+ 4 2017-02-03 BART    nee            0.687
+ 5 2017-02-04 BART    le             6.64 
+ 6 2017-02-04 BART    nee            0.693
+ 7 2017-02-05 BART    le             3.53 
+ 8 2017-02-05 BART    nee            0.912
+ 9 2017-02-06 BART    le            11.5  
+10 2017-02-06 BART    nee            0.965
 # … with 87,686 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>

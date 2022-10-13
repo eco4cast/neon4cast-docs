@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>DLWRF: Downward longwave radiation flux in interval (W/m^2)<br>
 </li>
 </ul>
-<p>GEFS forecasts are issued four times a day, as indicated by the <code>start_date</code> and <code>cycle</code>. Only forecasts at midnight, <code>cycle = "00"</code> extend for the full 840 hour horizon. Other cycles 06, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainity from ensenble members)</p>
+<p>GEFS forecasts are issued four times a day, as indicated by the <code>start_date</code> and <code>cycle</code>. Only forecasts at midnight, <code>cycle = "0"</code> extend for the full 840 hour horizon. Other cycles 6, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainty from ensemble members)</p>
 <p>All variables are given at height 2m above ground, surface, or 10 m above ground as indicated in height column. See https://www.nco.ncep.noaa.gov/pmb/products/gens/ for more details on GEFS variables and intervals.</p>
 <p>Common ways to filter the data before running <code>collect()</code> include <code>start_date</code>, <code>site_id</code>, <code>variable</code>, and <code>horizon</code>.</p>
 <div class="cell">
@@ -366,7 +366,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: that <code>noaa_stage1()</code> defaults to the <code>00</code> cycle.</p>
 <p>If you are using python tools (<code>pyarrow</code>) the endpoint is <code>data.ecoforecast.org</code> and the bucket is <code>neon4cast-drivers/noaa/gefs-v12/stage1</code></p>
 <p>Stage 1 has the following columns:</p>
-<p><code>site_id: string</code> : NEON site ID <code>predicted: double</code> : forecasted value <code>variable: string</code> : weather variable <code>height: string</code> : height above ground for weather variable <code>horizon: double</code> : number of hours in the future <code>ensemble: int32</code> : ensemble member number <code>start_time: timestamp[us, tz=UTC]</code>: datetime of horizon 0 <code>forecast_valid: string</code>: period of time (in hours) that the predicted value applies <code>time: timestamp[us, tz=UTC]</code> : datetime of forecast <code>longitude: double</code> : location of NEON site <code>latitude: double</code> : location of NEON site <code>start_date: string</code>: date of horizon 0 (the initiation of the forecast) <code>cycle: int32</code>: the UTC hour of the <code>start_date</code> of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.</p>
+<p><code>site_id: string</code> : NEON site ID<br>
+<code>prediction: double</code> : forecasted value<br>
+<code>variable: string</code> : weather variable<br>
+<code>height: string</code> : height above ground for weather variable<br>
+<code>horizon: double</code> : number of hours in the future&nbsp; <code>family: string</code>: class of uncertainty (ensemble)<br>
+<code>parameter: int32</code> : ensemble member number&nbsp; <code>reference_datetime: timestamp[us, tz=UTC]</code>: datetime of horizon 0&nbsp; <code>forecast_valid: string</code>: period of time (in hours) that the predicted value applies&nbsp; <code>datetime: timestamp[us, tz=UTC]</code> : datetime of forecast&nbsp; <code>longitude: double</code> : location of NEON site&nbsp; <code>latitude: double</code> : location of NEON site&nbsp; <code>start_date: string</code>: date of horizon 0 (the initiation of the forecast)&nbsp; <code>cycle: int32</code>: the UTC hour of the <code>start_date</code> of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.<br>
+</p>
 </section>
 <section id="stage-2" class="level3" data-number="9.1.2">
 <h3 data-number="9.1.2" class="anchored" data-anchor-id="stage-2"><span class="header-section-number">9.1.2</span> Stage 2</h3>
@@ -403,8 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note: that <code>noaa_stage2()</code> defaults to the <code>00</code> cycle.</p>
 <p>If you are using python tools (<code>pyarrow</code>) the endpoint is <code>data.ecoforecast.org</code> and the bucket is <code>neon4cast-drivers/noaa/gefs-v12/stage2/parquet</code></p>
-<p>Stage 2 has the following columns</p>
-<p><code>site_id: string</code> : NEON site ID <code>predicted: double</code> : forecasted value <code>variable: string</code> : weather variable <code>height: string</code> : height above ground for weather variable <code>horizon: double</code> : number of hours in the future <code>ensemble: int32</code> : ensemble member number <code>start_time: timestamp[us, tz=UTC]</code>: datetime of horizon 0 <code>forecast_valid: string</code>: period of time (in hours) that the predicted value applies <code>time: timestamp[us, tz=UTC]</code> : datetime of forecast <code>longitude: double</code> : location of NEON site <code>latitude: double</code> : location of NEON site <code>start_date: string</code>: date of horizon 0 (the initiation of the forecast) <code>cycle: int32</code>: the UTC hour of the <code>start_date</code> of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.</p>
+<p>Stage 2 has the same columns as Stage 1</p>
 </section>
 <section id="stage-3" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="stage-3"><span class="header-section-number">9.1.3</span> Stage 3</h3>
@@ -418,7 +423,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>If you are using python tools (<code>pyarrow</code>) the endpoint is <code>data.ecoforecast.org</code> and the bucket is <code>neon4cast-drivers/noaa/gefs-v12/stage3/parquet</code></p>
 <p>Stage 3 has the following columns</p>
-<p><code>site_id: string</code> : NEON site ID <code>predicted: double</code> : forecasted value <code>variable: string</code> : weather variable <code>height: string</code> : height above ground for weather variable <code>ensemble: int32</code> : ensemble member number <code>time: timestamp[us, tz=UTC]</code> : datetime of forecast <code>longitude: double</code> : location of NEON site <code>latitude: double</code> : location of NEON site</p>
+<p><code>site_id: string</code> : NEON site ID<br>
+<code>prediction: double</code> : forecasted value<br>
+<code>variable: string</code> : weather variable<br>
+<code>height: string</code> : height above ground for weather variable<br>
+<code>family: string</code>: class of uncertainty (ensemble)<br>
+<code>parameter: int32</code> : ensemble member number<br>
+<code>datetime: timestamp[us, tz=UTC]</code> : datetime of forecast<br>
+<code>longitude: double</code> : location of NEON site<br>
+<code>latitude: double</code> : location of NEON site</p>
 </section>
 </section>
 <section id="neon-observed" class="level2" data-number="9.2">

@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Definition</strong></p>
 <p>Total number of unique ‘species’ in a sampling bout for each NEON site each week. For this challenge, we define ‘species’ as the taxonomic unit closest to species (e.g., species, genus, morphospecies) for each individual since not all identifications in the raw data are strictly at species-level.</p>
 <p><strong>Motivation</strong></p>
-<p>A forecast prediction can be compared against only measured data (i.e.&nbsp;observed count of taxonomic units) and not latent variables (i.e.&nbsp;count of species), which are only inferred under specific model and taxonomic assumptions. The number of unique taxonomic identities of beetles in a trap depends on many drivers, including sampling effort. As demonstrated by species rarefaction curves in ecology, the more time a trap is left out, the more individual beetles will fall in, and thus the more species can be expected. However, since perfect species-level data are not available to us and to keep the forecasted variables from being overly derived, we define the target variable as the total number of unique ‘species’ per week per NEON site. For this challenge, we chose to define ‘species’ as the taxonomic unit closest to species (e.g., species, genus, morphospecies) since not all identifications in the raw data are strictly at species-level. Species identifications will be used for individuals identified to sub-species level, as these are uncommon in the raw data. NEON taxonomists identify individuals as morphologically distinct units. Thus, it is reasonable to assert that the count of finest morphologically distinct identification (e.g., species, genus, morphospecies) is biologically meaningful, and thus the count of these is an important focal forecast variable. We focus on the NEON site as the spatial resolution and weekly intervals as the temporal resolution for the same reasons stated in the abundance metric. See <a href="https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R" class="uri">https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R</a> for a programmatic definition of how the richness metric is defined.</p>
+<p>A forecast prediction can be compared against only measured data (i.e.&nbsp;observation count of taxonomic units) and not latent variables (i.e.&nbsp;count of species), which are only inferred under specific model and taxonomic assumptions. The number of unique taxonomic identities of beetles in a trap depends on many drivers, including sampling effort. As demonstrated by species rarefaction curves in ecology, the more time a trap is left out, the more individual beetles will fall in, and thus the more species can be expected. However, since perfect species-level data are not available to us and to keep the forecasted variables from being overly derived, we define the target variable as the total number of unique ‘species’ per week per NEON site. For this challenge, we chose to define ‘species’ as the taxonomic unit closest to species (e.g., species, genus, morphospecies) since not all identifications in the raw data are strictly at species-level. Species identifications will be used for individuals identified to sub-species level, as these are uncommon in the raw data. NEON taxonomists identify individuals as morphologically distinct units. Thus, it is reasonable to assert that the count of finest morphologically distinct identification (e.g., species, genus, morphospecies) is biologically meaningful, and thus the count of these is an important focal forecast variable. We focus on the NEON site as the spatial resolution and weekly intervals as the temporal resolution for the same reasons stated in the abundance metric. See <a href="https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R" class="uri">https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R</a> for a programmatic definition of how the richness metric is defined.</p>
 </section>
 <section id="focal-sites" class="level3" data-number="7.3.3">
 <h3 data-number="7.3.3" class="anchored" data-anchor-id="focal-sites"><span class="header-section-number">7.3.3</span> Focal sites</h3>
@@ -773,20 +773,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7,092 × 5
-   datetime   site_id variable  observed iso_week
-   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   
- 1 2016-09-12 ABBY    abundance   1.05   2016-W37
- 2 2016-09-12 ABBY    richness   14      2016-W37
- 3 2016-09-26 ABBY    abundance   4.45   2016-W39
- 4 2016-09-26 ABBY    richness   13      2016-W39
- 5 2017-05-01 ABBY    abundance   0.0554 2017-W18
- 6 2017-05-01 ABBY    richness   10      2017-W18
- 7 2017-05-15 ABBY    abundance   0.180  2017-W20
- 8 2017-05-15 ABBY    richness   19      2017-W20
- 9 2017-05-29 ABBY    abundance   0.425  2017-W22
-10 2017-05-29 ABBY    richness   19      2017-W22
-# … with 7,082 more rows
+<pre><code># A tibble: 7,174 × 5
+   datetime   site_id variable  observation iso_week
+   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;   
+ 1 2016-09-12 ABBY    abundance      1.05   2016-W37
+ 2 2016-09-12 ABBY    richness      14      2016-W37
+ 3 2016-09-26 ABBY    abundance      4.45   2016-W39
+ 4 2016-09-26 ABBY    richness      13      2016-W39
+ 5 2017-05-01 ABBY    abundance      0.0554 2017-W18
+ 6 2017-05-01 ABBY    richness      10      2017-W18
+ 7 2017-05-15 ABBY    abundance      0.180  2017-W20
+ 8 2017-05-15 ABBY    richness      19      2017-W20
+ 9 2017-05-29 ABBY    abundance      0.425  2017-W22
+10 2017-05-29 ABBY    richness      19      2017-W22
+# … with 7,164 more rows
 # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
@@ -796,7 +796,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><code>site_id</code>: NEON site ID</li>
 <li><code>variable</code>: abundance of beetles (<code>abundance</code>) or species richness (<code>richness</code>)</li>
-<li><code>observed</code>: value of <code>variable</code></li>
+<li><code>observation</code>: value of <code>variable</code></li>
 <li><code>iso_week</code>: The ISO-week</li>
 </ul>
 </section>
