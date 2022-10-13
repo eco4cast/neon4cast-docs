@@ -78,7 +78,7 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/ticks/ticks-targ
 -   `datetime`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)
 -   `site_id`: Site where ticks are observed.
 -   `variable`: `amblyomma_americanum` (density of *Amblyomma americanum* ticks; ticks / 1600m\^2)
--   `observed`: value for `variable`
+-   `observation`: value for `variable`
 -   `iso_week`: The ISO-week
 
 ## Timeline

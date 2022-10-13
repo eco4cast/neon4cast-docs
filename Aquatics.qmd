@@ -61,7 +61,7 @@ The target file has the following columns
 -   `datetime`: date of observation\
 -   `site_id`: NEON site code\
 -   `variable`: variable (`temperature`, `oxygen`, `chla`)
--   `observed`: daily mean value
+-   `observation`: daily mean value
 
 ### Surface Mean Daily Dissolved Oxygen Concentration
 
