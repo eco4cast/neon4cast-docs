@@ -84,7 +84,7 @@ noaa_past <- df_past |>
 We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (`start_date = forecast_date`) that started at mid-night UTC (`cycle=0`) for the set of sites in the target file.
 
 ```{r eval = FALSE}
-df_future <- neon4cast::noaa_stage2()
+df_future <- neon4cast::noaa_stage2(cycle = 0)
 noaa_future <- df_future |> 
   dplyr::filter(start_date == forecast_date,
                 variable == "air_temperature") |> 
