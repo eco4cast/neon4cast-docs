@@ -44,11 +44,7 @@ forecast_date <- lubridate::as_date("2022-02-15")
 model_id <- "neon4cast-example"
 ```
 
-## Step 1: Complete metadata
-
-Complete the Google Form that defines your model.
-
-## Step 2: Download latest target data and site description data
+## Download latest target data and site description data
 
 These targets are updated when new data is available from NEON.
 
@@ -63,150 +59,161 @@ site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4ca
   filter(aquatics == 1)
 ```
 
-## Step 3: Get drivers
-
-### Step 3.1: Download Paste NOAA forecast stacked together
+## Download past NOAA forecast stacked together
 
 To build the relations between air and water temperature, we need historical air temperature data to associate with historical water temperature data. Here we use a product that the Challenge organizers created that combines day 1 NOAA weather forecasts (i.e., when the forecasts are most accurate) together to generate an estimate of past weather. He we download this "stack" NOAA product for the set of NEON sites in the targets file.
 
 ```{r eval = FALSE}
-sites <- unique(target$site_id)
 df_past <- neon4cast::noaa_stage3()
-noaa_past <- df_past |> 
-  dplyr::filter(site_id %in% sites,
-                variable == "air_temperature") |> 
-  dplyr::rename(ensemble = parameter) |> 
-  dplyr::collect()
 ```
 
-### Step 3.2: Download NOAA future forecast
+Load a helper function that averages over predicted 0h horizon ensembles to get 'historic values' for each site
+
+```{r}
+noaa_mean_historical <- function(df_past, site, var) {
+  df_past |>
+    dplyr::filter(site_id == site,
+                  variable == var) |>
+    dplyr::rename(ensemble = parameter) |>
+    dplyr::select(datetime, prediction, ensemble) |>
+    dplyr::mutate(date = as_date(datetime)) |>
+    dplyr::group_by(date) |>
+    dplyr::summarize(air_temperature = mean(prediction, na.rm = TRUE),
+                     .groups = "drop") |>
+    dplyr::rename(datetime = date) |>
+    dplyr::mutate(air_temperature = air_temperature - 273.15) |>
+    dplyr::collect()
+}
+```
+
+
+
+## Download NOAA future forecast
 
 We need NOAA Weather forecasts of the future. Fortunately, the Challenge organizers are downloading and subsetting the weather forecasts for each NEON site. Here we download the weather forecast (`start_date = forecast_date`) that started at mid-night UTC (`cycle=0`) for the set of sites in the target file.
 
 ```{r eval = FALSE}
-df_future <- neon4cast::noaa_stage2(cycle = 0)
-noaa_future <- df_future |> 
-  dplyr::filter(start_date == forecast_date,
-                variable == "air_temperature") |> 
-  dplyr::rename(ensemble = parameter) |> 
-  dplyr::collect()
-```
-
-### Step 3.3 Aggregate (to day) and convert units of drivers
-
-Since we are forecasting daily mean water temperature and oxygen, we need to aggregate the 1 hr weather data to the daily time-scale. We also need to convert from Kelvin to Celsius.
-
-```{r eval = FALSE}
-noaa_past_mean <- noaa_past |> 
-  mutate(date = as_date(time)) |> 
-  group_by(date, site_id) |> 
-  summarize(air_temperature = mean(predicted, na.rm = TRUE), .groups = "drop") |> 
-  rename(datetime = date) |> 
-  mutate(air_temperature = air_temperature - 273.15)
-
-```
-
-For the future weather has 31 ensemble members (i.e., different trajectories of weather), that we want to use to generate uncertainty in our water temperature and oxygen forecasts. The aggregation below maintains the separate ensemble members (`group_by(date, ensemble)`).
-
-```{r eval = FALSE}
-noaa_future <- noaa_future |> 
-  mutate(datetime = as_date(time)) |> 
-  group_by(datetime, site_id, ensemble) |> 
-  summarize(air_temperature = mean(predicted)) |> 
-  mutate(air_temperature = air_temperature - 273.15) |> 
-  select(datetime, site_id, air_temperature, ensemble)
-```
-
-### Step 3.4: Merge in past NOAA data into the targets file, matching by date.
-
-Before building our linear model we need merge in the historical air temperature to match with the historical water temperature
-
-```{r eval = FALSE}
-target <- target |> 
-  select(datetime, site_id, variable, observed) |> 
-  filter(variable %in% c("temperature", "oxygen")) |> 
-  pivot_wider(names_from = "variable", values_from = "observation")
-
-target <- left_join(target, noaa_past_mean, by = c("datetime","site_id"))
-```
-
-## Step 4.0: Generate forecasts for each site
-
-We generate a forecast for each site.
-
-```{r eval = FALSE}
-forecast <- NULL
-
-for(i in 1:length(sites)){
+noaa_mean_forecast <- function(site, var, reference_date) {
+  endpoint = "data.ecoforecast.org"
+  bucket <- glue::glue("neon4cast-drivers/noaa/gefs-v12/stage1/0/{reference_date}")
+  s3 <- arrow::s3_bucket(bucket, endpoint_override = endpoint, anonymous = TRUE)
   
-  # Get site information for elevation
-  site_info <- site_data %>% filter(field_site_id == sites[i]) 
+  # stage1 air temp is Celsius
+  arrow::open_dataset(s3) |>
+    dplyr::filter(site_id == site,
+                  datetime >= lubridate::as_datetime(forecast_date),
+                  variable == var) |>
+    dplyr::select(datetime, prediction, parameter) |>
+    dplyr::mutate(datetime = as_date(datetime)) |>
+    dplyr::group_by(datetime, parameter) |>
+    dplyr::summarize(air_temperature = mean(prediction), .groups = "drop") |>
+    dplyr::select(datetime, air_temperature, parameter) |>
+    dplyr::rename(ensemble = parameter) |>
+    dplyr::collect()
   
-  site_target <- target |> 
-    filter(site_id == sites[i])
-  
-  noaa_future_site <- noaa_future |> 
-    filter(site_id == sites[i])
-  
-  if(length(which(!is.na(site_target$air_temperature) & !is.na(site_target$temperature))) > 0){
-    
-    #Fit linear model based on past data: water temperature = m * air temperature + b
-    fit <- lm(site_target$temperature~site_target$air_temperature)
-    
-    #use linear regression to forecast water temperature for each ensemble member
-    forecasted_temperature <- fit$coefficients[1] + fit$coefficients[2] * noaa_future_site$air_temperature
-    
-    #use forecasted temperature to predict oyxgen by assuming that oxygen is saturated.  
-    forecasted_oxygen <- rMR::Eq.Ox.conc(forecasted_temperature, elevation.m = ,site_info$field_mean_elevation_m, 
-                                         bar.press = NULL, 
-                                         bar.units = NULL,
-                                         out.DO.meas = "mg/L",
-                                         salinity = 0, 
-                                         salinity.units = "pp.thou")
-    
-    temperature <- tibble(datetime = noaa_future_site$datetime,
-                          site_id = sites[i],
-                          ensemble = noaa_future_site$ensemble,
-                          prediction = forecasted_temperature,
-                          variable = "temperature")
-    
-    oxygen <- tibble(datetime = noaa_future_site$datetime,
-                     site_id = sites[i],
-                     ensemble = noaa_future_site$ensemble,
-                     prediction = forecasted_oxygen,
-                     variable = "oxygen")
-    
-    
-    #Build site level dataframe.  Note we are not forecasting chla
-    forecast <- dplyr::bind_rows(forecast, temperature, oxygen)
-  }
 }
 ```
 
-Make sure columns match the required standard that has a `family` column and a `parameter` column
+We'll skip any site that doesn't have both temperature and oxygen
 
 ```{r eval = FALSE}
-forecast <- forecast |> 
-  mutate(reference_datetime = forecast_date,
-         family = "ensemble",
-         model_id = model_id) |> 
-  rename(parameter = ensemble) |> 
-  select(model_id, datetime, reference_datetime, site_id, family, parameter, variable, prediction)
+sites <- target |> na.omit() |> distinct(site_id, variable) |> 
+  filter(variable %in% c("oxygen", "temperature")) |>
+  count(site_id) |> filter(n==2) |> pull(site_id)
 ```
 
-Use ggplot to visualize the forecast for each variable and site. The spread in forecast is due to uncertainty in the weather forecast, where each line is associated with a different NOAA GEFS weather forecast ensemble member.
-
+## Define the forecasts model for a site
 ```{r eval = FALSE}
-forecast %>% 
-  ggplot(aes(x = datetime, y = predicted, group = parameter)) +
-  geom_line() +
-  facet_grid(variable~site_id, scale ="free")
+forecast_site <- function(site) {
+  message(paste0("Running site: ", site))
+  
+  # Get site information for elevation
+  site_info <- site_data |> dplyr::filter(field_site_id == site)
+  
+  # historical temperatures
+  noaa_past_mean <- noaa_mean_historical(df_past, site, "air_temperature")
+  
+  # Merge in past NOAA data into the targets file, matching by date.
+  site_target <- target |>
+    dplyr::select(datetime, site_id, variable, observation) |>
+    dplyr::filter(variable %in% c("temperature", "oxygen"), 
+                  site_id == site) |>
+    tidyr::pivot_wider(names_from = "variable", values_from = "observation") |>
+    dplyr::left_join(noaa_past_mean, by = c("datetime"))
+  
+  rm(noaa_past_mean) # save RAM 
+  
+  # Fit linear model based o # n past data: water temperature = m * air temperature + b
+  fit <- lm(temperature ~ air_temperature, data = site_target)
+  
+  #  Get 30-day predicted temperature ensemble at the site
+  noaa_future <- noaa_mean_forecast(site, "TMP", noaa_date)
+  
+  # use the linear model (predict.lm) to forecast water temperature for each ensemble member
+  temperature <- 
+    noaa_future |> 
+    mutate(site_id = site,
+           prediction = predict(fit, tibble(air_temperature)),
+           variable = "temperature")
+  
+  # use forecasted water temperature to predict oxygen by assuming that oxygen is saturated.
+  forecasted_oxygen <- 
+    rMR::Eq.Ox.conc(temperature$prediction, 
+                    elevation.m = site_info$field_mean_elevation_m,
+                    bar.press = NULL,
+                    bar.units = NULL,
+                    out.DO.meas = "mg/L",
+                    salinity = 0,
+                    salinity.units = "pp.thou")
+  # stick bits together                  
+  oxygen <- 
+    noaa_future |> 
+    mutate(site_id = site,
+           prediction = forecasted_oxygen,
+           variable = "oxygen")
+  
+  forecast <- dplyr::bind_rows(temperature, oxygen)
+  
+  # Format results to EFI standard
+  forecast <- forecast |>
+    mutate(reference_datetime = forecast_date,
+           family = "ensemble",
+           model_id = model_id) |>
+    rename(parameter = ensemble) |>
+    select(model_id, datetime, reference_datetime,
+           site_id, family, parameter, variable, prediction)
+}
+
 ```
 
-Forecast output file name in standards requires for Challenge. "csv.gz" means that it will be compressed
+AND HERE WE GO! We're ready to start forecasting
+
+Test with a single site first!
 
 ```{r eval = FALSE}
-file_date <- forecast$reference_datetime[1]
+forecast <- forecast_site( sites[1] )
+```
+
+Visualize the ensemble predictions -- what do you think?
+
+```{r eval = FALSE}
+forecast |> 
+  ggplot(aes(x = datetime, y = prediction, group = parameter)) +
+  geom_line(alpha=0.3) +
+  facet_wrap(~variable, scales = "free")
+```
+
+Run all sites -- may be slow!
+
+```{r eval = FALSE}
+forecast <- map_dfr(sites, forecast_site)
+```
+
+Forecast output file name in standards requires for Challenge.
+csv.gz means that it will be compressed
+
+```{r eval = FALSE}
+file_date <- Sys.Date() #forecast$reference_datetime[1]
 forecast_file <- paste0("aquatics","-",file_date,"-",model_id,".csv.gz")
 ```
 
@@ -216,18 +223,10 @@ Write csv to disk
 write_csv(forecast, forecast_file)
 ```
 
-Confirm that output file meets standard for Challenge
+## Submit forecast!
 
 ```{r eval = FALSE}
-neon4cast::forecast_output_validator(forecast_file)
-```
-
-## Step 5: Submit forecast!
-
-Now we can submit the forecast output and the metadata file to the Challenge using the `neon4cast::submit()` function
-
-```{r eval = FALSE}
-neon4cast::submit(forecast_file = forecast_file, ask = FALSE)
+neon4cast::submit(forecast_file = forecast_file, metadata = NULL, ask = FALSE)`
 ```
 
 You can check on the status of your submission using
@@ -237,6 +236,11 @@ neon4cast::check_submission(forecast_file)
 ```
 
 On following day after submission, you can see the forecast on the dashboard at [shiny.ecoforecast.org](https://shiny.ecoforecast.org)
+
+## Complete registration and metadata
+
+Complete the [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} that defines your model
+
 
 ## Example on github
 

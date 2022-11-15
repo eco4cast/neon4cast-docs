@@ -30,7 +30,9 @@ remotes::install_github("eco4cast/neon4cast")
 
 ### Stage 1
 
-At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon). Ensemble member 31 only extends 16-days in the future
+At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon). 
+
+Ensemble member 31 only extends 16-days in the future
 
 Forecasts include the following variables:
 
@@ -67,16 +69,8 @@ Stage 1 has the following columns:
 `prediction: double` : forecasted value\
 `variable: string` : weather variable\
 `height: string` : height above ground for weather variable\
-`horizon: double` : number of hours in the future\ 
-`family: string`: class of uncertainty (ensemble)\
-`parameter: int32` : ensemble member number\ 
-`reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0\ 
-`forecast_valid: string`: period of time (in hours) that the predicted value applies\ 
-`datetime: timestamp[us, tz=UTC]` : datetime of forecast\ 
-`longitude: double` : location of NEON site\ 
-`latitude: double` : location of NEON site\ 
-`start_date: string`: date of horizon 0 (the initiation of the forecast)\ 
-`cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.\
+`horizon: double` : number of hours in the future  `family: string`: class of uncertainty (ensemble)\
+`parameter: int32` : ensemble member number  `reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0  `forecast_valid: string`: period of time (in hours) that the predicted value applies  `datetime: timestamp[us, tz=UTC]` : datetime of forecast  `longitude: double` : location of NEON site  `latitude: double` : location of NEON site  `start_date: string`: date of horizon 0 (the initiation of the forecast)  `cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.\
 
 ### Stage 2
 
@@ -84,6 +78,8 @@ Stage 2 is a processed version of Stage 1 and involves the following transforms 
 
 -   Fluxes are standardized to per second rates\
 -   Fluxes and states are interpolated to 1 hour intervals\
+
+Ensemble member 31 only extends 16-days in the future
 
 Variables are renamed to match CF conventions:
 
@@ -107,13 +103,38 @@ Note: that `noaa_stage2()` defaults to the `00` cycle.
 
 If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage2/parquet`
 
-Stage 2 has the same columns as Stage 1
+Stage 2 has the following columns:
+
+`site_id: string` : NEON site ID\
+`prediction: double` : forecasted value\
+`variable: string` : weather variable\
+`height: string` : height above ground for weather variable\
+`horizon: double` : number of hours in the future  
+`family: string`: class of uncertainty (ensemble)\
+`parameter: int32` : ensemble member number  
+`reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0  
+`forecast_valid: string`: period of time (in hours) that the predicted value applies  
+`datetime: timestamp[us, tz=UTC]` : datetime of forecast  
+`longitude: double` : location of NEON site  
+`latitude: double` : location of NEON site  
+`start_date: string`: date of horizon 0 (the initiation of the forecast)  
+`cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.\
+
 
 ### Stage 3
 
 Stage 3 processing presents a 'nowcast' product by combining the most recent predictions from each available cycle. Product uses CF variable names and 1 hr interval. The resulting produce is single time-series for each ensemble member, rather than a set of time series from all the forecasts. Stage 3 can be viewed as the "historical" weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.
 
-Stage 3 uses CF variable names and 1 hr interval (same as Stage 2)
+Stage 3 uses CF variable names and 1 hr interval
+
+-   air_temperature (K)\
+-   air_pressure (Pa)\
+-   relative_humidity (proportion)\
+-   surface_downwelling_longwave_flux_in_air (W/m\^2)\
+-   surface_downwelling_shortwave_flux_in_air (W/m\^2) 
+-   precipitation_flux (kg/(m\^2 s))\
+-   eastward_wind (m/s)\
+-   northward_wind (m/s)\
 
 ```{r eval = FALSE}
 weather_stage3 <- neon4cast::noaa_stage3()

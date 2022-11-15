@@ -6,7 +6,7 @@ The following provides the requirements for the format of the forecasts that wil
 
 We provide an overview of the steps for submitting with the details below:
 
-1)  Submit registration/metadata for the model using a web form (PENDING LINK).\
+1)  Submit [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} for the model using a web form.\ 
 2)  Generate forecast with required columns. There are three options for the file format described below.\
 3)  Write forecast to a file that follows the standardized naming format.\
 4)  Submit forecast (preferably using the submission function that we provide)/\
@@ -39,13 +39,13 @@ The time unit (i.e., date or date-time) should correspond to the time unit of th
 Here is an example of a forecast that uses a normal distribution:
 
 ```{r}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-climatology.csv.gz", show_col_types = FALSE)
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-11-07-climatology.csv.gz", show_col_types = FALSE)
 ```
 
 Here is an example of a forecast that uses ensembles:
 
 ```{r}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-persistenceRW.csv.gz", show_col_types = FALSE)
+readr::read_csv("https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-11-07-persistenceRW.csv.gz", show_col_types = FALSE)
 ```
 
 ### Netcdf
@@ -67,9 +67,8 @@ A netcdf should have the following global attributes:
 -   the `reference_datetime` variable, which is the start of the forecast (should be 0 times steps in the future).
 -   the `model_id`, the short name of model defined as the model_id in the file name (see below) and in your metadata. The model_id should have no spaces.
 
-```{=html}
 <!-- -->
-```
+
     netcdf terrestrial_30min-2022-10-07-climatology {
     dimensions:
             datetime = 1681 ;
@@ -118,7 +117,7 @@ Teams will submit their forecasts as a single netCDF or csv file with the follow
 
 For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata
 
-1)  Required: Complete the registration/metadata form that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. A revised model does not change the `project_id`
+1)  Required: Complete the registration/model overview form that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. A revised model does not change the `project_id`
 
 2)  Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
 
