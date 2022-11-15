@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -288,6 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -333,7 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="9.1" class="anchored" data-anchor-id="noaa-global-ensemble-forecasting-system"><span class="header-section-number">9.1</span> NOAA Global Ensemble Forecasting System</h2>
 <section id="stage-1" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="stage-1"><span class="header-section-number">9.1.1</span> Stage 1</h3>
-<p>At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon). Ensemble member 31 only extends 16-days in the future</p>
+<p>At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon).</p>
+<p>Ensemble member 31 only extends 16-days in the future</p>
 <p>Forecasts include the following variables:</p>
 <ul>
 <li>TMP: temperature (C)<br>
@@ -383,6 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Fluxes and states are interpolated to 1 hour intervals<br>
 </li>
 </ul>
+<p>Ensemble member 31 only extends 16-days in the future</p>
 <p>Variables are renamed to match CF conventions:</p>
 <ul>
 <li>TMP -&gt; air_temperature (K)<br>
@@ -409,12 +412,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note: that <code>noaa_stage2()</code> defaults to the <code>00</code> cycle.</p>
 <p>If you are using python tools (<code>pyarrow</code>) the endpoint is <code>data.ecoforecast.org</code> and the bucket is <code>neon4cast-drivers/noaa/gefs-v12/stage2/parquet</code></p>
-<p>Stage 2 has the same columns as Stage 1</p>
+<p>Stage 2 has the following columns:</p>
+<p><code>site_id: string</code> : NEON site ID<br>
+<code>prediction: double</code> : forecasted value<br>
+<code>variable: string</code> : weather variable<br>
+<code>height: string</code> : height above ground for weather variable<br>
+<code>horizon: double</code> : number of hours in the future&nbsp; <code>family: string</code>: class of uncertainty (ensemble)<br>
+<code>parameter: int32</code> : ensemble member number&nbsp; <code>reference_datetime: timestamp[us, tz=UTC]</code>: datetime of horizon 0&nbsp; <code>forecast_valid: string</code>: period of time (in hours) that the predicted value applies&nbsp; <code>datetime: timestamp[us, tz=UTC]</code> : datetime of forecast&nbsp; <code>longitude: double</code> : location of NEON site&nbsp; <code>latitude: double</code> : location of NEON site&nbsp; <code>start_date: string</code>: date of horizon 0 (the initiation of the forecast)&nbsp; <code>cycle: int32</code>: the UTC hour of the <code>start_date</code> of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.<br>
+</p>
 </section>
 <section id="stage-3" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="stage-3"><span class="header-section-number">9.1.3</span> Stage 3</h3>
 <p>Stage 3 processing presents a ‘nowcast’ product by combining the most recent predictions from each available cycle. Product uses CF variable names and 1 hr interval. The resulting produce is single time-series for each ensemble member, rather than a set of time series from all the forecasts. Stage 3 can be viewed as the “historical” weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.</p>
-<p>Stage 3 uses CF variable names and 1 hr interval (same as Stage 2)</p>
+<p>Stage 3 uses CF variable names and 1 hr interval</p>
+<ul>
+<li>air_temperature (K)<br>
+</li>
+<li>air_pressure (Pa)<br>
+</li>
+<li>relative_humidity (proportion)<br>
+</li>
+<li>surface_downwelling_longwave_flux_in_air (W/m^2)<br>
+</li>
+<li>surface_downwelling_shortwave_flux_in_air (W/m^2)&nbsp;</li>
+<li>precipitation_flux (kg/(m^2 s))<br>
+</li>
+<li>eastward_wind (m/s)<br>
+</li>
+<li>northward_wind (m/s)<br>
+</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>weather_stage3 <span class="ot">&lt;-</span> neon4cast<span class="sc">::</span><span class="fu">noaa_stage3</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>weather_stage3 <span class="sc">|&gt;</span> </span>
@@ -515,7 +542,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -551,24 +595,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

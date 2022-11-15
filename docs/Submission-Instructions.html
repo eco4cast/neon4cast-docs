@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -291,6 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -302,8 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.1" class="anchored" data-anchor-id="steps-to-submitting"><span class="header-section-number">2.1</span> Steps to submitting</h2>
 <p>We provide an overview of the steps for submitting with the details below:</p>
 <ol type="1">
-<li>Submit registration/metadata for the model using a web form (PENDING LINK).<br>
-</li>
+<li>Submit <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">registration and model overview</a> for the model using a web form.&nbsp;</li>
 <li>Generate forecast with required columns. There are three options for the file format described below.<br>
 </li>
 <li>Write forecast to a file that follows the standardized naming format.<br>
@@ -335,47 +335,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The time unit (i.e., date or date-time) should correspond to the time unit of the theme specific target file (see Theme description). All datetimes with time zones should use UTC as the time zone.</p>
 <p>Here is an example of a forecast that uses a normal distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-climatology.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-11-07-climatology.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 316,200 × 7
-   reference_datetime datetime   site_id family   parameter variable predicted
-   &lt;date&gt;             &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1 2022-10-07         2022-10-07 BLWA    ensemble         1 chla          5.04
- 2 2022-10-07         2022-10-07 BLWA    ensemble         2 chla          7.46
- 3 2022-10-07         2022-10-07 BLWA    ensemble         3 chla          1.99
- 4 2022-10-07         2022-10-07 BLWA    ensemble         4 chla         11.8 
- 5 2022-10-07         2022-10-07 BLWA    ensemble         5 chla          7.67
- 6 2022-10-07         2022-10-07 BLWA    ensemble         6 chla          7.62
- 7 2022-10-07         2022-10-07 BLWA    ensemble         7 chla          6.34
- 8 2022-10-07         2022-10-07 BLWA    ensemble         8 chla          9.94
- 9 2022-10-07         2022-10-07 BLWA    ensemble         9 chla          7.36
-10 2022-10-07         2022-10-07 BLWA    ensemble        10 chla          7.19
-# … with 316,190 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<pre><code># A tibble: 68 × 8
+   datetime   variable    parameter family model_id   referenc…¹ site_id predi…²
+   &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt;
+ 1 2022-11-07 temperature mu        normal GLEON_phy… 2022-11-07 BARC    21.7   
+ 2 2022-11-07 temperature sigma     normal GLEON_phy… 2022-11-07 BARC     0.0143
+ 3 2022-11-08 temperature mu        normal GLEON_phy… 2022-11-07 BARC    18.2   
+ 4 2022-11-08 temperature sigma     normal GLEON_phy… 2022-11-07 BARC     0.0187
+ 5 2022-11-09 temperature mu        normal GLEON_phy… 2022-11-07 BARC    15.6   
+ 6 2022-11-09 temperature sigma     normal GLEON_phy… 2022-11-07 BARC     0.0194
+ 7 2022-11-10 temperature mu        normal GLEON_phy… 2022-11-07 BARC    13.9   
+ 8 2022-11-10 temperature sigma     normal GLEON_phy… 2022-11-07 BARC     0.0219
+ 9 2022-11-11 temperature mu        normal GLEON_phy… 2022-11-07 BARC    14.4   
+10 2022-11-11 temperature sigma     normal GLEON_phy… 2022-11-07 BARC     0.0274
+# … with 58 more rows, and abbreviated variable names ¹​reference_datetime,
+#   ²​prediction</code></pre>
 </div>
 </div>
 <p>Here is an example of a forecast that uses ensembles:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-10-07-persistenceRW.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: One or more parsing issues, see `problems()` for details</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-forecasts/raw/aquatics/aquatics-2022-11-07-persistenceRW.csv.gz"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 282 × 1
-   `&lt;?xml version="1.0" encoding="UTF-8"?&gt;`                                     
-   &lt;chr&gt;                                                                        
- 1 "&lt;eml:eml xmlns:eml=\"https://eml.ecoinformatics.org/eml-2.2.0\" xmlns:xsi=\…
- 2 "&lt;dataset&gt;"                                                                  
- 3 "&lt;title&gt;USGSHABs1 forecast of chlorophyll-a in streams&lt;/title&gt;"              
- 4 "&lt;creator&gt;"                                                                  
- 5 "&lt;individualName&gt;"                                                           
- 6 "&lt;givenName&gt;Jacob&lt;/givenName&gt;"                                               
- 7 "&lt;surName&gt;Zwart&lt;/surName&gt;"                                                   
- 8 "&lt;/individualName&gt;"                                                          
- 9 "&lt;organizationName&gt;U.S. Geological Survey&lt;/organizationName&gt;"                
-10 "&lt;electronicMailAddress&gt;jzwart@usgs.gov&lt;/electronicMailAddress&gt;"             
-# … with 272 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<pre><code># A tibble: 523,600 × 8
+   model_id      datetime   reference_d…¹ site_id family param…² varia…³ predi…⁴
+   &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;        &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 persistenceRW 2022-11-08 2022-11-07    BARC    ensem…       1 chla      0.437
+ 2 persistenceRW 2022-11-09 2022-11-07    BARC    ensem…       1 chla      0.299
+ 3 persistenceRW 2022-11-10 2022-11-07    BARC    ensem…       1 chla      0.207
+ 4 persistenceRW 2022-11-11 2022-11-07    BARC    ensem…       1 chla      0.195
+ 5 persistenceRW 2022-11-12 2022-11-07    BARC    ensem…       1 chla      0.161
+ 6 persistenceRW 2022-11-13 2022-11-07    BARC    ensem…       1 chla      0.186
+ 7 persistenceRW 2022-11-14 2022-11-07    BARC    ensem…       1 chla      0.181
+ 8 persistenceRW 2022-11-15 2022-11-07    BARC    ensem…       1 chla      0.178
+ 9 persistenceRW 2022-11-16 2022-11-07    BARC    ensem…       1 chla      0.146
+10 persistenceRW 2022-11-17 2022-11-07    BARC    ensem…       1 chla      0.143
+# … with 523,590 more rows, and abbreviated variable names ¹​reference_datetime,
+#   ²​parameter, ³​variable, ⁴​prediction</code></pre>
 </div>
 </div>
 </section>
@@ -445,7 +442,7 @@ variables:
 <h2 data-number="2.4" class="anchored" data-anchor-id="step-3-metadata-format"><span class="header-section-number">2.4</span> Step 3: Metadata format</h2>
 <p>For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata</p>
 <ol type="1">
-<li><p>Required: Complete the registration/metadata form that describes your model and provide your <code>model_id</code>. You need to fill out the form once per model_id. If you revise your modeling approach associated with a <code>model_id</code> then you will need to resubmit the form. A revised model does not change the <code>project_id</code></p></li>
+<li><p>Required: Complete the registration/model overview form that describes your model and provide your <code>model_id</code>. You need to fill out the form once per model_id. If you revise your modeling approach associated with a <code>model_id</code> then you will need to resubmit the form. A revised model does not change the <code>project_id</code></p></li>
 <li><p>Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (<code>theme_name-year-month-day-model_id.xml</code>). Metadata files should be uploaded with the forecast files. The <a href="https://github.com/eco4cast/EFIstandards" target="_blank">metadata standard</a> has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (<code>generate_metadata()</code>) and a guide for completing the metadata is in <a href="Metadata.html"><span>Appendix&nbsp;A</span></a>.</p></li>
 </ol>
 </section>
@@ -456,7 +453,7 @@ variables:
 <p>Teams will submit their forecast netCDF or csv files through an R function.</p>
 <p>We have developed a function called <code>submit()</code> in the <code>neon4cast</code> package handles submission process.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">submit</span>(<span class="at">forecast_file =</span> <span class="st">"theme_name-forecast-year-month-day-model_id.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, if you using another programming language, you can submit using AWS S3-like tools (i.e., <code>aws.s3</code> R package) to the <code>neon4cast-submissions</code> bucket at the <code>data.ecoforecast.org</code> endpoint.</p>
 <p>Submissions need to adhere to the forecast format that is provided above, including the file naming convention. Our cyberinfastructure automatically evaluates forecasts and relies on the expected formatting. Contact eco4cast.initiative@gmail.com if you experience technical issues with submitting.</p>
@@ -466,12 +463,12 @@ variables:
 <h2 data-number="2.6" class="anchored" data-anchor-id="validating-submission"><span class="header-section-number">2.6</span> Validating submission</h2>
 <p>You can check the status of your submission using the following function in the <code>neon4cast</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">check_submission</span>(<span class="st">"phenology-2022-02-07-persistence.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A successful submission can be found at the following links within 2 hours of submissions</p>
 <p>We run a validator script when processing the submissions. If your submission does not meet the file standards above, you can run a function that provides information describing potential issues. The forecast file needs to be in your local working directory or you need to provide a full path to the file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>neon4cast<span class="sc">::</span><span class="fu">forecast_output_validator</span>(<span class="st">"phenology-2022-09-01-persistenceRW.csv.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-submissions" class="level2" data-number="2.7">
@@ -529,7 +526,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -565,24 +579,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
