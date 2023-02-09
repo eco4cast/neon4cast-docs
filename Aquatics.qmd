@@ -2,7 +2,7 @@
 
 **What:** Freshwater surface water temperature, oxygen, and chlorophyll-a.
 
-**Where:** 7 lakes and 16 river/stream NEON sites.
+**Where:** 7 lakes and 27 river/stream NEON sites.
 
 **When:** Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
@@ -62,6 +62,13 @@ The target file has the following columns
 -   `site_id`: NEON site code\
 -   `variable`: variable (`temperature`, `oxygen`, `chla`)
 -   `observation`: daily mean value
+
+Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will _not_ be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data
+
+```{r message = FALSE}
+readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-expanded-observations.csv.gz") |> 
+  na.omit()
+```
 
 ### Surface Mean Daily Dissolved Oxygen Concentration
 
