@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p><strong>What:</strong> Freshwater surface water temperature, oxygen, and chlorophyll-a.</p>
-<p><strong>Where:</strong> 7 lakes and 16 river/stream NEON sites.</p>
+<p><strong>Where:</strong> 7 lakes and 27 river/stream NEON sites.</p>
 <p><strong>When:</strong> Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why:</strong> Freshwater surface water temperature, dissolved oxygen, and chlorophyll-a are critical for life in aquatic environments and can represent the health of the system</p>
 <p><strong>Who:</strong> Open to any individual or team that registers</p>
@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 84,592 × 4
+<pre><code># A tibble: 89,019 × 4
    datetime   site_id variable    observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;             &lt;dbl&gt;
  1 2016-08-12 ARIK    oxygen             3.40
@@ -354,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2016-08-18 ARIK    oxygen             4.35
  9 2016-08-18 ARIK    temperature       20.6 
 10 2016-08-19 ARIK    oxygen             4.03
-# … with 84,582 more rows</code></pre>
+# … with 89,009 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns</p>
@@ -366,6 +366,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>variable</code>: variable (<code>temperature</code>, <code>oxygen</code>, <code>chla</code>)</li>
 <li><code>observation</code>: daily mean value</li>
 </ul>
+<p>Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will <em>not</em> be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-expanded-observations.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,027,598 × 5
+   datetime            site_id depth variable    observation
+   &lt;dttm&gt;              &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1 2017-08-19 00:00:00 SUGG      0   temperature        29.6
+ 2 2017-08-19 00:00:00 SUGG      0.3 temperature        29.6
+ 3 2017-08-19 00:00:00 SUGG      0.6 temperature        29.6
+ 4 2017-08-19 00:00:00 SUGG      0.8 temperature        29.6
+ 5 2017-08-19 00:00:00 SUGG      1   temperature        29.6
+ 6 2017-08-19 01:00:00 SUGG      0   temperature        29.5
+ 7 2017-08-19 01:00:00 SUGG      0.3 temperature        29.5
+ 8 2017-08-19 01:00:00 SUGG      0.6 temperature        29.5
+ 9 2017-08-19 01:00:00 SUGG      0.8 temperature        29.5
+10 2017-08-19 01:00:00 SUGG      1   temperature        29.5
+# … with 1,027,588 more rows</code></pre>
+</div>
+</div>
 <section id="surface-mean-daily-dissolved-oxygen-concentration" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="surface-mean-daily-dissolved-oxygen-concentration"><span class="header-section-number">3.3.1</span> Surface Mean Daily Dissolved Oxygen Concentration</h3>
 <p><strong>Definition</strong></p>
@@ -391,8 +412,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="focal-sites"><span class="header-section-number">3.3.4</span> Focal sites</h3>
 <p>Information on the sites can be found here:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(aquatics <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>site_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(aquatics <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
