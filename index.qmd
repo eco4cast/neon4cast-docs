@@ -28,10 +28,15 @@ Melissa Kenney (University of Minnesota)\
 Jason McLachlan (University of Notre Dame)\
 Carl Boettiger (University of California, Berkeley)\
 Cayelan Carey (Virginia Tech)\
-Andy Fox (UCAR)\
 Leah Johnson (Virginia Tech)\
+NEON Representative: Eric Sokol\
+Student representatives: Lynda Bradley (Emory)\
+
+Past members of Steering Committee
+Students representative Whitney Woelmer (Virginia Tech), Alyssa Wilson (University of Notre Dame)\
 NEON Representative: Christine Laney\
-Studen representative: Whitney Woelmer (Virginia Tech), Alyssa Wilson (University of Notre Dame)
+Jake Weltzin (USGS)\
+Andy Fox (UCAR)\
 
 **Video Introducng the NEON Ecological Forecasting Challenge.**
 
