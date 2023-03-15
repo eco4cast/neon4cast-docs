@@ -4,7 +4,7 @@
 
 **Where:** 9 NEON sites
 
-**When:** Forecasts for 52 weeks into the future using a weekly time-step. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
+**When:** Forecasts for 52 weeks into the future using a weekly time-step are accepted at any time. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
 
 **Why:** There is a correlation between tick population abundance and disease incidence, meaning forecasts for tick abundance have the potential to aid in our understanding of disease risk through time and space.
 
