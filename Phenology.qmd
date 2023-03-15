@@ -34,8 +34,6 @@ Phenology researchers often use digital cameras (such as those that are part of 
 
 This is an open ecological forecasting challenge to forecast spring green-up of the greenness (gcc) and redness (rcc) indices, as measured by digital cameras at various NEON sites. The forecasts will be forecasts of daily mean gcc and rcc (specifically the 90% quantile called the gcc_90 and rcc_90) for a region of interests with each site's digital photograph.
 
-Teams must provide access (minimum of URL, but ideally a script) to any additional data they wish to use to all teams in the challenge. Teams of various career stages and disciplines are encouraged to submit forecasts.
-
 ## Data: Targets
 
 The challenge uses the following NEON data products:
