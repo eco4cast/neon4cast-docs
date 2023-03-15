@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><strong>What:</strong> Freshwater surface water temperature, oxygen, and chlorophyll-a.</p>
 <p><strong>Where:</strong> 7 lakes and 27 river/stream NEON sites.</p>
-<p><strong>When:</strong> Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
+<p><strong>When:</strong> Daily forecasts for at least 30-days in the future are accepted at any time. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why:</strong> Freshwater surface water temperature, dissolved oxygen, and chlorophyll-a are critical for life in aquatic environments and can represent the health of the system</p>
 <p><strong>Who:</strong> Open to any individual or team that registers</p>
 <p><strong>How:</strong> <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 89,019 × 4
+<pre><code># A tibble: 90,731 × 4
    datetime   site_id variable    observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;             &lt;dbl&gt;
  1 2016-08-12 ARIK    oxygen             3.40
@@ -354,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2016-08-18 ARIK    oxygen             4.35
  9 2016-08-18 ARIK    temperature       20.6 
 10 2016-08-19 ARIK    oxygen             4.03
-# … with 89,009 more rows</code></pre>
+# … with 90,721 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns</p>
@@ -371,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-expanded-observations.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,027,598 × 5
+<pre><code># A tibble: 1,037,355 × 5
    datetime            site_id depth variable    observation
    &lt;dttm&gt;              &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
  1 2017-08-19 00:00:00 SUGG      0   temperature        29.6
@@ -384,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-08-19 01:00:00 SUGG      0.6 temperature        29.5
  9 2017-08-19 01:00:00 SUGG      0.8 temperature        29.5
 10 2017-08-19 01:00:00 SUGG      1   temperature        29.5
-# … with 1,027,588 more rows</code></pre>
+# … with 1,037,345 more rows</code></pre>
 </div>
 </div>
 <section id="surface-mean-daily-dissolved-oxygen-concentration" class="level3" data-number="3.3.1">

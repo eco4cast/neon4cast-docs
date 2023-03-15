@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><strong>What</strong>: Terrestrial phenology defined by daily greenness and redness of plants</p>
 <p><strong>Where</strong>: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico</p>
-<p><strong>When</strong>: Daily forecasts for at least 30-days in the future. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
+<p><strong>When</strong>: Daily forecasts for at least 30-days in the future are accepted at any time. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why</strong>: Phenology has been identified as one of the primary ecological fingerprints of global climate change.</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -415,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 181,584 × 4
+<pre><code># A tibble: 184,406 × 4
    datetime   site_id variable observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
  1 2017-05-30 ABBY    gcc_90         0.417
@@ -428,7 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-06-06 ABBY    gcc_90         0.416
  9 2017-06-07 ABBY    gcc_90         0.426
 10 2017-06-08 ABBY    gcc_90         0.430
-# … with 181,574 more rows</code></pre>
+# … with 184,396 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns:</p>
