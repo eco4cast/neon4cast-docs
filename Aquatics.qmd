@@ -4,7 +4,7 @@
 
 **Where:** 7 lakes and 27 river/stream NEON sites.
 
-**When:** Daily forecasts for at least 30-days in the future. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
+**When:** Daily forecasts for at least 30-days in the future are accepted at any time.  New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 **Why:** Freshwater surface water temperature, dissolved oxygen, and chlorophyll-a are critical for life in aquatic environments and can represent the health of the system
 
