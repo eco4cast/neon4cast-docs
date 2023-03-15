@@ -326,7 +326,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="challenge" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="challenge"><span class="header-section-number">6.2</span> Challenge</h2>
 <p>This is an open ecological forecasting challenge to forecast spring green-up of the greenness (gcc) and redness (rcc) indices, as measured by digital cameras at various NEON sites. The forecasts will be forecasts of daily mean gcc and rcc (specifically the 90% quantile called the gcc_90 and rcc_90) for a region of interests with each site’s digital photograph.</p>
-<p>Teams must provide access (minimum of URL, but ideally a script) to any additional data they wish to use to all teams in the challenge. Teams of various career stages and disciplines are encouraged to submit forecasts.</p>
 </section>
 <section id="data-targets" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="data-targets"><span class="header-section-number">6.3</span> Data: Targets</h2>
@@ -415,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 184,406 × 4
+<pre><code># A tibble: 184,584 × 4
    datetime   site_id variable observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
  1 2017-05-30 ABBY    gcc_90         0.417
@@ -428,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-06-06 ABBY    gcc_90         0.416
  9 2017-06-07 ABBY    gcc_90         0.426
 10 2017-06-08 ABBY    gcc_90         0.430
-# … with 184,396 more rows</code></pre>
+# … with 184,574 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns:</p>
