@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 90,731 × 4
+<pre><code># A tibble: 91,019 × 4
    datetime   site_id variable    observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;             &lt;dbl&gt;
  1 2016-08-12 ARIK    oxygen             3.40
@@ -354,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2016-08-18 ARIK    oxygen             4.35
  9 2016-08-18 ARIK    temperature       20.6 
 10 2016-08-19 ARIK    oxygen             4.03
-# … with 90,721 more rows</code></pre>
+# … with 91,009 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns</p>
@@ -371,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-expanded-observations.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,037,355 × 5
+<pre><code># A tibble: 1,039,920 × 5
    datetime            site_id depth variable    observation
    &lt;dttm&gt;              &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
  1 2017-08-19 00:00:00 SUGG      0   temperature        29.6
@@ -384,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-08-19 01:00:00 SUGG      0.6 temperature        29.5
  9 2017-08-19 01:00:00 SUGG      0.8 temperature        29.5
 10 2017-08-19 01:00:00 SUGG      1   temperature        29.5
-# … with 1,037,345 more rows</code></pre>
+# … with 1,039,910 more rows</code></pre>
 </div>
 </div>
 <section id="surface-mean-daily-dissolved-oxygen-concentration" class="level3" data-number="3.3.1">
