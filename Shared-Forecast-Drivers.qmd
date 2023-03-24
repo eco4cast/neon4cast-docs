@@ -193,9 +193,11 @@ neon_temp <- taat |>
 
 ```
 
-## Downloading and processing of NOAA GEFS
+## Downloading of raw NOAA GEFS Forecasts
 
-The code used to download and process the NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the `gefs4cast` package found at [github.com/eco4cast/gefs4cast](https://github.com/eco4cast/gefs4cast)
+The documentation above describes how to access NOAA GEFS forecasts that we have subseted for NEON sites.  We recommend using this approach.  
+
+The code used to download and process the raw NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the `gefs4cast` package found at [github.com/eco4cast/gefs4cast](https://github.com/eco4cast/gefs4cast)
 
 ## Timing of data availability
 
