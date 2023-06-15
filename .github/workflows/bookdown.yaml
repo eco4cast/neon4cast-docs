@@ -26,6 +26,10 @@ jobs:
         with:
           version: 1.4.146
           
+      - name: install R packages
+        shell: Rscript {0} 
+        run: install.packages(c("scoringRules"))
+          
       - name: Render book to all format
         # Add any command line argument needed
         run: |
