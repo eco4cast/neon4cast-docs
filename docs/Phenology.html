@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.4.146">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -131,11 +108,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Phenology.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -143,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/EFI_Logo-1.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -152,104 +134,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <a href="./">NEON Ecological Forecasting Challenge</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Participation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Participation</span></a>
+  <a href="./Participation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Participation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Submission-Instructions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Submission Instructions</span></a>
+  <a href="./Submission-Instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Submission Instructions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Aquatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Theme: Aquatic Ecosystems</span></a>
+  <a href="./Aquatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Theme: Aquatic Ecosystems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></a>
+  <a href="./Terrestrial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theme: Terrestrial Ecosystems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Ticks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theme: Tick Populations</span></a>
+  <a href="./Ticks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theme: Tick Populations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Phenology.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></a>
+  <a href="./Phenology.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Beetles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Theme: Beetle Communities</span></a>
+  <a href="./Beetles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Theme: Beetle Communities</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">How did my forecast perform?</span></a>
+  <a href="./Evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">How did my forecast perform?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Shared-Forecast-Drivers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></a>
+  <a href="./Shared-Forecast-Drivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Meteorology Inputs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Helpful Functions</span></a>
+  <a href="./Helpful-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Helpful Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></a>
+  <a href="./UseInCourse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Using the Challenge in Classes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FAQ.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a>
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Metadata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">EFI EML Metadata Generation</span></a>
+  <a href="./Metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">EFI EML Metadata Generation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CronTiming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></a>
+  <a href="./CronTiming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Timing of Data Availability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></a>
+  <a href="./WorkflowExample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Example Forecast Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./container.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Docker Container</span></a>
+  <a href="./container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Docker Container</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,31 +257,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="toc-section-number">6.1</span>  Overview</a></li>
-  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="toc-section-number">6.2</span>  Challenge</a></li>
-  <li><a href="#data-targets" id="toc-data-targets" class="nav-link" data-scroll-target="#data-targets"><span class="toc-section-number">6.3</span>  Data: Targets</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="header-section-number">6.2</span> Challenge</a></li>
+  <li><a href="#data-targets" id="toc-data-targets" class="nav-link" data-scroll-target="#data-targets"><span class="header-section-number">6.3</span> Data: Targets</a>
   <ul class="collapse">
-  <li><a href="#green-chromatic-coordinate-gcc" id="toc-green-chromatic-coordinate-gcc" class="nav-link" data-scroll-target="#green-chromatic-coordinate-gcc"><span class="toc-section-number">6.3.1</span>  Green chromatic coordinate (gcc)</a></li>
-  <li><a href="#red-chromatic-coordinate-rcc" id="toc-red-chromatic-coordinate-rcc" class="nav-link" data-scroll-target="#red-chromatic-coordinate-rcc"><span class="toc-section-number">6.3.2</span>  Red chromatic coordinate (rcc)</a></li>
-  <li><a href="#focal-sites" id="toc-focal-sites" class="nav-link" data-scroll-target="#focal-sites"><span class="toc-section-number">6.3.3</span>  Focal sites</a></li>
-  <li><a href="#target-data-calculation" id="toc-target-data-calculation" class="nav-link" data-scroll-target="#target-data-calculation"><span class="toc-section-number">6.3.4</span>  Target data calculation</a></li>
-  <li><a href="#target-file" id="toc-target-file" class="nav-link" data-scroll-target="#target-file"><span class="toc-section-number">6.3.5</span>  Target file</a></li>
+  <li><a href="#green-chromatic-coordinate-gcc" id="toc-green-chromatic-coordinate-gcc" class="nav-link" data-scroll-target="#green-chromatic-coordinate-gcc"><span class="header-section-number">6.3.1</span> Green chromatic coordinate (gcc)</a></li>
+  <li><a href="#red-chromatic-coordinate-rcc" id="toc-red-chromatic-coordinate-rcc" class="nav-link" data-scroll-target="#red-chromatic-coordinate-rcc"><span class="header-section-number">6.3.2</span> Red chromatic coordinate (rcc)</a></li>
+  <li><a href="#focal-sites" id="toc-focal-sites" class="nav-link" data-scroll-target="#focal-sites"><span class="header-section-number">6.3.3</span> Focal sites</a></li>
+  <li><a href="#target-data-calculation" id="toc-target-data-calculation" class="nav-link" data-scroll-target="#target-data-calculation"><span class="header-section-number">6.3.4</span> Target data calculation</a></li>
+  <li><a href="#target-file" id="toc-target-file" class="nav-link" data-scroll-target="#target-file"><span class="header-section-number">6.3.5</span> Target file</a></li>
   </ul></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="toc-section-number">6.4</span>  Timeline</a></li>
-  <li><a href="#submissions" id="toc-submissions" class="nav-link" data-scroll-target="#submissions"><span class="toc-section-number">6.5</span>  Submissions</a></li>
-  <li><a href="#meterological-inputs-for-modeling" id="toc-meterological-inputs-for-modeling" class="nav-link" data-scroll-target="#meterological-inputs-for-modeling"><span class="toc-section-number">6.6</span>  Meterological inputs for modeling</a></li>
-  <li><a href="#useful-functions" id="toc-useful-functions" class="nav-link" data-scroll-target="#useful-functions"><span class="toc-section-number">6.7</span>  Useful functions</a></li>
-  <li><a href="#null-models" id="toc-null-models" class="nav-link" data-scroll-target="#null-models"><span class="toc-section-number">6.8</span>  Null models</a></li>
-  <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"><span class="toc-section-number">6.9</span>  Design team</a></li>
-  <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"><span class="toc-section-number">6.10</span>  Partners</a></li>
-  <li><a href="#site-table" id="toc-site-table" class="nav-link" data-scroll-target="#site-table"><span class="toc-section-number">6.11</span>  Site table</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">6.12</span>  References</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="header-section-number">6.4</span> Timeline</a></li>
+  <li><a href="#submissions" id="toc-submissions" class="nav-link" data-scroll-target="#submissions"><span class="header-section-number">6.5</span> Submissions</a></li>
+  <li><a href="#meteorological-inputs-for-modeling" id="toc-meteorological-inputs-for-modeling" class="nav-link" data-scroll-target="#meteorological-inputs-for-modeling"><span class="header-section-number">6.6</span> Meteorological inputs for modeling</a></li>
+  <li><a href="#useful-functions" id="toc-useful-functions" class="nav-link" data-scroll-target="#useful-functions"><span class="header-section-number">6.7</span> Useful functions</a></li>
+  <li><a href="#null-models" id="toc-null-models" class="nav-link" data-scroll-target="#null-models"><span class="header-section-number">6.8</span> Null models</a></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"><span class="header-section-number">6.9</span> FAQ</a></li>
+  <li><a href="#design-team" id="toc-design-team" class="nav-link" data-scroll-target="#design-team"><span class="header-section-number">6.10</span> Design team</a></li>
+  <li><a href="#partners" id="toc-partners" class="nav-link" data-scroll-target="#partners"><span class="header-section-number">6.11</span> Partners</a></li>
+  <li><a href="#site-table" id="toc-site-table" class="nav-link" data-scroll-target="#site-table"><span class="header-section-number">6.12</span> Site table</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.13</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -290,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Theme: Phenology</span></h1>
 </div>
 
 
@@ -307,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><strong>What</strong>: Terrestrial phenology defined by daily greenness and redness of plants</p>
 <p><strong>Where</strong>: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico</p>
-<p><strong>When</strong>: Daily forecasts for at least 30-days in the future are accepted at any time. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
+<p><strong>When</strong>: Daily forecasts for at least 30-days in the future are accepted at any time. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.</p>
 <p><strong>Why</strong>: Phenology has been identified as one of the primary ecological fingerprints of global climate change.</p>
 <p><strong>Who</strong>: Open to any individual or team that registers</p>
 <p><strong>How</strong>: <a href="https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ" target="_blank">REGISTER</a> your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.</p>
@@ -315,9 +317,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <iframe width="560" height="315" src="https://www.youtube.com/embed/P8OwhCF4AdI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
 <p>We held a Q&amp;A session on January 27, 2021. You can find a recording from that session <a href="https://www.youtube.com/watch?v=UwX2IA1vDQE&amp;feature=youtu.be" target="_blank">HERE</a>.</p>
-<div class="cell">
-
-</div>
 <section id="overview" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
 <p>Phenology has been shown to be a robust integrator of the effects of year-to-year climate variability and longer-term climate change on natural systems (e.g., recent warming trends). Experimental studies have shown how other global change factors (e.g., elevated CO<sub>2</sub> and N deposition) can also influence phenology. There is a need to better document biological responses to a changing world, and improved phenological monitoring at scales from individual organisms to ecosystems, regions, and continents will contribute to achieving this goal.</p>
@@ -331,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="6.3" class="anchored" data-anchor-id="data-targets"><span class="header-section-number">6.3</span> Data: Targets</h2>
 <p>The challenge uses the following NEON data products:</p>
 <p><a href="https://data.neonscience.org/data-products/DP1.00033.001" target="_blank">DP1.00033.001</a>: Phenology images</p>
-<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the <a href="https://github.com/eco4cast/neon4cast-targets/blob/main/phenology_targets.R" target="_blank">here</a>.</p>
+<p>A file with previously released NEON data that has been processed into “targets” is provided below. The same processing will be applied to new data that are used for forecast evaluation.</p>
 <section id="green-chromatic-coordinate-gcc" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="green-chromatic-coordinate-gcc"><span class="header-section-number">6.3.1</span> Green chromatic coordinate (gcc)</h3>
 <p><strong>Definition</strong></p>
@@ -357,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The distribution of sites across ecosystems types is:</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Vegetation type</th>
@@ -405,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For additional details, see Richardson et al.&nbsp;(2018) Scientific Data, and Richardson (2019) New Phytologist.</p>
 <p>PhenoCam data are processed and posted daily and the low latency of the PhenoCam data allows for a unique opportunity to evaluate forecasts in real-time.</p>
 <p>Each image has a defined “region of interest’ (ROI). An ROI is a set of pixels that isolates particular features in the image (i.e., a set of deciduous trees in a mixed forest). The ROI of the below top-of-canopy PhenoCams will be used to assess the forecasts’ accuracy. The mid-day (noon) mean GCC and GCC standard deviation for the ROI will be used for evaluation.</p>
-<p>All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes avialable, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.</p>
+<p>All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes available, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.</p>
 </section>
 <section id="target-file" class="level3" data-number="6.3.5">
 <h3 data-number="6.3.5" class="anchored" data-anchor-id="target-file"><span class="header-section-number">6.3.5</span> Target file</h3>
@@ -414,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz"</span>, <span class="at">guess_max =</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 185,248 × 4
+<pre><code># A tibble: 192,684 × 4
    datetime   site_id variable observation
    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
  1 2017-05-30 ABBY    gcc_90         0.417
@@ -427,50 +426,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 2017-06-06 ABBY    gcc_90         0.416
  9 2017-06-07 ABBY    gcc_90         0.426
 10 2017-06-08 ABBY    gcc_90         0.430
-# … with 185,238 more rows</code></pre>
+# ℹ 192,674 more rows</code></pre>
 </div>
 </div>
 <p>The target file has the following columns:</p>
 <ul>
-<li><code>datetime</code>: date of observation<br>
-</li>
-<li><code>site_id</code>: NEON site code<br>
-</li>
-<li><code>variable</code>: variable (<code>gcc_90</code> or <code>rcc_90</code>)</li>
-<li><code>observation</code>: daily value</li>
+<li><p><code>datetime</code>: date of observation<br>
+</p></li>
+<li><p><code>site_id</code>: NEON site code<br>
+</p></li>
+<li><p><code>variable</code>: variable (<code>gcc_90</code> or <code>rcc_90</code>)</p></li>
+<li><p><code>observation</code>: daily value</p></li>
 </ul>
 </section>
 </section>
 <section id="timeline" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">6.4</span> Timeline</h2>
-<p>Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st – March 30th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see <a href="CronTiming.html"><span>Appendix&nbsp;B</span></a>). The key is that submissions are predictions of the future.</p>
-<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html"><span>Chapter&nbsp;12</span></a></p>
+<p>Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see <a href="CronTiming.html" class="quarto-xref"><span>Appendix&nbsp;B</span></a>). The key is that submissions are predictions of the future.</p>
+<p>Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package <a href="https://cran.r-project.org/web/packages/cronR/index.html" target="_blank">cronR</a>) that execute tasks at user specifics times and <a href="https://youtu.be/dMrUlXi4_Bo" target="_blank">github actions</a>. See more in <a href="FAQ.html" class="quarto-xref"><span>Chapter&nbsp;12</span></a></p>
 <p>Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found <a href="https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R" target="_blank">here</a>.</p>
 </section>
 <section id="submissions" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="submissions"><span class="header-section-number">6.5</span> Submissions</h2>
 <p>The required names for forecasted variables: <code>gcc_90</code>, and <code>rcc_90</code>.</p>
 <p>The required time unit: <code>date</code> in YYYY-MM-DD format</p>
-<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html"><span>Chapter&nbsp;2</span></a></p>
+<p>Instructions for submitting forecasts are found in <a href="Submission-Instructions.html" class="quarto-xref"><span>Chapter&nbsp;2</span></a></p>
 </section>
-<section id="meterological-inputs-for-modeling" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="meterological-inputs-for-modeling"><span class="header-section-number">6.6</span> Meterological inputs for modeling</h2>
-<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;9</span></a></p>
+<section id="meteorological-inputs-for-modeling" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="meteorological-inputs-for-modeling"><span class="header-section-number">6.6</span> Meteorological inputs for modeling</h2>
+<p>Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in <a href="Shared-Forecast-Drivers.html" class="quarto-xref"><span>Chapter&nbsp;9</span></a></p>
 </section>
 <section id="useful-functions" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="useful-functions"><span class="header-section-number">6.7</span> Useful functions</h2>
-<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html"><span>Chapter&nbsp;10</span></a></p>
-<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html"><span>Chapter&nbsp;9</span></a></p>
+<p>Functions for validating, evaluating and submitting forecasts can be found in <a href="Helpful-Functions.html" class="quarto-xref"><span>Chapter&nbsp;10</span></a></p>
+<p>Functions for downloading and working with the meteorology forecasts can be be found <a href="Shared-Forecast-Drivers.html" class="quarto-xref"><span>Chapter&nbsp;9</span></a></p>
 </section>
 <section id="null-models" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="null-models"><span class="header-section-number">6.8</span> Null models</h2>
 <p>Two null models are automatically generated each day. The persistence null model use the most recent measurement of gcc_90 or rcc_90 and predicts that the values will be constant in the future. The climatology null model futures that the gcc_90 or rcc_90 will be equal to the historical mean of that day of year.</p>
-<p>Code for the persistence null model can be found <a href="https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_persistance.R" target="&quot;_blank">here</a></p>
-<p>Code for the climatology null model can be found <a href="https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_climatology.R" target="_blank">here</a> ## FAQ</p>
-<p>Answers to frequency asks questions can be found in <a href="FAQ.html"><span>Chapter&nbsp;12</span></a></p>
 </section>
-<section id="design-team" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="design-team"><span class="header-section-number">6.9</span> Design team</h2>
+<section id="faq" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="faq"><span class="header-section-number">6.9</span> FAQ</h2>
+<p>Answers to frequency asks questions can be found in <a href="FAQ.html" class="quarto-xref"><span>Chapter&nbsp;12</span></a></p>
+</section>
+<section id="design-team" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="design-team"><span class="header-section-number">6.10</span> Design team</h2>
+<p>The following have been involved in the design of the phenology challenge</p>
 <p>Min Chen, University of Wisconsin, Madison<br>
 Michael Dietze, Boston University<br>
 Kathy Gerst, National Phenology Network<br>
@@ -484,17 +485,17 @@ Kathryn Wheeler, Boston University<br>
 Luke Zachmann, Conservation Science Partners<br>
 Kai Zhu, University of California - Santa Cruz</p>
 </section>
-<section id="partners" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="partners"><span class="header-section-number">6.10</span> Partners</h2>
+<section id="partners" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="partners"><span class="header-section-number">6.11</span> Partners</h2>
 <p>The challenge is hosted by the Ecological Forecasting Initiative (EFI; https://ecoforecast.org/) and its U.S. National Science Foundation sponsored Research Coordination Network (EFI-RCN; https://ecoforecast.org/rcn/).</p>
 <p>Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/) and hosted by the Phenocam Network (http://phenocam.sr.unh.edu/).</p>
 <p>The forecasting challenge was developed in collaboration with the USA National Phenology Network: https://www.usanpn.org/usa-national-phenology-network.</p>
 </section>
-<section id="site-table" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="site-table"><span class="header-section-number">6.11</span> Site table</h2>
+<section id="site-table" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="site-table"><span class="header-section-number">6.12</span> Site table</h2>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 4%">
 <col style="width: 34%">
@@ -895,8 +896,8 @@ Kai Zhu, University of California - Santa Cruz</p>
 </div>
 </div>
 </section>
-<section id="references" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="references"><span class="header-section-number">6.12</span> References</h2>
+<section id="references" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="references"><span class="header-section-number">6.13</span> References</h2>
 <p>Richardson, A., Hufkens, K., Milliman, T. et al.&nbsp;Tracking vegetation phenology across diverse North American biomes using PhenoCam imagery. Sci Data 5, 180028 (2018). https://doi.org/10.1038/sdata.2018.28</p>
 <p>Richardson, A.D. (2019), Tracking seasonal rhythms of plants in diverse ecosystems with digital camera imagery. New Phytol, 222: 1742-1750. https://doi.org/10.1111/nph.15591</p>
 
@@ -931,9 +932,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -969,10 +984,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -982,8 +996,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -998,6 +1021,148 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      try { hash = new URL(url).hash; } catch {}
+      const id = hash.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note !== null) {
+        try {
+          const html = processXRef(id, note);
+          instance.setContent(html);
+        } finally {
+          instance.enable();
+          instance.show();
+        }
+      } else {
+        // See if we can fetch this
+        fetch(url.split('#')[0])
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.getElementById(id);
+          console.log(htmlDoc.body.innerHTML);
+          if (note !== null) {
+            const html = processXRef(id, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1050,6 +1215,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
