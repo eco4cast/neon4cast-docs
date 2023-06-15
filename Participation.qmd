@@ -34,7 +34,7 @@ Teams are highly encouraged to publicly archive the code they are using for thei
 
 ## Participation agreement
 
-All participants agree to have their forecast posted in real-time on the NEON Ecological Forecast Challenge [Dashboard](https://shiny.ecoforecast.org/){target="_blank"} and potentially published in a scientific journal. The manuscripts describing the accuracy of forecasts across teams will be coordinated by the Ecological Forecasting Initiative Research Coordination Network and authorship will be extended to members of each team with an opt-in policy.
+All participants agree to have their forecast posted in real-time on the NEON Ecological Forecast Challenge [Dashboard](https://projects.ecoforecast.org/neon4cast-dashboard){target="_blank"} and potentially published in a scientific journal. The manuscripts describing the accuracy of forecasts across teams will be coordinated by the Ecological Forecasting Initiative Research Coordination Network and authorship will be extended to members of each team with an opt-in policy.
 
 The license for the forecast output is required to be from the following Creative Commons License options: CC BY, CC BY-SA, CC BY-NC, CC BY-NC-SA. While we recommend a CC BY license, teams may use less permissive CC licenses if more appropriate. The license entry can be the CC option (i.e., CC BY) and a web link to the full CC license (e.g., https://creativecommons.org/licenses/by/4.0/)
 

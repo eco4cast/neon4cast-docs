@@ -6,7 +6,7 @@ The following provides the requirements for the format of the forecasts that wil
 
 We provide an overview of the steps for submitting with the details below:
 
-1)  Submit [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} for the model using a web form.\ 
+1)  Submit [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} for the model using a web form. 
 2)  Generate forecast with required columns. There are three options for the file format described below.\
 3)  Write forecast to a file that follows the standardized naming format.\
 4)  Submit forecast (preferably using the submission function that we provide)/\
@@ -69,35 +69,37 @@ A netcdf should have the following global attributes:
 
 <!-- -->
 
-    netcdf terrestrial_30min-2022-10-07-climatology {
-    dimensions:
-            datetime = 1681 ;
-            site = 47 ;
-            parameter = 200 ;
-            nchar = 4 ;
-    variables:
-            double datetime(datetime) ;
-                    datetime:units = "seconds since 2022-10-07" ;
-                    datetime:long_name = "datetime" ;
-            int site(site) ;
-                    site:long_name = "NEON siteID" ;
-            int parameter(parameter) ;
-                    parameter:long_name = "ensemble member" ;
-            double nee(parameter, site, datetime) ;
-                    nee:units = "umol CO2 m-2 s-1" ;
-                    nee:_FillValue = 1.e+32 ;
-                    nee:long_name = "net ecosystem exchange of CO2" ;
-            double le(parameter, site, datetime) ;
-                    le:units = "W m-2" ;
-                    le:_FillValue = 1.e+32 ;
-                    le:long_name = "latent heat flux" ;
-            char site_id(site, nchar) ;
-                    site_id:long_name = "NEON site codes" ;
+```         
+netcdf terrestrial_30min-2022-10-07-climatology {
+dimensions:
+        datetime = 1681 ;
+        site = 47 ;
+        parameter = 200 ;
+        nchar = 4 ;
+variables:
+        double datetime(datetime) ;
+                datetime:units = "seconds since 2022-10-07" ;
+                datetime:long_name = "datetime" ;
+        int site(site) ;
+                site:long_name = "NEON siteID" ;
+        int parameter(parameter) ;
+                parameter:long_name = "ensemble member" ;
+        double nee(parameter, site, datetime) ;
+                nee:units = "umol CO2 m-2 s-1" ;
+                nee:_FillValue = 1.e+32 ;
+                nee:long_name = "net ecosystem exchange of CO2" ;
+        double le(parameter, site, datetime) ;
+                le:units = "W m-2" ;
+                le:_FillValue = 1.e+32 ;
+                le:long_name = "latent heat flux" ;
+        char site_id(site, nchar) ;
+                site_id:long_name = "NEON site codes" ;
 
-    // global attributes:
-                    :reference_datetime = "2022-10-07 00:00:00" ;
-                    :model_id = "climatology" ;
-    }
+// global attributes:
+                :reference_datetime = "2022-10-07 00:00:00" ;
+                :model_id = "climatology" ;
+}
+```
 
 ## Step 2: File name
 
@@ -115,11 +117,11 @@ Teams will submit their forecasts as a single netCDF or csv file with the follow
 
 ## Step 3: Metadata format
 
-For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required Google Form and an optional EML metadata
+For multi-model analysis, it is important to provide a description of your forecasting approach. There is a required f orm and an optional EML metadata
 
 1)  Required: Complete the registration/model overview form that describes your model and provide your `model_id`. You need to fill out the form once per model_id. If you revise your modeling approach associated with a `model_id` then you will need to resubmit the form. A revised model does not change the `project_id`
 
-2)  Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). To help support metadata generation, we have created a function in the neon4cast package (`generate_metadata()`) and a guide for completing the metadata is in @sec-metadata.
+2)  Optional: You can submit an xml file that provides metadata that follow the proposed EFI standards. If you chose to submit metadata will your forecast submission, the metadata file must have the same name as the submitted forecast, but with the .xml extension (`theme_name-year-month-day-model_id.xml`). Metadata files should be uploaded with the forecast files. The [metadata standard](https://github.com/eco4cast/EFIstandards){target="_blank"} has been designed by the Ecological Forecasting Initiative and is built off the widely used Ecological Metadata Language (EML). A guide for completing the metadata is in @sec-metadata.
 
 ## Step 4: Submission process
 
@@ -159,7 +161,7 @@ neon4cast::forecast_output_validator("phenology-2022-09-01-persistenceRW.csv.gz"
 
 ## Visualizing submissions
 
-Plots of submissions and table of scores can be found at our [dashboard](https://shiny.ecoforecast.org){target="_blank"}
+Plots of submissions and table of scores can be found at our [dashboard](https://projects.ecoforecast.org/neon4cast-dashboard){target="_blank"}
 
 ## Video Describing How to Submit to the Challenge
 

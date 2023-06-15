@@ -4,7 +4,7 @@
 
 **Where**: 47 sites in total - 15 deciduous broadleaf forest, 11 evergreen needleleaf, 9 grassland, 5 tundra, 3 agriculture, 2 evergreen broadleaf (tropical) and 2 shrubland NEON sites across the U.S. and Puerto Rico
 
-**When**: Daily forecasts for at least 30-days in the future are accepted at any time. Forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
+**When**: Daily forecasts for at least 30-days in the future are accepted at any time. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 **Why**: Phenology has been identified as one of the primary ecological fingerprints of global climate change.
 
@@ -40,7 +40,7 @@ The challenge uses the following NEON data products:
 
 [DP1.00033.001](https://data.neonscience.org/data-products/DP1.00033.001){target="_blank"}: Phenology images
 
-A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation. The processing script is available on the [here](https://github.com/eco4cast/neon4cast-targets/blob/main/phenology_targets.R){target="_blank"}.
+A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation.
 
 ### Green chromatic coordinate (gcc)
 
@@ -97,7 +97,7 @@ PhenoCam data are processed and posted daily and the low latency of the PhenoCam
 
 Each image has a defined "region of interest' (ROI). An ROI is a set of pixels that isolates particular features in the image (i.e., a set of deciduous trees in a mixed forest). The ROI of the below top-of-canopy PhenoCams will be used to assess the forecasts' accuracy. The mid-day (noon) mean GCC and GCC standard deviation for the ROI will be used for evaluation.
 
-All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes avialable, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.
+All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes available, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.
 
 ### Target file
 
@@ -111,13 +111,16 @@ readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/phenology/phenol
 The target file has the following columns:
 
 -   `datetime`: date of observation\
+
 -   `site_id`: NEON site code\
+
 -   `variable`: variable (`gcc_90` or `rcc_90`)
+
 -   `observation`: daily value
 
 ## Timeline
 
-Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. A minimum of 35 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st -- March 30th, but it could be for the full spring. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see @sec-cron). The key is that submissions are predictions of the future.
+Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see @sec-cron). The key is that submissions are predictions of the future.
 
 Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specifics times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more in @sec-faq
 
@@ -131,7 +134,7 @@ The required time unit: `date` in YYYY-MM-DD format
 
 Instructions for submitting forecasts are found in @sec-submissions
 
-## Meterological inputs for modeling
+## Meteorological inputs for modeling
 
 Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in @sec-met
 
@@ -145,13 +148,13 @@ Functions for downloading and working with the meteorology forecasts can be be f
 
 Two null models are automatically generated each day. The persistence null model use the most recent measurement of gcc_90 or rcc_90 and predicts that the values will be constant in the future. The climatology null model futures that the gcc_90 or rcc_90 will be equal to the historical mean of that day of year.
 
-Code for the persistence null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_persistance.R){target="\"_blank"}
-
-Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/phenology_climatology.R){target="_blank"} \## FAQ
+## FAQ
 
 Answers to frequency asks questions can be found in @sec-faq
 
 ## Design team
+
+The following have been involved in the design of the phenology challenge
 
 Min Chen, University of Wisconsin, Madison\
 Michael Dietze, Boston University\
