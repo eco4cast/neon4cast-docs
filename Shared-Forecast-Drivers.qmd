@@ -45,8 +45,6 @@ Forecasts include the following variables:
 -   DSWRF: Downward shortwave radiation flux in interval (W/m\^2)\
 -   DLWRF: Downward longwave radiation flux in interval (W/m\^2)\
 
-GEFS forecasts are issued four times a day, as indicated by the `start_date` and `cycle`. Only forecasts at midnight, `cycle = "0"` extend for the full 840 hour horizon. Other cycles 6, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainty from ensemble members)
-
 All variables are given at height 2m above ground, surface, or 10 m above ground as indicated in height column. See https://www.nco.ncep.noaa.gov/pmb/products/gens/ for more details on GEFS variables and intervals.
 
 Common ways to filter the data before running `collect()` include `start_date`, `site_id`, `variable`, and `horizon`.
@@ -58,10 +56,6 @@ weather |>
 dplyr::filter(start_date == "2022-04-01") |>
 dplyr::collect()
 ```
-
-Note: that `noaa_stage1()` defaults to the `00` cycle.
-
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage1`
 
 Stage 1 has the following columns:
 
@@ -99,10 +93,6 @@ dplyr::filter(start_date == "2022-04-01" & site_id == "BART") |>
 dplyr::collect()
 ```
 
-Note: that `noaa_stage2()` defaults to the `00` cycle.
-
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage2/parquet`
-
 Stage 2 has the following columns:
 
 `site_id: string` : NEON site ID\
@@ -134,62 +124,17 @@ dplyr::filter(site_id == "BART") |>
 dplyr::collect()
 ```
 
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage3/parquet`
-
 Stage 3 has the following columns
 
 `site_id: string` : NEON site ID\
 `prediction: double` : forecasted value\
 `variable: string` : weather variable\
-`height: string` : height above ground for weather variable\
 `family: string`: class of uncertainty (ensemble)\
 `parameter: int32` : ensemble member number\
 `datetime: timestamp[us, tz=UTC]` : datetime of forecast\
-`longitude: double` : location of NEON site\
-`latitude: double` : location of NEON site
-
-## NEON Observed
-
-The observed weather at each NEON site as also available in the monthly released data products by NEON. We are downloading these data and providing through the following function
-
-```{r eval = FALSE}
-neon <- arrow::s3_bucket("neon4cast-targets/neon",
-                  endpoint_override = "data.ecoforecast.org",
-                  anonymous = TRUE)
-```
-
-The list of data tables that are available can be found using this command.
-
-```{r eval = FALSE}
-neon$ls()
-```
-
-And here is an example for accessing the triple aspirated temperature data product. See the data product (i.e., DP1.00003.001) in NEON data portal for more information about the table names.
-
-```{r eval = FALSE}
-taat <- arrow::open_dataset(neon$path("TAAT_30min-basic-DP1.00003.001")) 
-```
-
-Here is an example showing how to download particular subsets of the data table.
-
-```{r eval = FALSE}
-neon_temp <- taat |>
-  mutate(time = as.Date(startDateTime)) |>
-  group_by(siteID, time) |>
-  summarise(mean_tmp = mean(tempTripleMean, na.rm = TRUE),
-            min_tmp = min(tempTripleMinimum, na.rm = TRUE),
-            max_tmp = max(tempTripleMaximum, na.rm = TRUE)) |>
-  rename(site_id = siteID) |>
-  collect()
-
-```
 
 ## Downloading of raw NOAA GEFS Forecasts
 
 The documentation above describes how to access NOAA GEFS forecasts that we have subseted for NEON sites. We recommend using this approach.
 
 The code used to download and process the raw NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the `gefs4cast` package found at [github.com/eco4cast/gefs4cast](https://github.com/eco4cast/gefs4cast)
-
-## Timing of data availability
-
-See @sec-cron for information on the time day that the NOAA data become available on our servers for use in the Challenge.
