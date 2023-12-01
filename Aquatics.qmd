@@ -4,7 +4,7 @@
 
 **Where:** 7 lakes and 27 river/stream NEON sites.
 
-**When:** Daily forecasts for at least 30-days in the future are accepted at any time.  New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
+**When:** Daily forecasts for at least 30-days in the future are accepted at any time. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 ```{r echo = FALSE, message = FALSE}
 library("tidyverse")
@@ -28,12 +28,10 @@ Teams are asked to submit their 30-day forecasts of NEON surface mean daily surf
 
 ## Data: Targets
 
-The R script for generating the evaluation and training data (i.e., targets) can be found at: https://github.com/eco4cast/neon4cast-aquatics
-
 The challenge uses the following NEON data products: - [DP1.20264.001](https://data.neonscience.org/data-products/DP1.20264.001){target="_blank"}: Temperature at specific depth in surface water for lakes - [DP1.20288.001](https://data.neonscience.org/data-products/DP1.20288.001){target="_blank"}: Water quality (includes oxygen and chlorophyll-a)\
 - [DP1.20035.001](https://data.neonscience.org/data-products/DP1.20053.001){target ="\_blank"}: Temperature in surface waters for streams
 
-Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will _not_ be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data
+Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will *not* be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data
 
 ### Surface Mean Daily Dissolved Oxygen Concentration
 

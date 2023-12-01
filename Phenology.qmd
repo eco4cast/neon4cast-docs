@@ -8,18 +8,6 @@
 
 **Why**: Phenology has been identified as one of the primary ecological fingerprints of global climate change.
 
-**Who**: Open to any individual or team that registers
-
-**How**: [REGISTER](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.
-
-The video below is an overview of the Phenology Challenge that was recorded for the [2021 Early Career Annual Meeting](https://ecoforecast.org/ecological-forecasting-early-career-annual-meeting/){target="_blank"}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/P8OwhCF4AdI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-
-We held a Q&A session on January 27, 2021. You can find a recording from that session [HERE](https://www.youtube.com/watch?v=UwX2IA1vDQE&feature=youtu.be){target="_blank"}.
-
 ```{r echo = FALSE, message = FALSE}
 library("tidyverse")
 ```
@@ -39,8 +27,6 @@ This is an open ecological forecasting challenge to forecast spring green-up of 
 The challenge uses the following NEON data products:
 
 [DP1.00033.001](https://data.neonscience.org/data-products/DP1.00033.001){target="_blank"}: Phenology images
-
-A file with previously released NEON data that has been processed into "targets" is provided below. The same processing will be applied to new data that are used for forecast evaluation.
 
 ### Green chromatic coordinate (gcc)
 
@@ -98,84 +84,6 @@ PhenoCam data are processed and posted daily and the low latency of the PhenoCam
 Each image has a defined "region of interest' (ROI). An ROI is a set of pixels that isolates particular features in the image (i.e., a set of deciduous trees in a mixed forest). The ROI of the below top-of-canopy PhenoCams will be used to assess the forecasts' accuracy. The mid-day (noon) mean GCC and GCC standard deviation for the ROI will be used for evaluation.
 
 All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes available, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.
-
-### Target file
-
-Here is the format of the target file
-
-```{r message = FALSE}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/phenology/phenology-targets.csv.gz", guess_max = 1e6) |> 
-  na.omit()
-```
-
-The target file has the following columns:
-
--   `datetime`: date of observation\
-
--   `site_id`: NEON site code\
-
--   `variable`: variable (`gcc_90` or `rcc_90`)
-
--   `observation`: daily value
-
-## Timeline
-
-Forecasts for a minimum of 30 days can be submitted daily by 12:59 pm UTC any day. New forecasts can be submitted daily as new weather forecasts and observations (e.g., PhenoCam) become available (see @sec-cron). The key is that submissions are predictions of the future.
-
-Daily submissions are allowed and encouraged as new observations and weather forecasts become available, therefore the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specifics times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more in @sec-faq
-
-Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found [here](https://github.com/eco4cast/neon4cast-phenology/blob/master/cron_automation.R){target="_blank"}.
-
-## Submissions
-
-The required names for forecasted variables: `gcc_90`, and `rcc_90`.
-
-The required time unit: `date` in YYYY-MM-DD format
-
-Instructions for submitting forecasts are found in @sec-submissions
-
-## Meteorological inputs for modeling
-
-Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in @sec-met
-
-## Useful functions
-
-Functions for validating, evaluating and submitting forecasts can be found in @sec-functions
-
-Functions for downloading and working with the meteorology forecasts can be be found @sec-met
-
-## Null models
-
-Two null models are automatically generated each day. The persistence null model use the most recent measurement of gcc_90 or rcc_90 and predicts that the values will be constant in the future. The climatology null model futures that the gcc_90 or rcc_90 will be equal to the historical mean of that day of year.
-
-## FAQ
-
-Answers to frequency asks questions can be found in @sec-faq
-
-## Design team
-
-The following have been involved in the design of the phenology challenge
-
-Min Chen, University of Wisconsin, Madison\
-Michael Dietze, Boston University\
-Kathy Gerst, National Phenology Network\
-Chris Jones, NC State University David LeBauer, University of Arizona\
-Dabasmita Pal, Michigan State University\
-Andrew Richardson, Northern Arizona University\
-Arun Ross, Michigan State University\
-Bijan Seyednasrollah, Northern Arizona University, PhenoCam Network\
-Quinn Thomas, Virginia Tech\
-Kathryn Wheeler, Boston University\
-Luke Zachmann, Conservation Science Partners\
-Kai Zhu, University of California - Santa Cruz
-
-## Partners
-
-The challenge is hosted by the Ecological Forecasting Initiative (EFI; https://ecoforecast.org/) and its U.S. National Science Foundation sponsored Research Coordination Network (EFI-RCN; https://ecoforecast.org/rcn/).
-
-Data used in the challenge are collected by the National Ecological Observatory Network (NEON; https://www.neonscience.org/) and hosted by the Phenocam Network (http://phenocam.sr.unh.edu/).
-
-The forecasting challenge was developed in collaboration with the USA National Phenology Network: https://www.usanpn.org/usa-national-phenology-network.
 
 ## Site table
 

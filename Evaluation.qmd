@@ -2,20 +2,6 @@
 
 Forecasts will be evaluated at each site and forecast horizon (i.e., time-step into the future), and a summary score will be assigned evaluating overall performance of all forecast submissions across sites. Forecasts will also be compared to a null model.
 
-## Forecast Submission Visualization
-
-The [dashboard](https://projects.ecoforecast.org/neon4cast-dashboard){target="_blank"} shows the forecast submissions by each team for each forecast theme by date and forecast variable.
-
-## Evaluation
-
-Preliminary results will be distributed using the `neon4cast::combined_scores(theme)` function (where `theme` is the theme name).
-
-```{r eval = FALSE}
-score_df <- neon4cast::combined_scores(theme = "phenology")
-```
-
-We intend to write a joint manuscript synthesizing forecasts, authorship will be extended to members of each team with an opt-in policy. Teams are welcome to publish results from their model at any time. If a publication is generated we encourage the manuscript to acknowledge the Ecological Forecasting Research Coordination Network and its support from the National Science Foundation (DEB-1926388).
-
 ## Scoring Metric: Continuous Ranked Probability Score
 
 Forecasts will be scored using the continuous ranked probability score (CRPS), a proper scoring rule for evaluating forecasts presented as distributions or ensembles (Gneiting & Raftery 2007). The CRPS compares the forecast probability distribution to that of the validation observation and assigns a score based on both the accuracy and precision of the forecast. We will use the 'crps_sample' function from the `scoringRules` package in R to calculate the CRPS for each forecast.
@@ -181,10 +167,6 @@ Let's estimate the slope of the relationship. It looks like the optimal $sd$ for
 ```{r}
 coef(lm(optimal_sd[sample_mean > 0] ~ sample_mean[sample_mean > 0]))
 ```
-
-## Null forecast {#sec-nulls}
-
-All forecasts will be compared to a null forecast produced by a simple historical-means calculation or a random walk.
 
 ## References
 
