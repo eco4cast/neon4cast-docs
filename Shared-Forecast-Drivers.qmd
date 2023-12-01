@@ -64,6 +64,7 @@ Stage 1 has the following columns:
 `reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0\
 `forecast_valid: string`: period of time (in hours) that the predicted value applies\
 `datetime: timestamp[us, tz=UTC]` : datetime of forecast\
+`cycle: string`: hour of day that forecast was started
 
 ### Stage 2
 

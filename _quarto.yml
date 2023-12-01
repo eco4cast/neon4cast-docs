@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "NEON Ecological Forecasting Challenge"
+  title: "NEON Ecological Forecasting Challenge Documentation"
   author: "Ecological Forecasting Initative Research Coordination Network"
   date: now
   chapters:
@@ -15,6 +15,7 @@ book:
     - Evaluation.qmd
     - Shared-Forecast-Drivers.qmd
     - UseInCourse.qmd
+    - contributors.qmd
     - FAQ.qmd
   appendices:
     - WorkflowExample.qmd
