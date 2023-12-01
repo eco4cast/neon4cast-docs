@@ -7,8 +7,6 @@ book:
   date: now
   chapters:
     - index.qmd
-    - Participation.qmd
-    - Submission-Instructions.qmd
     - Aquatics.qmd
     - Terrestrial.qmd
     - Ticks.qmd
@@ -20,8 +18,6 @@ book:
     - UseInCourse.qmd
     - FAQ.qmd
   appendices:
-    - Metadata.qmd
-    - CronTiming.qmd
     - WorkflowExample.qmd
     - container.qmd
   sidebar:
