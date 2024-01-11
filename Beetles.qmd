@@ -4,19 +4,9 @@
 
 **Where:** 47 terrestrial NEON sites that span the diverse ecosystems of the U.S.
 
-**When:** Forecasts for 52 weeks into the future using a weekly time-step are accepted at any time. Forecasts that start in the current week are due by Sunday at 12:59 pm (UTC).
+**When:** Forecasts for 52 weeks into the future using a weekly time-step are accepted at any time. 
 
 **Why:** Improve understanding of habitat quality, conservation potential, land-use sustainability, and biodiversity change in response to global change and ecological disturbances
-
-**Who**: Open to any individual or team that registers.
-
-**How**: [REGISTER](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.
-
-The video below is an overview of the Beetle Communities Challenge that was recorded for the [2021 Early Career Annual Meeting](https://ecoforecast.org/ecological-forecasting-early-career-annual-meeting/){target="_blank"}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7196wcarMXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
 
 ```{r echo = FALSE, message = FALSE}
 library("tidyverse")
@@ -39,8 +29,6 @@ This is an open ecological forecasting challenge to forecast carabid species ric
 The challenge uses the following NEON data product:\
 [DP1.10022.001](https://data.neonscience.org/data-products/DP1.10022.001){target="_blank"}: Ground beetles sampled from pitfall traps
 
-A file with previously released NEON data that has been processed into the aggregate "target" variables (richness and abundance) is provided below. The same processing will be applied to new data that are used for forecast evaluation. Further information about data structure, initial code for processing, and example null forecasts is provided in the [neon4cast-beetles GitHub repository](https://github.com/eco4cast/neon4cast-beetles){target="_blank"}.
-
 Forecasts will be made on a weekly basis for the abundance of beetles at a given NEON site at a given month ('abundance') and the observed species richness (n, number of species) of carabid beetles at each NEON site, each month.
 
 ### Abundance of beetles (abundance)
@@ -51,7 +39,7 @@ Total number of carabid individuals per trap-night, estimated each week of the y
 
 **Motivation**
 
-A forecast prediction can be compared against only measured data (i.e. counts) and not latent variables (i.e. true carabid abundance), which are only inferred under specific model assumptions. However, raw count of beetles found in a particular trap depends on many other drivers than local abundance; in particular, the sampling effort. To avoid the need to accurately predict the sampling effort, we compute a target variable as counts per trap-night (number of nights each trap was set at the site; also called 'catch per unit effort'). We chose this to define this variable in terms of total carabid abundance, rather than resolving to particular taxonomy (in contrast to species-specific relative abundance) because it simplifies issues related to taxonomic resolution of unpinned samples, data latency, and the choice of focal species. As supported by literature (Hoekman et al. 2017 and literature cited therein), we believe that abundance of the beetle family as a whole is an ecologically relevant metric. We considered predictions aggregated to the site level (rather than predicting individual traps or individual plots) to be both the most ecologically meaningful and simplest choice. Traps are typically collected every two weeks. Submitting a forecast for every week avoids the need to predict which weeks of the year collection does or does not occur. See <https://github.com/eco4cast/neon4cast-beetles/blob/master/02_targets.R> for a programmatic definition of how the abundance metric is defined.
+A forecast prediction can be compared against only measured data (i.e. counts) and not latent variables (i.e. true carabid abundance), which are only inferred under specific model assumptions. However, raw count of beetles found in a particular trap depends on many other drivers than local abundance; in particular, the sampling effort. To avoid the need to accurately predict the sampling effort, we compute a target variable as counts per trap-night (number of nights each trap was set at the site; also called 'catch per unit effort'). We chose this to define this variable in terms of total carabid abundance, rather than resolving to particular taxonomy (in contrast to species-specific relative abundance) because it simplifies issues related to taxonomic resolution of unpinned samples, data latency, and the choice of focal species. As supported by literature (Hoekman et al. 2017 and literature cited therein), we believe that abundance of the beetle family as a whole is an ecologically relevant metric. We considered predictions aggregated to the site level (rather than predicting individual traps or individual plots) to be both the most ecologically meaningful and simplest choice. Traps are typically collected every two weeks. Submitting a forecast for every week avoids the need to predict which weeks of the year collection does or does not occur. 
 
 ### Species richness (n)
 
@@ -61,7 +49,7 @@ Total number of unique 'species' in a sampling bout for each NEON site each week
 
 **Motivation**
 
-A forecast prediction can be compared against only measured data (i.e. observation count of taxonomic units) and not latent variables (i.e. count of species), which are only inferred under specific model and taxonomic assumptions. The number of unique taxonomic identities of beetles in a trap depends on many drivers, including sampling effort. As demonstrated by species rarefaction curves in ecology, the more time a trap is left out, the more individual beetles will fall in, and thus the more species can be expected. However, since perfect species-level data are not available to us and to keep the forecasted variables from being overly derived, we define the target variable as the total number of unique 'species' per week per NEON site. For this challenge, we chose to define 'species' as the taxonomic unit closest to species (e.g., species, genus, morphospecies) since not all identifications in the raw data are strictly at species-level. Species identifications will be used for individuals identified to sub-species level, as these are uncommon in the raw data. NEON taxonomists identify individuals as morphologically distinct units. Thus, it is reasonable to assert that the count of finest morphologically distinct identification (e.g., species, genus, morphospecies) is biologically meaningful, and thus the count of these is an important focal forecast variable. We focus on the NEON site as the spatial resolution and weekly intervals as the temporal resolution for the same reasons stated in the abundance metric. See <https://github.com/eco4cast/NEON-community-forecast/blob/master/02_targets.R> for a programmatic definition of how the richness metric is defined.
+A forecast prediction can be compared against only measured data (i.e. observation count of taxonomic units) and not latent variables (i.e. count of species), which are only inferred under specific model and taxonomic assumptions. The number of unique taxonomic identities of beetles in a trap depends on many drivers, including sampling effort. As demonstrated by species rarefaction curves in ecology, the more time a trap is left out, the more individual beetles will fall in, and thus the more species can be expected. However, since perfect species-level data are not available to us and to keep the forecasted variables from being overly derived, we define the target variable as the total number of unique 'species' per week per NEON site. For this challenge, we chose to define 'species' as the taxonomic unit closest to species (e.g., species, genus, morphospecies) since not all identifications in the raw data are strictly at species-level. Species identifications will be used for individuals identified to sub-species level, as these are uncommon in the raw data. NEON taxonomists identify individuals as morphologically distinct units. Thus, it is reasonable to assert that the count of finest morphologically distinct identification (e.g., species, genus, morphospecies) is biologically meaningful, and thus the count of these is an important focal forecast variable. We focus on the NEON site as the spatial resolution and weekly intervals as the temporal resolution for the same reasons stated in the abundance metric. 
 
 ### Focal sites
 
@@ -98,80 +86,6 @@ Raw (NEON L1 ground beetle data product [DP1.10022.001](https://data.neonscience
 The raw data is processed to generate total abundance and richness per week per NEON site. All data in the supplied file is available to build and evaluate models before submitting a forecast to challenge. Once new data becomes available, the data are appended to the existing file. Within the challenge scoring, only the new data are used to evaluate previously submitted forecasts.
 
 As part of our reproducible workflow, we provide an R script for producing derived tables of total abundance and richness from the raw NEON data. Our workflow gives preference to expert taxonomist identifications when available. Since expert taxonomy lags behind identifications from the sorting and pinning process, newer data will not be updated with expert taxonomy. The abundance table gives total abundance at each site for each week. The richness table gives an aggregate count of the number of 'species' at each site in each week.
-
-Note: The table includes all data that NEON has collected and can be used for building and training models (new data will be posted after forecasts are submitted)
-
-### Target file
-
-The code use to process the raw data to the evaluation data can be found here: https://github.com/eco4cast/neon4cast-targets/blob/main/beetles_targets.R
-
-Here is the format of the target file
-
-```{r message = FALSE}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/beetles/beetles-targets.csv.gz", guess_max = 1e6)
-```
-
-The table has the following columns:
-
--   `datetime`: YYYY-MM-DD (the Monday marking the week of sample collection (for training data) or forecast (submission). Per ISO standards, Monday marks the first day of each week.)\
--   `site_id`: NEON site ID
--   `variable`: abundance of beetles (`abundance`) or species richness (`richness`)
--   `observation`: value of `variable`
--   `iso_week`: The ISO-week
-
-## Timeline
-
-The timeline is determined by the data latency provided by NEON. NEON carabid pitfall trap data is released monthly with a latency of at least 60 days after collection. Weekly forecasts were chosen to best match up with NEON's weekly release of carabid data.
-
-As an example, carabid pitfall trap data released in the last week of June would include data as recent as the last week of April. Thus, a model submitted in the last week of June could include forecasts from May onwards. Then, the forecast update submitted at the end of July can use new May data to help refine June forecasts, or forecasts following June, depending on what drivers are used. The July forecast update is due by 11:59 pm EST on July 31. Forecasts updates will not be considered for weeks where NEON validation data has already been released (i.e., no May forecast updates may be submitted on July 31) or for weeks when no NEON carabid data is available.
-
-![](images/June2021_Calendar.jpg) ![](images/July2021_Calendar.jpg) Pitfall traps are collected and reset every 2 weeks throughout the growing season. Due to weather and conditions beyond the field team's control, this collection schedule may not be followed. Thus, the exact collection dates cannot be known until they have happened. Field data are made publicly available on the data portal as the `bet_fielddata` dataframe no sooner than 14 days after collection. Teams can use `bet_fielddata` to inform the actual collection schedule. Data with parataxonomist identifications are made publicly available on the data portal as the bet_sorting dataframe no sooner than 60 days after collection. Data are released on the NEON data portal weekly, but may be released on any day of the week. The forecast schedule follows the ISO week standard with weeks starting on Mondays.
-
-## Submissions
-
-The required names for forecasted variables: `abundance` and `richness`
-
-The required time unit: `date` for the Monday of the corresponding isoweek in `YYYY-MM-DD` format.
-
-Instructions for submitting forecasts are found in @sec-submissions
-
-## Meterological inputs for modeling
-
-Information about forecasted meteorology that is available for you to use when generating your forecasts can be found in @sec-met
-
-## Useful functions
-
-Functions for validating, evaluating and submitting forecasts can be found in @sec-functions
-
-Functions for downloading and working with the meteorology forecasts can be be found @sec-met
-
-## Null models
-
-One null model is automatically generated each week: the mean null model uses the mean of the historical data for each site.
-
-Code for the mean null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/beetles_mean.R){target="_blank"}
-
-## FAQ
-
-Answers to frequency asks questions can be found in @sec-faq
-
-## Design team
-
-Anna Spiers, University of Colorado, Boulder\
-Carl Boettiger, University of California, Berkeley\
-Tad Dallas, Louisiana State University\
-Nico Franz, NEON Biorepository at Arizona State University\
-Kari Norman, University of California, Berkeley\
-Thilina Surasinghe, Bridgewater State University\
-Brett Melbourne, University of Colorado, Boulder\
-Eric Sokol, NEON\
-Kelsey Yule, NEON Biorepository at Arizona State University
-
-## Partners
-
-The challenge is hosted by the Ecological Forecasting Initiative (EFI; https://ecoforecast.org/) and its U.S. National Science Foundation sponsored Research Coordination Network (EFI-RCN; https://ecoforecast.org/rcn/).
-
-Data used in the challenge from National Ecological Observatory Network (NEON): https://www.neonscience.org/.
 
 ## References
 

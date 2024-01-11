@@ -5,10 +5,8 @@ We are downloading, subsetting, and processing forecasted meteorology drivers fo
 The following are important considerations when using the NOAA GEFS forecasts
 
 -   There are 31 ensemble members for each forecast.\
--   For forecasts generated at four times per day, organized by "cycle" that correspond to the hour in UTC that the forecast was initiated: 00, 06, 12, and 18 cycles\
--   For the midnight (00) UTC, the forecasts extend 35-days in the future for the ensemble members 01 - 30. Ensemble member 31 only extends 16-days in the future.\
--   For forecasts generated at 06, 12, and 18 UTC, the forecasts extend 16-days in the future but we are not currently downloading the full forecasts for these cycles.\
--   We are constantly downloading and processing the forecasts.\
+-   The forecasts extend 35-days in the future.\
+-   We are downloading and processing the latest forecast each day.\
 
 The following meteorological variables are included:
 
@@ -20,7 +18,7 @@ The following meteorological variables are included:
 -   downwelling shortwave radiation\
 -   relative humidity\
 
-The weather forecasts are available through an s3 bucket (see NOAA Global Ensemble Forecasting System below) and we provide an R functions code in the [neon4cast package](https://github.com/eco4cast/neon4cast) for downloading all the ensemble members for particular location, forecast cycle (00, 06, 12, or 18), and NEON site
+The weather forecasts are available through an s3 bucket (see NOAA Global Ensemble Forecasting System below) and we provide an R functions code in the [neon4cast package](https://github.com/eco4cast/neon4cast) for downloading all the ensemble members for particular location and NEON site
 
 ```{r eval = FALSE}
 remotes::install_github("eco4cast/neon4cast")
@@ -31,8 +29,6 @@ remotes::install_github("eco4cast/neon4cast")
 ### Stage 1
 
 At each site, 31 ensemble member forecasts are provided at 3 hr intervals for the first 10 days, and 6 hr intervals for up to 35 days (840 hr horizon).
-
-Ensemble member 31 only extends 16-days in the future
 
 Forecasts include the following variables:
 
@@ -45,11 +41,9 @@ Forecasts include the following variables:
 -   DSWRF: Downward shortwave radiation flux in interval (W/m\^2)\
 -   DLWRF: Downward longwave radiation flux in interval (W/m\^2)\
 
-GEFS forecasts are issued four times a day, as indicated by the `start_date` and `cycle`. Only forecasts at midnight, `cycle = "0"` extend for the full 840 hour horizon. Other cycles 6, 12, 18 are provided only 16-day ahead, as mostly being of interest for short-term forecasts. (Though users should note that other NOAA products provide more much accurate and higher resolution short term forecasts than GEFS - though without uncertainty from ensemble members)
-
 All variables are given at height 2m above ground, surface, or 10 m above ground as indicated in height column. See https://www.nco.ncep.noaa.gov/pmb/products/gens/ for more details on GEFS variables and intervals.
 
-Common ways to filter the data before running `collect()` include `start_date`, `site_id`, `variable`, and `horizon`.
+Common ways to filter the data before running `collect()` include `reference_datetime`, `site_id`, `variable`, and `horizon`.
 
 ```{r eval = FALSE}
 weather <- neon4cast::noaa_stage1()
@@ -59,18 +53,18 @@ dplyr::filter(start_date == "2022-04-01") |>
 dplyr::collect()
 ```
 
-Note: that `noaa_stage1()` defaults to the `00` cycle.
-
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage1`
-
 Stage 1 has the following columns:
 
 `site_id: string` : NEON site ID\
 `prediction: double` : forecasted value\
 `variable: string` : weather variable\
-`height: string` : height above ground for weather variable\
-`horizon: double` : number of hours in the future  `family: string`: class of uncertainty (ensemble)\
-`parameter: int32` : ensemble member number  `reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0  `forecast_valid: string`: period of time (in hours) that the predicted value applies  `datetime: timestamp[us, tz=UTC]` : datetime of forecast  `longitude: double` : location of NEON site  `latitude: double` : location of NEON site  `start_date: string`: date of horizon 0 (the initiation of the forecast)  `cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.\
+`horizon: double` : number of hours in the future\
+`family: string`: class of uncertainty (ensemble)\
+`ensemble: int32` : ensemble member number\
+`reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0\
+`forecast_valid: string`: period of time (in hours) that the predicted value applies\
+`datetime: timestamp[us, tz=UTC]` : datetime of forecast\
+`cycle: string`: hour of day that forecast was started
 
 ### Stage 2
 
@@ -78,8 +72,6 @@ Stage 2 is a processed version of Stage 1 and involves the following transforms 
 
 -   Fluxes are standardized to per second rates\
 -   Fluxes and states are interpolated to 1 hour intervals\
-
-Ensemble member 31 only extends 16-days in the future
 
 Variables are renamed to match CF conventions:
 
@@ -99,22 +91,20 @@ dplyr::filter(start_date == "2022-04-01" & site_id == "BART") |>
 dplyr::collect()
 ```
 
-Note: that `noaa_stage2()` defaults to the `00` cycle.
-
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage2/parquet`
-
 Stage 2 has the following columns:
 
 `site_id: string` : NEON site ID\
 `prediction: double` : forecasted value\
 `variable: string` : weather variable\
-`height: string` : height above ground for weather variable\
-`horizon: double` : number of hours in the future  `family: string`: class of uncertainty (ensemble)\
-`parameter: int32` : ensemble member number  `reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0  `forecast_valid: string`: period of time (in hours) that the predicted value applies  `datetime: timestamp[us, tz=UTC]` : datetime of forecast  `longitude: double` : location of NEON site  `latitude: double` : location of NEON site  `start_date: string`: date of horizon 0 (the initiation of the forecast)  `cycle: int32`: the UTC hour of the `start_date` of horizon 0 (the initiation of the forecast), possible values are 0, 6, 12, and 18.\
+`horizon: double` : number of hours in the future\
+`family: string`: class of uncertainty (ensemble)\
+`parameter: int32` : ensemble member number\
+`reference_datetime: timestamp[us, tz=UTC]`: datetime of horizon 0\
+`datetime: timestamp[us, tz=UTC]` : datetime of forecast\
 
 ### Stage 3
 
-Stage 3 processing presents a 'nowcast' product by combining the most recent predictions from each available cycle. Product uses CF variable names and 1 hr interval. The resulting produce is single time-series for each ensemble member, rather than a set of time series from all the forecasts. Stage 3 can be viewed as the "historical" weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.
+Stage 3 can be viewed as the "historical" weather for site as simulated by NOAA GEFS. Stage 3 is useful for model training because it ensures that the magnitude and variability of the weather data used to train your model is similar to that in the NOAA GEFS weather forecast you may use as inputs to your forecast.
 
 Stage 3 uses CF variable names and 1 hr interval
 
@@ -134,62 +124,18 @@ dplyr::filter(site_id == "BART") |>
 dplyr::collect()
 ```
 
-If you are using python tools (`pyarrow`) the endpoint is `data.ecoforecast.org` and the bucket is `neon4cast-drivers/noaa/gefs-v12/stage3/parquet`
-
 Stage 3 has the following columns
 
 `site_id: string` : NEON site ID\
 `prediction: double` : forecasted value\
 `variable: string` : weather variable\
-`height: string` : height above ground for weather variable\
 `family: string`: class of uncertainty (ensemble)\
 `parameter: int32` : ensemble member number\
+`reference_datetime: timestamp[us, tz=UTC]`: always NA in Stage3
 `datetime: timestamp[us, tz=UTC]` : datetime of forecast\
-`longitude: double` : location of NEON site\
-`latitude: double` : location of NEON site
-
-## NEON Observed
-
-The observed weather at each NEON site as also available in the monthly released data products by NEON. We are downloading these data and providing through the following function
-
-```{r eval = FALSE}
-neon <- arrow::s3_bucket("neon4cast-targets/neon",
-                  endpoint_override = "data.ecoforecast.org",
-                  anonymous = TRUE)
-```
-
-The list of data tables that are available can be found using this command.
-
-```{r eval = FALSE}
-neon$ls()
-```
-
-And here is an example for accessing the triple aspirated temperature data product. See the data product (i.e., DP1.00003.001) in NEON data portal for more information about the table names.
-
-```{r eval = FALSE}
-taat <- arrow::open_dataset(neon$path("TAAT_30min-basic-DP1.00003.001")) 
-```
-
-Here is an example showing how to download particular subsets of the data table.
-
-```{r eval = FALSE}
-neon_temp <- taat |>
-  mutate(time = as.Date(startDateTime)) |>
-  group_by(siteID, time) |>
-  summarise(mean_tmp = mean(tempTripleMean, na.rm = TRUE),
-            min_tmp = min(tempTripleMinimum, na.rm = TRUE),
-            max_tmp = max(tempTripleMaximum, na.rm = TRUE)) |>
-  rename(site_id = siteID) |>
-  collect()
-
-```
 
 ## Downloading of raw NOAA GEFS Forecasts
 
-The documentation above describes how to access NOAA GEFS forecasts that we have subseted for NEON sites. We recommend using this approach.
+The documentation above describes how to access NOAA GEFS forecasts that we have subsetted for NEON sites. We recommend using this approach.
 
 The code used to download and process the raw NOAA GEFS forecast from Amazon Web Services Registry of Open Data is available in the `gefs4cast` package found at [github.com/eco4cast/gefs4cast](https://github.com/eco4cast/gefs4cast)
-
-## Timing of data availability
-
-See @sec-cron for information on the time day that the NOAA data become available on our servers for use in the Challenge.

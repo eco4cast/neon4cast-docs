@@ -4,21 +4,7 @@
 
 **Where:** 7 lakes and 27 river/stream NEON sites.
 
-**When:** Daily forecasts for at least 30-days in the future are accepted at any time.  New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
-
-**Why:** Freshwater surface water temperature, dissolved oxygen, and chlorophyll-a are critical for life in aquatic environments and can represent the health of the system
-
-**Who:** Open to any individual or team that registers
-
-**How:** [REGISTER](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} your team and submit forecast. If you registered for the Round 1 (2021) and are using the same team and method then you do not need to re-register.
-
-The video below is an overview of the Aquatic Ecosystems Challenge that was recorded for the [2021 Early Career Annual Meeting](https://ecoforecast.org/ecological-forecasting-early-career-annual-meeting/){target="_blank"}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/935Uiy11mTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
-
-We held a Q&A session on May 21, 2021. You can find a recording from that session [HERE](https://youtu.be/KBAPZoDKbk8){target="_blank"}.
+**When:** Daily forecasts for at least 30-days in the future are accepted at any time. New forecast submissions are accepted daily. The only requirement is that submissions are predictions of the future at the time the forecast is submitted.
 
 ```{r echo = FALSE, message = FALSE}
 library("tidyverse")
@@ -42,33 +28,10 @@ Teams are asked to submit their 30-day forecasts of NEON surface mean daily surf
 
 ## Data: Targets
 
-The R script for generating the evaluation and training data (i.e., targets) can be found at: https://github.com/eco4cast/neon4cast-aquatics
-
 The challenge uses the following NEON data products: - [DP1.20264.001](https://data.neonscience.org/data-products/DP1.20264.001){target="_blank"}: Temperature at specific depth in surface water for lakes - [DP1.20288.001](https://data.neonscience.org/data-products/DP1.20288.001){target="_blank"}: Water quality (includes oxygen and chlorophyll-a)\
 - [DP1.20035.001](https://data.neonscience.org/data-products/DP1.20053.001){target ="\_blank"}: Temperature in surface waters for streams
 
-A file with previously released NEON data that has been processed into targets is provided below. The target script can be found [here](https://github.com/eco4cast/neon4cast-aquatics/blob/master/02_generate_targets_aquatics.R){target="_blank"}. The same processing will be applied to new data that are used for forecast evaluation.
-
-Here is the format of the target file
-
-```{r message = FALSE}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz") |> 
-  na.omit()
-```
-
-The target file has the following columns
-
--   `datetime`: date of observation\
--   `site_id`: NEON site code\
--   `variable`: variable (`temperature`, `oxygen`, `chla`)
--   `observation`: daily mean value
-
-Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will _not_ be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data
-
-```{r message = FALSE}
-readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-expanded-observations.csv.gz") |> 
-  na.omit()
-```
+Additionally, hourly water temperature profiles are also available for the lake sites, to aid model development, but will *not* be used in forecast scoring or evaluation. Only surface mean daily temperature forecasts should be submitted. Here is the format of the expanded targets data
 
 ### Surface Mean Daily Dissolved Oxygen Concentration
 
@@ -122,54 +85,9 @@ site_data %>%
   knitr::kable()
 ```
 
-## Timeline
-
-Forecasts for a minimum of 30 days can be submitted daily by 11:59 pm UTC. A minimum of 30 days in the future must be forecasted for each submission. For example, a forecast submitted on March 1 should be for at least March 1st -- March 30th. New forecasts can be submitted daily as new weather forecasts and observations (e.g., new temperature and water quality data is released by NEON) become available. The key is that submissions are predictions of the future.
-
-Since daily submissions are allowed and encouraged, the automation of forecast generation may be ideal. There are many ways to automate scripts that are written to download observations and meteorology drivers, generate forecasts, and submit forecasts. Two tools that many have used are cron jobs (see the R package [cronR](https://cran.r-project.org/web/packages/cronR/index.html){target="_blank"}) that execute tasks at user specified times and [github actions](https://youtu.be/dMrUlXi4_Bo){target="_blank"}. See more at @sec-faq
-
-Cron jobs work on unix and mac systems. An example of a script that executes a cron job using R can be found [here](https://github.com/eco4cast/neon4cast-aquatics/blob/master/cron_automation.R){target="_blank"}.
-
 ## Observed data latency
 
 Through a collaboration with NEON, the new data will be available within 24-28 hrs of being collected for use in model training and forecast evaluation
-
-## Submissions
-
-The required names for forecasted variables: `oxygen`, `temperature`, and `chla`.
-
-The required time unit: `date` for daily forecast in `YYYY-MM-DD`
-
-Instructions for submitting forecasts are found here: @sec-submissions
-
-## Meterological inputs for modeling
-
-Information about forecasted meteorology that is available for you to use when generating your forecasts can be found here: @sec-met
-
-## Useful functions
-
-Functions for validating, evaluating and submitting forecasts can be found here: @sec-functions
-
-## Null models
-
-A climatology null model is automatically generated each day to served as a simple baseline model. This climatology null model forecasts that the nee or lee will be equal to the historical mean of that day of year.
-
-Code for the climatology null model can be found [here](https://github.com/eco4cast/neon4cast-baselines/blob/main/aquatics_climatology.R){target="_blank"}
-
-## FAQ
-
-Answers to frequency asks questions can be found here: @sec-faq
-
-## Design Team
-
-Freya Olsson, Virginia Tech\
-James Guinnip, Kansas State University\
-Sarah Burnet, University of Idaho\
-Ryan McClure, Virginia Tech\
-Chris Brown, National Oceanic and Atmospheric Administration\
-Cayelan Carey, Virginia Tech\
-Whitney Woelmer, Virginia Tech\
-Jake Zwart, United States Geological Survey
 
 ## Partners
 
