@@ -239,7 +239,7 @@ On following day after submission, you can see the forecast on the dashboard at 
 
 ## Complete registration and metadata
 
-Complete the [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} that defines your model
+Complete the [registration and model overview](https://forms.gle/kg2Vkpho9BoMXSy57){target="_blank"} that defines your model
 
 
 ## Example on github
