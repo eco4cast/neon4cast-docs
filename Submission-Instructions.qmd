@@ -6,7 +6,7 @@ The following provides the requirements for the format of the forecasts that wil
 
 We provide an overview of the steps for submitting with the details below:
 
-1)  Submit [registration and model overview](https://nd.qualtrics.com/jfe/form/SV_9MJ29y2xNrBOjqZ){target="_blank"} for the model using a web form. 
+1)  Submit [registration and model overview](https://forms.gle/kg2Vkpho9BoMXSy57){target="_blank"} for the model using a web form. 
 2)  Generate forecast with required columns. There are three options for the file format described below.\
 3)  Write forecast to a file that follows the standardized naming format.\
 4)  Submit forecast (preferably using the submission function that we provide)/\
