@@ -2,4 +2,4 @@
 
 <center>![Caption for the picture.](images/EFI_Logo-1.jpg){width="25%"} ![](images/nsf-neon-logo.v3.png){width="35%"}</center>
 
-Please see our new main landing page for the Challenge at <https://www.neon4cast.org>.  This document supplements the main page with detailed documentation,
+Please see our new main landing page for the Challenge at <www.neon4cast.org>.  This document supplements the main page with detailed documentation,
